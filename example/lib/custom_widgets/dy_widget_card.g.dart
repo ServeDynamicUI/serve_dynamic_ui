@@ -12,7 +12,7 @@ DynamicWidgetCard _$DynamicWidgetCardFromJson(Map<String, dynamic> json) {
     requiredKeys: const ['key'],
   );
   return DynamicWidgetCard(
-    key: json['key'] as String?,
+    key: json['key'] as String,
     prefixImage: json['prefixImage'] == null
         ? null
         : DynamicWidget.fromJson(json['prefixImage'] as Map<String, dynamic>),

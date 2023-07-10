@@ -22,7 +22,7 @@ class DynamicWidgetCard extends DynamicWidget {
   ActionDTO? action;
 
   DynamicWidgetCard({
-    String? key,
+    required String key,
     this.prefixImage,
     this.body,
     this.elevation,
@@ -31,7 +31,7 @@ class DynamicWidgetCard extends DynamicWidget {
     this.padding,
     this.action,
   }) : super(
-          key: key ?? '',
+          key: key,
         );
 
   factory DynamicWidgetCard.fromJson(Map<String, dynamic> json) =>

@@ -27,14 +27,20 @@ https://github.com/Arunshaik2001/serve_dynamic_ui/assets/50947867/ab901892-d636-
    * TextField
 
 **2. Extend to Create Custom DynamicWidgets.**
-**3. In-built actions (as of now Navigation action, Update a dynamic widget action, handling user input action).**
-**4. Extend to Create Custom Actions.**
-**5. Invoke methods in a DynamicWidget.**
-**6. Update DynamicWidget state**
-**7. Listen to contrllers.**
-**8. Handle form inputs.**
-**9. Load jsons from assets or from network.**
 
+**3. In-built actions (as of now Navigation action, Update a dynamic widget action, handling user input action).**
+
+**4. Extend to Create Custom Actions.**
+
+**5. Invoke methods in a DynamicWidget.**
+
+**6. Update DynamicWidget state**
+
+**7. Listen to contrllers.**
+
+**8. Handle form inputs.**
+
+**9. Load jsons from assets or from network.**
 
 
 ## Getting started

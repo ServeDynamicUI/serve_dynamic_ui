@@ -12,7 +12,7 @@ DynamicPositioned _$DynamicPositionedFromJson(Map<String, dynamic> json) {
     requiredKeys: const ['key'],
   );
   return DynamicPositioned(
-    key: json['key'] as String?,
+    key: json['key'] as String,
     child: json['child'] == null
         ? null
         : DynamicWidget.fromJson(json['child'] as Map<String, dynamic>),

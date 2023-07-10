@@ -11,12 +11,12 @@ import 'package:serve_dynamic_ui/src/dynamic_widgets/dy_container/dy_container.d
 )
 abstract class DynamicWidget {
   @JsonKey(required: true)
-  final String? key;
+  final String key;
 
   @JsonKey(includeFromJson: false, includeToJson: false)
   DynamicWidget? parent;
 
-  DynamicWidget({this.key, this.parent});
+  DynamicWidget({required this.key, this.parent});
 
   ///helps to build in-built flutter widget.
   Widget build(BuildContext context);

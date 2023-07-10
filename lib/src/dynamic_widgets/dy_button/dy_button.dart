@@ -29,7 +29,7 @@ class DynamicButton extends DynamicWidget {
   EdgeInsets? padding;
 
   DynamicButton({
-    String? key,
+    required String key,
     required this.child,
     this.action,
     this.width,

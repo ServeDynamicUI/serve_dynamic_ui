@@ -12,7 +12,7 @@ DynamicButton _$DynamicButtonFromJson(Map<String, dynamic> json) {
     requiredKeys: const ['key'],
   );
   return DynamicButton(
-    key: json['key'] as String?,
+    key: json['key'] as String,
     child: DynamicWidget.fromJson(json['child'] as Map<String, dynamic>),
     action: json['action'] == null
         ? null

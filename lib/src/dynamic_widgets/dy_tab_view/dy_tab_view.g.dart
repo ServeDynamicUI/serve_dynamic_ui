@@ -12,7 +12,7 @@ DynamicTabView _$DynamicTabViewFromJson(Map<String, dynamic> json) {
     requiredKeys: const ['key'],
   );
   return DynamicTabView(
-    key: json['key'] as String?,
+    key: json['key'] as String,
     selectedTabIndex: json['selectedTabIndex'] as int? ?? 0,
     margin: (json['margin'] as num?)?.toDouble() ?? 0,
     indicatorColor: WidgetUtil.getColor(json['indicatorColor'] as String?),

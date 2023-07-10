@@ -12,7 +12,7 @@ DynamicStack _$DynamicStackFromJson(Map<String, dynamic> json) {
     requiredKeys: const ['key'],
   );
   return DynamicStack(
-    key: json['key'] as String?,
+    key: json['key'] as String,
     children: (json['children'] as List<dynamic>?)
         ?.map((e) => DynamicWidget.fromJson(e as Map<String, dynamic>))
         .toList(),

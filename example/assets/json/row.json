@@ -1,0 +1,46 @@
+{
+  "type": "dy_scaffold",
+  "data": {
+    "key": "123456",
+    "pageTitle": "Flutter Row Screen",
+    "child": {
+      "type": "dy_container",
+      "data": {
+        "key": "123123",
+        "margin": "10",
+        "child": {
+          "type": "dy_row",
+          "data": {
+            "key": "131434",
+            "mainAxisAlignment": "spaceBetween",
+            "children": [
+              {
+                "type": "dy_text",
+                "data": {
+                  "key": "123123",
+                  "text": "This is a text in a row",
+                  "style": {
+                    "fontSize": 10,
+                    "fontWeight": "bold"
+                  }
+                }
+              },
+              {
+                "type": "dy_image",
+                "data": {
+                  "key": "212226323233",
+                  "src": "https://freeiconshop.com/wp-content/uploads/edd/image-outline-filled.png",
+                  "height": 150,
+                  "width": 150,
+                  "imageType": "network",
+                  "fit": "fill",
+                  "placeholderImagePath": "assets/images/icon_placeholder.png"
+                }
+              }
+            ]
+          }
+        }
+      }
+    }
+  }
+}

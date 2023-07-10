@@ -1,0 +1,95 @@
+{
+  "type": "dy_scaffold",
+  "data": {
+    "key": "1236456",
+    "pageTitle": "Flutter Stack Screen",
+    "child": {
+      "type": "dy_container",
+      "data": {
+        "key": "223236423",
+        "backgroundColor": "0xff90EE90",
+        "height": -1,
+        "child": {
+          "type": "dy_stack",
+          "data": {
+            "key": "2234656231",
+            "alignment": "center",
+            "children": [
+              {
+                "type": "dy_positioned",
+                "data": {
+                  "key": "131313",
+                  "top": 10,
+                  "left": 20,
+                  "child": {
+                    "type": "dy_text",
+                    "data": {
+                      "key": "222623233",
+                      "text": "Your"
+                    }
+                  }
+                }
+              },
+              {
+                "type": "dy_positioned",
+                "data": {
+                  "key": "131313",
+                  "top": 20,
+                  "left": 50,
+                  "child": {
+                    "type": "dy_text",
+                    "data": {
+                      "key": "2226343423233",
+                      "text": "Stack"
+                    }
+                  }
+                }
+              },
+              {
+                "type": "dy_positioned",
+                "data": {
+                  "key": "131313",
+                  "top": 40,
+                  "left": 80,
+                  "child": {
+                    "type": "dy_text",
+                    "data": {
+                      "key": "2226343423233",
+                      "text": "Screen"
+                    }
+                  }
+                }
+              },
+              {
+                "type": "dy_positioned",
+                "data": {
+                  "key": "131313",
+                  "top": 60,
+                  "left": 100,
+                  "child": {
+                    "type": "dy_container",
+                    "data": {
+                      "key": "123123",
+                      "child": {
+                        "type": "dy_image",
+                        "data": {
+                          "key": "212226323233",
+                          "src": "assets/images/icon_stack.png",
+                          "height": 250,
+                          "width": 250,
+                          "imageType": "asset",
+                          "fit": "fill",
+                          "placeholderImagePath": "assets/images/icon_placeholder.png"
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            ]
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,24 @@
+{
+  "type": "dy_scaffold",
+  "data": {
+    "key": "123456",
+    "scrollable": false,
+    "child": {
+      "type": "dy_container",
+      "height": -1,
+      "data": {
+        "key": "123123",
+        "alignment": "center",
+        "margin": "10",
+        "child": {
+          "type": "dy_loader",
+          "data": {
+            "key": "13131",
+            "mainAxisAlignment": "center",
+            "loadingText": "Fetching From Network..."
+          }
+        }
+      }
+    }
+  }
+}

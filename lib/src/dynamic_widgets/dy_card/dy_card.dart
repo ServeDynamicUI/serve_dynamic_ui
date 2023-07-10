@@ -1,0 +1,81 @@
+import 'dart:async';
+import 'package:flutter/material.dart';
+import 'package:json_annotation/json_annotation.dart';
+import 'package:serve_dynamic_ui/serve_dynamic_ui.dart';
+
+part 'dy_card.g.dart';
+
+///[DynamicCard] : A dynamic widgets that helps to create visually appealing container.
+@JsonSerializable(
+  explicitToJson: true,
+  createToJson: false,
+)
+class DynamicCard extends DynamicWidget {
+  @JsonKey(fromJson: WidgetUtil.getColor)
+  Color? color;
+  @JsonKey(fromJson: WidgetUtil.getColor)
+  Color? shadowColor;
+  @JsonKey(fromJson: WidgetUtil.getColor)
+  Color? surfaceTintColor;
+  double? elevation;
+  bool borderOnForeground;
+  @JsonKey(fromJson: WidgetUtil.getEdgeInsets)
+  EdgeInsets? margin;
+  @JsonKey(fromJson: WidgetUtil.getClipBehavior)
+  Clip? clipBehavior;
+  DynamicWidget? child;
+  bool semanticContainer;
+  double? borderRadius;
+  @JsonKey(fromJson: WidgetUtil.getLinearGradient)
+  LinearGradient? linearGradient;
+
+  DynamicCard({
+    String? key,
+    this.color,
+    this.child,
+    this.clipBehavior,
+    this.margin,
+    this.borderOnForeground = true,
+    this.elevation,
+    this.semanticContainer = true,
+    this.shadowColor,
+    this.surfaceTintColor,
+    this.borderRadius,
+    this.linearGradient,
+  }) : super(
+          key: key ?? "",
+        );
+
+  factory DynamicCard.fromJson(Map<String, dynamic> json) =>
+      _$DynamicCardFromJson(json);
+
+  @override
+  Widget build(BuildContext context) {
+    return Card(
+      shadowColor: shadowColor,
+      clipBehavior: clipBehavior,
+      color: color,
+      elevation: elevation,
+      semanticContainer: semanticContainer,
+      borderOnForeground: borderOnForeground,
+      surfaceTintColor: surfaceTintColor,
+      margin: margin ?? EdgeInsets.zero,
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(borderRadius ?? 5),
+      ),
+      child: Container(
+        decoration: BoxDecoration(
+          gradient: linearGradient,
+          borderRadius: BorderRadius.circular(borderRadius ?? 5)
+        ),
+        child: child?.build(context),
+      ),
+    );
+  }
+
+  @override
+  List<DynamicWidget?>? get childWidgets => child == null ? [child!] : [];
+
+  @override
+  FutureOr invokeMethod(String methodName, {Map<String, dynamic>? params}) {}
+}

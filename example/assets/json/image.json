@@ -1,0 +1,25 @@
+{
+  "type": "dy_scaffold",
+  "data": {
+    "key": "123456",
+    "pageTitle": "Flutter Image Screen",
+    "child": {
+      "type": "dy_container",
+      "data": {
+        "key": "123123",
+        "child": {
+          "type": "dy_image",
+          "data": {
+            "key": "212226323233",
+            "src": "https://freeiconshop.com/wp-content/uploads/edd/image-outline-filled.png",
+            "height": 250,
+            "width": 250,
+            "imageType": "network",
+            "fit": "fill",
+            "placeholderImagePath": "assets/images/icon_placeholder.png"
+          }
+        }
+      }
+    }
+  }
+}

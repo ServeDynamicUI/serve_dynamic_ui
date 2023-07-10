@@ -1,0 +1,39 @@
+{
+  "type": "dy_scaffold",
+  "data": {
+    "key": "123456",
+    "pageTitle": "Flutter Card Screen",
+    "child": {
+      "type": "dy_container",
+      "data": {
+        "key": "123123",
+        "child": {
+          "type": "dy_card",
+          "data": {
+            "key": "12399123",
+            "color": "0xffff0000",
+            "margin": "10",
+            "elevation": 10,
+            "linearGradient": "-1.0,0.0;1.0,0.0;0xff6D59D4,0xff879CFB",
+            "borderRadius": 20,
+            "child": {
+              "type": "dy_text",
+              "data": {
+                "key": "34324",
+                "text": "Card",
+                "height": 100,
+                "width": 200,
+                "textAlign": "center",
+                "style": {
+                  "color": "0xffffffff",
+                  "fontSize": 25,
+                  "fontWeight": "bold"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

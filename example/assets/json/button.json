@@ -1,0 +1,68 @@
+{
+  "type": "dy_scaffold",
+  "data": {
+    "key": "123456",
+    "pageTitle": "Flutter Button Screen",
+    "scrollable": false,
+    "child": {
+      "type": "dy_container",
+      "data": {
+        "key": "123123",
+        "margin": "10",
+        "height": -1,
+        "child": {
+          "type": "dy_column",
+          "data": {
+            "key": "11343",
+            "mainAxisAlignment": "spaceAround",
+            "children": [
+              {
+                "type": "dy_text",
+                "data": {
+                  "key": "update_text_key",
+                  "text": "Update Text",
+                  "style": {
+                    "color": "0xff000000",
+                    "fontWeight": "bold",
+                    "fontSize": 20
+                  }
+                }
+              },
+              {
+                "type": "dy_button",
+                "data": {
+                  "key": "223775672355",
+                  "buttonColor": "0xff90EE90",
+                  "buttonBorderRadius": 10,
+                  "padding": "10",
+                  "child": {
+                    "type": "dy_text",
+                    "data": {
+                      "key": "23242342",
+                      "text": "click to update the above text",
+                      "style": {
+                        "color": "0xffffffff",
+                        "fontWeight": "bold",
+                        "fontSize": 20
+                      }
+                    }
+                  },
+                  "action": {
+                    "actionString": "/updateWidget",
+                    "extras": {
+                      "widgetKey": "update_text_key",
+                      "methodName": "UPDATE_TEXT",
+                      "params": {
+                        "newText": "Updated Text Value"
+                      }
+                    }
+                  }
+                }
+              }
+            ]
+          }
+        }
+      }
+    }
+  }
+}

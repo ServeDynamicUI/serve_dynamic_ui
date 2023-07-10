@@ -1,0 +1,1132 @@
+{
+  "type": "dy_scaffold",
+  "data": {
+    "key": "123456",
+    "pageTitle": "Flutter Server UI Home Screen",
+    "child": {
+      "type": "dy_column",
+      "data": {
+        "key": "423243",
+        "children": [
+          {
+            "type": "dy_gesture_detector",
+            "data": {
+              "key": "1234234",
+              "onTapAction": {
+                "actionString": "/moveToScreen",
+                "extras": {
+                  "url": "https://raw.githubusercontent.com/Arunshaik2001/demo_server_driven_ui/master/assets/json/dy_scaffold.json",
+                  "urlType": "network",
+                  "requestType": "get",
+                  "navigationType": "screen",
+                  "navigationStyle": "push",
+                  "loaderWidgetAssetPath": "assets/json/loader.json"
+                }
+              },
+              "child": {
+                "type": "dy_widget_card",
+                "data": {
+                  "key": "1323",
+                  "margin": "10",
+                  "elevation": 10,
+                  "padding": "10",
+                  "borderRadius": 10,
+                  "body": {
+                    "type": "dy_container",
+                    "data": {
+                      "key": "15345",
+                      "padding": "10,0,0,0",
+                      "child": {
+                        "type": "dy_column",
+                        "data": {
+                          "key": "2457231",
+                          "mainAxisAlignment": "spaceBetween",
+                          "crossAxisAlignment": "start",
+                          "children": [
+                            {
+                              "type": "dy_text",
+                              "data": {
+                                "key": "1734233",
+                                "text": "Scaffold",
+                                "style": {
+                                  "color": "0xffff0000",
+                                  "fontSize": 20,
+                                  "fontWeight": "bold"
+                                }
+                              }
+                            },
+                            {
+                              "type": "dy_container",
+                              "data": {
+                                "key": "813123",
+                                "width": 200,
+                                "child": {
+                                  "type": "dy_text",
+                                  "data": {
+                                    "key": "8327757234",
+                                    "text": "a widget that provides basic structure for building app's layout.",
+                                    "maxLines": 3
+                                  }
+                                }
+                              }
+                            }
+                          ]
+                        }
+                      }
+                    }
+                  },
+                  "prefixImage": {
+                    "type": "dy_image",
+                    "data": {
+                      "key": "16323233",
+                      "src": "assets/images/icon_scaffold.png",
+                      "height": 50,
+                      "width": 50,
+                      "imageType": "asset",
+                      "fit": "fill",
+                      "placeholderImagePath": "assets/images/icon_placeholder.png"
+                    }
+                  },
+                  "action": {
+                    "actionString": "/showSnackbar",
+                    "extras": {
+                      "title": "Scaffold"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          {
+            "type": "dy_gesture_detector",
+            "data": {
+              "key": "24234234",
+              "onTapAction": {
+                "actionString": "/moveToScreen",
+                "extras": {
+                  "url": "assets/json/container.json",
+                  "urlType": "local",
+                  "navigationType": "screen",
+                  "navigationStyle": "push"
+                }
+              },
+              "child": {
+                "type": "dy_widget_card",
+                "data": {
+                  "key": "22323",
+                  "margin": "10",
+                  "elevation": 10,
+                  "padding": "10",
+                  "borderRadius": 10,
+                  "action": {
+                    "actionString": "/showSnackbar",
+                    "extras": {
+                      "title": "Container"
+                    }
+                  },
+                  "body": {
+                    "type": "dy_container",
+                    "data": {
+                      "key": "345345",
+                      "padding": "10,0,0,0",
+                      "child": {
+                        "type": "dy_column",
+                        "data": {
+                          "key": "2457231",
+                          "mainAxisAlignment": "spaceBetween",
+                          "crossAxisAlignment": "start",
+                          "children": [
+                            {
+                              "type": "dy_text",
+                              "data": {
+                                "key": "2232734233",
+                                "text": "Container",
+                                "style": {
+                                  "color": "0xffff0000",
+                                  "fontSize": 20,
+                                  "fontWeight": "bold"
+                                }
+                              }
+                            },
+                            {
+                              "type": "dy_text",
+                              "data": {
+                                "key": "223667757234",
+                                "text": "a widget that holds other widgets"
+                              }
+                            }
+                          ]
+                        }
+                      }
+                    }
+                  },
+                  "prefixImage": {
+                    "type": "dy_image",
+                    "data": {
+                      "key": "2226323233",
+                      "src": "https://www.saloodo.com/wp-content/uploads/2021/09/container-1-1.png",
+                      "height": 50,
+                      "width": 50,
+                      "imageType": "network",
+                      "fit": "fill",
+                      "clipBorderRadius": 20,
+                      "placeholderImagePath": "assets/images/icon_placeholder.png"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          {
+            "type": "dy_gesture_detector",
+            "data": {
+              "key": "124234234",
+              "onTapAction": {
+                "actionString": "/moveToScreen",
+                "extras": {
+                  "url": "assets/json/text.json",
+                  "urlType": "local",
+                  "navigationType": "screen",
+                  "navigationStyle": "push"
+                }
+              },
+              "child": {
+                "type": "dy_widget_card",
+                "data": {
+                  "key": "122323",
+                  "margin": "10",
+                  "elevation": 10,
+                  "padding": "10",
+                  "borderRadius": 10,
+                  "action": {
+                    "actionString": "/showSnackbar",
+                    "extras": {
+                      "title": "Text"
+                    }
+                  },
+                  "body": {
+                    "type": "dy_container",
+                    "data": {
+                      "key": "12313",
+                      "padding": "10,0,0,0",
+                      "child": {
+                        "type": "dy_column",
+                        "data": {
+                          "key": "12457231",
+                          "mainAxisAlignment": "spaceBetween",
+                          "crossAxisAlignment": "start",
+                          "children": [
+                            {
+                              "type": "dy_text",
+                              "data": {
+                                "key": "12232734233",
+                                "text": "Text",
+                                "style": {
+                                  "color": "0xffff0000",
+                                  "fontSize": 20,
+                                  "fontWeight": "bold"
+                                }
+                              }
+                            },
+                            {
+                              "type": "dy_text",
+                              "data": {
+                                "key": "1223667757234",
+                                "text": "a widget that shows a text or html text."
+                              }
+                            }
+                          ]
+                        }
+                      }
+                    }
+                  },
+                  "prefixImage": {
+                    "type": "dy_image",
+                    "data": {
+                      "key": "12226323233",
+                      "src": "assets/images/text_ic.png",
+                      "placeholderImagePath": "assets/images/icon_placeholder.png",
+                      "height": 50,
+                      "width": 50,
+                      "imageType": "asset",
+                      "fit": "cover"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          {
+            "type": "dy_gesture_detector",
+            "data": {
+              "key": "2124234234",
+              "onTapAction": {
+                "actionString": "/moveToScreen",
+                "extras": {
+                  "url": "assets/json/image.json",
+                  "urlType": "local",
+                  "navigationType": "dialog",
+                  "navigationStyle": "push"
+                }
+              },
+              "child": {
+                "type": "dy_widget_card",
+                "data": {
+                  "key": "2122323",
+                  "margin": "10",
+                  "elevation": 10,
+                  "padding": "10",
+                  "borderRadius": 10,
+                  "action": {
+                    "actionString": "/showSnackbar",
+                    "extras": {
+                      "title": "Image"
+                    }
+                  },
+                  "body": {
+                    "type": "dy_container",
+                    "data": {
+                      "key": "2141434",
+                      "padding": "10,0,0,0",
+                      "child": {
+                        "type": "dy_column",
+                        "data": {
+                          "key": "212457231",
+                          "mainAxisAlignment": "spaceBetween",
+                          "crossAxisAlignment": "start",
+                          "children": [
+                            {
+                              "type": "dy_text",
+                              "data": {
+                                "key": "212232734233",
+                                "text": "Image",
+                                "style": {
+                                  "color": "0xffff0000",
+                                  "fontSize": 20,
+                                  "fontWeight": "bold"
+                                }
+                              }
+                            },
+                            {
+                              "type": "dy_container",
+                              "data": {
+                                "key": "213123",
+                                "width": 200,
+                                "child": {
+                                  "type": "dy_text",
+                                  "data": {
+                                    "key": "21223667757234",
+                                    "text": "a widget that shows an image from network, file, asset.",
+                                    "maxLines": 3
+                                  }
+                                }
+                              }
+                            }
+                          ]
+                        }
+                      }
+                    }
+                  },
+                  "prefixImage": {
+                    "type": "dy_image",
+                    "data": {
+                      "key": "212226323233",
+                      "src": "https://freeiconshop.com/wp-content/uploads/edd/image-outline-filled.png",
+                      "height": 50,
+                      "width": 50,
+                      "imageType": "network",
+                      "fit": "fill",
+                      "placeholderImagePath": "assets/images/icon_placeholder.png"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          {
+            "type": "dy_gesture_detector",
+            "data": {
+              "key": "32124234234",
+              "onTapAction": {
+                "actionString": "/moveToScreen",
+                "extras": {
+                  "url": "assets/json/column.json",
+                  "urlType": "local",
+                  "navigationType": "bottomSheet",
+                  "navigationStyle": "push"
+                }
+              },
+              "child": {
+                "type": "dy_widget_card",
+                "data": {
+                  "key": "32122323",
+                  "margin": "10",
+                  "elevation": 10,
+                  "padding": "10",
+                  "borderRadius": 10,
+                  "action": {
+                    "actionString": "/showSnackbar",
+                    "extras": {
+                      "title": "Column"
+                    }
+                  },
+                  "body": {
+                    "type": "dy_container",
+                    "data": {
+                      "key": "32141434",
+                      "padding": "10,0,0,0",
+                      "child": {
+                        "type": "dy_column",
+                        "data": {
+                          "key": "3212457231",
+                          "mainAxisAlignment": "spaceBetween",
+                          "crossAxisAlignment": "start",
+                          "children": [
+                            {
+                              "type": "dy_text",
+                              "data": {
+                                "key": "3212232734233",
+                                "text": "Column",
+                                "style": {
+                                  "color": "0xffff0000",
+                                  "fontSize": 20,
+                                  "fontWeight": "bold"
+                                }
+                              }
+                            },
+                            {
+                              "type": "dy_container",
+                              "data": {
+                                "key": "3213123",
+                                "width": 200,
+                                "child": {
+                                  "type": "dy_text",
+                                  "data": {
+                                    "key": "212237757234",
+                                    "text": "a widget that renders child widgets in vertical direction",
+                                    "maxLines": 3
+                                  }
+                                }
+                              }
+                            }
+                          ]
+                        }
+                      }
+                    }
+                  },
+                  "prefixImage": {
+                    "type": "dy_image",
+                    "data": {
+                      "key": "3212226323233",
+                      "src": "https://cdn.icon-icons.com/icons2/2248/PNG/512/table_column_icon_137129.png",
+                      "height": 50,
+                      "width": 50,
+                      "imageType": "network",
+                      "fit": "fill",
+                      "placeholderImagePath": "assets/images/icon_placeholder.png"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          {
+            "type": "dy_gesture_detector",
+            "data": {
+              "key": "42124234234",
+              "onTapAction": {
+                "actionString": "/moveToScreen",
+                "extras": {
+                  "url": "assets/json/row.json",
+                  "urlType": "local",
+                  "navigationType": "dialog",
+                  "navigationStyle": "push",
+                  "insetPadding": "10,10"
+                }
+              },
+              "child": {
+                "type": "dy_widget_card",
+                "data": {
+                  "key": "42122323",
+                  "margin": "10",
+                  "elevation": 10,
+                  "padding": "10",
+                  "borderRadius": 10,
+                  "action": {
+                    "actionString": "/showSnackbar",
+                    "extras": {
+                      "title": "Row"
+                    }
+                  },
+                  "body": {
+                    "type": "dy_container",
+                    "data": {
+                      "key": "42141434",
+                      "padding": "10,0,0,0",
+                      "child": {
+                        "type": "dy_column",
+                        "data": {
+                          "key": "4212457231",
+                          "mainAxisAlignment": "spaceBetween",
+                          "crossAxisAlignment": "start",
+                          "children": [
+                            {
+                              "type": "dy_text",
+                              "data": {
+                                "key": "4212232734233",
+                                "text": "Row",
+                                "style": {
+                                  "color": "0xffff0000",
+                                  "fontSize": 20,
+                                  "fontWeight": "bold"
+                                }
+                              }
+                            },
+                            {
+                              "type": "dy_container",
+                              "data": {
+                                "key": "3213123",
+                                "width": 200,
+                                "child": {
+                                  "type": "dy_text",
+                                  "data": {
+                                    "key": "412237757234",
+                                    "text": "a widget that renders child widgets in horizontal direction",
+                                    "maxLines": 3
+                                  }
+                                }
+                              }
+                            }
+                          ]
+                        }
+                      }
+                    }
+                  },
+                  "prefixImage": {
+                    "type": "dy_image",
+                    "data": {
+                      "key": "4212226323233",
+                      "src": "https://cdn.icon-icons.com/icons2/2248/PNG/512/table_row_icon_138113.png",
+                      "height": 50,
+                      "width": 50,
+                      "imageType": "network",
+                      "fit": "fill",
+                      "placeholderImagePath": "assets/images/icon_placeholder.png"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          {
+            "type": "dy_gesture_detector",
+            "data": {
+              "key": "724234234",
+              "onTapAction": {
+                "actionString": "/moveToScreen",
+                "extras": {
+                  "url": "https://raw.githubusercontent.com/Arunshaik2001/demo_server_driven_ui/master/assets/json/dy_button.json",
+                  "urlType": "network",
+                  "requestType": "get",
+                  "navigationType": "screen",
+                  "navigationStyle": "push",
+                  "loaderWidgetAssetPath": "assets/json/loader.json"
+                }
+              },
+              "child": {
+                "type": "dy_widget_card",
+                "data": {
+                  "key": "7122323",
+                  "margin": "10",
+                  "elevation": 10,
+                  "padding": "10",
+                  "borderRadius": 10,"action": {
+                    "actionString": "/showSnackbar",
+                    "extras": {
+                      "title": "Button"
+                    }
+                  },
+                  "body": {
+                    "type": "dy_container",
+                    "data": {
+                      "key": "7141434",
+                      "padding": "10,0,0,0",
+                      "child": {
+                        "type": "dy_column",
+                        "data": {
+                          "key": "4212457231",
+                          "mainAxisAlignment": "spaceBetween",
+                          "crossAxisAlignment": "start",
+                          "children": [
+                            {
+                              "type": "dy_text",
+                              "data": {
+                                "key": "72232734233",
+                                "text": "Button",
+                                "style": {
+                                  "color": "0xffff0000",
+                                  "fontSize": 20,
+                                  "fontWeight": "bold"
+                                }
+                              }
+                            },
+                            {
+                              "type": "dy_container",
+                              "data": {
+                                "key": "713123",
+                                "width": 200,
+                                "child": {
+                                  "type": "dy_text",
+                                  "data": {
+                                    "key": "867757234",
+                                    "text": "a widget that helps to do action",
+                                    "maxLines": 3
+                                  }
+                                }
+                              }
+                            }
+                          ]
+                        }
+                      }
+                    }
+                  },
+                  "prefixImage": {
+                    "type": "dy_image",
+                    "data": {
+                      "key": "76323233",
+                      "src": "https://upload.wikimedia.org/wikipedia/commons/5/5a/Perspective-Button-Stop-icon.png",
+                      "height": 50,
+                      "width": 50,
+                      "imageType": "network",
+                      "fit": "fill",
+                      "placeholderImagePath": "assets/images/icon_placeholder.png"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          {
+            "type": "dy_gesture_detector",
+            "data": {
+              "key": "52124234234",
+              "onTapAction": {
+                "actionString": "/moveToScreen",
+                "extras": {
+                  "url": "assets/json/text_field.json",
+                  "urlType": "local",
+                  "navigationType": "screen",
+                  "navigationStyle": "push"
+                }
+              },
+              "child": {
+                "type": "dy_widget_card",
+                "data": {
+                  "key": "52122323",
+                  "margin": "10",
+                  "elevation": 10,
+                  "padding": "10",
+                  "borderRadius": 10,"action": {
+                    "actionString": "/showSnackbar",
+                    "extras": {
+                      "title": "TextField"
+                    }
+                  },
+                  "body": {
+                    "type": "dy_container",
+                    "data": {
+                      "key": "52141434",
+                      "padding": "10,0,0,0",
+                      "child": {
+                        "type": "dy_column",
+                        "data": {
+                          "key": "4212457231",
+                          "mainAxisAlignment": "spaceBetween",
+                          "crossAxisAlignment": "start",
+                          "children": [
+                            {
+                              "type": "dy_text",
+                              "data": {
+                                "key": "5212232734233",
+                                "text": "TextField",
+                                "style": {
+                                  "color": "0xffff0000",
+                                  "fontSize": 20,
+                                  "fontWeight": "bold"
+                                }
+                              }
+                            },
+                            {
+                              "type": "dy_container",
+                              "data": {
+                                "key": "5213123",
+                                "width": 200,
+                                "child": {
+                                  "type": "dy_text",
+                                  "data": {
+                                    "key": "512237757234",
+                                    "text": "a widget that takes input from user",
+                                    "maxLines": 3
+                                  }
+                                }
+                              }
+                            }
+                          ]
+                        }
+                      }
+                    }
+                  },
+                  "prefixImage": {
+                    "type": "dy_image",
+                    "data": {
+                      "key": "512226323233",
+                      "src": "https://d1nhio0ox7pgb.cloudfront.net/_img/g_collection_png/standard/128x128/text_field.png",
+                      "height": 50,
+                      "width": 50,
+                      "imageType": "network",
+                      "fit": "fill",
+                      "placeholderImagePath": "assets/images/icon_placeholder.png"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          {
+            "type": "dy_gesture_detector",
+            "data": {
+              "key": "6124234234",
+              "onTapAction": {
+                "actionString": "/moveToScreen",
+                "extras": {
+                  "url": "assets/json/card.json",
+                  "urlType": "local",
+                  "navigationType": "screen",
+                  "navigationStyle": "push"
+                }
+              },
+              "child": {
+                "type": "dy_widget_card",
+                "data": {
+                  "key": "6122323",
+                  "margin": "10",
+                  "elevation": 10,
+                  "padding": "10",
+                  "borderRadius": 10,"action": {
+                    "actionString": "/showSnackbar",
+                    "extras": {
+                      "title": "Card"
+                    }
+                  },
+                  "body": {
+                    "type": "dy_container",
+                    "data": {
+                      "key": "6141434",
+                      "padding": "10,0,0,0",
+                      "child": {
+                        "type": "dy_column",
+                        "data": {
+                          "key": "4212457231",
+                          "mainAxisAlignment": "spaceBetween",
+                          "crossAxisAlignment": "start",
+                          "children": [
+                            {
+                              "type": "dy_text",
+                              "data": {
+                                "key": "612232734233",
+                                "text": "Card",
+                                "style": {
+                                  "color": "0xffff0000",
+                                  "fontSize": 20,
+                                  "fontWeight": "bold"
+                                }
+                              }
+                            },
+                            {
+                              "type": "dy_container",
+                              "data": {
+                                "key": "613123",
+                                "width": 200,
+                                "child": {
+                                  "type": "dy_text",
+                                  "data": {
+                                    "key": "537757234",
+                                    "text": "a widget that creates a visually appealing container",
+                                    "maxLines": 3
+                                  }
+                                }
+                              }
+                            }
+                          ]
+                        }
+                      }
+                    }
+                  },
+                  "prefixImage": {
+                    "type": "dy_image",
+                    "data": {
+                      "key": "726323233",
+                      "src": "assets/images/card_ic.png",
+                      "height": 50,
+                      "width": 50,
+                      "imageType": "asset",
+                      "fit": "fill",
+                      "placeholderImagePath": "assets/images/icon_placeholder.png"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          {
+            "type": "dy_gesture_detector",
+            "data": {
+              "key": "824234234",
+              "onTapAction": {
+                "actionString": "/moveToScreen",
+                "extras": {
+                  "url": "assets/json/list_view.json",
+                  "urlType": "local",
+                  "navigationType": "screen",
+                  "navigationStyle": "push"
+                }
+              },
+              "child": {
+                "type": "dy_widget_card",
+                "data": {
+                  "key": "8122323",
+                  "margin": "10",
+                  "elevation": 10,
+                  "padding": "10",
+                  "borderRadius": 10,"action": {
+                    "actionString": "/showSnackbar",
+                    "extras": {
+                      "title": "ListView"
+                    }
+                  },
+                  "body": {
+                    "type": "dy_container",
+                    "data": {
+                      "key": "8141434",
+                      "padding": "10,0,0,0",
+                      "child": {
+                        "type": "dy_column",
+                        "data": {
+                          "key": "812457231",
+                          "mainAxisAlignment": "spaceBetween",
+                          "crossAxisAlignment": "start",
+                          "children": [
+                            {
+                              "type": "dy_text",
+                              "data": {
+                                "key": "82734233",
+                                "text": "ListView",
+                                "style": {
+                                  "color": "0xffff0000",
+                                  "fontSize": 20,
+                                  "fontWeight": "bold"
+                                }
+                              }
+                            },
+                            {
+                              "type": "dy_container",
+                              "data": {
+                                "key": "813123",
+                                "width": 200,
+                                "child": {
+                                  "type": "dy_text",
+                                  "data": {
+                                    "key": "837757234",
+                                    "text": "a widget that shows widgets in a list",
+                                    "maxLines": 3
+                                  }
+                                }
+                              }
+                            }
+                          ]
+                        }
+                      }
+                    }
+                  },
+                  "prefixImage": {
+                    "type": "dy_image",
+                    "data": {
+                      "key": "8323233",
+                      "src": "https://cdn.icon-icons.com/icons2/1919/PNG/512/listofworks_121961.png",
+                      "height": 50,
+                      "width": 50,
+                      "imageType": "network",
+                      "fit": "fill",
+                      "placeholderImagePath": "assets/images/icon_placeholder.png"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          {
+            "type": "dy_gesture_detector",
+            "data": {
+              "key": "9624234234",
+              "onTapAction": {
+                "actionString": "/moveToScreen",
+                "extras": {
+                  "url": "assets/json/stack.json",
+                  "urlType": "local",
+                  "navigationType": "dialog",
+                  "navigationStyle": "push"
+                }
+              },
+              "child": {
+                "type": "dy_widget_card",
+                "data": {
+                  "key": "96122323",
+                  "margin": "10",
+                  "elevation": 10,
+                  "padding": "10",
+                  "borderRadius": 10,
+                  "action": {
+                    "actionString": "/showSnackbar",
+                    "extras": {
+                      "title": "Stack"
+                    }
+                  },
+                  "body": {
+                    "type": "dy_container",
+                    "data": {
+                      "key": "9641434",
+                      "padding": "10,0,0,0",
+                      "child": {
+                        "type": "dy_column",
+                        "data": {
+                          "key": "9612457231",
+                          "mainAxisAlignment": "spaceBetween",
+                          "crossAxisAlignment": "start",
+                          "children": [
+                            {
+                              "type": "dy_text",
+                              "data": {
+                                "key": "926734233",
+                                "text": "Stack",
+                                "style": {
+                                  "color": "0xffff0000",
+                                  "fontSize": 20,
+                                  "fontWeight": "bold"
+                                }
+                              }
+                            },
+                            {
+                              "type": "dy_container",
+                              "data": {
+                                "key": "9613123",
+                                "width": 200,
+                                "child": {
+                                  "type": "dy_text",
+                                  "data": {
+                                    "key": "937757234",
+                                    "text": "a widget that renders child widgets in stack manner",
+                                    "maxLines": 3
+                                  }
+                                }
+                              }
+                            }
+                          ]
+                        }
+                      }
+                    }
+                  },
+                  "prefixImage": {
+                    "type": "dy_image",
+                    "data": {
+                      "key": "96323233",
+                      "src": "assets/images/icon_stack.png",
+                      "height": 50,
+                      "width": 50,
+                      "imageType": "asset",
+                      "fit": "fill",
+                      "placeholderImagePath": "assets/images/icon_placeholder.png"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          {
+            "type": "dy_gesture_detector",
+            "data": {
+              "key": "90624234234",
+              "onTapAction": {
+                "actionString": "/moveToScreen",
+                "extras": {
+                  "url": "assets/json/tab_view.json",
+                  "urlType": "local",
+                  "navigationType": "screen",
+                  "navigationStyle": "push"
+                }
+              },
+              "child": {
+                "type": "dy_widget_card",
+                "data": {
+                  "key": "906122323",
+                  "margin": "10",
+                  "elevation": 10,
+                  "padding": "10",
+                  "borderRadius": 10,
+                  "action": {
+                    "actionString": "/showSnackbar",
+                    "extras": {
+                      "title": "TabView"
+                    }
+                  },
+                  "body": {
+                    "type": "dy_container",
+                    "data": {
+                      "key": "90641434",
+                      "padding": "10,0,0,0",
+                      "child": {
+                        "type": "dy_column",
+                        "data": {
+                          "key": "9612457231",
+                          "mainAxisAlignment": "spaceBetween",
+                          "crossAxisAlignment": "start",
+                          "children": [
+                            {
+                              "type": "dy_text",
+                              "data": {
+                                "key": "9026734233",
+                                "text": "TabView",
+                                "style": {
+                                  "color": "0xffff0000",
+                                  "fontSize": 20,
+                                  "fontWeight": "bold"
+                                }
+                              }
+                            },
+                            {
+                              "type": "dy_container",
+                              "data": {
+                                "key": "90613123",
+                                "width": 200,
+                                "child": {
+                                  "type": "dy_text",
+                                  "data": {
+                                    "key": "9037757234",
+                                    "text": "a widget that renders screens in tabs",
+                                    "maxLines": 3
+                                  }
+                                }
+                              }
+                            }
+                          ]
+                        }
+                      }
+                    }
+                  },
+                  "prefixImage": {
+                    "type": "dy_image",
+                    "data": {
+                      "key": "906323233",
+                      "src": "assets/images/icon_tabs.png",
+                      "height": 50,
+                      "width": 50,
+                      "imageType": "asset",
+                      "fit": "fill",
+                      "placeholderImagePath": "assets/images/icon_placeholder.png"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          {
+            "type": "dy_gesture_detector",
+            "data": {
+              "key": "906242314234",
+              "onTapAction": {
+                "actionString": "/moveToScreen",
+                "extras": {
+                  "url": "assets/json/loader.json",
+                  "urlType": "local",
+                  "navigationType": "screen",
+                  "navigationStyle": "push"
+                }
+              },
+              "child": {
+                "type": "dy_widget_card",
+                "data": {
+                  "key": "9061212323",
+                  "margin": "10",
+                  "elevation": 10,
+                  "padding": "10",
+                  "borderRadius": 10,
+                  "action": {
+                    "actionString": "/showSnackbar",
+                    "extras": {
+                      "title": "Loader"
+                    }
+                  },
+                  "body": {
+                    "type": "dy_container",
+                    "data": {
+                      "key": "906141434",
+                      "padding": "10,0,0,0",
+                      "child": {
+                        "type": "dy_column",
+                        "data": {
+                          "key": "96121457231",
+                          "mainAxisAlignment": "spaceBetween",
+                          "crossAxisAlignment": "start",
+                          "children": [
+                            {
+                              "type": "dy_text",
+                              "data": {
+                                "key": "91026734233",
+                                "text": "Loader",
+                                "style": {
+                                  "color": "0xffff0000",
+                                  "fontSize": 20,
+                                  "fontWeight": "bold"
+                                }
+                              }
+                            },
+                            {
+                              "type": "dy_container",
+                              "data": {
+                                "key": "90613123",
+                                "width": 200,
+                                "child": {
+                                  "type": "dy_text",
+                                  "data": {
+                                    "key": "19037757234",
+                                    "text": "a widget that shows circular loading bar",
+                                    "maxLines": 3
+                                  }
+                                }
+                              }
+                            }
+                          ]
+                        }
+                      }
+                    }
+                  },
+                  "prefixImage": {
+                    "type": "dy_image",
+                    "data": {
+                      "key": "9061323233",
+                      "src": "assets/images/ic_loader.png",
+                      "height": 50,
+                      "width": 50,
+                      "imageType": "asset",
+                      "fit": "fill",
+                      "placeholderImagePath": "assets/images/icon_placeholder.png"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        ]
+      }
+    }
+  }
+}

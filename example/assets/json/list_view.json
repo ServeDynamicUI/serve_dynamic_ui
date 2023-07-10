@@ -1,0 +1,224 @@
+{
+  "type": "dy_scaffold",
+  "data": {
+    "key": "123456",
+    "pageTitle": "Flutter List View Screen",
+    "scrollable": false,
+    "child": {
+      "type": "dy_container",
+      "data": {
+        "key": "234234234",
+        "height": -1,
+        "width": -1,
+        "child": {
+          "type": "dy_list",
+          "data": {
+            "key": "123123",
+            "listItems": [
+              {
+                "type": "dy_text",
+                "data": {
+                  "key": "123123",
+                  "text": "This is a text",
+                  "style": {
+                    "fontSize": 20,
+                    "fontWeight": "bold"
+                  }
+                }
+              },
+              {
+                "type": "dy_text",
+                "data": {
+                  "key": "1231323",
+                  "text": "<h1 style='color: white; font-size:50px; font-style:italic; \n    background-color: rgb(0,122,255); font-weight:100;)'> HTML Text </h1>",
+                  "isHtmlText": true
+                }
+              },
+              {
+                "type": "dy_container",
+                "data": {
+                  "key": "123123",
+                  "child": {
+                    "type": "dy_card",
+                    "data": {
+                      "key": "12399123",
+                      "color": "0xffff0000",
+                      "margin": "10",
+                      "elevation": 10,
+                      "linearGradient": "-1.0,0.0;1.0,0.0;0xff6D59D4,0xff879CFB",
+                      "borderRadius": 20,
+                      "child": {
+                        "type": "dy_text",
+                        "data": {
+                          "key": "34324",
+                          "text": "Card",
+                          "height": 100,
+                          "width": 200,
+                          "textAlign": "center",
+                          "style": {
+                            "color": "0xffffffff",
+                            "fontSize": 25,
+                            "fontWeight": "bold"
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              },
+              {
+                "type": "dy_container",
+                "data": {
+                  "key": "123123",
+                  "child": {
+                    "type": "dy_image",
+                    "data": {
+                      "key": "212226323233",
+                      "src": "https://freeiconshop.com/wp-content/uploads/edd/image-outline-filled.png",
+                      "height": 250,
+                      "width": 250,
+                      "imageType": "network",
+                      "fit": "fill",
+                      "placeholderImagePath": "assets/images/icon_placeholder.png"
+                    }
+                  }
+                }
+              },
+              {
+                "type": "dy_column",
+                "data": {
+                  "key": "12313",
+                  "children": [
+                    {
+                      "type": "dy_container",
+                      "data": {
+                        "key": "34234",
+                        "width": 200,
+                        "child": {
+                          "type": "dy_text_field",
+                          "data": {
+                            "key": "1314234",
+                            "initialText": "",
+                            "textFieldDecoration": {
+                              "textAlign": "start",
+                              "obscureText": true,
+                              "maxLines": 1,
+                              "decoration": {
+                                "hintText": "enter text value",
+                                "suffixIcon": {
+                                  "type": "dy_image",
+                                  "data": {
+                                    "key": "212226323233",
+                                    "src": "assets/images/ic_eyes_closed.png",
+                                    "imageType": "asset",
+                                    "fit": "contain",
+                                    "height": 1,
+                                    "width": 1,
+                                    "placeholderImagePath": "assets/images/icon_placeholder.png"
+                                  }
+                                }
+                              }
+                            }
+                          }
+                        }
+                      }
+                    },
+                    {
+                      "type": "dy_sized_box",
+                      "data": {
+                        "key": "13134",
+                        "height": 10
+                      }
+                    },
+                    {
+                      "type": "dy_button",
+                      "data": {
+                        "key": "223775672355",
+                        "buttonColor": "0xff90EE90",
+                        "buttonBorderRadius": 10,
+                        "padding": "10",
+                        "child": {
+                          "type": "dy_text",
+                          "data": {
+                            "key": "23242342",
+                            "text": "click to submit input value",
+                            "style": {
+                              "color": "0xffffffff",
+                              "fontWeight": "bold",
+                              "fontSize": 20
+                            }
+                          }
+                        },
+                        "action": {
+                          "actionString": "/form"
+                        }
+                      }
+                    },
+                    {
+                      "type": "dy_text",
+                      "data": {
+                        "key": "13424",
+                        "text": "Check console after clicking button",
+                        "style": {
+                          "color": "0xff000000",
+                          "fontWeight": "bold",
+                          "fontSize": 20
+                        }
+                      }
+                    },
+                    {
+                      "type": "dy_sized_box",
+                      "data": {
+                        "key": "13134",
+                        "height": 10
+                      }
+                    }
+                  ]
+                }
+              },
+              {
+                "type": "dy_container",
+                "data": {
+                  "key": "123123",
+                  "margin": "10",
+                  "child": {
+                    "type": "dy_row",
+                    "data": {
+                      "key": "131434",
+                      "mainAxisAlignment": "spaceBetween",
+                      "children": [
+                        {
+                          "type": "dy_text",
+                          "data": {
+                            "key": "123123",
+                            "text": "This is a text in a row",
+                            "style": {
+                              "fontSize": 10,
+                              "fontWeight": "bold"
+                            }
+                          }
+                        },
+                        {
+                          "type": "dy_image",
+                          "data": {
+                            "key": "212226323233",
+                            "src": "https://freeiconshop.com/wp-content/uploads/edd/image-outline-filled.png",
+                            "height": 150,
+                            "width": 150,
+                            "imageType": "network",
+                            "fit": "fill",
+                            "placeholderImagePath": "assets/images/icon_placeholder.png"
+                          }
+                        }
+                      ]
+                    }
+                  }
+                }
+              }
+            ]
+          }
+        }
+      }
+    }
+  }
+}

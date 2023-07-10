@@ -1,0 +1,58 @@
+import 'dart:async';
+import 'package:flutter/material.dart';
+import 'package:json_annotation/json_annotation.dart';
+import 'package:serve_dynamic_ui/serve_dynamic_ui.dart';
+
+part 'dy_row.g.dart';
+
+///[DynamicRow] : A dynamic widget that renders its child elements in horizontal direction.
+@JsonSerializable(
+  explicitToJson: true,
+  createToJson: false,
+)
+class DynamicRow extends DynamicWidget {
+  List<DynamicWidget?>? children;
+  @JsonKey(fromJson: WidgetUtil.getMainAxisAlignment)
+  MainAxisAlignment? mainAxisAlignment;
+  @JsonKey(fromJson: WidgetUtil.getCrossAxisAlignment)
+  CrossAxisAlignment? crossAxisAlignment;
+
+  DynamicRow({
+    String? key,
+    this.children,
+    this.mainAxisAlignment,
+    this.crossAxisAlignment,
+  }) : super(
+          key: key ?? "",
+        );
+
+  factory DynamicRow.fromJson(Map<String, dynamic> json) =>
+      _$DynamicRowFromJson(json);
+
+  @override
+  Widget build(BuildContext context) {
+    List<Widget> childWidgets = [];
+
+    children?.forEach((element) {
+      childWidgets.add(LayoutBuilder(builder: (context, _) {
+        return element!.build(context);
+      }));
+    });
+
+    return Row(
+      key: ValueKey(key),
+      mainAxisAlignment: mainAxisAlignment ?? MainAxisAlignment.center,
+      crossAxisAlignment: crossAxisAlignment ?? CrossAxisAlignment.center,
+      children: (children == null)
+          ? []
+          : childWidgets,
+    );
+  }
+
+  @override
+  List<DynamicWidget?>? get childWidgets => children ?? [];
+
+  @override
+  FutureOr invokeMethod(String methodName, {Map<String, dynamic>? params}) {}
+
+}

@@ -13,7 +13,7 @@ class MoveToScreenActorHandler extends ActionHandler {
           navigationStyle: extras[Strings.navigationStyle],
           navigationType: extras[Strings.navigationType],
           insetPadding: WidgetUtil.getEdgeInsets(extras[Strings.insetPadding]),
-          widget: ServeDynamicUI.fromAssets(extras[Strings.url], context),
+          widget: ServeDynamicUI.fromAssets(extras[Strings.url]),
         );
       } else if (extras[Strings.urlType] == Strings.network) {
         Map<String, dynamic>? loaderJson =

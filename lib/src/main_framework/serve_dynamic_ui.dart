@@ -68,8 +68,7 @@ class ServeDynamicUI {
 
   ///this is a method helps to create [DynamicWidget] from fetched asset json.
   static Widget fromAssets(
-    String assetPath,
-    BuildContext context, {
+    String assetPath,{
     ShowLoaderWidgetBuilder? showLoaderWidgetBuilder,
     ShowErrorWidget? showErrorWidget,
   }) {

@@ -119,7 +119,7 @@ class DynamicTabView extends DynamicWidget {
       Uri uri = Uri.parse(tab.pageUrl!);
       String urlType = uri.queryParameters[Strings.urlType] ?? Strings.local;
       if (urlType == Strings.local) {
-        return ServeDynamicUI.fromAssets(tab.pageUrl!, context);
+        return ServeDynamicUI.fromAssets(tab.pageUrl!);
       } else if (urlType == Strings.network) {
         return ServeDynamicUI.fromNetwork(
           DynamicRequest(url: tab.pageUrl!, requestType: RequestType.get),

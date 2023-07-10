@@ -51,7 +51,7 @@ class _MyHomePageState extends State<MyHomePage> {
   Widget build(BuildContext context) {
     return ServeDynamicUIMaterialApp(
       home: (context) {
-        return ServeDynamicUI.fromAssets('assets/json/sample.json', context);
+        return ServeDynamicUI.fromAssets('assets/json/sample.json');
       },
       title: 'Flutter Demo',
       theme: ThemeData(

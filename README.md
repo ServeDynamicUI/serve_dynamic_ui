@@ -1,4 +1,4 @@
-**serve_dynamic_ui** is Server-Driven UI library for Flutter. Create dynamic widgets in flutter from jsons.
+**serve_dynamic_ui** is a Server-Driven UI library for Flutter. Create dynamic widgets in flutter from jsons.
 
 <img width="505" alt="Screenshot 2023-07-10 at 9 07 05 PM" src="https://github.com/Arunshaik2001/serve_dynamic_ui/assets/50947867/14f2899c-51e0-4943-8c0b-17ceabc92f91">
 
@@ -34,13 +34,13 @@ https://github.com/Arunshaik2001/serve_dynamic_ui/assets/50947867/ab901892-d636-
 
 **5. Invoke methods in a DynamicWidget.**
 
-**6. Update DynamicWidget state**
+**6. Update DynamicWidget state.**
 
-**7. Listen to contrllers.**
+**7. Listen to controllers.**
 
 **8. Handle form inputs.**
 
-**9. Load jsons from assets or from network.**
+**9. Load JSON from assets or from the network.**
 
 
 ## Getting started
@@ -55,7 +55,7 @@ void main() {
 }
 ```
 
-Load the json and render the widget from asset.
+Load the JSON and render the widget from asset.
 
 ```dart
 @override
@@ -89,10 +89,10 @@ void main() {
 ```json
 {
   "type": "registered_widget_name",
-  //here you can add propeties to configure the dynamic widget.
+  //here you can add properties to configure the dynamic widget.
   "data": {
     "key": "required value to find the widget in widget tree",
-    //other properties goes here.
+    //other properties go here.
   }
 }
 ```
@@ -286,7 +286,7 @@ void main() {
 }
 ```
 
-**Load the json and render the widget from asset.**
+**Load the JSON and render the widget from asset.**
 
 ```dart
 @override
@@ -304,7 +304,7 @@ void main() {
   }
 ```
 
-**Load the json and render the widget from network.**
+**Load the JSON and render the widget from the network.**
 
 ```dart
   @override
@@ -386,6 +386,8 @@ abstract class DynamicWidget {
 **childWidgets** getter to maintain the child widgets under this widget.
 
 **Example Custom DynamicWidget**
+
+You can define your own properties and JSON should have key names as the class property names.
 
 ```dart
 class DynamicWidgetCard extends DynamicWidget {
@@ -477,7 +479,7 @@ abstract class ActionHandler {
       Map<String, dynamic>? extras, OnHandledAction? onHandledAction) async {}
 }
 ```
-**handleAction** only one method to handle the logical operation.
+**handleAction** is the only method in **ActionHandler** to handle the logical task.
 
 Now, to register this.
 
@@ -493,7 +495,8 @@ void main() {
   runApp(const MyApp());
 }
 ```
-Regex is used. so you need to pass the action as action string ***actionString: /actionName?query1=value1**
+Regex is used. so you need to pass the action as action string ***actionString: /actionName?query1=value1&query2=value2**
+It is recommended to follow the above pattern.
 
 So, in json it looks like this 
 ```json
@@ -510,10 +513,11 @@ So, in json it looks like this
               }
 ```
 
-you can pass values you need in **extras** map.
+you can pass the values you need in the **extras** map to handle the action.
 
 **FormWidget**
-A widget that validates the input data and get the values in a map.
+
+A widget that validates the input data and gets the values in a map.
 
 ```dart
 abstract class FormWidget{
@@ -560,12 +564,124 @@ class DynamicTextField extends DynamicWidget implements FormWidget {
   FutureOr invokeMethod(String methodName, {Map<String, dynamic>? params}) {}
 }
 ```
-You can validate and decide how you want to send data in the Dynamic Widget
+You can validate and decide how you want to send data in the Dynamic Widget.
 
-To know more checkout [example app](https://github.com/Arunshaik2001/serve_dynamic_ui/tree/main/example).
+**To update a dynamic Widget**
+
+To update a widget. you need to use the **/updateWidget** action and in the **extras** map pass the **widgetKey** and **methodName** you want to invoke and pass **params** map with the required data.
+
+```json
+                  "action": {
+                    "actionString": "/updateWidget",
+                    "extras": {
+                      "widgetKey": "update_text_key",
+                      "methodName": "UPDATE_TEXT",
+                      "params": {
+                        "newText": "Updated Text Value"
+                      }
+                    }
+                  }
+```
+
+**Important:** To make state changes the root widget must be **DynamicProvider** but you don't need to worry about it as it is handled by the package.
+
+If you want to update a dynamic widget. first, create a state class.
+
+I am showing you by taking the example of the **DynamicText** class.
+
+```dart
+class DynamicTextState {
+  final ValueNotifier<String?> textNotifier;
+
+  DynamicTextState(
+    String? title,
+  ) : textNotifier = ValueNotifier<String?>(title);
+
+  void updateTitle(String? newTitle) {
+    textNotifier.value = newTitle;
+  }
+}
+```
+Now, create a getter that returns the state class instance for a unique widget key.
+**DynamicProvider** has 2 maps **stateCache** and **controllerCache** which stores state classes and controller classes.
+So that you will have a single instance of state class and controller class for a unique widget instance.
+
+```dart
+  DynamicTextState? __dynamicTextState;
+
+  DynamicTextState get _dynamicTextState {
+    DynamicProvider? dynamicProvider =
+        WidgetResolver.getTopAncestorOfType<DynamicProvider>(this);
+    if (dynamicProvider == null) {
+      return DynamicTextState(text);
+    }
+    if (__dynamicTextState != null) {
+      return __dynamicTextState!;
+    } else {
+      if (key == null) {
+        __dynamicTextState = DynamicTextState(text);
+      } else {
+        __dynamicTextState = dynamicProvider.stateCache.putIfAbsent(
+          key,
+          () => DynamicTextState(text),
+        ) as DynamicTextState?;
+      }
+    }
+    return __dynamicTextState!;
+  }
+
+```
+
+**Listen to controllers**
+If you want that you need to listen to scroll controllers or text controllers present in a dynamic widget.
+you can do something like this.
+
+For scroll listener extend ScrollListener which has methods **onScrolled** **onScrolledToEnd** **onScrolledToStart** all have widget key which is the key of a widget which is being scrolled.
+
+```dart
+class WidgetScrollListener extends ScrollListener {
+  @override
+  void onScrolled(String? widgetKey) {
+    debugPrint('onScrolled $widgetKey');
+  }
+
+  @override
+  void onScrolledToEnd(String? widgetKey) {
+    debugPrint('onScrolledToEnd $widgetKey');
+  }
+
+  @override
+  void onScrolledToStart(String? widgetKey) {
+    debugPrint('onScrolledToStart $widgetKey');
+  }
+}
+```
+
+now, you can register it like this.
+
+```dart
+ScrollListeners.addScrollListener(WidgetScrollListener());
+```
+
+In the same way, for Text change listeners.
+
+```dart
+class TextUpdateListener extends TextChangeListener{
+  @override
+  void onTextChanged(String? widgetKey, String newValue) {
+    debugPrint('onTextChanged $widgetKey $newValue');
+  }
+}
+```
+add this as listener
+```dart
+TextChangeListeners.addTextChangeListener(TextUpdateListener());
+```
+
+To know more check out [example app](https://github.com/Arunshaik2001/serve_dynamic_ui/tree/main/example).
 
 ## Additional information
 
 You can create issues [here](https://github.com/Arunshaik2001/serve_dynamic_ui/issues).
 
-If you like to contribute to this project. Feel free to raise merge requests. 😊
+If you like to contribute to this project. Feel free to raise pull requests. 😊

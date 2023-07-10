@@ -568,4 +568,4 @@ To know more checkout [example app](https://github.com/Arunshaik2001/serve_dynam
 
 You can create issues [here](https://github.com/Arunshaik2001/serve_dynamic_ui/issues).
 
-If you like to contribute to this project. Feel free to raise merge requests.
+If you like to contribute to this project. Feel free to raise merge requests. 😊

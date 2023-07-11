@@ -324,6 +324,7 @@ void main() {
 ```
 
 **Extend to Create Custom DynamicWidget**
+
 Developer has to extend the class with **DynamicWidget**.
 
 **DynamicWidget** looks like this
@@ -565,6 +566,40 @@ class DynamicTextField extends DynamicWidget implements FormWidget {
 }
 ```
 You can validate and decide how you want to send data in the Dynamic Widget.
+
+**To navigate between screenn**
+
+To go from one screen to another you need to use **/moveToScreen** action 
+
+```json
+            {
+                "actionString": "/moveToScreen",
+                "extras": {
+                  "url": "https://raw.githubusercontent.com/Arunshaik2001/demo_server_driven_ui/master/assets/json/dy_scaffold.json",
+                  "urlType": "network",
+                  "requestType": "get",
+                  "navigationType": "screen",
+                  "navigationStyle": "push",
+                  "loaderWidgetAssetPath": "assets/json/loader.json"
+                }
+              }
+```
+
+here in **extras**
+ * **url**:  here you can pass asset path or network path
+ * **urlType**: define whether url is `network` or `local`.
+ * **requestType**: type of request (get, post, delete, put).
+ * **navigationType**: type of navigation (screen, dialog, bottomSheet).
+ * **loaderWidgetAssetPath**: you can pass asset path which will be shown as loader widget while package fetch the network json.
+
+**To fetch form input**
+To get the user input in a screen use this action **/form**.
+```json
+  {
+     "actionString": "/form"
+  }
+```
+
 
 **To update a dynamic Widget**
 

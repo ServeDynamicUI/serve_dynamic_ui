@@ -1,7 +1,6 @@
 **serve_dynamic_ui** is a Server-Driven UI library for Flutter. Create dynamic widgets in flutter from jsons and extend to create your own dynamic widgets.
 
-<img width="505" alt="Screenshot 2023-07-10 at 9 07 05 PM" src="https://github.com/Arunshaik2001/serve_dynamic_ui/assets/50947867/14f2899c-51e0-4943-8c0b-17ceabc92f91">
-
+<img width="800" alt="Screenshot 2023-07-10 at 9 07 05 PM" src="https://github.com/Arunshaik2001/serve_dynamic_ui/assets/50947867/c872ca85-df20-4aa1-8252-e03da824a72e">
 
 ## Features
 

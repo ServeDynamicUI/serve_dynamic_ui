@@ -1,4 +1,4 @@
-**serve_dynamic_ui** is a Server-Driven UI library for Flutter. Create dynamic widgets in flutter from jsons.
+**serve_dynamic_ui** is a Server-Driven UI library for Flutter. Create dynamic widgets in flutter from jsons and extend to create your own dynamic widgets.
 
 <img width="505" alt="Screenshot 2023-07-10 at 9 07 05 PM" src="https://github.com/Arunshaik2001/serve_dynamic_ui/assets/50947867/14f2899c-51e0-4943-8c0b-17ceabc92f91">
 
@@ -378,13 +378,13 @@ abstract class DynamicWidget {
 
 ```
 
-**DynamicWidget.fromJson** factory constructor to convert json to DynamicWidget object.
+  **DynamicWidget.fromJson** factory constructor to convert json to DynamicWidget object.
 
-**build** method to create a **Widget**.
+  **build** method to create a **Widget**.
 
-**invokeMethod** method to invoke any methods in a DynamicWidget.
+  **invokeMethod** method to invoke any methods in a DynamicWidget.
 
-**childWidgets** getter to maintain the child widgets under this widget.
+  **childWidgets** getter to maintain the child widgets under this widget.
 
 **Example Custom DynamicWidget**
 
@@ -470,7 +470,7 @@ void main() {
   runApp(const MyApp());
 }
 ```
-**ServeDynamicUI.init()** takes optional parameter **widgetHandlers** where you can pass the custom widget in a map so that you can add more custom dynamic widgets.
+  **ServeDynamicUI.init()** takes optional parameter **widgetHandlers** where you can pass the custom widget in a map so that you can add more custom dynamic widgets.
 
 **Create custom action**
 
@@ -480,7 +480,7 @@ abstract class ActionHandler {
       Map<String, dynamic>? extras, OnHandledAction? onHandledAction) async {}
 }
 ```
-**handleAction** is the only method in **ActionHandler** to handle the logical task.
+  **handleAction** is the only method in **ActionHandler** to handle the logical task.
 
 Now, to register this.
 
@@ -695,7 +695,7 @@ class WidgetScrollListener extends ScrollListener {
 now, you can register it like this.
 
 ```dart
-ScrollListeners.addScrollListener(WidgetScrollListener());
+DynamicListeners.addListener(WidgetScrollListener());
 ```
 
 In the same way, for Text change listeners.
@@ -710,7 +710,7 @@ class TextUpdateListener extends TextChangeListener{
 ```
 add this as listener
 ```dart
-TextChangeListeners.addTextChangeListener(TextUpdateListener());
+DynamicListeners.addListener(TextUpdateListener());
 ```
 
 To know more check out [example app](https://github.com/Arunshaik2001/serve_dynamic_ui/tree/main/example).

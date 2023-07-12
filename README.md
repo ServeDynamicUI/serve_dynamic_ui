@@ -2,6 +2,16 @@
 
 <img width="800" alt="Screenshot 2023-07-10 at 9 07 05 PM" src="https://github.com/Arunshaik2001/serve_dynamic_ui/assets/50947867/c872ca85-df20-4aa1-8252-e03da824a72e">
 
+## Installation
+
+To install **server_dynamic_ui** 
+
+run the command
+
+```bash
+  flutter pub add serve_dynamic_ui
+```
+
 ## Features
 
 https://github.com/Arunshaik2001/serve_dynamic_ui/assets/50947867/ab901892-d636-4b90-8aba-bf9745bdc892

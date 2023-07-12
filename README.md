@@ -726,6 +726,6 @@ To know more check out [example app](https://github.com/Arunshaik2001/serve_dyna
 
 ## Additional information
 
-You can create issues [here](https://github.com/Arunshaik2001/serve_dynamic_ui/issues).
+Please create issues [here](https://github.com/Arunshaik2001/serve_dynamic_ui/issues).
 
-If you like to contribute to this project. Feel free to raise pull requests. 😊
+If you like to contribute to this project. Feel free to raise pull requests. 🙂

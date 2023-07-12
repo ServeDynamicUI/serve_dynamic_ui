@@ -33,21 +33,19 @@ class WidgetResolver {
     if(root == null) {
       return null;
     }
-    DynamicWidget? matchedElement;
     if (root.key.compareTo(key) == 0) {
-      matchedElement = root;
+      return root;
     } else {
 
       if (root.childWidgets?.isNotEmpty ?? false) {
         for (int i = 0; i < (root.childWidgets?.length ?? 0); i++) {
-          DynamicWidget? internalMatchedElement = getWidgetByKey(root.childWidgets![i]!, key);
-          if (internalMatchedElement != null) {
-            matchedElement = internalMatchedElement;
-            break;
+          DynamicWidget? childWidget = getWidgetByKey(root.childWidgets![i]!, key);
+          if (childWidget != null) {
+            return childWidget;
           }
         }
       }
     }
-    return matchedElement;
+    return null;
   }
 }

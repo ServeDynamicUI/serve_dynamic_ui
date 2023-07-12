@@ -4,7 +4,7 @@ import '../dynamic_widgets/index.dart';
 
 typedef DynamicWidgetHandler = DynamicWidget Function(Map<String, dynamic> json);
 
-typedef ShowErrorWidget = DynamicWidget? Function(
+typedef ShowErrorWidgetBuilder = DynamicWidget? Function(
     BuildContext context,
     dynamic error,
     );

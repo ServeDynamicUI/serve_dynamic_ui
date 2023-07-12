@@ -398,6 +398,7 @@ abstract class DynamicWidget {
 **Example Custom DynamicWidget**
 
 You can define your own properties and JSON should have key names as the class property names.
+this project uses **json_serialization** and **json_annotation**.
 
 ```dart
 class DynamicWidgetCard extends DynamicWidget {

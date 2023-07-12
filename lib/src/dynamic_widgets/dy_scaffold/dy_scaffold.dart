@@ -50,7 +50,7 @@ class DynamicScaffold extends DynamicWidget implements FormWidget {
   ScrollController get _scrollController {
     DynamicProvider dynamicProvider =
         WidgetResolver.getTopAncestorOfType<DynamicProvider>(this)!;
-    String controllerKey = key!;
+    String controllerKey = key;
     ScrollController scrollController = ScrollController();
     dynamicProvider.controllerCache
         .putIfAbsent(controllerKey, () => scrollController);

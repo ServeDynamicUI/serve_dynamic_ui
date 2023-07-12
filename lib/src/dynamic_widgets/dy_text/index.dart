@@ -1,1 +1,1 @@
-import 'dynamic_text.dart';
+export 'dynamic_text.dart';

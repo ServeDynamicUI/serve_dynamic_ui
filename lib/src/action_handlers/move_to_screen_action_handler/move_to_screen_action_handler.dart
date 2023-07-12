@@ -18,33 +18,36 @@ class MoveToScreenActorHandler extends ActionHandler {
       } else if (extras[Strings.urlType] == Strings.network) {
         Map<String, dynamic>? loaderJson =
             await _getLoaderWidgetJson(extras[Strings.loaderWidgetAssetPath]);
-
-        DynamicNavigator.navigate(
-          context: context!,
-          navigationStyle: extras[Strings.navigationStyle],
-          navigationType: extras[Strings.navigationType],
-          insetPadding: WidgetUtil.getEdgeInsets(extras[Strings.insetPadding]),
-          widget: ServeDynamicUI.fromNetwork(
-            DynamicRequest(
-              url: extras[Strings.url],
-              requestType: extras[Strings.requestType]
-                  .toString()
-                  .requestTypeFromString(),
+        if(context.mounted){
+          DynamicNavigator.navigate(
+            context: context,
+            navigationStyle: extras[Strings.navigationStyle],
+            navigationType: extras[Strings.navigationType],
+            insetPadding: WidgetUtil.getEdgeInsets(extras[Strings.insetPadding]),
+            widget: ServeDynamicUI.fromNetwork(
+              DynamicRequest(
+                url: extras[Strings.url],
+                requestType: extras[Strings.requestType]
+                    .toString()
+                    .requestTypeFromString(),
+              ),
+              showLoaderWidgetBuilder: (loaderJson == null)
+                  ? null
+                  : (context) {
+                return DynamicProvider(
+                  DynamicWidget.fromJson(loaderJson),
+                );
+              },
             ),
-            showLoaderWidgetBuilder: (loaderJson == null)
-                ? null
-                : (context) {
-                    return DynamicProvider(
-                      DynamicWidget.fromJson(loaderJson),
-                    );
-                  },
-          ),
-        );
+          );
+        }
       }
     } else {
       if (action.queryParameters[Strings.screenName] != null) {
-        DynamicNavigator.navigateToNamedRoute(context!,
-            routeName: action.queryParameters[Strings.screenName]!);
+        if(context != null && context.mounted){
+          DynamicNavigator.navigateToNamedRoute(context,
+              routeName: action.queryParameters[Strings.screenName]!);
+        }
       }
     }
   }

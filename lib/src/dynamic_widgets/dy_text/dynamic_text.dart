@@ -61,14 +61,10 @@ class DynamicText extends DynamicWidget {
     if (__dynamicTextState != null) {
       return __dynamicTextState!;
     } else {
-      if (key == null) {
-        __dynamicTextState = DynamicTextState(text);
-      } else {
-        __dynamicTextState = dynamicProvider.stateCache.putIfAbsent(
-          key,
-          () => DynamicTextState(text),
-        ) as DynamicTextState?;
-      }
+      __dynamicTextState = dynamicProvider.stateCache.putIfAbsent(
+        key,
+            () => DynamicTextState(text),
+      ) as DynamicTextState?;
     }
     return __dynamicTextState!;
   }

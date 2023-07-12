@@ -63,7 +63,6 @@ class DynamicLoader extends DynamicWidget {
         ),
       ],
     );
-    ;
   }
 
   @override

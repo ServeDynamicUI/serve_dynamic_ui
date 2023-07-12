@@ -58,6 +58,7 @@ class _MyHomePageState extends State<MyHomePage> {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.green),
         useMaterial3: false,
       ),
+      debugShowCheckedModeBanner: false,
     );
   }
 }

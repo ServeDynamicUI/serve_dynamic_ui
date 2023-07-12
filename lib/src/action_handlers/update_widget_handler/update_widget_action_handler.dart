@@ -15,7 +15,7 @@ class UpdateWidgetActionHandler extends ActionHandler {
         String methodName = extras[Strings.methodName];
         Map<String, dynamic>? params = extras[Strings.params];
         DynamicWidget? updateWidget =
-            WidgetResolver.getWidgetWithKey(screenWidget, widgetKey);
+            WidgetResolver.getWidgetByKey(screenWidget, widgetKey);
         updateWidget?.invokeMethod(methodName, params: params);
       }
     }

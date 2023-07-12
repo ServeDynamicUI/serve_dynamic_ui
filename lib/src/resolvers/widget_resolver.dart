@@ -26,7 +26,7 @@ class WidgetResolver {
   }
 
   ///Returns widget for a key.
-  static DynamicWidget? getWidgetWithKey(
+  static DynamicWidget? getWidgetByKey(
       DynamicWidget? root,
       String key,
       ) {
@@ -34,13 +34,13 @@ class WidgetResolver {
       return null;
     }
     DynamicWidget? matchedElement;
-    if (root.key?.compareTo(key) == 0) {
+    if (root.key.compareTo(key) == 0) {
       matchedElement = root;
     } else {
 
       if (root.childWidgets?.isNotEmpty ?? false) {
         for (int i = 0; i < (root.childWidgets?.length ?? 0); i++) {
-          DynamicWidget? internalMatchedElement = getWidgetWithKey(root.childWidgets![i]!, key);
+          DynamicWidget? internalMatchedElement = getWidgetByKey(root.childWidgets![i]!, key);
           if (internalMatchedElement != null) {
             matchedElement = internalMatchedElement;
             break;

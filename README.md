@@ -1,4 +1,4 @@
-**serve_dynamic_ui** is an open sourced Server-Driven UI library for Flutter. Create dynamic widgets in flutter from jsons and extend to create your own dynamic widgets.
+**serve_dynamic_ui** is an open sourced Server-Driven UI library for Flutter. Create dynamic widgets in Flutter from jsons and extend to create your own dynamic widgets.
 
 <img width="800" alt="Screenshot 2023-07-10 at 9 07 05 PM" src="https://github.com/Arunshaik2001/serve_dynamic_ui/assets/50947867/c872ca85-df20-4aa1-8252-e03da824a72e">
 
@@ -602,7 +602,8 @@ here in **extras**
  * **loaderWidgetAssetPath**: you can pass asset path which will be shown as loader widget while package fetch the network json.
 
 **To fetch form input**
-To get the user input in a screen use this action **/form**.
+
+To get the user input in a page use this action **/form**.
 ```json
   {
      "actionString": "/form"

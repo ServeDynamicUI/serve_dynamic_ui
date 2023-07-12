@@ -1,5 +1,7 @@
+import 'package:serve_dynamic_ui/src/listeners/index.dart';
+
 ///[ScrollListener] : a listener to listen changes in a scrollable widget.
-abstract class ScrollListener {
+abstract class ScrollListener extends DynamicListener{
   ///passes the [widgetKey] which is being scrolled.
   void onScrolled(String? widgetKey);
 

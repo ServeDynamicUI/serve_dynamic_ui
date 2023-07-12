@@ -1,5 +1,7 @@
+import 'package:serve_dynamic_ui/serve_dynamic_ui.dart';
+
 ///[TextChangeListener] : a listener that keeps track of the text changes in a dynamic widget.
-abstract class TextChangeListener {
+abstract class TextChangeListener extends DynamicListener{
   void onTextChanged(String? widgetKey, String newValue);
 }
 

@@ -3,6 +3,8 @@ import 'package:serve_dynamic_ui/serve_dynamic_ui.dart';
 
 /// An action handler that helps navigating between screens be it named route or dynamic screens from asset or network with loader widget.
 class MoveToScreenActorHandler extends ActionHandler {
+
+  ///handles the navigation action to navigate between screens..
   @override
   void handleAction(BuildContext? context, Uri action,
       Map<String, dynamic>? extras, OnHandledAction? onHandledAction) async {

@@ -5,6 +5,7 @@ import 'package:flutter/services.dart';
 import 'package:serve_dynamic_ui/src/constants/index.dart';
 import 'package:serve_dynamic_ui/src/dtos/index.dart';
 
+///util class helping as convertors
 class WidgetUtil {
   ///Returns the [Alignment] from string.
   static Alignment? getPositionalAlignment(String? alignment) {

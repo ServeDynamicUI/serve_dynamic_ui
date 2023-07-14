@@ -8,6 +8,8 @@ import 'package:serve_dynamic_ui/src/dynamic_widgets/dy_container/dy_container.d
 
 ///[DynamicWidgetHandlers] helps to register all the handlers
 class DynamicWidgetHandlers {
+
+  ///initialize all the default and custom DynamicWidgetHandlers.
   static init({Map<String, DynamicWidgetHandler>? handlers}) {
     DynamicWidgetHandlerRepo.addDynamicWidgetHandler(
         Strings.dy_scaffold, (json) => DynamicScaffold.fromJson(json));

@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:serve_dynamic_ui/src/constants/index.dart';
 
+///[DynamicNavigator] is a class to navigate between dynamic screens.
 abstract class DynamicNavigator {
+
+  ///navigate to a dynamic screen or a static screen
   static Future<dynamic>? navigate<T extends Object?>({
     required BuildContext context,
     required String navigationStyle,
@@ -23,6 +26,7 @@ abstract class DynamicNavigator {
     return null;
   }
 
+  ///navigate to a named screen.
   static void navigateToNamedRoute(
     BuildContext context, {
     required String routeName,
@@ -30,6 +34,7 @@ abstract class DynamicNavigator {
     Navigator.pushNamed(context, routeName);
   }
 
+  ///navigate to screen based on [navigationStyle]
   static Future<dynamic>? _navigateToScreen<T extends Object?>(
       BuildContext context,
       String navigationStyle,
@@ -64,6 +69,7 @@ abstract class DynamicNavigator {
     return null;
   }
 
+  ///show screen in dialog
   static Future<dynamic> _showDialog(
       BuildContext context, Widget widget, EdgeInsets? insetPadding) {
     return showDialog(
@@ -75,6 +81,7 @@ abstract class DynamicNavigator {
     );
   }
 
+  ///show screen in bottomSheet
   static Future<dynamic> _showBottomSheet(BuildContext context, Widget widget) {
     return showModalBottomSheet(
       context: context,

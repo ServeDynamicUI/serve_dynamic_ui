@@ -9,18 +9,22 @@ abstract class TextChangeListener extends DynamicListener{
 class TextChangeListeners {
   static final List<TextChangeListener> _textListeners = [];
 
+  ///to add a text change listener
   static void addTextChangeListener(TextChangeListener textChangeListener) {
     _textListeners.add(textChangeListener);
   }
 
+  ///to add text change listeners in a list.
   static void addAllScrollListener(List<TextChangeListener> textChangeListeners) {
     _textListeners.addAll(textChangeListeners);
   }
 
+  ///to remove a text change listener
   static void removeScrollListener(TextChangeListener textChangeListener) {
     _textListeners.remove(textChangeListener);
   }
 
+  ///to call onTextChanged callback in all listeners.
   static void callOnTextChanged(String? widgetKey, String newValue) {
     for (var textListener in _textListeners) {
       textListener.onTextChanged(widgetKey, newValue);

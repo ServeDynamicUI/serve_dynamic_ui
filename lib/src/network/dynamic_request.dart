@@ -31,7 +31,9 @@ class DynamicRequest {
 
 }
 
+///extension to convert to RequestType from string.
 extension MethodExtension on RequestType {
+  ///fromString to convert from string to RequestType.
   RequestType? fromString(String value) {
     switch (value) {
       case Strings.get:

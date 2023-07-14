@@ -1,6 +1,7 @@
 
 import '../dynamic_widgets/dynamic_widget.dart';
 
+///resolver class that helps to find a widget
 class WidgetResolver {
   ///Returns the Top Level Widget of type [T] by passing any widget below it.
   static T? getTopAncestorOfType<T>(DynamicWidget widget) {

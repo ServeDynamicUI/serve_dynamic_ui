@@ -10,10 +10,12 @@ final RegExp UPDATE_TO_WIDGET = RegExp(r'(^/?updateWidget/?$)');
 class ActionHandlersRepo {
   static final Map<RegExp, ActionHandler> _handlers = {};
 
+  ///registers a handler
   static void _registerHandler(RegExp type, ActionHandler handler) {
     _handlers[type] = handler;
   }
 
+  ///registers all handlers present in the map
   static void _registerHandlers(Map<RegExp, ActionHandler> actionHandlers) {
     _handlers.addAll(actionHandlers);
   }

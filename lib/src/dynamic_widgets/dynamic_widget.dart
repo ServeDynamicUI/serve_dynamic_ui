@@ -52,5 +52,6 @@ abstract class DynamicWidget {
     Map<String, dynamic>? params,
   });
 
+  ///list of children under this instance.
   List<DynamicWidget?>? get childWidgets;
 }

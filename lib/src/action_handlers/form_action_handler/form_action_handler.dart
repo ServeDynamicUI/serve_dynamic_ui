@@ -8,6 +8,8 @@ import '../../resolvers/index.dart';
 
 /// An action handler that gets the form input values in a page.
 class FormActionHandler extends ActionHandler {
+
+  ///handles the form action and processing the input data.
   @override
   void handleAction(
       BuildContext? context, Uri action, Map<String, dynamic>? extras, OnHandledAction? onHandledAction) {

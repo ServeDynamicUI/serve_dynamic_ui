@@ -27,6 +27,7 @@ class DynamicTextField extends DynamicWidget implements FormWidget {
   factory DynamicTextField.fromJson(Map<String, dynamic> json) =>
       _$DynamicTextFieldFromJson(json);
 
+  ///controller that acts as singleton controller.
   TextEditingController? get _controller {
     DynamicProvider rootDataProvider =
         WidgetResolver.getTopAncestorOfType<DynamicProvider>(this)!;
@@ -65,11 +66,13 @@ class DynamicTextField extends DynamicWidget implements FormWidget {
     );
   }
 
+  ///returns this widget value in map.
   @override
   Map<String, dynamic> getValues() {
     return {Strings.textFieldData: _controller?.text ?? ''};
   }
 
+  ///validates the data in this widget.
   @override
   bool validate() {
     TextEditingController? controller = _controller;

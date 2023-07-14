@@ -6,5 +6,7 @@
   3. can update dynamic widgets.
   4. can call methods in a dynamic widget.
   5. listen to controller changes.
-     
-  
+
+## 0.0.2
+
+* Image changes

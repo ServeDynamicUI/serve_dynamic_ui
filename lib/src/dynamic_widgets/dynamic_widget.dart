@@ -2,7 +2,6 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:json_annotation/json_annotation.dart';
 import 'package:serve_dynamic_ui/serve_dynamic_ui.dart';
-import 'package:serve_dynamic_ui/src/dynamic_widgets/dy_container/dy_container.dart';
 
 ///[DynamicWidget] : an abstract class that helps to create a dynamic widget from json.
 @JsonSerializable(

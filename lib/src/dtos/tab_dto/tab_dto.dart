@@ -1,5 +1,4 @@
 import 'package:json_annotation/json_annotation.dart';
-import 'package:serve_dynamic_ui/src/dynamic_widgets/dy_tab_view/index.dart';
 import 'package:serve_dynamic_ui/src/dynamic_widgets/index.dart';
 
 part 'tab_dto.g.dart';

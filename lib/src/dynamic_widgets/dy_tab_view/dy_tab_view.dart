@@ -32,7 +32,23 @@ class DynamicTabView extends DynamicWidget {
   @JsonKey(defaultValue: false)
   final bool wantKeepAlive;
   @JsonKey(includeFromJson: false, includeToJson: false)
-  TabView? _tabview;
+  TabView? tabview;
+
+  DynamicTabView({
+    required super.key,
+    required this.selectedTabIndex,
+    required this.margin,
+    this.indicatorColor,
+    this.labelColor,
+    this.unselectedLabelColor,
+    this.tabs,
+    this.tabsBackgroundColor,
+    required this.cornerRadius,
+    required this.wantKeepAlive,
+  });
+
+  factory DynamicTabView.fromJson(Map<String, dynamic> json) =>
+      _$DynamicTabViewFromJson(json);
 
   @JsonKey(includeFromJson: false, includeToJson: false)
   TabIndexState get _indexState {
@@ -58,22 +74,6 @@ class DynamicTabView extends DynamicWidget {
     return dynamicProvider.controllerCache[controllerKey];
   }
 
-  DynamicTabView({
-    required super.key,
-    required this.selectedTabIndex,
-    required this.margin,
-    this.indicatorColor,
-    this.labelColor,
-    this.unselectedLabelColor,
-    this.tabs,
-    this.tabsBackgroundColor,
-    required this.cornerRadius,
-    required this.wantKeepAlive,
-  });
-
-  factory DynamicTabView.fromJson(Map<String, dynamic> json) =>
-      _$DynamicTabViewFromJson(json);
-
   void _scrollListener() {
     ScrollController scrollController = _scrollController;
     if (scrollController.position.pixels !=
@@ -92,7 +92,7 @@ class DynamicTabView extends DynamicWidget {
 
   @override
   Widget build(BuildContext context) {
-    _tabview = TabView(
+    tabview = TabView(
       indexState: _indexState,
       tabTitles: _tabTitles(),
       tabChildren: tabs!.map((TabDTO tab) => _getTab(context, tab)).toList(),
@@ -111,7 +111,7 @@ class DynamicTabView extends DynamicWidget {
   Widget? _child(BuildContext context) {
     return tabs!.isNotEmpty && tabs!.length == 1
         ? _getSingleTabView(context)
-        : _tabview;
+        : tabview;
   }
 
   Widget _getTab(BuildContext context, TabDTO tab) {

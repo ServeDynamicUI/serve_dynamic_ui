@@ -28,26 +28,26 @@ class Strings {
   static const textController = 'textController';
   
   ///Action Method Name
-  static const UPDATE_TEXT = 'UPDATE_TEXT';
+  static const updateText = 'UPDATE_TEXT';
 
   ///widget names
-  static const dy_scaffold = 'dy_scaffold';
-  static const dy_container = 'dy_container';
-  static const dy_text = 'dy_text';
-  static const dy_column = 'dy_column';
-  static const dy_row = 'dy_row';
-  static const dy_button = 'dy_button';
-  static const dy_text_field = 'dy_text_field';
-  static const dy_list = 'dy_list';
-  static const dy_tab_view = 'dy_tab_view';
-  static const dy_align = 'dy_align';
-  static const dy_positioned = 'dy_positioned';
-  static const dy_stack = 'dy_stack';
-  static const dy_image = 'dy_image';
-  static const dy_card = 'dy_card';
-  static const dy_gesture_detector = 'dy_gesture_detector';
-  static const dy_sized_box = 'dy_sized_box';
-  static const dy_loader = 'dy_loader';
+  static const dyScaffold = 'dy_scaffold';
+  static const dyContainer = 'dy_container';
+  static const dyText = 'dy_text';
+  static const dyColumn = 'dy_column';
+  static const dyRow = 'dy_row';
+  static const dyButton = 'dy_button';
+  static const dyTextField = 'dy_text_field';
+  static const dyList = 'dy_list';
+  static const dyTabView = 'dy_tab_view';
+  static const dyAlign = 'dy_align';
+  static const dyPositioned = 'dy_positioned';
+  static const dyStack = 'dy_stack';
+  static const dyImage = 'dy_image';
+  static const dyCard = 'dy_card';
+  static const dyGestureDetector = 'dy_gesture_detector';
+  static const dySizedBox = 'dy_sized_box';
+  static const dyLoader = 'dy_loader';
 
   ///navigation strings
 

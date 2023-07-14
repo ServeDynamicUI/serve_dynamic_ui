@@ -1,7 +1,7 @@
 import 'package:flutter/foundation.dart';
 
 class TabIndexState {
-  ValueNotifier<int> _index;
+  final ValueNotifier<int> _index;
 
   ValueNotifier<int> get indexListener => _index;
 

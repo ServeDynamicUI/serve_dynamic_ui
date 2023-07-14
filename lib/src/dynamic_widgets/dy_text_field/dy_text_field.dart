@@ -31,7 +31,7 @@ class DynamicTextField extends DynamicWidget implements FormWidget {
   TextEditingController? get _controller {
     DynamicProvider rootDataProvider =
         WidgetResolver.getTopAncestorOfType<DynamicProvider>(this)!;
-    String controllerKey = '${Strings.textController}${key}';
+    String controllerKey = '${Strings.textController}$key';
     TextEditingController controller = TextEditingController(text: initialText);
     rootDataProvider.controllerCache
         .putIfAbsent(controllerKey, () => controller);

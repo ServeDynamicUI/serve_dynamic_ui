@@ -9,4 +9,4 @@
 
 ## 0.0.2
 
-* Image changes
+* Image changes and documentation.

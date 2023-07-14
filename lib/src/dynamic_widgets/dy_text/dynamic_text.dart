@@ -8,7 +8,7 @@ import 'dynamic_text_state.dart';
 
 part 'dynamic_text.g.dart';
 
-const String UPDATE_TEXT = Strings.UPDATE_TEXT;
+const String updateText = Strings.updateText;
 
 ///[DynamicText] : A dynamic widget that helps to show text.
 @JsonSerializable(
@@ -116,7 +116,7 @@ class DynamicText extends DynamicWidget {
   @override
   FutureOr invokeMethod(String methodName, {Map<String, dynamic>? params}) {
     switch (methodName) {
-      case UPDATE_TEXT:
+      case updateText:
         String newText = params?[Strings.newText];
         _dynamicTextState.updateTitle(newText);
     }

@@ -14,7 +14,9 @@ run the command
 
 ## Features
 
-https://github.com/Arunshaik2001/serve_dynamic_ui/assets/50947867/ab901892-d636-4b90-8aba-bf9745bdc892
+<img src="https://github.com/Arunshaik2001/serve_dynamic_ui/assets/50947867/0c38091c-4652-45fe-a7f2-01866fa294a6" alt="features" style="height: 500px;">
+
+
 
 **1. It has in-built DynamicWidgets.**
    * Scaffold

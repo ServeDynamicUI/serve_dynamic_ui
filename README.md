@@ -579,7 +579,7 @@ class DynamicTextField extends DynamicWidget implements FormWidget {
 ```
 You can validate and decide how you want to send data in the Dynamic Widget.
 
-**To navigate between screenn**
+**To navigate between screen**
 
 To go from one screen to another you need to use **/moveToScreen** action 
 

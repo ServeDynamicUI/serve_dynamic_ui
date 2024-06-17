@@ -44,7 +44,7 @@ class DynamicList extends DynamicWidget {
   }
 
   @override
-  List<DynamicWidget?>? get childWidgets => listItems ?? [];
+  List<DynamicWidget>? get childWidgets => listItems ?? [];
 
   @override
   FutureOr invokeMethod(String methodName, {Map<String, dynamic>? params}) {}

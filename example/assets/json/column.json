@@ -3,7 +3,7 @@
   "data": {
     "key": "123456",
     "pageTitle": "Flutter Column Screen",
-    "child": {
+    "children": [{
       "type": "dy_container",
       "data": {
         "key": "123123",
@@ -40,6 +40,6 @@
           }
         }
       }
-    }
+    }]
   }
 }

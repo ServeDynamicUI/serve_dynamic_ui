@@ -3,15 +3,17 @@
   "data": {
     "key": "123456",
     "pageTitle": "Flutter Container Screen",
-    "child": {
-      "type": "dy_container",
-      "data": {
-        "key": "123123",
-        "height": 100,
-        "width": 200,
-        "backgroundColor": "0xffff0000",
-        "margin": "10"
+    "children": [
+      {
+        "type": "dy_container",
+        "data": {
+          "key": "123123",
+          "height": 100,
+          "width": 200,
+          "backgroundColor": "0xffff0000",
+          "margin": "10"
+        }
       }
-    }
+    ]
   }
 }

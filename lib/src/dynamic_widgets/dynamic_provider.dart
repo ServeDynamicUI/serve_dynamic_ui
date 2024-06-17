@@ -39,5 +39,5 @@ class DynamicProvider extends DynamicWidget {
   FutureOr invokeMethod(String methodName, {Map<String, dynamic>? params}) {}
 
   @override
-  List<DynamicWidget?>? get childWidgets => [if (child != null) child!];
+  List<DynamicWidget>? get childWidgets => [if (child != null) child!];
 }

@@ -111,7 +111,7 @@ class DynamicText extends DynamicWidget {
   }
 
   @override
-  List<DynamicWidget?>? get childWidgets => [];
+  List<DynamicWidget>? get childWidgets => [];
 
   @override
   FutureOr invokeMethod(String methodName, {Map<String, dynamic>? params}) {

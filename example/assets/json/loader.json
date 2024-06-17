@@ -3,7 +3,7 @@
   "data": {
     "key": "123456",
     "scrollable": false,
-    "child": {
+    "children": [{
       "type": "dy_container",
       "height": -1,
       "data": {
@@ -19,6 +19,6 @@
           }
         }
       }
-    }
+    }]
   }
 }

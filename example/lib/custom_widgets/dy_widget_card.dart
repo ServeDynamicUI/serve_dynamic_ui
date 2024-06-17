@@ -68,7 +68,7 @@ class DynamicWidgetCard extends DynamicWidget {
   }
 
   @override
-  List<DynamicWidget?>? get childWidgets => [prefixImage, body];
+  List<DynamicWidget>? get childWidgets => WidgetUtil.childrenFilter([prefixImage, body]);
 
   @override
   FutureOr invokeMethod(String methodName, {Map<String, dynamic>? params}) {}

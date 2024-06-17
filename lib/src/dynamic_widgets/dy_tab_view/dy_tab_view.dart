@@ -153,7 +153,7 @@ class DynamicTabView extends DynamicWidget {
   }
 
   @override
-  List<DynamicWidget?>? get childWidgets =>
+  List<DynamicWidget>? get childWidgets =>
       tabs
           ?.map((TabDTO tab) => tab.child)
           .whereType<DynamicWidget>()

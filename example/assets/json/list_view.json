@@ -4,7 +4,7 @@
     "key": "123456",
     "pageTitle": "Flutter List View Screen",
     "scrollable": false,
-    "child": {
+    "children": [{
       "type": "dy_container",
       "data": {
         "key": "234234234",
@@ -214,11 +214,55 @@
                     }
                   }
                 }
+              },
+              {
+                "type": "dy_text",
+                "data": {
+                  "key": "12323123",
+                  "text": "This is a text",
+                  "style": {
+                    "fontSize": 20,
+                    "fontWeight": "bold"
+                  }
+                }
+              },
+              {
+                "type": "dy_text",
+                "data": {
+                  "key": "12345123",
+                  "text": "This is a text",
+                  "style": {
+                    "fontSize": 20,
+                    "fontWeight": "bold"
+                  }
+                }
+              },
+              {
+                "type": "dy_text",
+                "data": {
+                  "key": "1562345123",
+                  "text": "This is a text",
+                  "style": {
+                    "fontSize": 20,
+                    "fontWeight": "bold"
+                  }
+                }
+              },
+              {
+                "type": "dy_text",
+                "data": {
+                  "key": "1223345123",
+                  "text": "This is a text",
+                  "style": {
+                    "fontSize": 20,
+                    "fontWeight": "bold"
+                  }
+                }
               }
             ]
           }
         }
       }
-    }
+    }]
   }
 }

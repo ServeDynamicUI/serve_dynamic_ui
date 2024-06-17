@@ -43,7 +43,7 @@ class DynamicAlign extends DynamicWidget {
   }
 
   @override
-  List<DynamicWidget?>? get childWidgets => child != null ? [child!] : [];
+  List<DynamicWidget>? get childWidgets => child != null ? [child!] : [];
 
   @override
   FutureOr invokeMethod(String methodName, {Map<String, dynamic>? params}) {}

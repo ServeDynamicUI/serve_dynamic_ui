@@ -3,7 +3,7 @@
   "data": {
     "key": "123456",
     "pageTitle": "Flutter Image Screen",
-    "child": {
+    "children": [{
       "type": "dy_container",
       "data": {
         "key": "123123",
@@ -20,6 +20,6 @@
           }
         }
       }
-    }
+    }]
   }
 }

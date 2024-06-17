@@ -52,5 +52,5 @@ abstract class DynamicWidget {
   });
 
   ///list of children under this instance.
-  List<DynamicWidget?>? get childWidgets;
+  List<DynamicWidget>? get childWidgets;
 }

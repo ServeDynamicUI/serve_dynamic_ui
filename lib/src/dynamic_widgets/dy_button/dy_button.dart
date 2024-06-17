@@ -45,7 +45,7 @@ class DynamicButton extends DynamicWidget {
   }) : super(key: key);
 
   @override
-  List<DynamicWidget?>? get childWidgets => [child];
+  List<DynamicWidget>? get childWidgets => [child];
 
   factory DynamicButton.fromJson(Map<String, dynamic> json) =>
       _$DynamicButtonFromJson(json);

@@ -4,7 +4,7 @@
     "key": "123456",
     "pageTitle": "Flutter TabView Screen",
     "scrollable": false,
-    "child": {
+    "children": [{
       "type": "dy_tab_view",
       "data": {
         "key": "13168313",
@@ -426,6 +426,6 @@
           }
         ]
       }
-    }
+    }]
   }
 }

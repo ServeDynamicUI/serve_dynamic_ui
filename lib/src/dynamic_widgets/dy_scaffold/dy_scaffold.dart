@@ -13,7 +13,7 @@ part 'dy_scaffold.g.dart';
 )
 class DynamicScaffold extends DynamicWidget implements FormWidget {
   String? pageTitle;
-  DynamicWidget? child;
+  List<DynamicWidget>? children;
   DynamicWidget? floatingActionWidget;
   DynamicWidget? bottomNavigationBar;
   bool scrollable;
@@ -23,10 +23,11 @@ class DynamicScaffold extends DynamicWidget implements FormWidget {
   bool drawerEnableOpenDragGesture;
   bool extendBodyBehindAppBar;
   bool endDrawerEnableOpenDragGesture;
+  String? nextUrl;
 
   DynamicScaffold({
-    String? key,
-    this.child,
+    required String key,
+    this.children,
     this.pageTitle,
     this.floatingActionWidget,
     this.bottomNavigationBar,
@@ -37,6 +38,7 @@ class DynamicScaffold extends DynamicWidget implements FormWidget {
     this.drawerEnableOpenDragGesture = true,
     this.extendBodyBehindAppBar = false,
     this.endDrawerEnableOpenDragGesture = true,
+    this.nextUrl,
   }) : super(
           key: key ?? "",
         );
@@ -45,7 +47,7 @@ class DynamicScaffold extends DynamicWidget implements FormWidget {
       _$DynamicScaffoldFromJson(json);
 
   @override
-  List<DynamicWidget?>? get childWidgets => child != null ? [child!] : [];
+  List<DynamicWidget>? get childWidgets => children != null ? children! : [];
 
   ScrollController get _scrollController {
     DynamicProvider dynamicProvider =
@@ -56,6 +58,18 @@ class DynamicScaffold extends DynamicWidget implements FormWidget {
         .putIfAbsent(controllerKey, () => scrollController);
     scrollController.addListener(_scrollListener);
     return dynamicProvider.controllerCache[controllerKey];
+  }
+
+  DyScaffoldState get _scaffoldState {
+    DynamicProvider dynamicProvider = WidgetResolver.getTopAncestorOfType<DynamicProvider>(this)!;
+    if(dynamicProvider.stateCache[key] != null){
+      return dynamicProvider.stateCache[key]!;
+    }
+    else{
+      DyScaffoldState dyScaffoldState = DyScaffoldState(nextUrl, this);
+      dynamicProvider.stateCache[key] = dyScaffoldState;
+      return dyScaffoldState;
+    }
   }
 
   void _scrollListener() {
@@ -76,7 +90,6 @@ class DynamicScaffold extends DynamicWidget implements FormWidget {
 
   @override
   Widget build(BuildContext context) {
-
     return Scaffold(
       key: ValueKey(key),
       appBar: pageTitle == null
@@ -97,23 +110,31 @@ class DynamicScaffold extends DynamicWidget implements FormWidget {
   }
 
   Widget _getBody(BuildContext context) {
-    if (child == null) {
+    if (children == null) {
       return const SizedBox.shrink();
     }
     if (scrollable) {
       return SingleChildScrollView(
         controller: _scrollController,
         child: LayoutBuilder(builder: (context, _) {
-          return child!.build(context);
+          return Column(
+            children: WidgetUtil.childrenFilter(children).map((dyWidget) => dyWidget.build(context)).toList(),
+          );
         }),
       );
     }
-    return child!.build(context);
+    return Column(
+      children: WidgetUtil.childrenFilter(children).map((dyWidget) => dyWidget.build(context)).toList(),
+    );
   }
 
   @override
   Map<String, dynamic> getValues() {
-    return getValuesFromChild(child);
+    Map<String, dynamic> values = {};
+    childWidgets?.forEach((widget) {
+      values.addAll(getValuesFromChild(widget));
+    });
+    return values;
   }
 
   Map<String, dynamic> getValuesFromChild(DynamicWidget? widget) {
@@ -124,21 +145,19 @@ class DynamicScaffold extends DynamicWidget implements FormWidget {
         if (widget.childWidgets?.isNotEmpty ?? false) {
           Map<String, dynamic> map = {};
           for (var child in widget.childWidgets!) {
-            if (child != null) {
-              var childMap = getValuesFromChild(child);
-              childMap.forEach((key, value) {
-                if (map.containsKey(key)) {
-                  if (map[key] is List) {
-                    map[key]?.add(value);
-                  } else {
-                    map[key] = [map[key], value];
-                  }
+            var childMap = getValuesFromChild(child);
+            childMap.forEach((key, value) {
+              if (map.containsKey(key)) {
+                if (map[key] is List) {
+                  map[key]?.add(value);
                 } else {
-                  map[key] = value;
+                  map[key] = [map[key], value];
                 }
-              });
-            }
-          }
+              } else {
+                map[key] = value;
+              }
+            });
+                    }
           return map;
         }
         return {};
@@ -150,7 +169,11 @@ class DynamicScaffold extends DynamicWidget implements FormWidget {
 
   @override
   bool validate() {
-    return validateFormWidgets(child);
+    bool validated = true;
+    childWidgets?.forEach((widget) {
+      validated &= validateFormWidgets(widget);
+    });
+    return validated;
   }
 
   bool validateFormWidgets(DynamicWidget? widget) {
@@ -161,9 +184,7 @@ class DynamicScaffold extends DynamicWidget implements FormWidget {
         if (widget.childWidgets?.isNotEmpty ?? false) {
           bool validate = true;
           for (var child in widget.childWidgets!) {
-            if (child != null) {
-              validate = validate && validateFormWidgets(child);
-            }
+            validate = validate && validateFormWidgets(child);
           }
           return validate;
         }

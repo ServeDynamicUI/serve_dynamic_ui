@@ -5,6 +5,8 @@ import 'package:flutter/services.dart';
 import 'package:serve_dynamic_ui/src/constants/index.dart';
 import 'package:serve_dynamic_ui/src/dtos/index.dart';
 
+import '../../serve_dynamic_ui.dart';
+
 ///util class helping as convertors
 class WidgetUtil {
   ///Returns the [Alignment] from string.
@@ -419,4 +421,11 @@ class WidgetUtil {
     final Map<String, dynamic> json = jsonDecode(data);
     return json;
   }
+  
+  static List<DynamicWidget> childrenFilter(List<DynamicWidget?>? widgets){
+    if(widgets == null) return [];
+    return List.from(widgets.where(_validWidget).toList());
+  }
+  
+  static bool _validWidget(DynamicWidget? widget) => widget != null;
 }

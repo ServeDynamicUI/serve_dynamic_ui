@@ -3,7 +3,7 @@
   "data": {
     "key": "123456",
     "pageTitle": "Flutter Server UI Home Screen",
-    "child": {
+    "children": [ {
       "type": "dy_column",
       "data": {
         "key": "423243",
@@ -1127,6 +1127,6 @@
           }
         ]
       }
-    }
+    }]
   }
 }

@@ -3,7 +3,7 @@
   "data": {
     "key": "1236456",
     "pageTitle": "Flutter Stack Screen",
-    "child": {
+    "children": [{
       "type": "dy_container",
       "data": {
         "key": "223236423",
@@ -90,6 +90,6 @@
           }
         }
       }
-    }
+    }]
   }
 }

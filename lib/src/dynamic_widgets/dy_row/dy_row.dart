@@ -50,7 +50,7 @@ class DynamicRow extends DynamicWidget {
   }
 
   @override
-  List<DynamicWidget?>? get childWidgets => children ?? [];
+  List<DynamicWidget>? get childWidgets => WidgetUtil.childrenFilter(children);
 
   @override
   FutureOr invokeMethod(String methodName, {Map<String, dynamic>? params}) {}

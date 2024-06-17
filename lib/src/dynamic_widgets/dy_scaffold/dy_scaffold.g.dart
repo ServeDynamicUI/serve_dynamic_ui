@@ -11,11 +11,15 @@ DynamicScaffold _$DynamicScaffoldFromJson(Map<String, dynamic> json) {
     json,
     requiredKeys: const ['key'],
   );
+
+
   return DynamicScaffold(
-    key: json['key'] as String?,
-    child: json['child'] == null
+    key: json['key'] as String,
+    children: json['children'] == null
         ? null
-        : DynamicWidget.fromJson(json['child'] as Map<String, dynamic>),
+        : (json['children'] as List<dynamic>?)
+        ?.map((e) => DynamicWidget.fromJson(e as Map<String, dynamic>))
+        .toList(),
     pageTitle: json['pageTitle'] as String?,
     floatingActionWidget: json['floatingActionWidget'] == null
         ? null
@@ -26,7 +30,7 @@ DynamicScaffold _$DynamicScaffoldFromJson(Map<String, dynamic> json) {
         : DynamicWidget.fromJson(
             json['bottomNavigationBar'] as Map<String, dynamic>),
     resizeToAvoidBottomInset: json['resizeToAvoidBottomInset'] as bool?,
-    scrollable: json['scrollable'] as bool? ?? true,
+      scrollable: json['scrollable'] as bool? ?? true,
     primary: json['primary'] as bool? ?? true,
     extendBody: json['extendBody'] as bool? ?? false,
     drawerEnableOpenDragGesture:
@@ -34,5 +38,6 @@ DynamicScaffold _$DynamicScaffoldFromJson(Map<String, dynamic> json) {
     extendBodyBehindAppBar: json['extendBodyBehindAppBar'] as bool? ?? false,
     endDrawerEnableOpenDragGesture:
         json['endDrawerEnableOpenDragGesture'] as bool? ?? true,
+    nextUrl: json['nextUrl'] as String?
   );
 }

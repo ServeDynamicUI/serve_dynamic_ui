@@ -22,7 +22,7 @@ class DynamicTextField extends DynamicWidget implements FormWidget {
       : super(key: key);
 
   @override
-  List<DynamicWidget?>? get childWidgets => [];
+  List<DynamicWidget>? get childWidgets => [];
 
   factory DynamicTextField.fromJson(Map<String, dynamic> json) =>
       _$DynamicTextFieldFromJson(json);

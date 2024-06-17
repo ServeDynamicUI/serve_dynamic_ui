@@ -3,7 +3,7 @@
   "data": {
     "key": "123456",
     "pageTitle": "Flutter Card Screen",
-    "child": {
+    "children": [{
       "type": "dy_container",
       "data": {
         "key": "123123",
@@ -34,6 +34,6 @@
           }
         }
       }
-    }
+    }]
   }
 }

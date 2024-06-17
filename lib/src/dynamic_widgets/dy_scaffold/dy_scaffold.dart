@@ -1,8 +1,10 @@
 import 'dart:async';
+import 'dart:math';
 
 import 'package:flutter/material.dart';
 import 'package:json_annotation/json_annotation.dart';
 import 'package:serve_dynamic_ui/serve_dynamic_ui.dart';
+import 'package:serve_dynamic_ui/src/dynamic_widgets/dy_loader/index.dart';
 
 part 'dy_scaffold.g.dart';
 
@@ -17,6 +19,7 @@ class DynamicScaffold extends DynamicWidget implements FormWidget {
   DynamicWidget? floatingActionWidget;
   DynamicWidget? bottomNavigationBar;
   DynamicWidget? paginatedLoaderWidget;
+  bool showPaginatedLoaderOnTop;
   bool scrollable;
   bool paginated;
   bool primary;
@@ -45,6 +48,7 @@ class DynamicScaffold extends DynamicWidget implements FormWidget {
     this.endDrawerEnableOpenDragGesture = true,
     this.nextUrl,
     this.itemsSpacing,
+    this.showPaginatedLoaderOnTop = false
   }) : super(
           key: key ?? "",
         );
@@ -121,19 +125,47 @@ class DynamicScaffold extends DynamicWidget implements FormWidget {
     }
     if (scrollable) {
       if(paginated){
+        if(showPaginatedLoaderOnTop){
+          return Stack(
+            children: [
+              _paginatedWidget(),
+              ValueListenableBuilder(valueListenable: _scaffoldState.showPaginatedLoaderOnTopNotifier, builder: (ctx, data, _) {
+                if(data){
+                  if(paginatedLoaderWidget != null){
+                    return paginatedLoaderWidget!.build(context);
+                  }
+                  return SizedBox(
+                    width: double.infinity,
+                    child: DynamicLoader(
+                      key: UniqueKey().toString(),
+                      backgroundColor: Colors.transparent,
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      crossAxisAlignment: CrossAxisAlignment.center
+                    ).build(context),
+                  );
+                }
+                return const SizedBox.shrink();
+              })
+            ],
+          );
+        }
         return _paginatedWidget();
       }
-      return SingleChildScrollView(
-        controller: _scrollController,
-        child: LayoutBuilder(builder: (context, _) {
-          return Column(
-            children: WidgetUtil.childrenFilter(children).map((dyWidget) => dyWidget.build(context)).toList(),
-          );
-        }),
-      );
+      return _unPaginatedWidget();
     }
     return Column(
       children: WidgetUtil.childrenFilter(children).map((dyWidget) => dyWidget.build(context)).toList(),
+    );
+  }
+
+  Widget _unPaginatedWidget(){
+    return SingleChildScrollView(
+      controller: _scrollController,
+      child: LayoutBuilder(builder: (context, _) {
+        return Column(
+          children: WidgetUtil.childrenFilter(children).map((dyWidget) => dyWidget.build(context)).toList(),
+        );
+      }),
     );
   }
 
@@ -143,7 +175,7 @@ class DynamicScaffold extends DynamicWidget implements FormWidget {
         builder: (context, event, _) {
           List<Widget> widgets = WidgetUtil.childrenFilter(event.children).map((child) => child.build(context)).toList();
           if(event is PageSuccessEvent || event is PageProgressEvent) {
-            if(StringUtil.isNotEmptyNorNull(_scaffoldState.nextUrl) && widgets.isNotEmpty){
+            if(!showPaginatedLoaderOnTop && StringUtil.isNotEmptyNorNull(_scaffoldState.nextUrl) && widgets.isNotEmpty){
               if(paginatedLoaderWidget == null) {
                 widgets.add(_loaderWidget());
               }

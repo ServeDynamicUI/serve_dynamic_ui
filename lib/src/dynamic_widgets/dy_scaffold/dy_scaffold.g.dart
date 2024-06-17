@@ -32,6 +32,7 @@ DynamicScaffold _$DynamicScaffoldFromJson(Map<String, dynamic> json) {
     resizeToAvoidBottomInset: json['resizeToAvoidBottomInset'] as bool?,
     scrollable: json['scrollable'] as bool? ?? true,
     paginated: json['paginated'] as bool? ?? false,
+    showPaginatedLoaderOnTop: json['showPaginatedLoaderOnTop'] as bool? ?? false,
     primary: json['primary'] as bool? ?? true,
     extendBody: json['extendBody'] as bool? ?? false,
     drawerEnableOpenDragGesture:

@@ -27,5 +27,7 @@ DynamicLoader _$DynamicLoaderFromJson(Map<String, dynamic> json) {
         : TextStyleDTO.fromJson(json['style'] as Map<String, dynamic>),
     value: (json['value'] as num?)?.toDouble(),
     strokeWidth: (json['strokeWidth'] as num?)?.toDouble() ?? 4.0,
+    containerColor: WidgetUtil.getColor(json['containerColor'] as String?) ?? AppColors.transparent,
+    containerColorOpacity: (json['containerColorOpacity'] as num?)?.toDouble() ?? 0.4,
   );
 }

@@ -31,6 +31,7 @@ class DyScaffoldState extends ScrollListener{
   DynamicWidget _parent;
   late bool _isFetchingPageInProgress;
   late ValueNotifier<PageDataEvent> pageDataEventNotifier;
+  late ValueNotifier<bool> showPaginatedLoaderOnTopNotifier;
 
   bool get isFetchingPageInProgress => _isFetchingPageInProgress;
 
@@ -38,6 +39,7 @@ class DyScaffoldState extends ScrollListener{
     DynamicListeners.addListener(this);
     _isFetchingPageInProgress = false;
     pageDataEventNotifier = ValueNotifier(PageSuccessEvent(_parent.childWidgets));
+    showPaginatedLoaderOnTopNotifier = ValueNotifier(_isFetchingPageInProgress);
   }
 
 
@@ -45,7 +47,8 @@ class DyScaffoldState extends ScrollListener{
     try{
       if(_isFetchingPageInProgress == false && StringUtil.isNotEmptyNorNull(nextUrl)){
         _isFetchingPageInProgress = true;
-        await Future.delayed(const Duration(seconds: 1));
+        showPaginatedLoaderOnTopNotifier.value = _isFetchingPageInProgress;
+        await Future.delayed(const Duration(seconds: 5));
         pageDataEventNotifier.value = PageProgressEvent(pageDataEventNotifier.value.children);
         Map<String, dynamic> jsonResponse = {};
 
@@ -73,9 +76,11 @@ class DyScaffoldState extends ScrollListener{
         pageDataEventNotifier.value = PageSuccessEvent(pageDataEventNotifier.value.children);
 
         _isFetchingPageInProgress = false;
+        showPaginatedLoaderOnTopNotifier.value = _isFetchingPageInProgress;
       }
     } on Exception catch(e){
       _isFetchingPageInProgress = false;
+      showPaginatedLoaderOnTopNotifier.value = _isFetchingPageInProgress;
       pageDataEventNotifier.value = PageErrorEvent(pageDataEventNotifier.value.children, e);
     }
   }

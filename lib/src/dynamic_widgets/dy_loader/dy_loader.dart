@@ -24,6 +24,10 @@ class DynamicLoader extends DynamicWidget {
   TextStyleDTO? style;
   double? value;
   double strokeWidth;
+  @JsonKey(fromJson: WidgetUtil.getColor, defaultValue: AppColors.transparent)
+  Color containerColor;
+  @JsonKey(defaultValue: 0.4)
+  double containerColorOpacity;
 
   DynamicLoader({
     String? key,
@@ -35,6 +39,8 @@ class DynamicLoader extends DynamicWidget {
     this.style,
     this.value,
     this.strokeWidth = 4.0,
+    this.containerColor = AppColors.transparent,
+    this.containerColorOpacity = 0.4
   }) : super(
           key: key ?? "",
         );
@@ -44,24 +50,27 @@ class DynamicLoader extends DynamicWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      mainAxisAlignment: mainAxisAlignment,
-      crossAxisAlignment: crossAxisAlignment,
-      children: [
-        CircularProgressIndicator(
-          backgroundColor: backgroundColor,
-          color: color,
-          value: value,
-          strokeWidth: strokeWidth,
-        ),
-        const SizedBox(
-          height: 10,
-        ),
-        Text(
-          loadingText,
-          style: style?.textStyle ?? const TextStyle(fontSize: 16.0),
-        ),
-      ],
+    return Container(
+      color: containerColor.withOpacity(containerColorOpacity),
+      child: Column(
+        mainAxisAlignment: mainAxisAlignment,
+        crossAxisAlignment: crossAxisAlignment,
+        children: [
+          CircularProgressIndicator(
+            backgroundColor: backgroundColor,
+            color: color,
+            value: value,
+            strokeWidth: strokeWidth,
+          ),
+          const SizedBox(
+            height: 10,
+          ),
+          Text(
+            loadingText,
+            style: style?.textStyle ?? const TextStyle(fontSize: 16.0),
+          ),
+        ],
+      ),
     );
   }
 

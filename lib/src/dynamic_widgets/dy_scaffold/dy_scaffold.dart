@@ -17,6 +17,7 @@ class DynamicScaffold extends DynamicWidget implements FormWidget {
   DynamicWidget? floatingActionWidget;
   DynamicWidget? bottomNavigationBar;
   bool scrollable;
+  bool paginated;
   bool primary;
   bool extendBody;
   bool? resizeToAvoidBottomInset;
@@ -24,6 +25,7 @@ class DynamicScaffold extends DynamicWidget implements FormWidget {
   bool extendBodyBehindAppBar;
   bool endDrawerEnableOpenDragGesture;
   String? nextUrl;
+  double? itemsSpacing;
 
   DynamicScaffold({
     required String key,
@@ -33,12 +35,14 @@ class DynamicScaffold extends DynamicWidget implements FormWidget {
     this.bottomNavigationBar,
     this.resizeToAvoidBottomInset,
     this.scrollable = true,
+    this.paginated = false,
     this.primary = true,
     this.extendBody = false,
     this.drawerEnableOpenDragGesture = true,
     this.extendBodyBehindAppBar = false,
     this.endDrawerEnableOpenDragGesture = true,
     this.nextUrl,
+    this.itemsSpacing,
   }) : super(
           key: key ?? "",
         );
@@ -114,6 +118,9 @@ class DynamicScaffold extends DynamicWidget implements FormWidget {
       return const SizedBox.shrink();
     }
     if (scrollable) {
+      if(paginated){
+        return _paginatedWidget();
+      }
       return SingleChildScrollView(
         controller: _scrollController,
         child: LayoutBuilder(builder: (context, _) {
@@ -126,6 +133,39 @@ class DynamicScaffold extends DynamicWidget implements FormWidget {
     return Column(
       children: WidgetUtil.childrenFilter(children).map((dyWidget) => dyWidget.build(context)).toList(),
     );
+  }
+
+  Widget _paginatedWidget(){
+    return ValueListenableBuilder(
+        valueListenable: _scaffoldState.pageDataEventNotifier,
+        builder: (context, event, _) {
+          List<Widget> widgets = WidgetUtil.childrenFilter(event.children).map((child) => child.build(context)).toList();
+          if(event is PageSuccessEvent || event is PageProgressEvent) {
+            if(StringUtil.isNotEmptyNorNull(nextUrl) && widgets.isNotEmpty){
+              widgets.add(_loaderWidget());
+            }
+            return _paginatedListWidget(widgets);
+          }
+          else if(event is PageErrorEvent){
+            return _paginatedListWidget(widgets);
+          }
+          return const SizedBox.shrink();
+    });
+  }
+
+  Widget _paginatedListWidget(List<Widget> widgets){
+    return ListView.separated(
+      controller: _scrollController,
+      shrinkWrap: true,
+        itemBuilder: (context, index) {
+      return widgets[index];
+    }, separatorBuilder: (context, index) {
+      return Container(height: itemsSpacing,);
+    }, itemCount: widgets.length);
+  }
+
+  Widget _loaderWidget(){
+    return const Text('data');
   }
 
   @override

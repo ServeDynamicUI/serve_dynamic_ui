@@ -4,7 +4,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:serve_dynamic_ui/serve_dynamic_ui.dart';
 
 class PageDataEvent {
-  List<DynamicWidget?>? children;
+  List<DynamicWidget>? children;
 
   PageDataEvent(this.children);
 }
@@ -54,15 +54,18 @@ class DyScaffoldState extends ScrollListener{
         else{
           jsonResponse = jsonDecode(
               (await NetworkHandler.getJsonFromRequest(
-                  DynamicRequest(url: nextUrl!, requestType: RequestType.post)
+                  DynamicRequest(url: nextUrl!, requestType: RequestType.get)
               )
               )?.data?.toString() ?? '');
         }
 
         List<DynamicWidget> newChildren = [];
-        (jsonResponse['children'] as List<Map<String, dynamic>>?)?.forEach((Map<String, dynamic> child) {
+
+        List<Map<String, dynamic>>? newChildrenMap = List.from(jsonResponse['children'] as Iterable<dynamic>);
+
+        for (var child in newChildrenMap) {
           newChildren.add(DynamicWidget.fromJson(child)..parent = _parent);
-        });
+        }
 
         nextUrl = jsonResponse['nextUrl'] ?? '';
         pageDataEventNotifier.value.children?.addAll(newChildren);
@@ -84,6 +87,7 @@ class DyScaffoldState extends ScrollListener{
   @override
   void onScrolledToEnd(String? widgetKey) {
     debugPrint('dy_scaffold onScrolledToEnd $widgetKey');
+    _fetch();
   }
 
   @override

@@ -30,7 +30,8 @@ DynamicScaffold _$DynamicScaffoldFromJson(Map<String, dynamic> json) {
         : DynamicWidget.fromJson(
             json['bottomNavigationBar'] as Map<String, dynamic>),
     resizeToAvoidBottomInset: json['resizeToAvoidBottomInset'] as bool?,
-      scrollable: json['scrollable'] as bool? ?? true,
+    scrollable: json['scrollable'] as bool? ?? true,
+    paginated: json['paginated'] as bool? ?? false,
     primary: json['primary'] as bool? ?? true,
     extendBody: json['extendBody'] as bool? ?? false,
     drawerEnableOpenDragGesture:
@@ -38,6 +39,7 @@ DynamicScaffold _$DynamicScaffoldFromJson(Map<String, dynamic> json) {
     extendBodyBehindAppBar: json['extendBodyBehindAppBar'] as bool? ?? false,
     endDrawerEnableOpenDragGesture:
         json['endDrawerEnableOpenDragGesture'] as bool? ?? true,
-    nextUrl: json['nextUrl'] as String?
+    nextUrl: json['nextUrl'] as String?,
+    itemsSpacing: (json['itemsSpacing'] as num?)?.toDouble(),
   );
 }

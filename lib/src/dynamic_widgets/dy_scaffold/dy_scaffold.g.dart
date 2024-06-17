@@ -41,5 +41,9 @@ DynamicScaffold _$DynamicScaffoldFromJson(Map<String, dynamic> json) {
         json['endDrawerEnableOpenDragGesture'] as bool? ?? true,
     nextUrl: json['nextUrl'] as String?,
     itemsSpacing: (json['itemsSpacing'] as num?)?.toDouble(),
+    paginatedLoaderWidget: json['paginatedLoaderWidget'] == null
+        ? null
+        : DynamicWidget.fromJson(
+        json['paginatedLoaderWidget'] as Map<String, dynamic>),
   );
 }

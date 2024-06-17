@@ -1128,7 +1128,15 @@
         ]
       }
     }],
-    "nextUrl": "assets/json/sample1.json",
-    "paginated": true
+    "nextUrl": "https://raw.githubusercontent.com/Arunshaik2001/serve_dynamic_ui/scaffold-pagination/example/assets/json/sample1.json",
+    "paginated": true,
+    "paginatedLoaderWidget": {
+      "type": "dy_loader",
+      "data": {
+        "key": "13131",
+        "mainAxisAlignment": "center",
+        "loadingText": "Loading..."
+      }
+    }
   }
 }

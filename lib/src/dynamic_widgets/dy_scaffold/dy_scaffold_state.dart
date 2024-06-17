@@ -43,8 +43,9 @@ class DyScaffoldState extends ScrollListener{
 
   _fetch() async{
     try{
-      if(_isFetchingPageInProgress == false && nextUrl != null){
+      if(_isFetchingPageInProgress == false && StringUtil.isNotEmptyNorNull(nextUrl)){
         _isFetchingPageInProgress = true;
+        await Future.delayed(const Duration(seconds: 1));
         pageDataEventNotifier.value = PageProgressEvent(pageDataEventNotifier.value.children);
         Map<String, dynamic> jsonResponse = {};
 

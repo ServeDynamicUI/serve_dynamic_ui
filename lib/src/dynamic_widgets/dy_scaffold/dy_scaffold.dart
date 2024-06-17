@@ -16,6 +16,7 @@ class DynamicScaffold extends DynamicWidget implements FormWidget {
   List<DynamicWidget>? children;
   DynamicWidget? floatingActionWidget;
   DynamicWidget? bottomNavigationBar;
+  DynamicWidget? paginatedLoaderWidget;
   bool scrollable;
   bool paginated;
   bool primary;
@@ -33,6 +34,7 @@ class DynamicScaffold extends DynamicWidget implements FormWidget {
     this.pageTitle,
     this.floatingActionWidget,
     this.bottomNavigationBar,
+    this.paginatedLoaderWidget,
     this.resizeToAvoidBottomInset,
     this.scrollable = true,
     this.paginated = false,
@@ -141,8 +143,13 @@ class DynamicScaffold extends DynamicWidget implements FormWidget {
         builder: (context, event, _) {
           List<Widget> widgets = WidgetUtil.childrenFilter(event.children).map((child) => child.build(context)).toList();
           if(event is PageSuccessEvent || event is PageProgressEvent) {
-            if(StringUtil.isNotEmptyNorNull(nextUrl) && widgets.isNotEmpty){
-              widgets.add(_loaderWidget());
+            if(StringUtil.isNotEmptyNorNull(_scaffoldState.nextUrl) && widgets.isNotEmpty){
+              if(paginatedLoaderWidget == null) {
+                widgets.add(_loaderWidget());
+              }
+              else{
+                widgets.add(paginatedLoaderWidget!.build(context));
+              }
             }
             return _paginatedListWidget(widgets);
           }
@@ -165,7 +172,33 @@ class DynamicScaffold extends DynamicWidget implements FormWidget {
   }
 
   Widget _loaderWidget(){
-    return const Text('data');
+    return const Card(
+      shadowColor: AppColors.greenYellow,
+      color: AppColors.mantis,
+      child: Padding(
+        padding: EdgeInsets.all(8.0),
+        child: Row(
+          mainAxisSize: MainAxisSize.min,
+          mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            SizedBox(
+              height: 14,
+              width: 14,
+              child: CircularProgressIndicator(
+                valueColor: AlwaysStoppedAnimation<Color>(AppColors.white),
+                strokeWidth: 2,
+              ),
+            ),
+            Spacer(),
+            Text(
+              "Loading...",
+              style: TextStyle(color: AppColors.white, fontSize: 14),
+            )
+          ],
+        ),
+      ),
+    );
   }
 
   @override

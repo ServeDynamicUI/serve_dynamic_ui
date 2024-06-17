@@ -3,7 +3,7 @@
   "data": {
     "key": "123456",
     "pageTitle": "Flutter List View Screen",
-    "scrollable": false,
+    "scrollable": true,
     "children": [{
       "type": "dy_container",
       "data": {

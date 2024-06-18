@@ -4,7 +4,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:serve_dynamic_ui/serve_dynamic_ui.dart';
 
 class PageDataEvent {
-  List<DynamicWidget?>? children;
+  List<DynamicWidget>? children;
 
   PageDataEvent(this.children);
 }
@@ -28,23 +28,27 @@ class PageProgressEvent extends PageDataEvent {
 
 class DyScaffoldState extends ScrollListener{
   String? nextUrl;
-  DynamicWidget _parent;
+  DynamicScaffold _parent;
   late bool _isFetchingPageInProgress;
   late ValueNotifier<PageDataEvent> pageDataEventNotifier;
+  late ValueNotifier<bool> showPaginatedLoaderOnTopNotifier;
 
   bool get isFetchingPageInProgress => _isFetchingPageInProgress;
 
   DyScaffoldState(this.nextUrl, this._parent){
-    DynamicListeners.addListener(this);
+    DynamicListeners.addListener(_parent.key, this);
     _isFetchingPageInProgress = false;
     pageDataEventNotifier = ValueNotifier(PageSuccessEvent(_parent.childWidgets));
+    showPaginatedLoaderOnTopNotifier = ValueNotifier(_isFetchingPageInProgress);
   }
 
 
   _fetch() async{
     try{
-      if(_isFetchingPageInProgress == false && nextUrl != null){
+      if(_isFetchingPageInProgress == false && StringUtil.isNotEmptyNorNull(nextUrl)){
         _isFetchingPageInProgress = true;
+        showPaginatedLoaderOnTopNotifier.value = _isFetchingPageInProgress;
+        await Future.delayed(const Duration(seconds: 1));
         pageDataEventNotifier.value = PageProgressEvent(pageDataEventNotifier.value.children);
         Map<String, dynamic> jsonResponse = {};
 
@@ -54,40 +58,46 @@ class DyScaffoldState extends ScrollListener{
         else{
           jsonResponse = jsonDecode(
               (await NetworkHandler.getJsonFromRequest(
-                  DynamicRequest(url: nextUrl!, requestType: RequestType.post)
+                  DynamicRequest(url: nextUrl!, requestType: RequestType.get)
               )
               )?.data?.toString() ?? '');
         }
 
         List<DynamicWidget> newChildren = [];
-        (jsonResponse['children'] as List<Map<String, dynamic>>?)?.forEach((Map<String, dynamic> child) {
+
+        List<Map<String, dynamic>>? newChildrenMap = List.from(jsonResponse['children'] as Iterable<dynamic>);
+
+        for (var child in newChildrenMap) {
           newChildren.add(DynamicWidget.fromJson(child)..parent = _parent);
-        });
+        }
 
         nextUrl = jsonResponse['nextUrl'] ?? '';
         pageDataEventNotifier.value.children?.addAll(newChildren);
         pageDataEventNotifier.value = PageSuccessEvent(pageDataEventNotifier.value.children);
 
         _isFetchingPageInProgress = false;
+        showPaginatedLoaderOnTopNotifier.value = _isFetchingPageInProgress;
       }
     } on Exception catch(e){
       _isFetchingPageInProgress = false;
+      showPaginatedLoaderOnTopNotifier.value = _isFetchingPageInProgress;
       pageDataEventNotifier.value = PageErrorEvent(pageDataEventNotifier.value.children, e);
     }
   }
 
   @override
   void onScrolled(String? widgetKey) {
-    debugPrint('dy_scaffold onScrolled $widgetKey');
+    debugPrint('dy_scaffold ${_parent.pageTitle} onScrolled $widgetKey');
   }
 
   @override
   void onScrolledToEnd(String? widgetKey) {
-    debugPrint('dy_scaffold onScrolledToEnd $widgetKey');
+    debugPrint('dy_scaffold ${_parent.pageTitle}  onScrolledToEnd $widgetKey');
+    _fetch();
   }
 
   @override
   void onScrolledToStart(String? widgetKey) {
-    debugPrint('dy_scaffold onScrolledToStart $widgetKey');
+    debugPrint('dy_scaffold ${_parent.pageTitle}  onScrolledToStart $widgetKey');
   }
 }

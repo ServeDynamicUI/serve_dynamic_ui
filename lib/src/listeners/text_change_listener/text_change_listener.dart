@@ -7,27 +7,25 @@ abstract class TextChangeListener extends DynamicListener{
 
 ///[TextChangeListeners] : class that adds all the text change listeners and calls the methods in [TextChangeListener].
 class TextChangeListeners {
-  static final List<TextChangeListener> _textListeners = [];
+  static final Map<String, TextChangeListener> _textListeners = {};
 
   ///to add a text change listener
-  static void addTextChangeListener(TextChangeListener textChangeListener) {
-    _textListeners.add(textChangeListener);
+  static void addTextChangeListener(String textControllerKey, TextChangeListener textChangeListener) {
+    _textListeners[textControllerKey] = (textChangeListener);
   }
 
   ///to add text change listeners in a list.
-  static void addAllScrollListener(List<TextChangeListener> textChangeListeners) {
+  static void addAllScrollListener(Map<String, TextChangeListener> textChangeListeners) {
     _textListeners.addAll(textChangeListeners);
   }
 
   ///to remove a text change listener
-  static void removeScrollListener(TextChangeListener textChangeListener) {
-    _textListeners.remove(textChangeListener);
+  static void removeScrollListener(String textControllerKey) {
+    _textListeners.remove(textControllerKey);
   }
 
   ///to call onTextChanged callback in all listeners.
-  static void callOnTextChanged(String? widgetKey, String newValue) {
-    for (var textListener in _textListeners) {
-      textListener.onTextChanged(widgetKey, newValue);
-    }
+  static void callOnTextChanged(String? textControllerKey, String newValue) {
+    _textListeners[textControllerKey]?.onTextChanged(textControllerKey, newValue);
   }
 }

@@ -24,6 +24,13 @@ class DynamicLoader extends DynamicWidget {
   TextStyleDTO? style;
   double? value;
   double strokeWidth;
+  @JsonKey(fromJson: WidgetUtil.getColor)
+  Color? containerColor;
+  double? containerColorOpacity;
+  @JsonKey(fromJson: WidgetUtil.getValueOrInf)
+  double? containerWidth;
+  @JsonKey(fromJson: WidgetUtil.getValueOrInf)
+  double? containerHeight;
 
   DynamicLoader({
     String? key,
@@ -35,33 +42,42 @@ class DynamicLoader extends DynamicWidget {
     this.style,
     this.value,
     this.strokeWidth = 4.0,
+    this.containerColor,
+    this.containerColorOpacity,
+    this.containerHeight,
+    this.containerWidth,
   }) : super(
-          key: key ?? "",
-        );
+    key: key ?? "",
+  );
 
   factory DynamicLoader.fromJson(Map<String, dynamic> json) =>
       _$DynamicLoaderFromJson(json);
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      mainAxisAlignment: mainAxisAlignment,
-      crossAxisAlignment: crossAxisAlignment,
-      children: [
-        CircularProgressIndicator(
-          backgroundColor: backgroundColor,
-          color: color,
-          value: value,
-          strokeWidth: strokeWidth,
-        ),
-        const SizedBox(
-          height: 10,
-        ),
-        Text(
-          loadingText,
-          style: style?.textStyle ?? const TextStyle(fontSize: 16.0),
-        ),
-      ],
+    return Container(
+      color: containerColor?.withOpacity(containerColorOpacity ?? 1),
+      height: containerHeight,
+      width: containerWidth,
+      child: Column(
+        mainAxisAlignment: mainAxisAlignment,
+        crossAxisAlignment: crossAxisAlignment,
+        children: [
+          CircularProgressIndicator(
+            backgroundColor: backgroundColor,
+            color: color,
+            value: value,
+            strokeWidth: strokeWidth,
+          ),
+          const SizedBox(
+            height: 10,
+          ),
+          Text(
+            loadingText,
+            style: style?.textStyle ?? const TextStyle(fontSize: 16.0),
+          ),
+        ],
+      ),
     );
   }
 

@@ -43,8 +43,8 @@ class _MyHomePageState extends State<MyHomePage> {
   @override
   void initState() {
     super.initState();
-    DynamicListeners.addListener(WidgetScrollListener());
-    DynamicListeners.addListener(TextUpdateListener());
+    DynamicListeners.addListener("1212133344", WidgetScrollListener());
+    DynamicListeners.addListener("334343434", TextUpdateListener());
   }
 
   @override

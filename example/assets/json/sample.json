@@ -1127,6 +1127,25 @@
           }
         ]
       }
-    }]
+    }],
+    "nextUrl": "https://raw.githubusercontent.com/Arunshaik2001/serve_dynamic_ui/scaffold-pagination/example/assets/json/sample1.json",
+    "paginated": true,
+    "showPaginatedLoaderOnTop": true,
+    "paginatedLoaderWidget": {
+      "type": "dy_loader",
+      "data": {
+        "key": "13131",
+        "mainAxisAlignment": "center",
+        "crossAxisAlignment": "center",
+        "containerWidth": -1,
+        "loadingText": "Loading...",
+        "containerColor": "0xFF9E9E9E",
+        "containerColorOpacity": 0.9,
+        "style": {
+          "color": "0xFFFFFFFF",
+          "fontSize": 20
+        }
+      }
+    }
   }
 }

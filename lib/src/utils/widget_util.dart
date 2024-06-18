@@ -414,6 +414,13 @@ class WidgetUtil {
     return null;
   }
 
+  ///Returns the [Double] from double or inf.
+  static double? getValueOrInf(double? value) {
+    if (value != null) {
+      return value < 0 ? double.infinity : value;
+    }
+    return null;
+  }
 
   ///Returns the map from string path.
   static Future<Map<String, dynamic>> loadJson(String path) async {

@@ -6,27 +6,27 @@ abstract class DynamicListener {}
 ///[DynamicListeners] is a class to perform operations on listener
 class DynamicListeners {
   ///listener to add a dynamicListener.
-  static void addListener(DynamicListener dynamicListener) {
+  static void addListener(String key, DynamicListener dynamicListener) {
     if (dynamicListener is ScrollListener) {
-      ScrollListeners.addScrollListener(dynamicListener);
+      ScrollListeners.addScrollListener(key, dynamicListener);
     } else if (dynamicListener is TextChangeListener) {
-      TextChangeListeners.addTextChangeListener(dynamicListener);
+      TextChangeListeners.addTextChangeListener(key, dynamicListener);
     }
   }
 
   ///listener to add all dynamicListeners in a list.
-  static void addAllScrollListener(List<DynamicListener> dynamicListeners) {
-    for (var dynamicListener in dynamicListeners) {
-      addListener(dynamicListener);
+  static void addAllScrollListener(Map<String, DynamicListener> dynamicListeners) {
+    for (var dynamicListener in dynamicListeners.entries) {
+      addListener(dynamicListener.key, dynamicListener.value);
     }
   }
 
   ///listener to remove a dynamicListener.
-  static void removeScrollListener(DynamicListener dynamicListener) {
+  static void removeScrollListener(String key, DynamicListener dynamicListener) {
     if (dynamicListener is ScrollListener) {
-      ScrollListeners.removeScrollListener(dynamicListener);
+      ScrollListeners.removeScrollListener(key);
     } else if (dynamicListener is TextChangeListener) {
-      TextChangeListeners.removeScrollListener(dynamicListener);
+      TextChangeListeners.removeScrollListener(key);
     }
   }
 }

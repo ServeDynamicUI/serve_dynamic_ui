@@ -1,8 +1,10 @@
 import 'dart:async';
+import 'dart:math';
 
 import 'package:flutter/material.dart';
 import 'package:json_annotation/json_annotation.dart';
 import 'package:serve_dynamic_ui/serve_dynamic_ui.dart';
+import 'package:serve_dynamic_ui/src/dynamic_widgets/dy_loader/index.dart';
 
 part 'dy_scaffold.g.dart';
 
@@ -16,7 +18,10 @@ class DynamicScaffold extends DynamicWidget implements FormWidget {
   List<DynamicWidget>? children;
   DynamicWidget? floatingActionWidget;
   DynamicWidget? bottomNavigationBar;
+  DynamicWidget? paginatedLoaderWidget;
+  bool showPaginatedLoaderOnTop;
   bool scrollable;
+  bool paginated;
   bool primary;
   bool extendBody;
   bool? resizeToAvoidBottomInset;
@@ -24,6 +29,7 @@ class DynamicScaffold extends DynamicWidget implements FormWidget {
   bool extendBodyBehindAppBar;
   bool endDrawerEnableOpenDragGesture;
   String? nextUrl;
+  double? itemsSpacing;
 
   DynamicScaffold({
     required String key,
@@ -31,14 +37,18 @@ class DynamicScaffold extends DynamicWidget implements FormWidget {
     this.pageTitle,
     this.floatingActionWidget,
     this.bottomNavigationBar,
+    this.paginatedLoaderWidget,
     this.resizeToAvoidBottomInset,
     this.scrollable = true,
+    this.paginated = false,
     this.primary = true,
     this.extendBody = false,
     this.drawerEnableOpenDragGesture = true,
     this.extendBodyBehindAppBar = false,
     this.endDrawerEnableOpenDragGesture = true,
     this.nextUrl,
+    this.itemsSpacing,
+    this.showPaginatedLoaderOnTop = false
   }) : super(
           key: key ?? "",
         );
@@ -53,10 +63,14 @@ class DynamicScaffold extends DynamicWidget implements FormWidget {
     DynamicProvider dynamicProvider =
         WidgetResolver.getTopAncestorOfType<DynamicProvider>(this)!;
     String controllerKey = key;
+    if(dynamicProvider.controllerCache[controllerKey] != null){
+      return dynamicProvider.controllerCache[controllerKey];
+    }
     ScrollController scrollController = ScrollController();
-    dynamicProvider.controllerCache
-        .putIfAbsent(controllerKey, () => scrollController);
-    scrollController.addListener(_scrollListener);
+    dynamicProvider.controllerCache[controllerKey] = scrollController;
+    scrollController.addListener((){
+      _scrollListener();
+    });
     return dynamicProvider.controllerCache[controllerKey];
   }
 
@@ -114,17 +128,113 @@ class DynamicScaffold extends DynamicWidget implements FormWidget {
       return const SizedBox.shrink();
     }
     if (scrollable) {
-      return SingleChildScrollView(
-        controller: _scrollController,
-        child: LayoutBuilder(builder: (context, _) {
-          return Column(
-            children: WidgetUtil.childrenFilter(children).map((dyWidget) => dyWidget.build(context)).toList(),
+      if(paginated){
+        if(showPaginatedLoaderOnTop){
+          return Stack(
+            alignment: Alignment.center,
+            children: [
+              _paginatedWidget(),
+              ValueListenableBuilder(valueListenable: _scaffoldState.showPaginatedLoaderOnTopNotifier, builder: (ctx, data, _) {
+                if(data){
+                  if(paginatedLoaderWidget != null){
+                    return paginatedLoaderWidget!.build(context);
+                  }
+                  return SizedBox(
+                    width: double.infinity,
+                    child: DynamicLoader(
+                      key: UniqueKey().toString(),
+                      backgroundColor: Colors.transparent,
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      crossAxisAlignment: CrossAxisAlignment.center
+                    ).build(context),
+                  );
+                }
+                return const SizedBox.shrink();
+              })
+            ],
           );
-        }),
-      );
+        }
+        return _paginatedWidget();
+      }
+      return _unPaginatedWidget();
     }
     return Column(
       children: WidgetUtil.childrenFilter(children).map((dyWidget) => dyWidget.build(context)).toList(),
+    );
+  }
+
+  Widget _unPaginatedWidget(){
+    return SingleChildScrollView(
+      controller: _scrollController,
+      child: LayoutBuilder(builder: (context, _) {
+        return Column(
+          children: WidgetUtil.childrenFilter(children).map((dyWidget) => dyWidget.build(context)).toList(),
+        );
+      }),
+    );
+  }
+
+  Widget _paginatedWidget(){
+    return ValueListenableBuilder(
+        valueListenable: _scaffoldState.pageDataEventNotifier,
+        builder: (context, event, _) {
+          List<Widget> widgets = WidgetUtil.childrenFilter(event.children).map((child) => child.build(context)).toList();
+          if(event is PageSuccessEvent || event is PageProgressEvent) {
+            if(!showPaginatedLoaderOnTop && StringUtil.isNotEmptyNorNull(_scaffoldState.nextUrl) && widgets.isNotEmpty){
+              if(paginatedLoaderWidget == null) {
+                widgets.add(_loaderWidget());
+              }
+              else{
+                widgets.add(paginatedLoaderWidget!.build(context));
+              }
+            }
+            return _paginatedListWidget(widgets);
+          }
+          else if(event is PageErrorEvent){
+            return _paginatedListWidget(widgets);
+          }
+          return const SizedBox.shrink();
+    });
+  }
+
+  Widget _paginatedListWidget(List<Widget> widgets){
+    return ListView.separated(
+      controller: _scrollController,
+      shrinkWrap: true,
+        itemBuilder: (context, index) {
+      return widgets[index];
+    }, separatorBuilder: (context, index) {
+      return Container(height: itemsSpacing,);
+    }, itemCount: widgets.length);
+  }
+
+  Widget _loaderWidget(){
+    return const Card(
+      shadowColor: AppColors.greenYellow,
+      color: AppColors.mantis,
+      child: Padding(
+        padding: EdgeInsets.all(8.0),
+        child: Row(
+          mainAxisSize: MainAxisSize.min,
+          mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            SizedBox(
+              height: 14,
+              width: 14,
+              child: CircularProgressIndicator(
+                valueColor: AlwaysStoppedAnimation<Color>(AppColors.white),
+                strokeWidth: 2,
+              ),
+            ),
+            Spacer(),
+            Text(
+              "Loading...",
+              style: TextStyle(color: AppColors.white, fontSize: 14),
+            )
+          ],
+        ),
+      ),
     );
   }
 

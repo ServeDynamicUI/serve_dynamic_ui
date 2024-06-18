@@ -34,7 +34,7 @@ class TextStyleDTO {
   factory TextStyleDTO.fromJson(Map<String, dynamic> json) =>
       _$TextStyleDTOFromJson(json);
 
-  TextStyle? get textStyle {
+  TextStyle get textStyle {
     return TextStyle(
       color: color,
       fontSize: fontSize,

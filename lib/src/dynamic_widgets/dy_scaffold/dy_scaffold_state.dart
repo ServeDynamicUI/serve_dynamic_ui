@@ -28,7 +28,7 @@ class PageProgressEvent extends PageDataEvent {
 
 class DyScaffoldState extends ScrollListener{
   String? nextUrl;
-  DynamicWidget _parent;
+  DynamicScaffold _parent;
   late bool _isFetchingPageInProgress;
   late ValueNotifier<PageDataEvent> pageDataEventNotifier;
   late ValueNotifier<bool> showPaginatedLoaderOnTopNotifier;
@@ -36,7 +36,7 @@ class DyScaffoldState extends ScrollListener{
   bool get isFetchingPageInProgress => _isFetchingPageInProgress;
 
   DyScaffoldState(this.nextUrl, this._parent){
-    DynamicListeners.addListener(this);
+    DynamicListeners.addListener(_parent.key, this);
     _isFetchingPageInProgress = false;
     pageDataEventNotifier = ValueNotifier(PageSuccessEvent(_parent.childWidgets));
     showPaginatedLoaderOnTopNotifier = ValueNotifier(_isFetchingPageInProgress);
@@ -48,7 +48,7 @@ class DyScaffoldState extends ScrollListener{
       if(_isFetchingPageInProgress == false && StringUtil.isNotEmptyNorNull(nextUrl)){
         _isFetchingPageInProgress = true;
         showPaginatedLoaderOnTopNotifier.value = _isFetchingPageInProgress;
-        await Future.delayed(const Duration(seconds: 5));
+        await Future.delayed(const Duration(seconds: 1));
         pageDataEventNotifier.value = PageProgressEvent(pageDataEventNotifier.value.children);
         Map<String, dynamic> jsonResponse = {};
 
@@ -87,17 +87,17 @@ class DyScaffoldState extends ScrollListener{
 
   @override
   void onScrolled(String? widgetKey) {
-    debugPrint('dy_scaffold onScrolled $widgetKey');
+    debugPrint('dy_scaffold ${_parent.pageTitle} onScrolled $widgetKey');
   }
 
   @override
   void onScrolledToEnd(String? widgetKey) {
-    debugPrint('dy_scaffold onScrolledToEnd $widgetKey');
+    debugPrint('dy_scaffold ${_parent.pageTitle}  onScrolledToEnd $widgetKey');
     _fetch();
   }
 
   @override
   void onScrolledToStart(String? widgetKey) {
-    debugPrint('dy_scaffold onScrolledToStart $widgetKey');
+    debugPrint('dy_scaffold ${_parent.pageTitle}  onScrolledToStart $widgetKey');
   }
 }

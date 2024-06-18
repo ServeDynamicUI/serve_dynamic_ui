@@ -63,10 +63,14 @@ class DynamicScaffold extends DynamicWidget implements FormWidget {
     DynamicProvider dynamicProvider =
         WidgetResolver.getTopAncestorOfType<DynamicProvider>(this)!;
     String controllerKey = key;
+    if(dynamicProvider.controllerCache[controllerKey] != null){
+      return dynamicProvider.controllerCache[controllerKey];
+    }
     ScrollController scrollController = ScrollController();
-    dynamicProvider.controllerCache
-        .putIfAbsent(controllerKey, () => scrollController);
-    scrollController.addListener(_scrollListener);
+    dynamicProvider.controllerCache[controllerKey] = scrollController;
+    scrollController.addListener((){
+      _scrollListener();
+    });
     return dynamicProvider.controllerCache[controllerKey];
   }
 
@@ -127,6 +131,7 @@ class DynamicScaffold extends DynamicWidget implements FormWidget {
       if(paginated){
         if(showPaginatedLoaderOnTop){
           return Stack(
+            alignment: Alignment.center,
             children: [
               _paginatedWidget(),
               ValueListenableBuilder(valueListenable: _scaffoldState.showPaginatedLoaderOnTopNotifier, builder: (ctx, data, _) {

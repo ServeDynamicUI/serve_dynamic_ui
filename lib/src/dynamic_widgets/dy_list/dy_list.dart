@@ -13,6 +13,7 @@ part 'dy_list.g.dart';
 )
 class DynamicList extends DynamicWidget {
   bool isVertical;
+  bool isScrollable;
   bool shrinkWrap;
   List<DynamicWidget>? listItems;
   DynamicWidget? separator;
@@ -23,6 +24,7 @@ class DynamicList extends DynamicWidget {
     this.listItems,
     this.separator,
     this.shrinkWrap = false,
+    this.isScrollable = true
   });
 
   factory DynamicList.fromJson(Map<String, dynamic> json) =>
@@ -39,6 +41,7 @@ class DynamicList extends DynamicWidget {
       shrinkWrap: shrinkWrap,
       listItems: listItems,
       separator: separator,
+      isScrollable: isScrollable,
       key: ValueKey(key),
     );
   }

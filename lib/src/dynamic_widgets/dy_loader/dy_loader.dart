@@ -24,10 +24,13 @@ class DynamicLoader extends DynamicWidget {
   TextStyleDTO? style;
   double? value;
   double strokeWidth;
-  @JsonKey(fromJson: WidgetUtil.getColor, defaultValue: AppColors.transparent)
-  Color containerColor;
-  @JsonKey(defaultValue: 0.4)
-  double containerColorOpacity;
+  @JsonKey(fromJson: WidgetUtil.getColor)
+  Color? containerColor;
+  double? containerColorOpacity;
+  @JsonKey(fromJson: WidgetUtil.getValueOrInf)
+  double? containerWidth;
+  @JsonKey(fromJson: WidgetUtil.getValueOrInf)
+  double? containerHeight;
 
   DynamicLoader({
     String? key,
@@ -39,11 +42,13 @@ class DynamicLoader extends DynamicWidget {
     this.style,
     this.value,
     this.strokeWidth = 4.0,
-    this.containerColor = AppColors.transparent,
-    this.containerColorOpacity = 0.4
+    this.containerColor,
+    this.containerColorOpacity,
+    this.containerHeight,
+    this.containerWidth,
   }) : super(
-          key: key ?? "",
-        );
+    key: key ?? "",
+  );
 
   factory DynamicLoader.fromJson(Map<String, dynamic> json) =>
       _$DynamicLoaderFromJson(json);
@@ -51,7 +56,9 @@ class DynamicLoader extends DynamicWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      color: containerColor.withOpacity(containerColorOpacity),
+      color: containerColor?.withOpacity(containerColorOpacity ?? 1),
+      height: containerHeight,
+      width: containerWidth,
       child: Column(
         mainAxisAlignment: mainAxisAlignment,
         crossAxisAlignment: crossAxisAlignment,

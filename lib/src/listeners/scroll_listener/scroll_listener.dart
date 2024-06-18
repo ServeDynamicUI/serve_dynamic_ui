@@ -14,41 +14,35 @@ abstract class ScrollListener extends DynamicListener{
 
 ///[ScrollListeners] : class that adds all the scroll listeners and calls the methods in [ScrollListener].
 class ScrollListeners {
-  static final List<ScrollListener> _scrollListeners = [];
+  static final Map<String, ScrollListener> _scrollListeners = {};
 
   ///to a scroll listener in list.
-  static void addScrollListener(ScrollListener scrollListener) {
-    _scrollListeners.add(scrollListener);
+  static void addScrollListener(String scrollKey, ScrollListener scrollListener) {
+    _scrollListeners[scrollKey] = (scrollListener);
   }
 
   ///to add list of scroll listeners.
-  static void addAllScrollListener(List<ScrollListener> scrollListeners) {
+  static void addAllScrollListener(Map<String, ScrollListener> scrollListeners) {
     _scrollListeners.addAll(scrollListeners);
   }
 
   ///to remove a scroll listener.
-  static void removeScrollListener(ScrollListener scrollListener) {
-    _scrollListeners.remove(scrollListener);
+  static void removeScrollListener(String scrollKey) {
+    _scrollListeners.remove(scrollKey);
   }
 
   ///to call onScrolled callback of every listener.
-  static void callOnScrolled(String? widgetKey) {
-    for (var scroll in _scrollListeners) {
-      scroll.onScrolled(widgetKey);
-    }
+  static void callOnScrolled(String widgetKey) {
+    _scrollListeners[widgetKey]?.onScrolled(widgetKey);
   }
 
   ///to call onScrolledToEnd callback of every listener.
   static void callOnScrolledToEnd(String? widgetKey) {
-    for (var scroll in _scrollListeners) {
-      scroll.onScrolledToEnd(widgetKey);
-    }
+    _scrollListeners[widgetKey]?.onScrolledToEnd(widgetKey);
   }
 
   ///to call onScrolledToStart callback of every listener.
   static void callOnScrolledToStart(String? widgetKey) {
-    for (var scroll in _scrollListeners) {
-      scroll.onScrolledToStart(widgetKey);
-    }
+    _scrollListeners[widgetKey]?.onScrolledToStart(widgetKey);
   }
 }

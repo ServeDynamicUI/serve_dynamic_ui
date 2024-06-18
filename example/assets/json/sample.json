@@ -1137,9 +1137,14 @@
         "key": "13131",
         "mainAxisAlignment": "center",
         "crossAxisAlignment": "center",
+        "containerWidth": -1,
         "loadingText": "Loading...",
         "containerColor": "0xFF9E9E9E",
-        "containerColorOpacity": 0.3
+        "containerColorOpacity": 0.9,
+        "style": {
+          "color": "0xFFFFFFFF",
+          "fontSize": 20
+        }
       }
     }
   }

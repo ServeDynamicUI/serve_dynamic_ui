@@ -21,5 +21,6 @@ DynamicList _$DynamicListFromJson(Map<String, dynamic> json) {
         ? null
         : DynamicWidget.fromJson(json['separator'] as Map<String, dynamic>),
     shrinkWrap: json['shrinkWrap'] as bool? ?? false,
+    isScrollable: json['isScrollable'] as bool? ?? true,
   );
 }

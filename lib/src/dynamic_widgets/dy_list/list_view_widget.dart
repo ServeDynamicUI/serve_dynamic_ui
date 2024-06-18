@@ -5,6 +5,7 @@ import 'package:scroll_to_index/scroll_to_index.dart';
 class ListViewWidget extends StatefulWidget {
   final bool isVertical;
   final bool shrinkWrap;
+  final bool isScrollable;
   final List<DynamicWidget>? listItems;
   final DynamicWidget? separator;
 
@@ -14,6 +15,7 @@ class ListViewWidget extends StatefulWidget {
     this.listItems,
     this.separator,
     this.shrinkWrap = false,
+    this.isScrollable = true
   });
 
   @override
@@ -67,6 +69,7 @@ class _ListViewWidgetState extends State<ListViewWidget> {
   Widget build(BuildContext context) {
     return ListView.separated(
       controller: scrollController,
+      physics: widget.isScrollable ? null : const NeverScrollableScrollPhysics(),
       shrinkWrap: widget.shrinkWrap,
       itemBuilder: (ctx, index) {
         return AutoScrollTag(

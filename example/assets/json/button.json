@@ -58,6 +58,31 @@
                         }
                       }
                     }
+                  },
+                  "actions": {
+                    "depend": true,
+                    "actionList": [
+                      {
+                        "actionString": "/updateWidget",
+                        "extras": {
+                          "widgetKey": "update_text_key",
+                          "methodName": "UPDATE_TEXT",
+                          "params": {
+                            "newText": "Updated Text Value"
+                          }
+                        }
+                      },
+                      {
+                        "actionString": "/updateWidget",
+                        "extras": {
+                          "widgetKey": "update_text_key",
+                          "methodName": "UPDATE_TEXT",
+                          "params": {
+                            "newText": "Updated Text Value"
+                          }
+                        }
+                      }
+                    ]
                   }
                 }
               ]

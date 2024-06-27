@@ -32,6 +32,8 @@ class DynamicScaffold extends DynamicWidget implements FormWidget {
   bool endDrawerEnableOpenDragGesture;
   String? nextUrl;
   double? itemsSpacing;
+  @JsonKey(fromJson: WidgetUtil.getCrossAxisAlignment)
+  CrossAxisAlignment crossAxisAlignment;
 
   DynamicScaffold(
       {required String key,
@@ -54,7 +56,11 @@ class DynamicScaffold extends DynamicWidget implements FormWidget {
       this.endDrawerEnableOpenDragGesture = true,
       this.nextUrl,
       this.itemsSpacing,
-      this.showPaginatedLoaderOnTop = false})
+      this.showPaginatedLoaderOnTop = false,
+      this.crossAxisAlignment = CrossAxisAlignment.center,
+      super.margin,
+      super.padding,
+      })
       : super(
           key: key ?? "",
         );
@@ -114,7 +120,7 @@ class DynamicScaffold extends DynamicWidget implements FormWidget {
       key: ValueKey(key),
       appBar: _appBar(context, pageTitle, centerPageTitle, leftActions,
           rightActions, leftActionsWidth),
-      body: _getBody(context),
+      body: Container(padding: padding, margin: margin, child: _getBody(context),),
       floatingActionButton: floatingActionWidget?.build(context),
       bottomNavigationBar: bottomNavigationBar?.build(context),
       primary: primary,
@@ -133,31 +139,34 @@ class DynamicScaffold extends DynamicWidget implements FormWidget {
     if (scrollable) {
       if (paginated) {
         if (showPaginatedLoaderOnTop) {
-          return Stack(
-            alignment: Alignment.center,
-            children: [
-              _paginatedWidget(),
-              ValueListenableBuilder(
-                  valueListenable:
-                      _scaffoldState.showPaginatedLoaderOnTopNotifier,
-                  builder: (ctx, data, _) {
-                    if (data) {
-                      if (paginatedLoaderWidget != null) {
-                        return paginatedLoaderWidget!.build(context);
+          return SizedBox(
+            width: double.infinity,
+            child: Stack(
+              alignment: Alignment.center,
+              children: [
+                _paginatedWidget(),
+                ValueListenableBuilder(
+                    valueListenable:
+                        _scaffoldState.showPaginatedLoaderOnTopNotifier,
+                    builder: (ctx, data, _) {
+                      if (data) {
+                        if (paginatedLoaderWidget != null) {
+                          return paginatedLoaderWidget!.build(context);
+                        }
+                        return SizedBox(
+                          width: double.infinity,
+                          child: DynamicLoader(
+                                  key: UniqueKey().toString(),
+                                  backgroundColor: Colors.transparent,
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  crossAxisAlignment: CrossAxisAlignment.center)
+                              .build(context),
+                        );
                       }
-                      return SizedBox(
-                        width: double.infinity,
-                        child: DynamicLoader(
-                                key: UniqueKey().toString(),
-                                backgroundColor: Colors.transparent,
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                crossAxisAlignment: CrossAxisAlignment.center)
-                            .build(context),
-                      );
-                    }
-                    return const SizedBox.shrink();
-                  })
-            ],
+                      return const SizedBox.shrink();
+                    })
+              ],
+            ),
           );
         }
         return _paginatedWidget();
@@ -165,6 +174,7 @@ class DynamicScaffold extends DynamicWidget implements FormWidget {
       return _unPaginatedWidget();
     }
     return Column(
+      crossAxisAlignment: crossAxisAlignment,
       children: WidgetUtil.childrenFilter(children)
           .map((dyWidget) => dyWidget.build(context))
           .toList(),
@@ -175,10 +185,14 @@ class DynamicScaffold extends DynamicWidget implements FormWidget {
     return SingleChildScrollView(
       controller: _scrollController,
       child: LayoutBuilder(builder: (context, _) {
-        return Column(
-          children: WidgetUtil.childrenFilter(children)
-              .map((dyWidget) => dyWidget.build(context))
-              .toList(),
+        return SizedBox(
+          width: double.infinity,
+          child: Column(
+            crossAxisAlignment: crossAxisAlignment,
+            children: WidgetUtil.childrenFilter(children)
+                .map((dyWidget) => dyWidget.build(context))
+                .toList(),
+          ),
         );
       }),
     );
@@ -221,7 +235,8 @@ class DynamicScaffold extends DynamicWidget implements FormWidget {
             height: itemsSpacing,
           );
         },
-        itemCount: widgets.length);
+        itemCount: widgets.length,
+    );
   }
 
   Widget _loaderWidget() {
@@ -345,16 +360,18 @@ class DynamicScaffold extends DynamicWidget implements FormWidget {
               mainAxisAlignment: leftActions.length == 1
                   ? MainAxisAlignment.center
                   : MainAxisAlignment.start,
-              children: WidgetUtil.widgetsSpacing(context, leftActions, 2),
+              children: WidgetUtil.dynamicWidgetsSpacing(context, leftActions, 2),
             ),
-      actions: rightActions == null ? null : [
-        Row(
-          mainAxisAlignment: rightActions.length == 1
-              ? MainAxisAlignment.center
-              : MainAxisAlignment.end,
-          children: WidgetUtil.widgetsSpacing(context, rightActions, 2),
-        )
-      ],
+      actions: rightActions == null
+          ? null
+          : [
+              Row(
+                mainAxisAlignment: rightActions.length == 1
+                    ? MainAxisAlignment.center
+                    : MainAxisAlignment.end,
+                children: WidgetUtil.dynamicWidgetsSpacing(context, rightActions, 2),
+              )
+            ],
     );
   }
 }

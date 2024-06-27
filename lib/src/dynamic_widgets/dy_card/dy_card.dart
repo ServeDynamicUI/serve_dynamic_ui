@@ -42,6 +42,8 @@ class DynamicCard extends DynamicWidget {
     this.surfaceTintColor,
     this.borderRadius,
     this.linearGradient,
+    super.height,
+    super.width,
   }) : super(
           key: key ?? "",
         );
@@ -64,6 +66,8 @@ class DynamicCard extends DynamicWidget {
         borderRadius: BorderRadius.circular(borderRadius ?? 5),
       ),
       child: Container(
+        height: height,
+        width: width,
         decoration: BoxDecoration(
           gradient: linearGradient,
           borderRadius: BorderRadius.circular(borderRadius ?? 5)

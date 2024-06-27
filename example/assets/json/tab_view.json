@@ -2,8 +2,9 @@
   "type": "dy_scaffold",
   "data": {
     "key": "123456",
-    "pageTitle": "Flutter TabView Screen",
-    "scrollable": false,
+    "pageTitle": "Flutter TabView Screen1",
+    "scrollable": true,
+    "padding": "0",
     "children": [{
       "type": "dy_tab_view",
       "data": {

@@ -11,7 +11,7 @@ part 'dy_button.g.dart';
   createToJson: false,
 )
 class DynamicButton extends DynamicWidget {
-  DynamicWidget child;
+  DynamicWidget? child;
   ActionDTO? action;
   ActionDTO? onDoubleTapAction;
   ActionDTO? onLongPressAction;
@@ -30,7 +30,7 @@ class DynamicButton extends DynamicWidget {
 
   DynamicButton({
     required String key,
-    required this.child,
+    this.child,
     this.action,
     this.width,
     this.height,
@@ -45,7 +45,7 @@ class DynamicButton extends DynamicWidget {
   }) : super(key: key);
 
   @override
-  List<DynamicWidget>? get childWidgets => [child];
+  List<DynamicWidget>? get childWidgets => child != null ? [child!] : [];
 
   factory DynamicButton.fromJson(Map<String, dynamic> json) =>
       _$DynamicButtonFromJson(json);
@@ -83,7 +83,7 @@ class DynamicButton extends DynamicWidget {
         width: width,
         margin: margin,
         padding: padding,
-        child: child.build(context),
+        child: child?.build(context),
       ),
     );
   }

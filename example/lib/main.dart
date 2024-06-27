@@ -2,6 +2,7 @@ import 'package:example/custom_actions/snackbar_action_handler.dart';
 import 'package:example/listeners_impl/widget_scroll_listener.dart';
 import 'package:example/custom_widgets/dy_widget_card.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:serve_dynamic_ui/serve_dynamic_ui.dart';
 import 'listeners_impl/text_update_listener.dart';
 
@@ -45,10 +46,16 @@ class _MyHomePageState extends State<MyHomePage> {
     super.initState();
     DynamicListeners.addListener("1212133344", WidgetScrollListener());
     DynamicListeners.addListener("334343434", TextUpdateListener());
+    main();
+  }
+
+  void main() async{
+    final String response = await rootBundle.loadString('packages/serve_dynamic_ui/assets/shimmer_pages/default_page_shimmer.json');
   }
 
   @override
   Widget build(BuildContext context) {
+
     return ServeDynamicUIMaterialApp(
       home: (context) {
         return ServeDynamicUI.fromAssets('assets/json/sample.json');

@@ -423,9 +423,10 @@ class WidgetUtil {
   }
 
   ///Returns the map from string path.
-  static Future<Map<String, dynamic>> loadJson(String path) async {
+  static Future<Map<String, dynamic>> loadJson(String path, {Map<String, String>? assetJsonValueReplacer}) async {
     final String data = await rootBundle.loadString(path);
-    final Map<String, dynamic> json = jsonDecode(data);
+    String jsonWithReplacedValues = StringUtil.replaceAllUsingReplacers(data, assetJsonValueReplacer) ?? '';
+    final Map<String, dynamic> json = jsonDecode(jsonWithReplacedValues);
     return json;
   }
 

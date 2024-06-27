@@ -22,9 +22,10 @@ class ServeDynamicUI {
       String assetPath,{
         ShowLoaderWidgetBuilder? showLoaderWidgetBuilder,
         ShowErrorWidgetBuilder? showErrorWidgetBuilder,
+        Map<String, String>? assetJsonValueReplacer
       }) {
     return FutureBuilder<Map<String, dynamic>>(
-      future: WidgetUtil.loadJson(assetPath),
+      future: WidgetUtil.loadJson(assetPath, assetJsonValueReplacer: assetJsonValueReplacer),
       builder: (context, snapshot) {
         switch (snapshot.connectionState) {
           case ConnectionState.waiting:
@@ -58,6 +59,7 @@ class ServeDynamicUI {
   ///this is a method helps to create [DynamicWidget] from fetched network json.
   static Widget fromNetwork(
     DynamicRequest request, {
+    String? templateJsonPath,
     ShowLoaderWidgetBuilder? showLoaderWidgetBuilder,
     ShowErrorWidgetBuilder? showErrorWidgetBuilder,
   }) {
@@ -70,6 +72,9 @@ class ServeDynamicUI {
             if (showLoaderWidgetBuilder != null) {
               widget = showLoaderWidgetBuilder(context);
               return widget?.build(context) ?? const SizedBox.shrink();
+            }
+            if(StringUtil.isNotEmptyNorNull(templateJsonPath)) {
+              return fromAssets(templateJsonPath!);
             }
           case ConnectionState.done:
             if (snapshot.hasData) {

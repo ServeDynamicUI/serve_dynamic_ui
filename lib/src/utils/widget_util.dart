@@ -384,8 +384,7 @@ class WidgetUtil {
         List<String> gradientColors = gradientParts[2].split(',').toList();
         return LinearGradient(
           begin: getAlignment(gradientParts.first) ?? Alignment.topLeft,
-          end: getAlignment(gradientParts.last) ??
-              Alignment.bottomRight,
+          end: getAlignment(gradientParts.last) ?? Alignment.bottomRight,
           colors: gradientColors
               .map((String e) => (getColor(e) ?? Colors.transparent))
               .toList(),
@@ -404,7 +403,8 @@ class WidgetUtil {
       return null;
     }
     try {
-      List<double> xyAlignment = alignment.split(',').map((String e) => double.parse(e)).toList();
+      List<double> xyAlignment =
+          alignment.split(',').map((String e) => double.parse(e)).toList();
       if (xyAlignment.isNotEmpty) {
         return Alignment(xyAlignment[0], xyAlignment[1]);
       }
@@ -428,11 +428,56 @@ class WidgetUtil {
     final Map<String, dynamic> json = jsonDecode(data);
     return json;
   }
-  
-  static List<DynamicWidget> childrenFilter(List<DynamicWidget?>? widgets){
-    if(widgets == null) return [];
+
+  static List<DynamicWidget> childrenFilter(List<DynamicWidget?>? widgets) {
+    if (widgets == null) return [];
     return List.from(widgets.where(_validWidget).toList());
   }
-  
+
   static bool _validWidget(DynamicWidget? widget) => widget != null;
+
+  static List<Widget> widgetsSpacing(
+      BuildContext context, List<DynamicWidget>? widgets, double spacing,
+      {isHorizontal = true}) {
+    List<Widget> filteredWidgets = childrenFilter(widgets)
+        .map((dyWidget) => dyWidget.build(context))
+        .toList();
+
+    List<Widget> spacedWidgets = [];
+
+    for (int index = 0 ; index < filteredWidgets.length ; index++) {
+      Widget widget = filteredWidgets[index];
+      if(index == 0){
+        if (isHorizontal) {
+          spacedWidgets.add(
+            SizedBox(
+              width: spacing,
+            ),
+          );
+        } else {
+          spacedWidgets.add(
+            SizedBox(
+              height: spacing,
+            ),
+          );
+        }
+      }
+      spacedWidgets.add(widget);
+      if (isHorizontal) {
+        spacedWidgets.add(
+          SizedBox(
+            width: spacing,
+          ),
+        );
+      } else {
+        spacedWidgets.add(
+          SizedBox(
+            height: spacing,
+          ),
+        );
+      }
+    }
+
+    return spacedWidgets;
+  }
 }

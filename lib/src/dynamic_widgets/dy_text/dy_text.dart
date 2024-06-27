@@ -4,9 +4,9 @@ import 'package:flutter/material.dart';
 import 'package:json_annotation/json_annotation.dart';
 import 'package:simple_html_css/simple_html_css.dart';
 import 'package:serve_dynamic_ui/serve_dynamic_ui.dart';
-import 'dynamic_text_state.dart';
+import 'dy_text_state.dart';
 
-part 'dynamic_text.g.dart';
+part 'dy_text.g.dart';
 
 const String updateText = Strings.updateText;
 

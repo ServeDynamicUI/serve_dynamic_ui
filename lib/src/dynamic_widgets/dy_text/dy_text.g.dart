@@ -1,6 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'dynamic_text.dart';
+part of 'dy_text.dart';
 
 // **************************************************************************
 // JsonSerializableGenerator

@@ -1,6 +1,4 @@
 import 'dart:async';
-import 'dart:math';
-
 import 'package:flutter/material.dart';
 import 'package:json_annotation/json_annotation.dart';
 import 'package:serve_dynamic_ui/serve_dynamic_ui.dart';
@@ -15,7 +13,11 @@ part 'dy_scaffold.g.dart';
 )
 class DynamicScaffold extends DynamicWidget implements FormWidget {
   String? pageTitle;
+  bool centerPageTitle;
   List<DynamicWidget>? children;
+  List<DynamicWidget>? rightActions;
+  List<DynamicWidget>? leftActions;
+  double? leftActionsWidth;
   DynamicWidget? floatingActionWidget;
   DynamicWidget? bottomNavigationBar;
   DynamicWidget? paginatedLoaderWidget;
@@ -31,25 +33,29 @@ class DynamicScaffold extends DynamicWidget implements FormWidget {
   String? nextUrl;
   double? itemsSpacing;
 
-  DynamicScaffold({
-    required String key,
-    this.children,
-    this.pageTitle,
-    this.floatingActionWidget,
-    this.bottomNavigationBar,
-    this.paginatedLoaderWidget,
-    this.resizeToAvoidBottomInset,
-    this.scrollable = true,
-    this.paginated = false,
-    this.primary = true,
-    this.extendBody = false,
-    this.drawerEnableOpenDragGesture = true,
-    this.extendBodyBehindAppBar = false,
-    this.endDrawerEnableOpenDragGesture = true,
-    this.nextUrl,
-    this.itemsSpacing,
-    this.showPaginatedLoaderOnTop = false
-  }) : super(
+  DynamicScaffold(
+      {required String key,
+      this.children,
+      this.rightActions,
+      this.leftActions,
+      this.leftActionsWidth,
+      this.pageTitle,
+      this.floatingActionWidget,
+      this.bottomNavigationBar,
+      this.paginatedLoaderWidget,
+      this.resizeToAvoidBottomInset,
+      this.centerPageTitle = true,
+      this.scrollable = true,
+      this.paginated = false,
+      this.primary = true,
+      this.extendBody = false,
+      this.drawerEnableOpenDragGesture = true,
+      this.extendBodyBehindAppBar = false,
+      this.endDrawerEnableOpenDragGesture = true,
+      this.nextUrl,
+      this.itemsSpacing,
+      this.showPaginatedLoaderOnTop = false})
+      : super(
           key: key ?? "",
         );
 
@@ -63,23 +69,23 @@ class DynamicScaffold extends DynamicWidget implements FormWidget {
     DynamicProvider dynamicProvider =
         WidgetResolver.getTopAncestorOfType<DynamicProvider>(this)!;
     String controllerKey = key;
-    if(dynamicProvider.controllerCache[controllerKey] != null){
+    if (dynamicProvider.controllerCache[controllerKey] != null) {
       return dynamicProvider.controllerCache[controllerKey];
     }
     ScrollController scrollController = ScrollController();
     dynamicProvider.controllerCache[controllerKey] = scrollController;
-    scrollController.addListener((){
+    scrollController.addListener(() {
       _scrollListener();
     });
     return dynamicProvider.controllerCache[controllerKey];
   }
 
   DyScaffoldState get _scaffoldState {
-    DynamicProvider dynamicProvider = WidgetResolver.getTopAncestorOfType<DynamicProvider>(this)!;
-    if(dynamicProvider.stateCache[key] != null){
+    DynamicProvider dynamicProvider =
+        WidgetResolver.getTopAncestorOfType<DynamicProvider>(this)!;
+    if (dynamicProvider.stateCache[key] != null) {
       return dynamicProvider.stateCache[key]!;
-    }
-    else{
+    } else {
       DyScaffoldState dyScaffoldState = DyScaffoldState(nextUrl, this);
       dynamicProvider.stateCache[key] = dyScaffoldState;
       return dyScaffoldState;
@@ -106,11 +112,8 @@ class DynamicScaffold extends DynamicWidget implements FormWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       key: ValueKey(key),
-      appBar: pageTitle == null
-          ? null
-          : AppBar(
-              title: Text(pageTitle!),
-            ),
+      appBar: _appBar(context, pageTitle, centerPageTitle, leftActions,
+          rightActions, leftActionsWidth),
       body: _getBody(context),
       floatingActionButton: floatingActionWidget?.build(context),
       bottomNavigationBar: bottomNavigationBar?.build(context),
@@ -128,29 +131,32 @@ class DynamicScaffold extends DynamicWidget implements FormWidget {
       return const SizedBox.shrink();
     }
     if (scrollable) {
-      if(paginated){
-        if(showPaginatedLoaderOnTop){
+      if (paginated) {
+        if (showPaginatedLoaderOnTop) {
           return Stack(
             alignment: Alignment.center,
             children: [
               _paginatedWidget(),
-              ValueListenableBuilder(valueListenable: _scaffoldState.showPaginatedLoaderOnTopNotifier, builder: (ctx, data, _) {
-                if(data){
-                  if(paginatedLoaderWidget != null){
-                    return paginatedLoaderWidget!.build(context);
-                  }
-                  return SizedBox(
-                    width: double.infinity,
-                    child: DynamicLoader(
-                      key: UniqueKey().toString(),
-                      backgroundColor: Colors.transparent,
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      crossAxisAlignment: CrossAxisAlignment.center
-                    ).build(context),
-                  );
-                }
-                return const SizedBox.shrink();
-              })
+              ValueListenableBuilder(
+                  valueListenable:
+                      _scaffoldState.showPaginatedLoaderOnTopNotifier,
+                  builder: (ctx, data, _) {
+                    if (data) {
+                      if (paginatedLoaderWidget != null) {
+                        return paginatedLoaderWidget!.build(context);
+                      }
+                      return SizedBox(
+                        width: double.infinity,
+                        child: DynamicLoader(
+                                key: UniqueKey().toString(),
+                                backgroundColor: Colors.transparent,
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                crossAxisAlignment: CrossAxisAlignment.center)
+                            .build(context),
+                      );
+                    }
+                    return const SizedBox.shrink();
+                  })
             ],
           );
         }
@@ -159,56 +165,66 @@ class DynamicScaffold extends DynamicWidget implements FormWidget {
       return _unPaginatedWidget();
     }
     return Column(
-      children: WidgetUtil.childrenFilter(children).map((dyWidget) => dyWidget.build(context)).toList(),
+      children: WidgetUtil.childrenFilter(children)
+          .map((dyWidget) => dyWidget.build(context))
+          .toList(),
     );
   }
 
-  Widget _unPaginatedWidget(){
+  Widget _unPaginatedWidget() {
     return SingleChildScrollView(
       controller: _scrollController,
       child: LayoutBuilder(builder: (context, _) {
         return Column(
-          children: WidgetUtil.childrenFilter(children).map((dyWidget) => dyWidget.build(context)).toList(),
+          children: WidgetUtil.childrenFilter(children)
+              .map((dyWidget) => dyWidget.build(context))
+              .toList(),
         );
       }),
     );
   }
 
-  Widget _paginatedWidget(){
+  Widget _paginatedWidget() {
     return ValueListenableBuilder(
         valueListenable: _scaffoldState.pageDataEventNotifier,
         builder: (context, event, _) {
-          List<Widget> widgets = WidgetUtil.childrenFilter(event.children).map((child) => child.build(context)).toList();
-          if(event is PageSuccessEvent || event is PageProgressEvent) {
-            if(!showPaginatedLoaderOnTop && StringUtil.isNotEmptyNorNull(_scaffoldState.nextUrl) && widgets.isNotEmpty){
-              if(paginatedLoaderWidget == null) {
+          List<Widget> widgets = WidgetUtil.childrenFilter(event.children)
+              .map((child) => child.build(context))
+              .toList();
+          if (event is PageSuccessEvent || event is PageProgressEvent) {
+            if (!showPaginatedLoaderOnTop &&
+                StringUtil.isNotEmptyNorNull(_scaffoldState.nextUrl) &&
+                widgets.isNotEmpty) {
+              if (paginatedLoaderWidget == null) {
                 widgets.add(_loaderWidget());
-              }
-              else{
+              } else {
                 widgets.add(paginatedLoaderWidget!.build(context));
               }
             }
             return _paginatedListWidget(widgets);
-          }
-          else if(event is PageErrorEvent){
+          } else if (event is PageErrorEvent) {
             return _paginatedListWidget(widgets);
           }
           return const SizedBox.shrink();
-    });
+        });
   }
 
-  Widget _paginatedListWidget(List<Widget> widgets){
+  Widget _paginatedListWidget(List<Widget> widgets) {
     return ListView.separated(
-      controller: _scrollController,
-      shrinkWrap: true,
+        controller: _scrollController,
+        shrinkWrap: true,
         itemBuilder: (context, index) {
-      return widgets[index];
-    }, separatorBuilder: (context, index) {
-      return Container(height: itemsSpacing,);
-    }, itemCount: widgets.length);
+          return widgets[index];
+        },
+        separatorBuilder: (context, index) {
+          return Container(
+            height: itemsSpacing,
+          );
+        },
+        itemCount: widgets.length);
   }
 
-  Widget _loaderWidget(){
+  Widget _loaderWidget() {
     return const Card(
       shadowColor: AppColors.greenYellow,
       color: AppColors.mantis,
@@ -267,7 +283,7 @@ class DynamicScaffold extends DynamicWidget implements FormWidget {
                 map[key] = value;
               }
             });
-                    }
+          }
           return map;
         }
         return {};
@@ -307,4 +323,38 @@ class DynamicScaffold extends DynamicWidget implements FormWidget {
 
   @override
   FutureOr invokeMethod(String methodName, {Map<String, dynamic>? params}) {}
+
+  PreferredSizeWidget? _appBar(
+      BuildContext context,
+      String? pageTitle,
+      bool centerPageTitle,
+      List<DynamicWidget>? leftActions,
+      List<DynamicWidget>? rightActions,
+      double? leftActionsWidth) {
+    if (pageTitle == null) {
+      return null;
+    }
+
+    return AppBar(
+      title: Text(pageTitle),
+      centerTitle: centerPageTitle,
+      leadingWidth: leftActions != null ? leftActionsWidth : null,
+      leading: leftActions == null
+          ? null
+          : Row(
+              mainAxisAlignment: leftActions.length == 1
+                  ? MainAxisAlignment.center
+                  : MainAxisAlignment.start,
+              children: WidgetUtil.widgetsSpacing(context, leftActions, 2),
+            ),
+      actions: rightActions == null ? null : [
+        Row(
+          mainAxisAlignment: rightActions.length == 1
+              ? MainAxisAlignment.center
+              : MainAxisAlignment.end,
+          children: WidgetUtil.widgetsSpacing(context, rightActions, 2),
+        )
+      ],
+    );
+  }
 }

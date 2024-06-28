@@ -1171,13 +1171,95 @@
                 }
               }
             }
+          },
+          {
+            "type": "dy_gesture_detector",
+            "data": {
+              "key": "906244234",
+              "onTapAction": {
+                "actionString": "/dataEventHook",
+                "extras": {
+                  "dataEventId": "dy_text_event",
+                  "data": {
+                    "methodName": "UPDATE_TEXT",
+                    "newText": "Hello, I have updated the text."
+                  }
+                }
+              },
+              "child": {
+                "type": "dy_widget_card",
+                "data": {
+                  "key": "9061212323",
+                  "margin": "10",
+                  "elevation": 10,
+                  "padding": "10",
+                  "borderRadius": 10,
+                  "body": {
+                    "type": "dy_container",
+                    "data": {
+                      "key": "906141434",
+                      "padding": "10,0,0,0",
+                      "child": {
+                        "type": "dy_column",
+                        "data": {
+                          "key": "96121457231",
+                          "mainAxisAlignment": "spaceBetween",
+                          "crossAxisAlignment": "start",
+                          "children": [
+                            {
+                              "type": "dy_text",
+                              "data": {
+                                "key": "91026734233",
+                                "text": "Update Static/Dynamic UI",
+                                "style": {
+                                  "color": "0xffff0000",
+                                  "fontSize": 20,
+                                  "fontWeight": "bold"
+                                }
+                              }
+                            },
+                            {
+                              "type": "dy_container",
+                              "data": {
+                                "key": "90613123",
+                                "width": 200,
+                                "child": {
+                                  "type": "dy_text",
+                                  "data": {
+                                    "key": "19037757234",
+                                    "text": "a data hook to update UI in static and dynamic screens.",
+                                    "maxLines": 3
+                                  }
+                                }
+                              }
+                            }
+                          ]
+                        }
+                      }
+                    }
+                  },
+                  "prefixImage": {
+                    "type": "dy_image",
+                    "data": {
+                      "key": "9061323233",
+                      "src": "assets/images/ic_loader.png",
+                      "height": 50,
+                      "width": 50,
+                      "imageType": "asset",
+                      "fit": "fill",
+                      "placeholderImagePath": "assets/images/icon_placeholder.png"
+                    }
+                  }
+                }
+              }
+            }
           }
         ]
       }
     }],
     "nextUrl": "https://raw.githubusercontent.com/Arunshaik2001/serve_dynamic_ui/scaffold-pagination/example/assets/json/sample1.json",
     "paginated": true,
-    "showPaginatedLoaderOnTop": false,
+    "showPaginatedLoaderOnTop": true,
     "paginatedLoaderWidget": {
       "type": "dy_loader",
       "data": {

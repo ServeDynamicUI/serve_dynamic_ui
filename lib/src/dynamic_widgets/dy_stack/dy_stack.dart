@@ -56,4 +56,14 @@ class DynamicStack extends DynamicWidget {
   @override
   FutureOr invokeMethod(String methodName, {Map<String, dynamic>? params}) {}
 
+  @override
+  void postBuild() {
+
+  }
+
+  @override
+  void preBuild() {
+
+  }
+
 }

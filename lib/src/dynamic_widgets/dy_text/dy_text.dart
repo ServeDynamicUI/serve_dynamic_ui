@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:json_annotation/json_annotation.dart';
+import 'package:serve_dynamic_ui/src/listeners/data_event_listener/data_event_listener.dart';
 import 'package:simple_html_css/simple_html_css.dart';
 import 'package:serve_dynamic_ui/serve_dynamic_ui.dart';
 import 'dy_text_state.dart';
@@ -15,7 +16,7 @@ const String updateText = Strings.updateText;
   explicitToJson: true,
   createToJson: false,
 )
-class DynamicText extends DynamicWidget {
+class DynamicText extends DynamicWidget implements DataEventListener {
   String? text;
   TextStyleDTO? style;
   bool isHtmlText;
@@ -129,5 +130,25 @@ class DynamicText extends DynamicWidget {
         ActionDTO(uri.path, uri.queryParameters), this, context, (value) {
       debugPrint(value);
     });
+  }
+
+  @override
+  void onDataEvent(Map<String, dynamic> data) {
+    String methodName = data['methodName'];
+    switch (methodName) {
+      case updateText:
+        String newText = data[Strings.newText];
+        _dynamicTextState.updateTitle(newText);
+    }
+  }
+
+  @override
+  void postBuild() {
+
+  }
+
+  @override
+  void preBuild() {
+    DataEventListeners.addDataEventListener(key, this);
   }
 }

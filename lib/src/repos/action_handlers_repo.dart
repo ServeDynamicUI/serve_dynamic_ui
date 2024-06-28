@@ -58,14 +58,14 @@ class ActionHandlersRepo {
   }
 
   static void _popVisibleScreen(BuildContext context, Uri uri) {
-    if (uri.queryParameters.containsKey("popStrategy")) {
-      String? popStrategy = uri.queryParameters["popStrategy"];
-      if (popStrategy == "POP_TO_ROOT") {
+    if (uri.queryParameters.containsKey(Strings.popAndNavigateStrategy)) {
+      String? popStrategy = uri.queryParameters[Strings.popAndNavigateStrategy];
+      if (popStrategy == PopAndNavigateStrategy.popToRoot.name) {
         Navigator.of(context).popUntil((route) => route.isFirst);
-      } else if (popStrategy == "POP_CURRENT") {
+      } else if (popStrategy == PopAndNavigateStrategy.popCurrent.name) {
         Navigator.pop(context, null);
-      } else if(popStrategy == "POP_UNTIL_SCREEN") {
-        String? screenName = uri.queryParameters["screenName"];
+      } else if(popStrategy == PopAndNavigateStrategy.popUntilScreen.name) {
+        String? screenName = uri.queryParameters[Strings.screenName];
         if(StringUtil.isNotEmptyNorNull(screenName)) {
           Navigator.of(context).popUntil(ModalRoute.withName(screenName!));
         }

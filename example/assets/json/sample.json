@@ -1182,7 +1182,7 @@
                   "dataEventId": "9102673423343",
                   "data": {
                     "methodName": "UPDATE_TEXT",
-                    "newText": "Hello, I have updated the text."
+                    "newText": "Hello, I have updated the title."
                   }
                 }
               },
@@ -1227,7 +1227,7 @@
                                   "type": "dy_text",
                                   "data": {
                                     "key": "19037757234",
-                                    "text": "a data hook to update UI in static and dynamic screens.",
+                                    "text": "Click this card you will know.",
                                     "maxLines": 3
                                   }
                                 }
@@ -1242,7 +1242,7 @@
                     "type": "dy_image",
                     "data": {
                       "key": "9061323233",
-                      "src": "assets/images/ic_loader.png",
+                      "src": "assets/images/ic_update.png",
                       "height": 50,
                       "width": 50,
                       "imageType": "asset",

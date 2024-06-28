@@ -9,7 +9,7 @@ abstract class NetworkHandler {
   static void init(Dio dio) => _dio = dio;
 
   ///fetches the json from network based on requestType
-  static Future<Response?> getJsonFromRequest(DynamicRequest dynamicRequest) {
+  static Future<Response?> getJsonFromRequest(DynamicRequest dynamicRequest) async{
     switch (dynamicRequest.requestType) {
       case RequestType.get:
         return getJsonFromGetRequest(dynamicRequest);

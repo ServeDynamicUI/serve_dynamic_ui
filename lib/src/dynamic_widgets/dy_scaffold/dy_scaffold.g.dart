@@ -58,5 +58,10 @@ DynamicScaffold _$DynamicScaffoldFromJson(Map<String, dynamic> json) {
         ? null
         : DynamicWidget.fromJson(
         json['paginatedLoaderWidget'] as Map<String, dynamic>),
+    crossAxisAlignment: WidgetUtil.getCrossAxisAlignment(
+        json['crossAxisAlignment'] as String?) ??
+        CrossAxisAlignment.center,
+    padding: WidgetUtil.getEdgeInsets(json['padding'] as String?),
+    margin: WidgetUtil.getEdgeInsets(json['margin'] as String?),
   );
 }

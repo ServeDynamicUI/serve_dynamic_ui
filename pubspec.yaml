@@ -19,6 +19,7 @@ dependencies:
   dio: ^5.2.1+1
   scroll_to_index: ^3.0.1
   simple_html_css: ^5.0.0
+  shimmer: ^3.0.0
 
 dev_dependencies:
   flutter_test:

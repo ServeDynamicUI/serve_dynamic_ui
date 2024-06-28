@@ -15,8 +15,6 @@ part 'dy_tab_view.g.dart';
 )
 class DynamicTabView extends DynamicWidget {
   @JsonKey(defaultValue: 0)
-  final double margin;
-  @JsonKey(defaultValue: 0)
   final int selectedTabIndex;
   @JsonKey(fromJson: WidgetUtil.getColor)
   final Color? indicatorColor;
@@ -37,7 +35,6 @@ class DynamicTabView extends DynamicWidget {
   DynamicTabView({
     required super.key,
     required this.selectedTabIndex,
-    required this.margin,
     this.indicatorColor,
     this.labelColor,
     this.unselectedLabelColor,
@@ -45,6 +42,8 @@ class DynamicTabView extends DynamicWidget {
     this.tabsBackgroundColor,
     required this.cornerRadius,
     required this.wantKeepAlive,
+    super.padding,
+    super.margin,
   });
 
   factory DynamicTabView.fromJson(Map<String, dynamic> json) =>
@@ -101,7 +100,7 @@ class DynamicTabView extends DynamicWidget {
       labelColor: labelColor ?? AppColors.transparent,
     );
     return Card(
-      margin: EdgeInsets.all(margin),
+      margin: margin,
       child: _child(context),
     );
   }

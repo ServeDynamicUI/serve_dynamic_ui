@@ -14,7 +14,8 @@ DynamicTabView _$DynamicTabViewFromJson(Map<String, dynamic> json) {
   return DynamicTabView(
     key: json['key'] as String,
     selectedTabIndex: json['selectedTabIndex'] as int? ?? 0,
-    margin: (json['margin'] as num?)?.toDouble() ?? 0,
+    padding: WidgetUtil.getEdgeInsets(json['padding'] as String?),
+    margin: WidgetUtil.getEdgeInsets(json['margin'] as String?),
     indicatorColor: WidgetUtil.getColor(json['indicatorColor'] as String?),
     labelColor: WidgetUtil.getColor(json['labelColor'] as String?),
     unselectedLabelColor:

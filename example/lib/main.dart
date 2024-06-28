@@ -1,13 +1,16 @@
 import 'package:example/custom_actions/snackbar_action_handler.dart';
 import 'package:example/listeners_impl/widget_scroll_listener.dart';
-import 'package:example/custom_widgets/dy_widget_card.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:serve_dynamic_ui/serve_dynamic_ui.dart';
+import 'custom_widgets/dy_widget_card.dart';
+import 'custom_widgets/shimmer/dy_shimmer_widget_card.dart';
 import 'listeners_impl/text_update_listener.dart';
 
 void main() {
   Map<String, DynamicWidgetHandler> widgetHandlerMap = {
-    "dy_widget_card": (json) => DynamicWidgetCard.fromJson(json)
+    "dy_widget_card": (json) => DynamicWidgetCard.fromJson(json),
+    "dy_shimmer_widget_card": (json) => DynamicShimmerWidgetCard.fromJson(json),
   };
 
   Map<RegExp, ActionHandler> actionHandlerMap = {
@@ -51,7 +54,13 @@ class _MyHomePageState extends State<MyHomePage> {
   Widget build(BuildContext context) {
     return ServeDynamicUIMaterialApp(
       home: (context) {
-        return ServeDynamicUI.fromAssets('assets/json/sample.json');
+        return ServeDynamicUI.fromNetwork(
+          DynamicRequest(
+            url: 'https://raw.githubusercontent.com/ServeDynamicUI/serve_dynamic_ui/main/example/assets/json/sample.json',
+            requestType: RequestType.get,
+          ),
+          templateJsonPath: 'assets/json/shimmer_pages/default_page_shimmer.json'
+        );
       },
       title: 'Flutter Demo',
       theme: ThemeData(

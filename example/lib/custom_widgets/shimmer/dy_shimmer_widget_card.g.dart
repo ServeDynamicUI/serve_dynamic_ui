@@ -1,17 +1,17 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'dy_widget_card.dart';
+part of 'dy_shimmer_widget_card.dart';
 
 // **************************************************************************
 // JsonSerializableGenerator
 // **************************************************************************
 
-DynamicWidgetCard _$DynamicWidgetCardFromJson(Map<String, dynamic> json) {
+DynamicShimmerWidgetCard _$DynamicWidgetCardFromJson(Map<String, dynamic> json) {
   $checkKeys(
     json,
     requiredKeys: const ['key'],
   );
-  return DynamicWidgetCard(
+  return DynamicShimmerWidgetCard(
     key: json['key'] as String,
     prefixImage: json['prefixImage'] == null
         ? null
@@ -25,8 +25,5 @@ DynamicWidgetCard _$DynamicWidgetCardFromJson(Map<String, dynamic> json) {
     width: (json['width'] as num?)?.toDouble(),
     margin: WidgetUtil.getEdgeInsets(json['margin'] as String?),
     padding: WidgetUtil.getEdgeInsets(json['padding'] as String?),
-    action: json['action'] == null
-        ? null
-        : ActionDTO.fromJson(json['action'] as Map<String, dynamic>),
   );
 }

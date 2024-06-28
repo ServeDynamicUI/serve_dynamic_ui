@@ -1,0 +1,134 @@
+{
+  "type": "dy_scaffold",
+  "data": {
+    "key": "default_page_shimmer",
+    "pageTitle": "Flutter Server UI Home Screen",
+    "crossAxisAlignment": "start",
+    "leftActionsWidth": 60,
+    "padding": "10,0,10,10",
+    "leftActions": [
+      {
+        "type": "dy_image",
+        "data": {
+          "key": "2226323233",
+          "src": "assets/images/card_ic.png",
+          "height": 30,
+          "width": 30,
+          "imageType": "asset",
+          "fit": "fill",
+          "clipBorderRadius": 20,
+          "placeholderImagePath": "assets/images/icon_placeholder.png"
+        }
+      }
+    ],
+    "rightActions": [
+      {
+        "type": "dy_gesture_detector",
+        "data": {
+          "key": "1234234",
+          "onTapAction": {
+            "actionString": "/moveToScreen",
+            "extras": {
+              "url": "https://raw.githubusercontent.com/Arunshaik2001/demo_server_driven_ui/master/assets/json/dy_scaffold.json",
+              "urlType": "network",
+              "requestType": "get",
+              "navigationType": "screen",
+              "navigationStyle": "push",
+              "loaderWidgetAssetPath": "assets/json/loader.json"
+            }
+          },
+          "child": {
+            "type": "dy_image",
+            "data": {
+              "key": "222632323233",
+              "src": "https://upload.wikimedia.org/wikipedia/commons/5/5a/Perspective-Button-Stop-icon.png",
+              "height": 30,
+              "width": 30,
+              "imageType": "network",
+              "fit": "fill",
+              "placeholderImagePath": "assets/images/icon_placeholder.png"
+            }
+          }
+        }
+      }
+    ],
+    "children": [
+      {
+        "type": "dy_shimmer_column",
+        "data": {
+          "key": "dy_shimmer_column",
+          "itemCount": 10,
+          "interItemSpacing": 10,
+          "childItems": [
+            {
+              "type": "dy_shimmer_widget_card",
+              "data": {
+                "key": "dy_shimmer_widget_card",
+                "padding": "10,15,15,15",
+                "margin": "2",
+                "height": 80,
+                "borderRadius": 10,
+                "prefixImage": {
+                  "type": "dy_shimmer_image",
+                  "data": {
+                    "key": "dy_shimmer_image",
+                    "placeholderImagePath": "assets/images/icon_placeholder.png",
+                    "clipBorderRadius": 10,
+                    "height": 50,
+                    "width": 50,
+                    "fit": "fill",
+                    "shimmerBaseColor": "0x00000000"
+                  }
+                },
+                "body": {
+                  "type": "dy_shimmer_column",
+                  "data": {
+                    "key": "dy_shimmer_column",
+                    "itemCount": 1,
+                    "interItemSpacing": 10,
+                    "crossAxisAlignment": "start",
+                    "childItems": [
+                      {
+                        "type": "dy_shimmer_button",
+                        "data": {
+                          "key": "dy_shimmer_button",
+                          "height": 10,
+                          "width": 100,
+                          "buttonBorderRadius": 0,
+                          "shimmerBaseColor": "0xFFE0E0E0",
+                          "shimmerHighlightColor": "0xFFF5F5F5"
+                        }
+                      },
+                      {
+                        "type": "dy_shimmer_row",
+                        "data": {
+                          "key": "dy_shimmer_row",
+                          "itemCount": 1,
+                          "interItemSpacing": 0,
+                          "crossAxisAlignment": "start",
+                          "childItems": [
+                            {
+                              "type": "dy_shimmer_button",
+                              "data": {
+                                "key": "dy_shimmer_button",
+                                "height": 10,
+                                "width": 200,
+                                "buttonBorderRadius": 0,
+                                "shimmerBaseColor": "0xFFE0E0E0",
+                                "shimmerHighlightColor": "0xFFF5F5F5"
+                              }
+                            }
+                          ]
+                        }
+                      }
+                    ]
+                  }
+                }
+              }
+            }
+          ]
+        }
+      }
+    ]
+  }
+}

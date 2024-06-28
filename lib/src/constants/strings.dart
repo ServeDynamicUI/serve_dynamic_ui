@@ -49,6 +49,14 @@ class Strings {
   static const dySizedBox = 'dy_sized_box';
   static const dyLoader = 'dy_loader';
 
+  ///shimmer widget names
+  static const dyShimmerButton = 'dy_shimmer_button';
+  static const dyShimmerCard = 'dy_shimmer_card';
+  static const dyShimmerColumn = 'dy_shimmer_column';
+  static const dyShimmerImage = 'dy_shimmer_image';
+  static const dyShimmerRow = 'dy_shimmer_row';
+  static const dyShimmerStack = 'dy_shimmer_stack';
+
   ///navigation strings
 
   //navigation styles

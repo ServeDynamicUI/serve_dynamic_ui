@@ -423,9 +423,10 @@ class WidgetUtil {
   }
 
   ///Returns the map from string path.
-  static Future<Map<String, dynamic>> loadJson(String path) async {
+  static Future<Map<String, dynamic>> loadJson(String path, {Map<String, String>? assetJsonValueReplacer}) async {
     final String data = await rootBundle.loadString(path);
-    final Map<String, dynamic> json = jsonDecode(data);
+    String jsonWithReplacedValues = StringUtil.replaceAllUsingReplacers(data, assetJsonValueReplacer) ?? '';
+    final Map<String, dynamic> json = jsonDecode(jsonWithReplacedValues);
     return json;
   }
 
@@ -436,7 +437,7 @@ class WidgetUtil {
 
   static bool _validWidget(DynamicWidget? widget) => widget != null;
 
-  static List<Widget> widgetsSpacing(
+  static List<Widget> dynamicWidgetsSpacing(
       BuildContext context, List<DynamicWidget>? widgets, double spacing,
       {isHorizontal = true}) {
     List<Widget> filteredWidgets = childrenFilter(widgets)
@@ -447,6 +448,48 @@ class WidgetUtil {
 
     for (int index = 0 ; index < filteredWidgets.length ; index++) {
       Widget widget = filteredWidgets[index];
+      if(index == 0){
+        if (isHorizontal) {
+          spacedWidgets.add(
+            SizedBox(
+              width: spacing,
+            ),
+          );
+        } else {
+          spacedWidgets.add(
+            SizedBox(
+              height: spacing,
+            ),
+          );
+        }
+      }
+      spacedWidgets.add(widget);
+      if (isHorizontal) {
+        spacedWidgets.add(
+          SizedBox(
+            width: spacing,
+          ),
+        );
+      } else {
+        spacedWidgets.add(
+          SizedBox(
+            height: spacing,
+          ),
+        );
+      }
+    }
+
+    return spacedWidgets;
+  }
+
+  static List<Widget> widgetsSpacing(List<Widget>? widgets, double spacing,
+      {isHorizontal = true}) {
+    if(widgets == null) return [];
+
+    List<Widget> spacedWidgets = [];
+
+    for (int index = 0 ; index < widgets.length ; index++) {
+      Widget widget = widgets[index];
       if(index == 0){
         if (isHorizontal) {
           spacedWidgets.add(

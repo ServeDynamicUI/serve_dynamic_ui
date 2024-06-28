@@ -12,10 +12,28 @@ abstract class DynamicWidget {
   @JsonKey(required: true)
   final String key;
 
+  @JsonKey(required: false)
+  final double? height;
+
+  @JsonKey(required: false)
+  final double? width;
+
+  @JsonKey(fromJson: WidgetUtil.getEdgeInsets)
+  EdgeInsets? margin;
+  @JsonKey(fromJson: WidgetUtil.getEdgeInsets)
+  EdgeInsets? padding;
+
   @JsonKey(includeFromJson: false, includeToJson: false)
   DynamicWidget? parent;
 
-  DynamicWidget({required this.key, this.parent});
+  DynamicWidget({
+    required this.key,
+    this.parent,
+    this.height,
+    this.width,
+    this.margin,
+    this.padding,
+  });
 
   ///helps to build in-built flutter widget.
   Widget build(BuildContext context);

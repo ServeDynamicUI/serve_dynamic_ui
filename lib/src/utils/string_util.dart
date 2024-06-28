@@ -13,4 +13,15 @@ class StringUtil {
   static isNotEmptyNorNull(String? path){
     return path != null && path.isNotEmpty;
   }
+
+  static String? replaceAllUsingReplacers(
+      String? string,
+      Map<String, String>? keyValues,
+      ) {
+    var replacedString = string;
+    keyValues?.forEach((key, value) {
+      replacedString = replacedString?.replaceAll(key, value!);
+    });
+    return replacedString;
+  }
 }

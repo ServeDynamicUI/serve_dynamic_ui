@@ -30,6 +30,8 @@ class DynamicWidgetCard extends DynamicWidget {
     this.margin,
     this.padding,
     this.action,
+    super.height,
+    super.width,
   }) : super(
           key: key,
         );
@@ -54,7 +56,9 @@ class DynamicWidgetCard extends DynamicWidget {
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(borderRadius ?? 0),
         ),
-        child: Padding(
+        child: Container(
+          height: height,
+          width: width,
           padding: padding ?? EdgeInsets.zero,
           child: Row(
             children: [

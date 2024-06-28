@@ -1177,7 +1177,7 @@
     }],
     "nextUrl": "https://raw.githubusercontent.com/Arunshaik2001/serve_dynamic_ui/scaffold-pagination/example/assets/json/sample1.json",
     "paginated": true,
-    "showPaginatedLoaderOnTop": true,
+    "showPaginatedLoaderOnTop": false,
     "paginatedLoaderWidget": {
       "type": "dy_loader",
       "data": {

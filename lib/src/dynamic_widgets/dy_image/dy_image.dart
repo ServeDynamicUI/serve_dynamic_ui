@@ -21,7 +21,9 @@ class DynamicImage extends DynamicWidget {
   ImageType? imageType;
   @JsonKey(fromJson: WidgetUtil.getColor)
   Color? color;
+  @override
   double? width;
+  @override
   double? height;
   @JsonKey(fromJson: WidgetUtil.getBoxFit)
   BoxFit? fit;

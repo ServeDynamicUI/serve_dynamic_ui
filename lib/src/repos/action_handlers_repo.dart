@@ -5,6 +5,7 @@ import 'package:serve_dynamic_ui/serve_dynamic_ui.dart';
 final RegExp moveToScreen = RegExp(r'(^/?moveToScreen/?$)');
 final RegExp form = RegExp(r'(^/?form/?$)');
 final RegExp updateWidget = RegExp(r'(^/?updateWidget/?$)');
+final RegExp dataEventHook = RegExp(r'(^/?dataEventHook/?$)');
 
 ///[ActionHandlersRepo] : helps to register an action handler and handle task.
 class ActionHandlersRepo {
@@ -25,6 +26,7 @@ class ActionHandlersRepo {
     _registerHandler(moveToScreen, MoveToScreenActorHandler());
     _registerHandler(form, FormActionHandler());
     _registerHandler(updateWidget, UpdateWidgetActionHandler());
+    _registerHandler(dataEventHook, DataEventHandler());
     if (actionHandlers != null) {
       _registerHandlers(actionHandlers);
     }

@@ -84,4 +84,14 @@ class DynamicTextField extends DynamicWidget implements FormWidget {
 
   @override
   FutureOr invokeMethod(String methodName, {Map<String, dynamic>? params}) {}
+
+  @override
+  void postBuild() {
+
+  }
+
+  @override
+  void preBuild() {
+
+  }
 }

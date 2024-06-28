@@ -21,7 +21,8 @@ class Strings {
   static const params = 'params';
   static const newText = 'newText';
   static const textFieldData = 'textFieldData';
-  
+  static const dataEventId = 'dataEventId';
+
   ///keys
   static const scrollController = 'scrollController';
   static const autoScrollController = 'autoScrollController';

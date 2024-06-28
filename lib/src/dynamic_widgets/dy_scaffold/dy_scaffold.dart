@@ -374,4 +374,14 @@ class DynamicScaffold extends DynamicWidget implements FormWidget {
             ],
     );
   }
+
+  @override
+  void postBuild() {
+
+  }
+
+  @override
+  void preBuild() {
+
+  }
 }

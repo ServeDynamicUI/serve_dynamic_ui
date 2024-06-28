@@ -40,4 +40,14 @@ class DynamicProvider extends DynamicWidget {
 
   @override
   List<DynamicWidget>? get childWidgets => [if (child != null) child!];
+
+  @override
+  void postBuild() {
+
+  }
+
+  @override
+  void preBuild() {
+
+  }
 }

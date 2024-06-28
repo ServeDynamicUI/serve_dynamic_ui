@@ -72,4 +72,10 @@ class DynamicShimmerImage extends DynamicWidget {
 
   @override
   List<DynamicWidget>? get childWidgets => null;
+
+  @override
+  void postBuild() {}
+
+  @override
+  void preBuild() {}
 }

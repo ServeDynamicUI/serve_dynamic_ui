@@ -38,6 +38,10 @@ abstract class DynamicWidget {
   ///helps to build in-built flutter widget.
   Widget build(BuildContext context);
 
+  void preBuild();
+
+  void postBuild();
+
   ///this factory constructor takes the json and creates a dynamic widget and its sub children.
   factory DynamicWidget.fromJson(Map<String, dynamic> json) {
     try {
@@ -50,6 +54,7 @@ abstract class DynamicWidget {
         children?.forEach((element) {
           element?.parent = widget;
         });
+        widget.preBuild();
         return widget;
       } else {
         debugPrint(

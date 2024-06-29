@@ -4,6 +4,7 @@ class Strings {
   static const type = 'type';
   static const data = 'data';
   static const key = 'keys';
+  static const pageRefreshEvents = "pageRefreshEvents";
   
   ///extras
   static const widget = 'widget';

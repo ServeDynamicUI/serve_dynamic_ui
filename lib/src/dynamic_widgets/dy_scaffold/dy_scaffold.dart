@@ -34,6 +34,7 @@ class DynamicScaffold extends DynamicWidget implements FormWidget {
   double? itemsSpacing;
   @JsonKey(fromJson: WidgetUtil.getCrossAxisAlignment)
   CrossAxisAlignment crossAxisAlignment;
+  List<String>? pageRefreshEvents;
 
   DynamicScaffold(
       {required String key,
@@ -58,6 +59,7 @@ class DynamicScaffold extends DynamicWidget implements FormWidget {
       this.itemsSpacing,
       this.showPaginatedLoaderOnTop = false,
       this.crossAxisAlignment = CrossAxisAlignment.center,
+      this.pageRefreshEvents,
       super.margin,
       super.padding,
       })

@@ -133,7 +133,7 @@ class DynamicText extends DynamicWidget implements DataEventListener {
   }
 
   @override
-  void onDataEvent(Map<String, dynamic> data) {
+  void onDataEvent(String dataEventKey, Map<String, dynamic> data) {
     String methodName = data['methodName'];
     switch (methodName) {
       case updateText:

@@ -2,8 +2,6 @@ import 'dart:convert';
 
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:serve_dynamic_ui/src/constants/index.dart';
-import 'package:serve_dynamic_ui/src/dtos/index.dart';
 
 import '../../serve_dynamic_ui.dart';
 
@@ -522,5 +520,18 @@ class WidgetUtil {
     }
 
     return spacedWidgets;
+  }
+
+  ///this is a method helps to create [DynamicWidget] from passed json.
+  static Widget? fromJson(Map<String, dynamic>? json, BuildContext context) {
+    try {
+      if (json != null) {
+        DynamicWidget dynamicWidget = DynamicWidget.fromJson(json);
+        return DynamicProvider(dynamicWidget).build(context);
+      }
+    } catch (e) {
+      debugPrint(e.toString());
+    }
+    return null;
   }
 }

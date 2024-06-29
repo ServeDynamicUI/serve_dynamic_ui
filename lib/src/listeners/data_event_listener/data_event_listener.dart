@@ -2,7 +2,7 @@
 import 'package:serve_dynamic_ui/src/listeners/index.dart';
 
 abstract class DataEventListener {
-  void onDataEvent(Map<String, dynamic> data);
+  void onDataEvent(String dataEventKey, Map<String, dynamic> data);
 }
 
 class DataEventListeners extends DynamicListeners {
@@ -21,14 +21,14 @@ class DataEventListeners extends DynamicListeners {
   }
 
   ///to remove a data event change listener based on its key
-  static void removeDataEventListener(String dataEventKey) {
-    _dataEventListeners.remove(dataEventKey);
+  static bool removeDataEventListener(String dataEventKey, DataEventListener dataEventListener) {
+    return _dataEventListeners[dataEventKey]?.remove(dataEventListener) ?? false;
   }
 
   ///to call onDataEvent callback in all listeners.
-  static void callOnDataEvent(String? dataEventKey, Map<String, dynamic> data) {
+  static void callOnDataEvent(String dataEventKey, Map<String, dynamic> data) {
     _dataEventListeners[dataEventKey]?.forEach((dataEventListener) {
-      dataEventListener.onDataEvent(data);
+      dataEventListener.onDataEvent(dataEventKey, data);
     });
   }
 }

@@ -3,6 +3,7 @@ import 'dart:convert';
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:serve_dynamic_ui/serve_dynamic_ui.dart';
+import 'package:serve_dynamic_ui/src/main_framework/network_page/network_builder.dart';
 import '../handlers/dynamic_widget_handlers.dart';
 
 ///[ServeDynamicUI] : class which is entry point to this packages that helps to init this package.
@@ -37,7 +38,7 @@ class ServeDynamicUI {
           case ConnectionState.done:
             if (snapshot.hasData) {
               if (context.mounted) {
-                return _fromJson(snapshot.data!, context) ??
+                return WidgetUtil.fromJson(snapshot.data!, context) ??
                     const SizedBox.shrink();
               }
               return const SizedBox.shrink();
@@ -63,49 +64,11 @@ class ServeDynamicUI {
     ShowLoaderWidgetBuilder? showLoaderWidgetBuilder,
     ShowErrorWidgetBuilder? showErrorWidgetBuilder,
   }) {
-    return FutureBuilder<Response?>(
-      future: NetworkHandler.getJsonFromRequest(request),
-      builder: (context, snapshot) {
-        switch (snapshot.connectionState) {
-          case ConnectionState.waiting:
-            DynamicWidget? widget;
-            if (showLoaderWidgetBuilder != null) {
-              widget = showLoaderWidgetBuilder(context);
-              return widget?.build(context) ?? const SizedBox.shrink();
-            }
-            if(StringUtil.isNotEmptyNorNull(templateJsonPath)) {
-              return fromAssets(templateJsonPath!);
-            }
-          case ConnectionState.done:
-            if (snapshot.hasData) {
-              final json = jsonDecode(snapshot.data.toString());
-              return _fromJson(json, context) ?? const SizedBox.shrink();
-            } else if (snapshot.hasError) {
-              if (showErrorWidgetBuilder != null) {
-                final widget = showErrorWidgetBuilder(context, snapshot.error);
-                return widget?.build(context) ?? const SizedBox.shrink();
-              }
-              debugPrint(snapshot.error.toString());
-            }
-          default:
-            break;
-        }
-        return Container(color: Colors.white);
-      },
+    return NetworkBuilder(
+      request: request,
+      templateJsonPath: templateJsonPath,
+      showErrorWidgetBuilder: showErrorWidgetBuilder,
+      showLoaderWidgetBuilder: showLoaderWidgetBuilder,
     );
   }
-
-  ///this is a private method helps to create [DynamicWidget] from passed json.
-  static Widget? _fromJson(Map<String, dynamic>? json, BuildContext context) {
-    try {
-      if (json != null) {
-        DynamicWidget dynamicWidget = DynamicWidget.fromJson(json);
-        return DynamicProvider(dynamicWidget).build(context);
-      }
-    } catch (e) {
-      debugPrint(e.toString());
-    }
-    return null;
-  }
-
 }

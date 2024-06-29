@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
+import 'package:serve_dynamic_ui/src/dynamic_widgets/dy_scaffold/index.dart';
 import 'package:serve_dynamic_ui/src/dynamic_widgets/view.dart';
 
 import 'dynamic_widget.dart';
@@ -19,20 +20,22 @@ class DynamicProvider extends DynamicWidget {
 
   DynamicProvider(
     this.child, {
-    String key = '',
+    super.key = '',
     Map<String, dynamic>? stateCache,
     Map<String, dynamic>? controllerCache,
   })  : _stateCache = stateCache ?? <String, dynamic>{},
-        _controllerCache = controllerCache ?? <String, dynamic>{},
-        super(key: key) {
+        _controllerCache = controllerCache ?? <String, dynamic>{} {
     child?.parent = this;
   }
 
   @override
   Widget build(BuildContext context) {
-    return DynamicView(
-      child: child,
-    );
+    if(child is DynamicScaffold){
+      return DynamicView(
+        child: child,
+      );
+    }
+    return const SizedBox.shrink();
   }
 
   @override

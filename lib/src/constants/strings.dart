@@ -139,4 +139,10 @@ class Strings {
   static const asset = 'asset';
   static const file = 'file';
   static const loaderWidgetAssetPath = 'loaderWidgetAssetPath';
+
+  //pop and navigate strings
+  static const popAndNavigateStrategy = 'popAndNavigateStrategy';
+  static const popToRoot = 'POP_TO_ROOT';
+  static const popCurrent = 'POP_CURRENT';
+  static const popUntilScreen = 'POP_UNTIL_SCREEN';
 }

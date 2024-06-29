@@ -178,7 +178,13 @@
                           }
                         },
                         "action": {
-                          "actionString": "/form"
+                          "actionString": "/moveToScreen?popStrategy=POP_CURRENT",
+                          "extras": {
+                            "url": "assets/json/container.json",
+                            "urlType": "local",
+                            "navigationType": "screen",
+                            "navigationStyle": "push"
+                          }
                         }
                       }
                     },

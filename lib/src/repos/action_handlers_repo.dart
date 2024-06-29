@@ -48,11 +48,28 @@ class ActionHandlersRepo {
             if (actionDTO.extras != null) {
               extras.addAll(actionDTO.extras!);
             }
+            _popVisibleScreen(context, action);
             handler.handleAction(context, action, extras, onHandledAction);
             hasMatched = true;
           }
         }
       });
+    }
+  }
+
+  static void _popVisibleScreen(BuildContext context, Uri uri) {
+    if (uri.queryParameters.containsKey(Strings.popAndNavigateStrategy)) {
+      String? popStrategy = uri.queryParameters[Strings.popAndNavigateStrategy];
+      if (popStrategy == PopAndNavigateStrategy.popToRoot.name) {
+        Navigator.of(context).popUntil((route) => route.isFirst);
+      } else if (popStrategy == PopAndNavigateStrategy.popCurrent.name) {
+        Navigator.pop(context, null);
+      } else if(popStrategy == PopAndNavigateStrategy.popUntilScreen.name) {
+        String? screenName = uri.queryParameters[Strings.screenName];
+        if(StringUtil.isNotEmptyNorNull(screenName)) {
+          Navigator.of(context).popUntil(ModalRoute.withName(screenName!));
+        }
+      }
     }
   }
 }

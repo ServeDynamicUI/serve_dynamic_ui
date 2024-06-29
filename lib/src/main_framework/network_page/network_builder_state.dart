@@ -29,6 +29,8 @@ class NetworkBuilderState implements DataEventListener{
 
   List<String> pageRefreshEventList = [];
 
+  CancelToken? _cancelToken;
+
   void reload(){
     fetchPage();
   }
@@ -36,6 +38,8 @@ class NetworkBuilderState implements DataEventListener{
   void fetchPage() async{
     try {
       networkPageStatusNotifier.value = NetworkPagePendingStatusEvent();
+      _cancelToken = CancelToken();
+      request.cancelToken = _cancelToken;
       Response? pageResponse = await NetworkHandler.getJsonFromRequest(request);
       Map<String, dynamic>? pageResponseJson = jsonDecode(pageResponse!.data.toString());
       networkPageStatusNotifier.value = NetworkPageSuccessStatusEvent(pageResponseJson);
@@ -54,6 +58,17 @@ class NetworkBuilderState implements DataEventListener{
         DataEventListeners.addDataEventListener(event, this);
       }
     }
+  }
+
+  void cancelNetworkPageRequest(){
+    if(Util.isValid(_cancelToken) && _cancelToken!.isCancelled){
+      _cancelToken!.cancel();
+    }
+  }
+
+  void onDispose(){
+    cancelNetworkPageRequest();
+    disposeScreenEventsIfAny();
   }
 
   void disposeScreenEventsIfAny() {

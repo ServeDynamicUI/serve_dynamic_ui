@@ -60,7 +60,7 @@ class _NetworkBuilderState extends State<NetworkBuilder> {
 
   @override
   void dispose() {
-    _networkBuilderState.disposeScreenEventsIfAny();
+    _networkBuilderState.onDispose();
     super.dispose();
   }
 }

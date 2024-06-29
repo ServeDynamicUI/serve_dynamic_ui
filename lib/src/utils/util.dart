@@ -6,4 +6,8 @@ class Util {
     }
     return false;
   }
+
+  static bool isValid(dynamic object){
+    return object != null;
+  }
 }

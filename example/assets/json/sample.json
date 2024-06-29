@@ -1276,6 +1276,7 @@
           "fontSize": 20
         }
       }
-    }
+    },
+    "eventList": ["RELOAD", "RELOAD_AND_CACHE"]
   }
 }

@@ -4,6 +4,7 @@
     "key": "123456",
     "pageTitle": "Flutter Server UI Home Screen",
     "leftActionsWidth": 60,
+    "isPageCacheEnabled": true,
     "leftActions": [
       {
         "type": "dy_image",

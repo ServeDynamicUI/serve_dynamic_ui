@@ -1226,9 +1226,10 @@
                                 "child": {
                                   "type": "dy_text",
                                   "data": {
-                                    "key": "19037757234",
+                                    "key": "19037757",
                                     "text": "Click this card you will know.",
-                                    "maxLines": 3
+                                    "maxLines": 3,
+                                    "alignment": "centerLeft"
                                   }
                                 }
                               }

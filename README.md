@@ -728,6 +728,30 @@ DynamicListeners.addListener(TextUpdateListener());
 
 To know more check out [example app](https://github.com/Arunshaik2001/serve_dynamic_ui/tree/main/example).
 
+## Page caching on flutter web app:
+For page caching this package use floor package which internally depends on sqflite and if you are intending to develop flutter web app and want to enable page caching. you need to follow few steps:
+1. Add the dependency:
+```yaml
+  dependencies:
+    sqflite_common_ffi_web: '>=0.1.0-dev.1'
+```
+2. install binaries using the command:
+
+```bash
+$ dart run sqflite_common_ffi_web:setup
+```
+
+3. run the command again using the force option:
+```bash
+$ dart run sqflite_common_ffi_web:setup --force
+```
+
+4. add this script in web/index.html inside <head>
+
+```html
+  <script src="sqflite_sw.js"></script>
+```
+
 ## Additional information
 
 Please create issues [here](https://github.com/Arunshaik2001/serve_dynamic_ui/issues).

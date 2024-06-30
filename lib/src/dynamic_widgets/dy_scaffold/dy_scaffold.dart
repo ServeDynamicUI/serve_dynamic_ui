@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:json_annotation/json_annotation.dart';
 import 'package:serve_dynamic_ui/serve_dynamic_ui.dart';
 import 'package:serve_dynamic_ui/src/dynamic_widgets/dy_loader/index.dart';
+import 'package:serve_dynamic_ui/src/dynamic_widgets/dy_scaffold/dy_scaffold_lifecycle_widget.dart';
 
 part 'dy_scaffold.g.dart';
 
@@ -36,34 +37,33 @@ class DynamicScaffold extends DynamicWidget implements FormWidget {
   CrossAxisAlignment crossAxisAlignment;
   List<String>? pageRefreshEvents;
 
-  DynamicScaffold(
-      {required String key,
-      this.children,
-      this.rightActions,
-      this.leftActions,
-      this.leftActionsWidth,
-      this.pageTitle,
-      this.floatingActionWidget,
-      this.bottomNavigationBar,
-      this.paginatedLoaderWidget,
-      this.resizeToAvoidBottomInset,
-      this.centerPageTitle = true,
-      this.scrollable = true,
-      this.paginated = false,
-      this.primary = true,
-      this.extendBody = false,
-      this.drawerEnableOpenDragGesture = true,
-      this.extendBodyBehindAppBar = false,
-      this.endDrawerEnableOpenDragGesture = true,
-      this.nextUrl,
-      this.itemsSpacing,
-      this.showPaginatedLoaderOnTop = false,
-      this.crossAxisAlignment = CrossAxisAlignment.center,
-      this.pageRefreshEvents,
-      super.margin,
-      super.padding,
-      })
-      : super(
+  DynamicScaffold({
+    required String key,
+    this.children,
+    this.rightActions,
+    this.leftActions,
+    this.leftActionsWidth,
+    this.pageTitle,
+    this.floatingActionWidget,
+    this.bottomNavigationBar,
+    this.paginatedLoaderWidget,
+    this.resizeToAvoidBottomInset,
+    this.centerPageTitle = true,
+    this.scrollable = true,
+    this.paginated = false,
+    this.primary = true,
+    this.extendBody = false,
+    this.drawerEnableOpenDragGesture = true,
+    this.extendBodyBehindAppBar = false,
+    this.endDrawerEnableOpenDragGesture = true,
+    this.nextUrl,
+    this.itemsSpacing,
+    this.showPaginatedLoaderOnTop = false,
+    this.crossAxisAlignment = CrossAxisAlignment.center,
+    this.pageRefreshEvents,
+    super.margin,
+    super.padding,
+  }) : super(
           key: key ?? "",
         );
 
@@ -118,19 +118,32 @@ class DynamicScaffold extends DynamicWidget implements FormWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      key: ValueKey(key),
-      appBar: _appBar(context, pageTitle, centerPageTitle, leftActions,
-          rightActions, leftActionsWidth),
-      body: Container(padding: padding, margin: margin, child: _getBody(context),),
-      floatingActionButton: floatingActionWidget?.build(context),
-      bottomNavigationBar: bottomNavigationBar?.build(context),
-      primary: primary,
-      extendBody: extendBody,
-      resizeToAvoidBottomInset: resizeToAvoidBottomInset,
-      drawerEnableOpenDragGesture: drawerEnableOpenDragGesture,
-      extendBodyBehindAppBar: extendBodyBehindAppBar,
-      endDrawerEnableOpenDragGesture: endDrawerEnableOpenDragGesture,
+    return DynamicScaffoldLifecycleWidget(
+      child: Scaffold(
+        key: ValueKey(key),
+        appBar: _appBar(context, pageTitle, centerPageTitle, leftActions,
+            rightActions, leftActionsWidth),
+        body: Container(
+          padding: padding,
+          margin: margin,
+          child: _getBody(context),
+        ),
+        floatingActionButton: floatingActionWidget?.build(context),
+        bottomNavigationBar: bottomNavigationBar?.build(context),
+        primary: primary,
+        extendBody: extendBody,
+        resizeToAvoidBottomInset: resizeToAvoidBottomInset,
+        drawerEnableOpenDragGesture: drawerEnableOpenDragGesture,
+        extendBodyBehindAppBar: extendBodyBehindAppBar,
+        endDrawerEnableOpenDragGesture: endDrawerEnableOpenDragGesture,
+      ),
+      onDispose: (){
+        DynamicProvider dynamicProvider = WidgetResolver.getTopAncestorOfType<DynamicProvider>(this)!;
+        _scrollController.removeListener(_scrollListener);
+        dynamicProvider.deleteStateByKey(key);
+        dynamicProvider.deleteControllerByKey(key);
+      },
+      onInit: (){},
     );
   }
 
@@ -227,17 +240,17 @@ class DynamicScaffold extends DynamicWidget implements FormWidget {
 
   Widget _paginatedListWidget(List<Widget> widgets) {
     return ListView.separated(
-        controller: _scrollController,
-        shrinkWrap: true,
-        itemBuilder: (context, index) {
-          return widgets[index];
-        },
-        separatorBuilder: (context, index) {
-          return Container(
-            height: itemsSpacing,
-          );
-        },
-        itemCount: widgets.length,
+      controller: _scrollController,
+      shrinkWrap: true,
+      itemBuilder: (context, index) {
+        return widgets[index];
+      },
+      separatorBuilder: (context, index) {
+        return Container(
+          height: itemsSpacing,
+        );
+      },
+      itemCount: widgets.length,
     );
   }
 
@@ -362,7 +375,8 @@ class DynamicScaffold extends DynamicWidget implements FormWidget {
               mainAxisAlignment: leftActions.length == 1
                   ? MainAxisAlignment.center
                   : MainAxisAlignment.start,
-              children: WidgetUtil.dynamicWidgetsSpacing(context, leftActions, 2),
+              children:
+                  WidgetUtil.dynamicWidgetsSpacing(context, leftActions, 2),
             ),
       actions: rightActions == null
           ? null
@@ -371,19 +385,16 @@ class DynamicScaffold extends DynamicWidget implements FormWidget {
                 mainAxisAlignment: rightActions.length == 1
                     ? MainAxisAlignment.center
                     : MainAxisAlignment.end,
-                children: WidgetUtil.dynamicWidgetsSpacing(context, rightActions, 2),
+                children:
+                    WidgetUtil.dynamicWidgetsSpacing(context, rightActions, 2),
               )
             ],
     );
   }
 
   @override
-  void postBuild() {
-
-  }
+  void postBuild() {}
 
   @override
-  void preBuild() {
-
-  }
+  void preBuild() {}
 }

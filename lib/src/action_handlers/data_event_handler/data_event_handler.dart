@@ -11,7 +11,7 @@ class DataEventHandler extends ActionHandler {
   @override
   void handleAction(
       BuildContext? context, Uri action, Map<String, dynamic>? extras, OnHandledAction? onHandledAction) {
-    if (extras != null && extras.containsKey(Strings.dataEventId) && extras.containsKey(Strings.data)) {
+    if (extras != null && extras.containsKey(Strings.dataEventId)) {
       String dataEventId = extras[Strings.dataEventId];
       dynamic data = extras[Strings.data];
 
@@ -22,7 +22,7 @@ class DataEventHandler extends ActionHandler {
         dataMap = jsonDecode(data);
       }
       else{
-        dataMap = data;
+        dataMap = data ?? {};
       }
 
       DataEventListeners.callOnDataEvent(dataEventId, dataMap);

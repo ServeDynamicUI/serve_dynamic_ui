@@ -12,7 +12,9 @@ class DataEventListeners extends DynamicListeners {
   ///to add a data event change listener
   static void addDataEventListener(String dataEventKey, DataEventListener dataEventListener) {
     _dataEventListeners.putIfAbsent(dataEventKey, () => []);
-    _dataEventListeners[dataEventKey]?.add(dataEventListener);
+    if(!_dataEventListeners[dataEventKey]!.contains(dataEventListener)){
+      _dataEventListeners[dataEventKey]?.add(dataEventListener);
+    }
   }
 
   ///to add data event change listeners in a list.

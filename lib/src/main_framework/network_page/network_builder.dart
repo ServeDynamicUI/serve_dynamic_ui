@@ -7,6 +7,7 @@ class NetworkBuilder extends StatefulWidget {
   final String? templateJsonPath;
   final ShowLoaderWidgetBuilder? showLoaderWidgetBuilder;
   final ShowErrorWidgetBuilder? showErrorWidgetBuilder;
+  final bool isPageCacheEnabled;
 
   const NetworkBuilder({
     super.key,
@@ -14,6 +15,7 @@ class NetworkBuilder extends StatefulWidget {
     this.templateJsonPath,
     this.showLoaderWidgetBuilder,
     this.showErrorWidgetBuilder,
+    this.isPageCacheEnabled = false
   });
 
   @override
@@ -36,6 +38,10 @@ class _NetworkBuilderState extends State<NetworkBuilder> {
       valueListenable: _networkBuilderState.networkPageStatusNotifier,
       builder: (ctx, networkStatus, _) {
         if(networkStatus is NetworkPagePendingStatusEvent){
+          if(Util.isValid(networkStatus.pageResponse)){
+            return WidgetUtil.fromJson(networkStatus.pageResponse, context, networkState: _networkBuilderState) ??
+                const SizedBox.shrink();
+          }
           if (widget.showLoaderWidgetBuilder != null) {
             DynamicWidget? dyWidget = widget.showLoaderWidgetBuilder!(context);
             return dyWidget?.build(context) ?? const SizedBox.shrink();
@@ -45,8 +51,7 @@ class _NetworkBuilderState extends State<NetworkBuilder> {
           }
         }
         else if(networkStatus is NetworkPageSuccessStatusEvent){
-          _networkBuilderState.initScreenEventsIfAny(networkStatus.pageResponse);
-          return WidgetUtil.fromJson(networkStatus.pageResponse, context) ??
+          return WidgetUtil.fromJson(networkStatus.pageResponse, context, networkState: _networkBuilderState) ??
               const SizedBox.shrink();
         }
         else if(networkStatus is NetworkPageFailureStatusEvent){

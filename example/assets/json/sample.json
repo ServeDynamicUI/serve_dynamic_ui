@@ -1254,6 +1254,85 @@
                 }
               }
             }
+          },
+          {
+            "type": "dy_gesture_detector",
+            "data": {
+              "key": "345435",
+              "onTapAction": {
+                "actionString": "/dataEventHook",
+                "extras": {
+                  "dataEventId": "RELOAD"
+                }
+              },
+              "child": {
+                "type": "dy_widget_card",
+                "data": {
+                  "key": "56546546",
+                  "margin": "10",
+                  "elevation": 10,
+                  "padding": "10",
+                  "borderRadius": 10,
+                  "body": {
+                    "type": "dy_container",
+                    "data": {
+                      "key": "234234234",
+                      "padding": "10,0,0,0",
+                      "child": {
+                        "type": "dy_column",
+                        "data": {
+                          "key": "565656",
+                          "mainAxisAlignment": "spaceBetween",
+                          "crossAxisAlignment": "start",
+                          "children": [
+                            {
+                              "type": "dy_text",
+                              "data": {
+                                "key": "234234234",
+                                "text": "Refresh Dynamic UI",
+                                "style": {
+                                  "color": "0xffff0000",
+                                  "fontSize": 20,
+                                  "fontWeight": "bold"
+                                }
+                              }
+                            },
+                            {
+                              "type": "dy_container",
+                              "data": {
+                                "key": "24234234",
+                                "width": 200,
+                                "child": {
+                                  "type": "dy_text",
+                                  "data": {
+                                    "key": "234234234234",
+                                    "text": "It will reload network page based on events triggered",
+                                    "maxLines": 3,
+                                    "alignment": "centerLeft"
+                                  }
+                                }
+                              }
+                            }
+                          ]
+                        }
+                      }
+                    }
+                  },
+                  "prefixImage": {
+                    "type": "dy_image",
+                    "data": {
+                      "key": "24234",
+                      "src": "assets/images/ic_refresh.png",
+                      "height": 50,
+                      "width": 50,
+                      "imageType": "asset",
+                      "fit": "fill",
+                      "placeholderImagePath": "assets/images/icon_placeholder.png"
+                    }
+                  }
+                }
+              }
+            }
           }
         ]
       }

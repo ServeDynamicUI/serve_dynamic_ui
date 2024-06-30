@@ -3,6 +3,7 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:json_annotation/json_annotation.dart';
 import 'package:serve_dynamic_ui/src/dynamic_widgets/dynamic_widget.dart';
+import 'package:serve_dynamic_ui/src/utils/index.dart';
 
 part 'dy_sized_box.g.dart';
 
@@ -61,5 +62,10 @@ class DynamicSizedBox extends DynamicWidget {
   @override
   void preBuild() {
 
+  }
+
+  @override
+  void onDispose() {
+    WidgetUtil.callOnDisposeOnWidget(child);
   }
 }

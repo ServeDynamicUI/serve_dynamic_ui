@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
 import '../../serve_dynamic_ui.dart';
+import '../main_framework/network_page/network_builder_state.dart';
 
 ///util class helping as convertors
 class WidgetUtil {
@@ -523,15 +524,27 @@ class WidgetUtil {
   }
 
   ///this is a method helps to create [DynamicWidget] from passed json.
-  static Widget? fromJson(Map<String, dynamic>? json, BuildContext context) {
+  static Widget? fromJson(Map<String, dynamic>? json, BuildContext context, {NetworkBuilderState? networkState}) {
     try {
       if (json != null) {
         DynamicWidget dynamicWidget = DynamicWidget.fromJson(json);
-        return DynamicProvider(dynamicWidget).build(context);
+        DynamicProvider dynamicProvider = DynamicProvider(dynamicWidget as DynamicScaffold);
+        networkState?.assignNetworkStateChild(dynamicProvider);
+        return dynamicProvider.build(context);
       }
     } catch (e) {
       debugPrint(e.toString());
     }
     return null;
+  }
+
+  static void callOnDisposeOnWidget(DynamicWidget? widget){
+    widget?.onDispose();
+  }
+
+  static void callOnDisposeOnWidgets(List<DynamicWidget>? widgets){
+    widgets?.forEach((widget){
+      callOnDisposeOnWidget(widget);
+    });
   }
 }

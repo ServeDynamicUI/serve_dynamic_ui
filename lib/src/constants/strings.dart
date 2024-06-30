@@ -5,6 +5,8 @@ class Strings {
   static const data = 'data';
   static const key = 'keys';
   static const pageRefreshEvents = "pageRefreshEvents";
+  static const isPageCacheEnabled = "isPageCacheEnabled";
+  static const pageCacheKeepTime = "PAGE_CACHE_KEEP_TIME_IN_SEC";
   
   ///extras
   static const widget = 'widget';

@@ -1,9 +1,12 @@
 import 'dart:convert';
+import 'dart:ffi';
 
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:serve_dynamic_ui/serve_dynamic_ui.dart';
 import 'package:serve_dynamic_ui/src/main_framework/network_page/network_builder.dart';
+import 'package:serve_dynamic_ui/src/utils/db_util.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import '../handlers/dynamic_widget_handlers.dart';
 
 ///[ServeDynamicUI] : class which is entry point to this packages that helps to init this package.
@@ -12,10 +15,18 @@ class ServeDynamicUI {
   static init(
       {Dio? dio,
       Map<RegExp, ActionHandler>? actionHandlers,
-      Map<String, DynamicWidgetHandler>? widgetHandlers}) {
-    DynamicWidgetHandlers.init(handlers: widgetHandlers);
-    ActionHandlersRepo.init(actionHandlers: actionHandlers);
-    NetworkHandler.init(dio ?? Dio());
+      Map<String, DynamicWidgetHandler>? widgetHandlers}) async{
+    try{
+      DynamicWidgetHandlers.init(handlers: widgetHandlers);
+      ActionHandlersRepo.init(actionHandlers: actionHandlers);
+      await Util.setPageCacheTime(const String.fromEnvironment(Strings.pageCacheKeepTime));
+      DbUtil.deleteCachedPagesOlderThanSetCacheTime().then((delete)=>{
+        debugPrint('deleted cached pages? $delete')
+      });
+      NetworkHandler.init(dio ?? Dio());
+    } catch(e) {
+      debugPrint('Some error occured $e');
+    }
   }
 
   ///this is a method helps to create [DynamicWidget] from fetched asset json.

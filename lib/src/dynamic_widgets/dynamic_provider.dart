@@ -16,7 +16,7 @@ class DynamicProvider extends DynamicWidget {
 
   Map<String?, dynamic> get controllerCache => _controllerCache;
 
-  final DynamicWidget? child;
+  final DynamicScaffold? child;
 
   DynamicProvider(
     this.child, {
@@ -53,4 +53,15 @@ class DynamicProvider extends DynamicWidget {
   void preBuild() {
 
   }
+
+  void deleteStateByKey(String key){
+    _stateCache.remove(key);
+  }
+
+  void deleteControllerByKey(String key){
+    _stateCache.remove(key);
+  }
+
+  @override
+  void onDispose() {}
 }

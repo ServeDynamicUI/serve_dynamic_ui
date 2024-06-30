@@ -76,4 +76,10 @@ class DynamicShimmerWidgetCard extends DynamicWidget {
   void preBuild() {
 
   }
+
+  @override
+  void onDispose() {
+    prefixImage?.onDispose();
+    body?.onDispose();
+  }
 }

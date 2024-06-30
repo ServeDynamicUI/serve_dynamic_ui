@@ -65,7 +65,7 @@ class DynamicShimmerRow extends DynamicWidget {
   }
 
   @override
-  List<DynamicWidget>? get childWidgets => [];
+  List<DynamicWidget>? get childWidgets => childItems ?? [];
 
   @override
   FutureOr invokeMethod(String methodName, {Map<String, dynamic>? params}) {}
@@ -78,5 +78,10 @@ class DynamicShimmerRow extends DynamicWidget {
   @override
   void preBuild() {
 
+  }
+
+  @override
+  void onDispose() {
+    WidgetUtil.callOnDisposeOnWidgets(childItems);
   }
 }

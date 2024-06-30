@@ -139,4 +139,7 @@ class DynamicImage extends DynamicWidget {
   void preBuild() {
 
   }
+
+  @override
+  void onDispose() {}
 }

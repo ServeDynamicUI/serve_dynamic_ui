@@ -58,4 +58,8 @@ class DynamicAlign extends DynamicWidget {
 
   }
 
+  @override
+  void onDispose() {
+    WidgetUtil.callOnDisposeOnWidget(child);
+  }
 }

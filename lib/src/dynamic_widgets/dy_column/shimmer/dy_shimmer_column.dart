@@ -79,4 +79,9 @@ class DynamicShimmerColumn extends DynamicWidget {
   void preBuild() {
 
   }
+
+  @override
+  void onDispose() {
+    WidgetUtil.callOnDisposeOnWidgets(childItems);
+  }
 }

@@ -96,4 +96,7 @@ class DynamicLoader extends DynamicWidget {
   void preBuild() {
 
   }
+
+  @override
+  void onDispose() {}
 }

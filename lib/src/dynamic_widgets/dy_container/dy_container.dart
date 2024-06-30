@@ -99,4 +99,9 @@ class DynamicContainer extends DynamicWidget {
   void preBuild() {
 
   }
+
+  @override
+  void onDispose() {
+    WidgetUtil.callOnDisposeOnWidget(child);
+  }
 }

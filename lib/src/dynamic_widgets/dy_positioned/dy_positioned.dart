@@ -65,4 +65,9 @@ class DynamicPositioned extends DynamicWidget {
 
   }
 
+  @override
+  void onDispose() {
+    WidgetUtil.callOnDisposeOnWidget(child);
+  }
+
 }

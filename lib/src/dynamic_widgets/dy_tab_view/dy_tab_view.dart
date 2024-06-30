@@ -171,4 +171,11 @@ class DynamicTabView extends DynamicWidget {
   void preBuild() {
 
   }
+
+  @override
+  void onDispose() {
+    tabs?.forEach((tab){
+      WidgetUtil.callOnDisposeOnWidget(tab.child);
+    });
+  }
 }

@@ -11,7 +11,7 @@ part 'dy_column.g.dart';
   createToJson: false,
 )
 class DynamicColumn extends DynamicWidget {
-  List<DynamicWidget?>? children;
+  List<DynamicWidget>? children;
   @JsonKey(fromJson: WidgetUtil.getMainAxisAlignment)
   MainAxisAlignment? mainAxisAlignment;
   @JsonKey(fromJson: WidgetUtil.getCrossAxisAlignment)
@@ -61,5 +61,10 @@ class DynamicColumn extends DynamicWidget {
   @override
   void preBuild() {
 
+  }
+
+  @override
+  void onDispose() {
+    WidgetUtil.callOnDisposeOnWidgets(children);
   }
 }

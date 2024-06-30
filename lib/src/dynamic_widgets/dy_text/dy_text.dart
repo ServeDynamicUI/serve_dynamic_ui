@@ -151,4 +151,7 @@ class DynamicText extends DynamicWidget implements DataEventListener {
   void preBuild() {
     DataEventListeners.addDataEventListener(key, this);
   }
+
+  @override
+  void onDispose() {}
 }

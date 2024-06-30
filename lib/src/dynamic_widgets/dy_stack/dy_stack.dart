@@ -66,4 +66,9 @@ class DynamicStack extends DynamicWidget {
 
   }
 
+  @override
+  void onDispose() {
+    WidgetUtil.callOnDisposeOnWidgets(children);
+  }
+
 }

@@ -61,4 +61,9 @@ class DynamicGestureDetector extends DynamicWidget {
   void preBuild() {
 
   }
+
+  @override
+  void onDispose() {
+    WidgetUtil.callOnDisposeOnWidget(child);
+  }
 }

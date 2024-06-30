@@ -78,4 +78,7 @@ class DynamicShimmerImage extends DynamicWidget {
 
   @override
   void preBuild() {}
+
+  @override
+  void onDispose() {}
 }

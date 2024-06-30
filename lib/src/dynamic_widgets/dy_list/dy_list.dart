@@ -62,4 +62,9 @@ class DynamicList extends DynamicWidget {
 
   }
 
+  @override
+  void onDispose() {
+    WidgetUtil.callOnDisposeOnWidgets(listItems);
+  }
+
 }

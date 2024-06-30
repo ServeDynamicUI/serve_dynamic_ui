@@ -61,4 +61,7 @@ class DynamicProvider extends DynamicWidget {
   void deleteControllerByKey(String key){
     _stateCache.remove(key);
   }
+
+  @override
+  void onDispose() {}
 }

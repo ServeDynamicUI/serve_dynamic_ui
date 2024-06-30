@@ -42,6 +42,8 @@ abstract class DynamicWidget {
 
   void postBuild();
 
+  void onDispose();
+
   ///this factory constructor takes the json and creates a dynamic widget and its sub children.
   factory DynamicWidget.fromJson(Map<String, dynamic> json) {
     try {

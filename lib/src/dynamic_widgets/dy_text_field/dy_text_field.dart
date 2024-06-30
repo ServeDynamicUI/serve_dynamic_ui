@@ -94,4 +94,7 @@ class DynamicTextField extends DynamicWidget implements FormWidget {
   void preBuild() {
 
   }
+
+  @override
+  void onDispose() {}
 }

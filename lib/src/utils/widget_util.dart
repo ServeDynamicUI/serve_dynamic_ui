@@ -537,4 +537,14 @@ class WidgetUtil {
     }
     return null;
   }
+
+  static void callOnDisposeOnWidget(DynamicWidget? widget){
+    widget?.onDispose();
+  }
+
+  static void callOnDisposeOnWidgets(List<DynamicWidget>? widgets){
+    widgets?.forEach((widget){
+      callOnDisposeOnWidget(widget);
+    });
+  }
 }

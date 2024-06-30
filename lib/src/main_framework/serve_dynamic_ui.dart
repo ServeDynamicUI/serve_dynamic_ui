@@ -1,12 +1,8 @@
-import 'dart:convert';
-import 'dart:ffi';
-
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:serve_dynamic_ui/serve_dynamic_ui.dart';
 import 'package:serve_dynamic_ui/src/main_framework/network_page/network_builder.dart';
 import 'package:serve_dynamic_ui/src/utils/db_util.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 import '../handlers/dynamic_widget_handlers.dart';
 
 ///[ServeDynamicUI] : class which is entry point to this packages that helps to init this package.

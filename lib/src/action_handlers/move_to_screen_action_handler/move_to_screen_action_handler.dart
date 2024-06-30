@@ -33,10 +33,14 @@ class MoveToScreenActorHandler extends ActionHandler {
                     .toString()
                     .requestTypeFromString(),
               ),
-              showLoaderWidgetBuilder: (loaderJson == null)
+              showLoaderWidgetBuilder: (!Util.isValid(loaderJson))
                   ? null
                   : (context) {
-                return DynamicWidget.fromJson(loaderJson);
+                DynamicWidget dynamicWidget = DynamicWidget.fromJson(loaderJson!);
+                if(dynamicWidget is DynamicScaffold){
+                  return DynamicProvider(dynamicWidget);
+                }
+                return dynamicWidget;
               },
             ),
           );

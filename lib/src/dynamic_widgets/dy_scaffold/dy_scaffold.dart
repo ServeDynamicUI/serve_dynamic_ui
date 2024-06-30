@@ -397,10 +397,13 @@ class DynamicScaffold extends DynamicWidget implements FormWidget {
 
   @override
   void onDispose() {
-    DynamicProvider dynamicProvider = WidgetResolver.getTopAncestorOfType<DynamicProvider>(this)!;
-    _scrollController.removeListener(_scrollListener);
-    dynamicProvider.deleteStateByKey(key);
-    dynamicProvider.deleteControllerByKey(key);
+    DynamicProvider? dynamicProvider = WidgetResolver.getTopAncestorOfType<DynamicProvider>(this);
+    if(Util.isValid(dynamicProvider)){
+      _scrollController.removeListener(_scrollListener);
+      dynamicProvider?.deleteStateByKey(key);
+      dynamicProvider?.deleteControllerByKey(key);
+    }
+
     children?.forEach((child) {
       child.onDispose();
     });

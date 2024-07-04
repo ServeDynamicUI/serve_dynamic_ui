@@ -752,6 +752,11 @@ $ dart run sqflite_common_ffi_web:setup --force
   <script src="sqflite_sw.js"></script>
 ```
 
+5. make sure you add before calling serve_dynamic_ui init();
+```dart
+   WidgetsFlutterBinding.ensureInitialized();
+```
+
 ## Additional information
 
 Please create issues [here](https://github.com/Arunshaik2001/serve_dynamic_ui/issues).

@@ -39,18 +39,21 @@ class DynamicShimmerStack extends DynamicStack {
     return Stack(
       children: [
         SizedBox(
-          height: height ?? MediaQuery.of(context).size.height - 2 * kToolbarHeight,
+          height:
+              height ?? MediaQuery.of(context).size.height - 2 * kToolbarHeight,
           width: width ?? double.infinity,
           child: super.build(context),
         ),
         Positioned.fill(
           child: Shimmer.fromColors(
-            baseColor: shimmerBaseColor?.withOpacity(0.4) ?? Colors.grey.withOpacity(0.4),
-            highlightColor:
-                shimmerHighlightColor?.withOpacity(0.4) ?? Colors.white.withOpacity(0.4),
+            baseColor: shimmerBaseColor?.withOpacity(0.4) ??
+                Colors.grey.withOpacity(0.4),
+            highlightColor: shimmerHighlightColor?.withOpacity(0.4) ??
+                Colors.white.withOpacity(0.4),
             child: Container(
               width: double.maxFinite,
-              color: shimmerBaseColor?.withOpacity(0.4)  ?? Colors.grey.withOpacity(0.4),
+              color: shimmerBaseColor?.withOpacity(0.4) ??
+                  Colors.grey.withOpacity(0.4),
             ),
           ),
         )

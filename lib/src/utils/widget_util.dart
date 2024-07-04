@@ -422,9 +422,11 @@ class WidgetUtil {
   }
 
   ///Returns the map from string path.
-  static Future<Map<String, dynamic>> loadJson(String path, {Map<String, String>? assetJsonValueReplacer}) async {
+  static Future<Map<String, dynamic>> loadJson(String path,
+      {Map<String, String>? assetJsonValueReplacer}) async {
     final String data = await rootBundle.loadString(path);
-    String jsonWithReplacedValues = StringUtil.replaceAllUsingReplacers(data, assetJsonValueReplacer) ?? '';
+    String jsonWithReplacedValues =
+        StringUtil.replaceAllUsingReplacers(data, assetJsonValueReplacer) ?? '';
     final Map<String, dynamic> json = jsonDecode(jsonWithReplacedValues);
     return json;
   }
@@ -445,9 +447,9 @@ class WidgetUtil {
 
     List<Widget> spacedWidgets = [];
 
-    for (int index = 0 ; index < filteredWidgets.length ; index++) {
+    for (int index = 0; index < filteredWidgets.length; index++) {
       Widget widget = filteredWidgets[index];
-      if(index == 0){
+      if (index == 0) {
         if (isHorizontal) {
           spacedWidgets.add(
             SizedBox(
@@ -483,13 +485,13 @@ class WidgetUtil {
 
   static List<Widget> widgetsSpacing(List<Widget>? widgets, double spacing,
       {isHorizontal = true}) {
-    if(widgets == null) return [];
+    if (widgets == null) return [];
 
     List<Widget> spacedWidgets = [];
 
-    for (int index = 0 ; index < widgets.length ; index++) {
+    for (int index = 0; index < widgets.length; index++) {
       Widget widget = widgets[index];
-      if(index == 0){
+      if (index == 0) {
         if (isHorizontal) {
           spacedWidgets.add(
             SizedBox(
@@ -524,11 +526,13 @@ class WidgetUtil {
   }
 
   ///this is a method helps to create [DynamicWidget] from passed json.
-  static Widget? fromJson(Map<String, dynamic>? json, BuildContext context, {NetworkBuilderState? networkState}) {
+  static Widget? fromJson(Map<String, dynamic>? json, BuildContext context,
+      {NetworkBuilderState? networkState}) {
     try {
       if (json != null) {
         DynamicWidget dynamicWidget = DynamicWidget.fromJson(json);
-        DynamicProvider dynamicProvider = DynamicProvider(dynamicWidget as DynamicScaffold);
+        DynamicProvider dynamicProvider =
+            DynamicProvider(dynamicWidget as DynamicScaffold);
         networkState?.assignNetworkStateChild(dynamicProvider);
         return dynamicProvider.build(context);
       }
@@ -538,12 +542,12 @@ class WidgetUtil {
     return null;
   }
 
-  static void callOnDisposeOnWidget(DynamicWidget? widget){
+  static void callOnDisposeOnWidget(DynamicWidget? widget) {
     widget?.onDispose();
   }
 
-  static void callOnDisposeOnWidgets(List<DynamicWidget>? widgets){
-    widgets?.forEach((widget){
+  static void callOnDisposeOnWidgets(List<DynamicWidget>? widgets) {
+    widgets?.forEach((widget) {
       callOnDisposeOnWidget(widget);
     });
   }

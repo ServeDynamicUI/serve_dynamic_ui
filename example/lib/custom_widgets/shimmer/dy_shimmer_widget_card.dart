@@ -53,7 +53,9 @@ class DynamicShimmerWidgetCard extends DynamicWidget {
         child: Row(
           children: [
             if (prefixImage != null) prefixImage!.build(context),
-            const SizedBox(width: 10,),
+            const SizedBox(
+              width: 10,
+            ),
             if (body != null) body!.build(context),
           ],
         ),
@@ -62,20 +64,17 @@ class DynamicShimmerWidgetCard extends DynamicWidget {
   }
 
   @override
-  List<DynamicWidget>? get childWidgets => WidgetUtil.childrenFilter([prefixImage, body]);
+  List<DynamicWidget>? get childWidgets =>
+      WidgetUtil.childrenFilter([prefixImage, body]);
 
   @override
   FutureOr invokeMethod(String methodName, {Map<String, dynamic>? params}) {}
 
   @override
-  void postBuild() {
-
-  }
+  void postBuild() {}
 
   @override
-  void preBuild() {
-
-  }
+  void preBuild() {}
 
   @override
   void onDispose() {

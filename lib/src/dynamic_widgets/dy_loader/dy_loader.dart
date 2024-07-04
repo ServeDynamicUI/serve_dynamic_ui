@@ -47,8 +47,8 @@ class DynamicLoader extends DynamicWidget {
     this.containerHeight,
     this.containerWidth,
   }) : super(
-    key: key ?? "",
-  );
+          key: key ?? "",
+        );
 
   factory DynamicLoader.fromJson(Map<String, dynamic> json) =>
       _$DynamicLoaderFromJson(json);
@@ -88,14 +88,10 @@ class DynamicLoader extends DynamicWidget {
   FutureOr invokeMethod(String methodName, {Map<String, dynamic>? params}) {}
 
   @override
-  void postBuild() {
-
-  }
+  void postBuild() {}
 
   @override
-  void preBuild() {
-
-  }
+  void preBuild() {}
 
   @override
   void onDispose() {}

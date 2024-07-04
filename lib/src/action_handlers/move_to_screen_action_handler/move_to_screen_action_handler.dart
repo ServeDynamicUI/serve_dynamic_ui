@@ -3,7 +3,6 @@ import 'package:serve_dynamic_ui/serve_dynamic_ui.dart';
 
 /// An action handler that helps navigating between screens be it named route or dynamic screens from asset or network with loader widget.
 class MoveToScreenActorHandler extends ActionHandler {
-
   ///handles the navigation action to navigate between screens..
   @override
   void handleAction(BuildContext? context, Uri action,
@@ -20,12 +19,13 @@ class MoveToScreenActorHandler extends ActionHandler {
       } else if (extras[Strings.urlType] == Strings.network) {
         Map<String, dynamic>? loaderJson =
             await _getLoaderWidgetJson(extras[Strings.loaderWidgetAssetPath]);
-        if(context.mounted){
+        if (context.mounted) {
           DynamicNavigator.navigate(
             context: context,
             navigationStyle: extras[Strings.navigationStyle],
             navigationType: extras[Strings.navigationType],
-            insetPadding: WidgetUtil.getEdgeInsets(extras[Strings.insetPadding]),
+            insetPadding:
+                WidgetUtil.getEdgeInsets(extras[Strings.insetPadding]),
             widget: ServeDynamicUI.fromNetwork(
               DynamicRequest(
                 url: extras[Strings.url],
@@ -36,19 +36,20 @@ class MoveToScreenActorHandler extends ActionHandler {
               showLoaderWidgetBuilder: (!Util.isValid(loaderJson))
                   ? null
                   : (context) {
-                DynamicWidget dynamicWidget = DynamicWidget.fromJson(loaderJson!);
-                if(dynamicWidget is DynamicScaffold){
-                  return DynamicProvider(dynamicWidget);
-                }
-                return dynamicWidget;
-              },
+                      DynamicWidget dynamicWidget =
+                          DynamicWidget.fromJson(loaderJson!);
+                      if (dynamicWidget is DynamicScaffold) {
+                        return DynamicProvider(dynamicWidget);
+                      }
+                      return dynamicWidget;
+                    },
             ),
           );
         }
       }
     } else {
       if (action.queryParameters[Strings.screenName] != null) {
-        if(context != null && context.mounted){
+        if (context != null && context.mounted) {
           DynamicNavigator.navigateToNamedRoute(context,
               routeName: action.queryParameters[Strings.screenName]!);
         }

@@ -54,10 +54,8 @@ class DynamicShimmerRow extends DynamicWidget {
 
     if (itemCount > 0) {
       for (int i = 0; i < itemCount; i++) {
-        if(childWidgets != null){
-          widgets.addAll(
-            childItems!.toList()
-          );
+        if (childWidgets != null) {
+          widgets.addAll(childItems!.toList());
         }
       }
     }
@@ -71,14 +69,10 @@ class DynamicShimmerRow extends DynamicWidget {
   FutureOr invokeMethod(String methodName, {Map<String, dynamic>? params}) {}
 
   @override
-  void postBuild() {
-
-  }
+  void postBuild() {}
 
   @override
-  void preBuild() {
-
-  }
+  void preBuild() {}
 
   @override
   void onDispose() {

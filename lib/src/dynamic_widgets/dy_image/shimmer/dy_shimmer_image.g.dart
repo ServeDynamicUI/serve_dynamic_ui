@@ -19,6 +19,7 @@ DynamicShimmerImage _$DynamicShimmerImageFromJson(Map<String, dynamic> json) {
     fit: WidgetUtil.getBoxFit(json['fit'] as String?),
     clipBorderRadius: (json['clipBorderRadius'] as num?)?.toDouble(),
     shimmerBaseColor: WidgetUtil.getColor(json['shimmerBaseColor'] as String?),
-    shimmerHighlightColor: WidgetUtil.getColor(json['shimmerHighlightColor'] as String?),
+    shimmerHighlightColor:
+        WidgetUtil.getColor(json['shimmerHighlightColor'] as String?),
   );
 }

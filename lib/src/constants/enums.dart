@@ -13,14 +13,9 @@ enum RequestType {
   delete,
 }
 
-enum PopAndNavigateStrategy {
-  popToRoot,
-  popCurrent,
-  popUntilScreen
-}
+enum PopAndNavigateStrategy { popToRoot, popCurrent, popUntilScreen }
 
 extension PopAndNavigateStrategyExtension on PopAndNavigateStrategy {
-
   String get name {
     switch (this) {
       case PopAndNavigateStrategy.popToRoot:

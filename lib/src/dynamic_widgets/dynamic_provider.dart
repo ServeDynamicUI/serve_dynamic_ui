@@ -30,7 +30,7 @@ class DynamicProvider extends DynamicWidget {
 
   @override
   Widget build(BuildContext context) {
-    if(child is DynamicScaffold){
+    if (child is DynamicScaffold) {
       return DynamicView(
         child: child,
       );
@@ -45,20 +45,16 @@ class DynamicProvider extends DynamicWidget {
   List<DynamicWidget>? get childWidgets => [if (child != null) child!];
 
   @override
-  void postBuild() {
-
-  }
+  void postBuild() {}
 
   @override
-  void preBuild() {
+  void preBuild() {}
 
-  }
-
-  void deleteStateByKey(String key){
+  void deleteStateByKey(String key) {
     _stateCache.remove(key);
   }
 
-  void deleteControllerByKey(String key){
+  void deleteControllerByKey(String key) {
     _stateCache.remove(key);
   }
 

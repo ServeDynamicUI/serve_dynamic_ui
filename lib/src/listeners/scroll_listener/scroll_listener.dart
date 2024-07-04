@@ -1,7 +1,7 @@
 import 'package:serve_dynamic_ui/src/listeners/index.dart';
 
 ///[ScrollListener] : a listener to listen changes in a scrollable widget.
-abstract class ScrollListener extends DynamicListener{
+abstract class ScrollListener extends DynamicListener {
   ///passes the [widgetKey] which is being scrolled.
   void onScrolled(String? widgetKey);
 
@@ -17,12 +17,14 @@ class ScrollListeners {
   static final Map<String, ScrollListener> _scrollListeners = {};
 
   ///to a scroll listener in list.
-  static void addScrollListener(String scrollKey, ScrollListener scrollListener) {
+  static void addScrollListener(
+      String scrollKey, ScrollListener scrollListener) {
     _scrollListeners[scrollKey] = (scrollListener);
   }
 
   ///to add list of scroll listeners.
-  static void addAllScrollListener(Map<String, ScrollListener> scrollListeners) {
+  static void addAllScrollListener(
+      Map<String, ScrollListener> scrollListeners) {
     _scrollListeners.addAll(scrollListeners);
   }
 

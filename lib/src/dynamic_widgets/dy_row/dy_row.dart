@@ -43,9 +43,7 @@ class DynamicRow extends DynamicWidget {
       key: ValueKey(key),
       mainAxisAlignment: mainAxisAlignment ?? MainAxisAlignment.center,
       crossAxisAlignment: crossAxisAlignment ?? CrossAxisAlignment.center,
-      children: (children == null)
-          ? []
-          : childWidgets,
+      children: (children == null) ? [] : childWidgets,
     );
   }
 
@@ -56,18 +54,13 @@ class DynamicRow extends DynamicWidget {
   FutureOr invokeMethod(String methodName, {Map<String, dynamic>? params}) {}
 
   @override
-  void postBuild() {
-
-  }
+  void postBuild() {}
 
   @override
-  void preBuild() {
-
-  }
+  void preBuild() {}
 
   @override
   void onDispose() {
     WidgetUtil.callOnDisposeOnWidgets(children);
   }
-
 }

@@ -33,24 +33,24 @@ class TextFieldDTO {
   bool? obscureText;
   bool? enabled;
 
-  TextFieldDTO(
-      {this.decoration,
-      this.keyboardType,
-      this.textInputAction,
-      this.textCapitalization,
-      this.style,
-      this.textAlign,
-      this.textAlignVertical,
-      this.textDirection,
-      this.readOnly,
-      this.showCursor,
-      this.obscuringCharacter,
-      this.maxLines,
-      this.minLines,
-      this.maxLength,
-      this.obscureText,
-      this.enabled,
-      });
+  TextFieldDTO({
+    this.decoration,
+    this.keyboardType,
+    this.textInputAction,
+    this.textCapitalization,
+    this.style,
+    this.textAlign,
+    this.textAlignVertical,
+    this.textDirection,
+    this.readOnly,
+    this.showCursor,
+    this.obscuringCharacter,
+    this.maxLines,
+    this.minLines,
+    this.maxLength,
+    this.obscureText,
+    this.enabled,
+  });
 
   @override
   String toString() {
@@ -60,5 +60,4 @@ class TextFieldDTO {
   factory TextFieldDTO.fromJson(Map<String, dynamic> json) {
     return _$TextFieldDTOFromJson(json);
   }
-
 }

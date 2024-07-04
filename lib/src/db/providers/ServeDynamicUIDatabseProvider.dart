@@ -5,14 +5,14 @@ class ServeDynamicUIDatabaseProvider {
 
   ServeDynamicUIDatabaseProvider._privateConstructor();
 
-  static final ServeDynamicUIDatabaseProvider instance = ServeDynamicUIDatabaseProvider._privateConstructor();
+  static final ServeDynamicUIDatabaseProvider instance =
+      ServeDynamicUIDatabaseProvider._privateConstructor();
 
   ServeDynamicUIDatabase? _database;
 
   Future<ServeDynamicUIDatabase> get database async {
-    _database ??= await $FloorServeDynamicUIDatabase
-          .databaseBuilder(dbName)
-          .build();
+    _database ??=
+        await $FloorServeDynamicUIDatabase.databaseBuilder(dbName).build();
     return _database!;
   }
 }

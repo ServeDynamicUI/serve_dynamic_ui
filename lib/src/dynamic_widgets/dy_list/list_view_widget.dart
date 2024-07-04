@@ -9,14 +9,13 @@ class ListViewWidget extends StatefulWidget {
   final List<DynamicWidget>? listItems;
   final DynamicWidget? separator;
 
-  const ListViewWidget({
-    super.key,
-    this.isVertical = true,
-    this.listItems,
-    this.separator,
-    this.shrinkWrap = false,
-    this.isScrollable = true
-  });
+  const ListViewWidget(
+      {super.key,
+      this.isVertical = true,
+      this.listItems,
+      this.separator,
+      this.shrinkWrap = false,
+      this.isScrollable = true});
 
   @override
   State<ListViewWidget> createState() => _ListViewWidgetState();
@@ -26,7 +25,8 @@ class _ListViewWidgetState extends State<ListViewWidget> {
   ScrollController get scrollController {
     DynamicProvider dynamicProvider =
         WidgetResolver.getTopAncestorOfType(widget.listItems![0])!;
-    String scrollKey = '${Strings.scrollController}${((widget.key) as ValueKey).value}';
+    String scrollKey =
+        '${Strings.scrollController}${((widget.key) as ValueKey).value}';
     if (!dynamicProvider.controllerCache.containsKey(scrollKey)) {
       ScrollController scrollController = ScrollController();
       scrollController.addListener(_scrollListener);
@@ -69,7 +69,8 @@ class _ListViewWidgetState extends State<ListViewWidget> {
   Widget build(BuildContext context) {
     return ListView.separated(
       controller: scrollController,
-      physics: widget.isScrollable ? null : const NeverScrollableScrollPhysics(),
+      physics:
+          widget.isScrollable ? null : const NeverScrollableScrollPhysics(),
       shrinkWrap: widget.shrinkWrap,
       itemBuilder: (ctx, index) {
         return AutoScrollTag(

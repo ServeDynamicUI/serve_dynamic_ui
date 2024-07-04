@@ -64,7 +64,7 @@ class DynamicText extends DynamicWidget implements DataEventListener {
     } else {
       __dynamicTextState = dynamicProvider.stateCache.putIfAbsent(
         key,
-            () => DynamicTextState(text),
+        () => DynamicTextState(text),
       ) as DynamicTextState?;
     }
     return __dynamicTextState!;
@@ -143,9 +143,7 @@ class DynamicText extends DynamicWidget implements DataEventListener {
   }
 
   @override
-  void postBuild() {
-
-  }
+  void postBuild() {}
 
   @override
   void preBuild() {

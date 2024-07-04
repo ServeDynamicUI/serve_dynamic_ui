@@ -12,20 +12,20 @@ class DynamicListeners {
       ScrollListeners.addScrollListener(key, dynamicListener);
     } else if (dynamicListener is TextChangeListener) {
       TextChangeListeners.addTextChangeListener(key, dynamicListener);
-    } else if(dynamicListener is DataEventListeners) {
-
-    }
+    } else if (dynamicListener is DataEventListeners) {}
   }
 
   ///listener to add all dynamicListeners in a list.
-  static void addAllScrollListener(Map<String, DynamicListener> dynamicListeners) {
+  static void addAllScrollListener(
+      Map<String, DynamicListener> dynamicListeners) {
     for (var dynamicListener in dynamicListeners.entries) {
       addListener(dynamicListener.key, dynamicListener.value);
     }
   }
 
   ///listener to remove a dynamicListener.
-  static void removeScrollListener(String key, DynamicListener dynamicListener) {
+  static void removeScrollListener(
+      String key, DynamicListener dynamicListener) {
     if (dynamicListener is ScrollListener) {
       ScrollListeners.removeScrollListener(key);
     } else if (dynamicListener is TextChangeListener) {

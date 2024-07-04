@@ -9,7 +9,8 @@ abstract class NetworkHandler {
   static void init(Dio dio) => _dio = dio;
 
   ///fetches the json from network based on requestType
-  static Future<Response?> getJsonFromRequest(DynamicRequest dynamicRequest) async{
+  static Future<Response?> getJsonFromRequest(
+      DynamicRequest dynamicRequest) async {
     switch (dynamicRequest.requestType) {
       case RequestType.get:
         return getJsonFromGetRequest(dynamicRequest);
@@ -68,18 +69,18 @@ abstract class NetworkHandler {
   }
 
   ///fetches the json from network using [DELETE] request
-  static Future<Response?> getJsonFromDeleteRequest(DynamicRequest request) async {
+  static Future<Response?> getJsonFromDeleteRequest(
+      DynamicRequest request) async {
     return _dio.delete(
       request.url,
       data: request.data,
       queryParameters: request.queryParameters,
       options: Options(
-        contentType: request.contentType,
-        headers: request.headers,
-        extra: request.extra,
-        sendTimeout: request.sendTimeout,
-        receiveTimeout: request.receiveTimeout
-      ),
+          contentType: request.contentType,
+          headers: request.headers,
+          extra: request.extra,
+          sendTimeout: request.sendTimeout,
+          receiveTimeout: request.receiveTimeout),
       cancelToken: request.cancelToken,
     );
   }

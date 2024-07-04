@@ -15,11 +15,11 @@ DynamicLoader _$DynamicLoaderFromJson(Map<String, dynamic> json) {
       key: json['key'] as String?,
       backgroundColor: WidgetUtil.getColor(json['backgroundColor'] as String?),
       color: WidgetUtil.getColor(json['color'] as String?),
-      mainAxisAlignment:
-      WidgetUtil.getMainAxisAlignment(json['mainAxisAlignment'] as String?) ??
+      mainAxisAlignment: WidgetUtil.getMainAxisAlignment(
+              json['mainAxisAlignment'] as String?) ??
           MainAxisAlignment.start,
       crossAxisAlignment: WidgetUtil.getCrossAxisAlignment(
-          json['crossAxisAlignment'] as String?) ??
+              json['crossAxisAlignment'] as String?) ??
           CrossAxisAlignment.center,
       loadingText: json['loadingText'] as String? ?? 'Loading',
       style: json['style'] == null
@@ -28,8 +28,10 @@ DynamicLoader _$DynamicLoaderFromJson(Map<String, dynamic> json) {
       value: (json['value'] as num?)?.toDouble(),
       strokeWidth: (json['strokeWidth'] as num?)?.toDouble() ?? 4.0,
       containerColor: WidgetUtil.getColor(json['containerColor'] as String?),
-      containerColorOpacity: (json['containerColorOpacity'] as num?)?.toDouble(),
-      containerHeight: WidgetUtil.getValueOrInf((json['containerHeight'] as num?)?.toDouble()),
-      containerWidth: WidgetUtil.getValueOrInf((json['containerWidth'] as num?)?.toDouble())
-  );
+      containerColorOpacity:
+          (json['containerColorOpacity'] as num?)?.toDouble(),
+      containerHeight: WidgetUtil.getValueOrInf(
+          (json['containerHeight'] as num?)?.toDouble()),
+      containerWidth: WidgetUtil.getValueOrInf(
+          (json['containerWidth'] as num?)?.toDouble()));
 }

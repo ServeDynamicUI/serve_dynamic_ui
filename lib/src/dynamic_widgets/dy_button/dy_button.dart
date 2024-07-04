@@ -55,7 +55,7 @@ class DynamicButton extends DynamicWidget {
     return GestureDetector(
       onTap: () {
         if (action != null) {
-          ActionHandlersRepo.handle(action!, this, context, (value){
+          ActionHandlersRepo.handle(action!, this, context, (value) {
             debugPrint(value.toString());
           });
         }
@@ -92,14 +92,10 @@ class DynamicButton extends DynamicWidget {
   FutureOr invokeMethod(String methodName, {Map<String, dynamic>? params}) {}
 
   @override
-  void postBuild() {
-
-  }
+  void postBuild() {}
 
   @override
-  void preBuild() {
-
-  }
+  void preBuild() {}
 
   @override
   void onDispose() {

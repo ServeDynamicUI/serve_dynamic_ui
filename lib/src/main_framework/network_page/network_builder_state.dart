@@ -29,12 +29,13 @@ class NetworkPageSuccessStatusEvent extends NetworkPageStatusEvent {
   NetworkPageSuccessStatusEvent(this.pageResponse);
 }
 
-class NetworkBuilderState implements DataEventListener{
+class NetworkBuilderState implements DataEventListener {
   final DynamicRequest request;
-  
+
   NetworkBuilderState(this.request);
-  
-  final ValueNotifier<NetworkPageStatusEvent> networkPageStatusNotifier = ValueNotifier(NetworkPagePendingStatusEvent());
+
+  final ValueNotifier<NetworkPageStatusEvent> networkPageStatusNotifier =
+      ValueNotifier(NetworkPagePendingStatusEvent());
 
   List<String> pageRefreshEventList = [];
   bool get isPageCacheEnabled => request.isPageCacheEnabled;
@@ -48,35 +49,37 @@ class NetworkBuilderState implements DataEventListener{
 
   bool isPageRefreshEventsAdded = false;
 
-  void reload(){
+  void reload() {
     fetchPage();
   }
-  
-  void fetchPage() async{
+
+  void fetchPage() async {
     try {
       debugPrint('isPageCacheEnabled: $isPageCacheEnabled');
-      if(isPageCacheEnabled) {
-        bool pageDeletedFromDB = await DbUtil.deleteCachedPageIfOlderThanSetCacheTime(_getPageKeyFromUrl());
-        if(!pageDeletedFromDB) {
+      if (isPageCacheEnabled) {
+        bool pageDeletedFromDB =
+            await DbUtil.deleteCachedPageIfOlderThanSetCacheTime(
+                _getPageKeyFromUrl());
+        if (!pageDeletedFromDB) {
           await _loadPageFromDB();
-        }
-        else{
+        } else {
           _cachedPageJson = null;
-          networkPageStatusNotifier.value = NetworkPagePendingStatusEvent(pageResponse: null);
+          networkPageStatusNotifier.value =
+              NetworkPagePendingStatusEvent(pageResponse: null);
         }
       }
       await _loadPageFromNetwork();
-      if(!isPageRefreshEventsAdded) {
+      if (!isPageRefreshEventsAdded) {
         initScreenEventsIfAny(_cachedPageJson);
       }
-    } on Exception catch(e){
+    } on Exception catch (e) {
       bool fetchedFromDB = await _loadPageFromDB();
-      if(!fetchedFromDB){
+      if (!fetchedFromDB) {
         networkPageStatusNotifier.value = NetworkPageFailureStatusEvent(e);
         debugPrint('Unable to fetch from network');
-      }
-      else{
-        networkPageStatusNotifier.value = NetworkPageSuccessStatusEvent(_cachedPageJson);
+      } else {
+        networkPageStatusNotifier.value =
+            NetworkPageSuccessStatusEvent(_cachedPageJson);
         debugPrint('Loading page from db due to error.');
       }
     } finally {
@@ -85,61 +88,73 @@ class NetworkBuilderState implements DataEventListener{
     }
   }
 
-  Future<bool> _loadPageFromDB() async{
+  Future<bool> _loadPageFromDB() async {
     try {
-      if(isPageCacheEnabled){
-        if(_cachedPageJson == null){
+      if (isPageCacheEnabled) {
+        if (_cachedPageJson == null) {
           PageEntity? cachedPageEntity = await _getPageDataFromDB();
-          if(Util.isValid(cachedPageEntity)){
-            _cachedPageJson= jsonDecode((cachedPageEntity!.page));
+          if (Util.isValid(cachedPageEntity)) {
+            _cachedPageJson = jsonDecode((cachedPageEntity!.page));
             debugPrint('Loaded page from db');
           }
         }
-        networkPageStatusNotifier.value = NetworkPagePendingStatusEvent(pageResponse: _cachedPageJson);
+        networkPageStatusNotifier.value =
+            NetworkPagePendingStatusEvent(pageResponse: _cachedPageJson);
       }
       return _cachedPageJson != null;
-    } catch(e){
+    } catch (e) {
       debugPrint("Unable to fetch page from DB");
       return false;
     }
   }
 
-  Future<void> _loadPageFromNetwork() async{
+  Future<void> _loadPageFromNetwork() async {
     _cancelToken = CancelToken();
     request.cancelToken = _cancelToken;
     Response? pageResponse = await NetworkHandler.getJsonFromRequest(request);
     String pageDataString = pageResponse!.data.toString();
     _cachedPageJson = jsonDecode(pageDataString);
     _insertPageInDBIfEnabled(pageDataString, _cachedPageJson);
-    networkPageStatusNotifier.value = NetworkPageSuccessStatusEvent(_cachedPageJson);
+    networkPageStatusNotifier.value =
+        NetworkPageSuccessStatusEvent(_cachedPageJson);
   }
 
-  void _insertPageInDBIfEnabled(String pageDataString, Map<String, dynamic>? pageResponseJson) async{
-    if(isPageCacheEnabled) {
-      ServeDynamicUIDatabase serveDynamicUIDatabase = await ServeDynamicUIDatabaseProvider.instance.database;
-      serveDynamicUIDatabase.cachedPageDao.insertCachedPage(PageEntity(_getPageKeyFromUrl(), pageDataString, DateTime.now().millisecondsSinceEpoch));
+  void _insertPageInDBIfEnabled(
+      String pageDataString, Map<String, dynamic>? pageResponseJson) async {
+    if (isPageCacheEnabled) {
+      ServeDynamicUIDatabase serveDynamicUIDatabase =
+          await ServeDynamicUIDatabaseProvider.instance.database;
+      serveDynamicUIDatabase.cachedPageDao.insertCachedPage(PageEntity(
+          _getPageKeyFromUrl(),
+          pageDataString,
+          DateTime.now().millisecondsSinceEpoch));
     }
   }
 
-  Future<PageEntity?> _getPageDataFromDB() async{
-    ServeDynamicUIDatabase serveDynamicUIDatabase = await ServeDynamicUIDatabaseProvider.instance.database;
-    return await serveDynamicUIDatabase.cachedPageDao.findCachedPageByPageKey(_getPageKeyFromUrl());
+  Future<PageEntity?> _getPageDataFromDB() async {
+    ServeDynamicUIDatabase serveDynamicUIDatabase =
+        await ServeDynamicUIDatabaseProvider.instance.database;
+    return await serveDynamicUIDatabase.cachedPageDao
+        .findCachedPageByPageKey(_getPageKeyFromUrl());
   }
 
   void _deleteCachedPages() async {
-    ServeDynamicUIDatabase serveDynamicUIDatabase = await ServeDynamicUIDatabaseProvider.instance.database;
+    ServeDynamicUIDatabase serveDynamicUIDatabase =
+        await ServeDynamicUIDatabaseProvider.instance.database;
     serveDynamicUIDatabase.cachedPageDao.deleteAllCachedPages();
   }
 
-  String _getPageKeyFromUrl(){
+  String _getPageKeyFromUrl() {
     String url = request.url;
     var bytes = utf8.encode(url);
     return sha256.convert(bytes).toString();
   }
 
   void initScreenEventsIfAny(Map<String, dynamic>? screenJson) {
-    if (Util.isValidList<dynamic>(screenJson?[Strings.data][Strings.pageRefreshEvents])) {
-      List<String> eventList = screenJson?[Strings.data][Strings.pageRefreshEvents].cast<String>();
+    if (Util.isValidList<dynamic>(
+        screenJson?[Strings.data][Strings.pageRefreshEvents])) {
+      List<String> eventList =
+          screenJson?[Strings.data][Strings.pageRefreshEvents].cast<String>();
       pageRefreshEventList = eventList;
       for (var event in pageRefreshEventList) {
         debugPrint('adding data event listener for $event');
@@ -149,13 +164,13 @@ class NetworkBuilderState implements DataEventListener{
     }
   }
 
-  void cancelNetworkPageRequest(){
-    if(Util.isValid(_cancelToken) && _cancelToken!.isCancelled){
+  void cancelNetworkPageRequest() {
+    if (Util.isValid(_cancelToken) && _cancelToken!.isCancelled) {
       _cancelToken!.cancel();
     }
   }
 
-  void onDispose(){
+  void onDispose() {
     cancelNetworkPageRequest();
     disposeScreenEventsIfAny();
   }
@@ -168,7 +183,7 @@ class NetworkBuilderState implements DataEventListener{
     isPageRefreshEventsAdded = false;
   }
 
-  void assignNetworkStateChild(DynamicProvider dyProvider){
+  void assignNetworkStateChild(DynamicProvider dyProvider) {
     _child = dyProvider;
   }
 

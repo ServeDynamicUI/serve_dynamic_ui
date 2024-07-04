@@ -17,6 +17,7 @@ DynamicShimmerButton _$DynamicShimmerButtonFromJson(Map<String, dynamic> json) {
     height: (json['height'] as num?)?.toDouble(),
     buttonBorderRadius: (json['buttonBorderRadius'] as num?)?.toDouble(),
     shimmerBaseColor: WidgetUtil.getColor(json['shimmerBaseColor'] as String?),
-    shimmerHighlightColor: WidgetUtil.getColor(json['shimmerHighlightColor'] as String?),
+    shimmerHighlightColor:
+        WidgetUtil.getColor(json['shimmerHighlightColor'] as String?),
   );
 }

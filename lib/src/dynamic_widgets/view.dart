@@ -11,8 +11,8 @@ class DynamicView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    DynamicWidget? widget =  child;
-    if(child == null){
+    DynamicWidget? widget = child;
+    if (child == null) {
       widget = DynamicWidget.fromJson(json!);
     }
 

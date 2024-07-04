@@ -3,7 +3,6 @@ import 'package:serve_dynamic_ui/serve_dynamic_ui.dart';
 
 /// An action handler that helps you update a dynamic widget based on the widget key.
 class UpdateWidgetActionHandler extends ActionHandler {
-
   ///action to update the widget based on the passed key.
   @override
   void handleAction(BuildContext? context, Uri action,

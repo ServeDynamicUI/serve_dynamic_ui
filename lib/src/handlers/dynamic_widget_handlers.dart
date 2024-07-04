@@ -11,7 +11,6 @@ import '../dynamic_widgets/dy_row/shimmer/dy_shimmer_row.dart';
 
 ///[DynamicWidgetHandlers] helps to register all the handlers
 class DynamicWidgetHandlers {
-
   ///initialize all the default and custom DynamicWidgetHandlers.
   static init({Map<String, DynamicWidgetHandler>? handlers}) {
     DynamicWidgetHandlerRepo.addDynamicWidgetHandler(
@@ -42,8 +41,7 @@ class DynamicWidgetHandlers {
         Strings.dyImage, (json) => DynamicImage.fromJson(json));
     DynamicWidgetHandlerRepo.addDynamicWidgetHandler(
         Strings.dyCard, (json) => DynamicCard.fromJson(json));
-    DynamicWidgetHandlerRepo.addDynamicWidgetHandler(
-        Strings.dyGestureDetector,
+    DynamicWidgetHandlerRepo.addDynamicWidgetHandler(Strings.dyGestureDetector,
         (json) => DynamicGestureDetector.fromJson(json));
     DynamicWidgetHandlerRepo.addDynamicWidgetHandler(
         Strings.dySizedBox, (json) => DynamicSizedBox.fromJson(json));

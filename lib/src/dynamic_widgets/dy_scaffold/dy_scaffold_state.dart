@@ -26,7 +26,7 @@ class PageProgressEvent extends PageDataEvent {
   PageProgressEvent(super.children);
 }
 
-class DyScaffoldState extends ScrollListener{
+class DyScaffoldState extends ScrollListener {
   String? nextUrl;
   DynamicScaffold _parent;
   late bool _isFetchingPageInProgress;
@@ -35,37 +35,40 @@ class DyScaffoldState extends ScrollListener{
 
   bool get isFetchingPageInProgress => _isFetchingPageInProgress;
 
-  DyScaffoldState(this.nextUrl, this._parent){
+  DyScaffoldState(this.nextUrl, this._parent) {
     DynamicListeners.addListener(_parent.key, this);
     _isFetchingPageInProgress = false;
-    pageDataEventNotifier = ValueNotifier(PageSuccessEvent(_parent.childWidgets));
+    pageDataEventNotifier =
+        ValueNotifier(PageSuccessEvent(_parent.childWidgets));
     showPaginatedLoaderOnTopNotifier = ValueNotifier(_isFetchingPageInProgress);
   }
 
-
-  _fetch() async{
-    try{
-      if(_isFetchingPageInProgress == false && StringUtil.isNotEmptyNorNull(nextUrl)){
+  _fetch() async {
+    try {
+      if (_isFetchingPageInProgress == false &&
+          StringUtil.isNotEmptyNorNull(nextUrl)) {
         _isFetchingPageInProgress = true;
         showPaginatedLoaderOnTopNotifier.value = _isFetchingPageInProgress;
         await Future.delayed(const Duration(seconds: 1));
-        pageDataEventNotifier.value = PageProgressEvent(pageDataEventNotifier.value.children);
+        pageDataEventNotifier.value =
+            PageProgressEvent(pageDataEventNotifier.value.children);
         Map<String, dynamic> jsonResponse = {};
 
-        if(StringUtil.isUrlAssetPath(nextUrl!)){
+        if (StringUtil.isUrlAssetPath(nextUrl!)) {
           jsonResponse = await WidgetUtil.loadJson(nextUrl!);
-        }
-        else{
-          jsonResponse = jsonDecode(
-              (await NetworkHandler.getJsonFromRequest(
-                  DynamicRequest(url: nextUrl!, requestType: RequestType.get)
-              )
-              )?.data?.toString() ?? '');
+        } else {
+          jsonResponse = jsonDecode((await NetworkHandler.getJsonFromRequest(
+                      DynamicRequest(
+                          url: nextUrl!, requestType: RequestType.get)))
+                  ?.data
+                  ?.toString() ??
+              '');
         }
 
         List<DynamicWidget> newChildren = [];
 
-        List<Map<String, dynamic>>? newChildrenMap = List.from(jsonResponse['children'] as Iterable<dynamic>);
+        List<Map<String, dynamic>>? newChildrenMap =
+            List.from(jsonResponse['children'] as Iterable<dynamic>);
 
         for (var child in newChildrenMap) {
           newChildren.add(DynamicWidget.fromJson(child)..parent = _parent);
@@ -73,15 +76,17 @@ class DyScaffoldState extends ScrollListener{
 
         nextUrl = jsonResponse['nextUrl'] ?? '';
         pageDataEventNotifier.value.children?.addAll(newChildren);
-        pageDataEventNotifier.value = PageSuccessEvent(pageDataEventNotifier.value.children);
+        pageDataEventNotifier.value =
+            PageSuccessEvent(pageDataEventNotifier.value.children);
 
         _isFetchingPageInProgress = false;
         showPaginatedLoaderOnTopNotifier.value = _isFetchingPageInProgress;
       }
-    } on Exception catch(e){
+    } on Exception catch (e) {
       _isFetchingPageInProgress = false;
       showPaginatedLoaderOnTopNotifier.value = _isFetchingPageInProgress;
-      pageDataEventNotifier.value = PageErrorEvent(pageDataEventNotifier.value.children, e);
+      pageDataEventNotifier.value =
+          PageErrorEvent(pageDataEventNotifier.value.children, e);
     }
   }
 
@@ -98,6 +103,7 @@ class DyScaffoldState extends ScrollListener{
 
   @override
   void onScrolledToStart(String? widgetKey) {
-    debugPrint('dy_scaffold ${_parent.pageTitle}  onScrolledToStart $widgetKey');
+    debugPrint(
+        'dy_scaffold ${_parent.pageTitle}  onScrolledToStart $widgetKey');
   }
 }

@@ -6,7 +6,6 @@ import 'package:serve_dynamic_ui/src/dtos/index.dart';
 import 'package:serve_dynamic_ui/src/utils/index.dart';
 import '../../dynamic_widgets/index.dart';
 
-
 part 'input_decoration_dto.g.dart';
 
 ///[InputDecorationDTO] : dto which holds properties required in an Input Decoration Widget.
@@ -88,17 +87,15 @@ class InputDecorationDTO {
       ),
       helperText: helperText,
       helperStyle: helperStyle?.textStyle,
-      icon: (icon == null)
-          ? null
-          : icon!.build(context),
-      suffixIcon: (suffixIcon == null)
-          ? null
-          : suffixIcon!.build(context),
+      icon: (icon == null) ? null : icon!.build(context),
+      suffixIcon: (suffixIcon == null) ? null : suffixIcon!.build(context),
       enabledBorder: UnderlineInputBorder(
-        borderSide: BorderSide(color: enableBorderColor ?? const Color(0xFF000000)),
+        borderSide:
+            BorderSide(color: enableBorderColor ?? const Color(0xFF000000)),
       ),
       focusedBorder: UnderlineInputBorder(
-        borderSide: BorderSide(color: focusBorderColor ?? const Color(0xFF000000)),
+        borderSide:
+            BorderSide(color: focusBorderColor ?? const Color(0xFF000000)),
       ),
       border: UnderlineInputBorder(
         borderSide: BorderSide(color: borderColor ?? const Color(0xFF000000)),

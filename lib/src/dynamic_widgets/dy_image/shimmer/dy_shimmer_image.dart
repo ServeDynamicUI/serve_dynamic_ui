@@ -45,20 +45,20 @@ class DynamicShimmerImage extends DynamicWidget {
             Image.asset(
               placeholderImagePath,
               fit: fit ?? BoxFit.cover,
-              width:  width ?? 300,
+              width: width ?? 300,
               height: height ?? 200,
             ),
             // Shimmer overlay
             Shimmer.fromColors(
               baseColor: shimmerBaseColor ?? Colors.transparent,
-              highlightColor: shimmerHighlightColor ?? Colors.white.withOpacity(0.5),
+              highlightColor:
+                  shimmerHighlightColor ?? Colors.white.withOpacity(0.5),
               child: Container(
-                width:  width,
+                width: width,
                 height: height,
                 decoration: BoxDecoration(
                     color: Colors.white.withOpacity(0.2),
-                  borderRadius: BorderRadius.circular(clipBorderRadius ?? 0)
-                ),
+                    borderRadius: BorderRadius.circular(clipBorderRadius ?? 0)),
               ),
             ),
           ],

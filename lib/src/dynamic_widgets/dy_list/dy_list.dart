@@ -18,22 +18,20 @@ class DynamicList extends DynamicWidget {
   List<DynamicWidget>? listItems;
   DynamicWidget? separator;
 
-  DynamicList({
-    required super.key,
-    this.isVertical = true,
-    this.listItems,
-    this.separator,
-    this.shrinkWrap = false,
-    this.isScrollable = true
-  });
+  DynamicList(
+      {required super.key,
+      this.isVertical = true,
+      this.listItems,
+      this.separator,
+      this.shrinkWrap = false,
+      this.isScrollable = true});
 
   factory DynamicList.fromJson(Map<String, dynamic> json) =>
       _$DynamicListFromJson(json);
 
-
   @override
   Widget build(BuildContext context) {
-    if(listItems == null || listItems!.isEmpty){
+    if (listItems == null || listItems!.isEmpty) {
       return const SizedBox.shrink();
     }
     return ListViewWidget(
@@ -53,18 +51,13 @@ class DynamicList extends DynamicWidget {
   FutureOr invokeMethod(String methodName, {Map<String, dynamic>? params}) {}
 
   @override
-  void postBuild() {
-
-  }
+  void postBuild() {}
 
   @override
-  void preBuild() {
-
-  }
+  void preBuild() {}
 
   @override
   void onDispose() {
     WidgetUtil.callOnDisposeOnWidgets(listItems);
   }
-
 }

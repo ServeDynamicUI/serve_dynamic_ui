@@ -3,7 +3,6 @@ import 'package:serve_dynamic_ui/src/constants/index.dart';
 
 ///[DynamicNavigator] is a class to navigate between dynamic screens.
 abstract class DynamicNavigator {
-
   ///navigate to a dynamic screen or a static screen
   static Future<dynamic>? navigate<T extends Object?>({
     required BuildContext context,

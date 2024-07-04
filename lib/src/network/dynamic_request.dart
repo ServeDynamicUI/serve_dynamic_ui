@@ -17,9 +17,12 @@ class DynamicRequest {
   Duration? sendTimeout;
   Duration? receiveTimeout;
   bool get isPageCacheEnabled {
-    try{
-      return Uri.parse(url).queryParameters[Strings.isPageCacheEnabled]?.parseBool() ?? false;
-    } on Exception catch(e){
+    try {
+      return Uri.parse(url)
+              .queryParameters[Strings.isPageCacheEnabled]
+              ?.parseBool() ??
+          false;
+    } on Exception catch (e) {
       return false;
     }
   }
@@ -36,7 +39,6 @@ class DynamicRequest {
     this.sendTimeout,
     this.receiveTimeout,
   });
-
 }
 
 ///extension to convert to RequestType from string.

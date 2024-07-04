@@ -3,7 +3,6 @@ import 'package:serve_dynamic_ui/src/db/entities/PageEntity.dart';
 
 @dao
 abstract class CachedPageDao {
-
   @Insert(onConflict: OnConflictStrategy.replace)
   Future<void> insertCachedPage(PageEntity pageEntity);
 
@@ -13,10 +12,12 @@ abstract class CachedPageDao {
   @Query('SELECT * FROM ServeDynamicUI_CachedPage WHERE pageKey = :pageKey')
   Future<PageEntity?> findCachedPageByPageKey(String pageKey);
 
-  @Query('DELETE FROM ServeDynamicUI_CachedPage WHERE pageKey in (SELECT pageKey FROM ServeDynamicUI_CachedPage WHERE updatedAt < :time)')
+  @Query(
+      'DELETE FROM ServeDynamicUI_CachedPage WHERE pageKey in (SELECT pageKey FROM ServeDynamicUI_CachedPage WHERE updatedAt < :time)')
   Future<int?> deleteCachedPagesOlderThanTime(int time);
 
-  @Query('DELETE FROM ServeDynamicUI_CachedPage WHERE pageKey = :pageKey AND updatedAt < :time')
+  @Query(
+      'DELETE FROM ServeDynamicUI_CachedPage WHERE pageKey = :pageKey AND updatedAt < :time')
   Future<int?> deleteCachedPageIfOlderThanTime(String pageKey, int time);
 
   @Query('DELETE FROM ServeDynamicUI_CachedPage')

@@ -124,9 +124,11 @@ class DynamicTabView extends DynamicWidget {
           DynamicRequest(url: tab.pageUrl!, requestType: RequestType.get),
         );
       } else {
-        String requestType = uri.queryParameters[Strings.requestType] ?? Strings.get;
+        String requestType =
+            uri.queryParameters[Strings.requestType] ?? Strings.get;
         return ServeDynamicUI.fromNetwork(DynamicRequest(
-            url: tab.pageUrl!, requestType: requestType.requestTypeFromString()));
+            url: tab.pageUrl!,
+            requestType: requestType.requestTypeFromString()));
       }
     } else {
       return SingleChildScrollView(
@@ -163,18 +165,14 @@ class DynamicTabView extends DynamicWidget {
   FutureOr invokeMethod(String methodName, {Map<String, dynamic>? params}) {}
 
   @override
-  void postBuild() {
-
-  }
+  void postBuild() {}
 
   @override
-  void preBuild() {
-
-  }
+  void preBuild() {}
 
   @override
   void onDispose() {
-    tabs?.forEach((tab){
+    tabs?.forEach((tab) {
       WidgetUtil.callOnDisposeOnWidget(tab.child);
     });
   }

@@ -12,25 +12,24 @@ DynamicScaffold _$DynamicScaffoldFromJson(Map<String, dynamic> json) {
     requiredKeys: const ['key'],
   );
 
-
   return DynamicScaffold(
     key: json['key'] as String,
     children: json['children'] == null
         ? null
         : (json['children'] as List<dynamic>?)
-        ?.map((e) => DynamicWidget.fromJson(e as Map<String, dynamic>))
-        .toList(),
+            ?.map((e) => DynamicWidget.fromJson(e as Map<String, dynamic>))
+            .toList(),
     leftActions: json['leftActions'] == null
         ? null
         : (json['leftActions'] as List<dynamic>?)
-        ?.map((e) => DynamicWidget.fromJson(e as Map<String, dynamic>))
-        .toList(),
+            ?.map((e) => DynamicWidget.fromJson(e as Map<String, dynamic>))
+            .toList(),
     leftActionsWidth: (json['leftActionsWidth'] as num?)?.toDouble(),
     rightActions: json['rightActions'] == null
         ? null
         : (json['rightActions'] as List<dynamic>?)
-        ?.map((e) => DynamicWidget.fromJson(e as Map<String, dynamic>))
-        .toList(),
+            ?.map((e) => DynamicWidget.fromJson(e as Map<String, dynamic>))
+            .toList(),
     pageTitle: json['pageTitle'] as String?,
     floatingActionWidget: json['floatingActionWidget'] == null
         ? null
@@ -44,7 +43,8 @@ DynamicScaffold _$DynamicScaffoldFromJson(Map<String, dynamic> json) {
     scrollable: json['scrollable'] as bool? ?? true,
     centerPageTitle: json['centerPageTitle'] as bool? ?? true,
     paginated: json['paginated'] as bool? ?? false,
-    showPaginatedLoaderOnTop: json['showPaginatedLoaderOnTop'] as bool? ?? false,
+    showPaginatedLoaderOnTop:
+        json['showPaginatedLoaderOnTop'] as bool? ?? false,
     primary: json['primary'] as bool? ?? true,
     extendBody: json['extendBody'] as bool? ?? false,
     drawerEnableOpenDragGesture:
@@ -57,9 +57,9 @@ DynamicScaffold _$DynamicScaffoldFromJson(Map<String, dynamic> json) {
     paginatedLoaderWidget: json['paginatedLoaderWidget'] == null
         ? null
         : DynamicWidget.fromJson(
-        json['paginatedLoaderWidget'] as Map<String, dynamic>),
+            json['paginatedLoaderWidget'] as Map<String, dynamic>),
     crossAxisAlignment: WidgetUtil.getCrossAxisAlignment(
-        json['crossAxisAlignment'] as String?) ??
+            json['crossAxisAlignment'] as String?) ??
         CrossAxisAlignment.center,
     padding: WidgetUtil.getEdgeInsets(json['padding'] as String?),
     margin: WidgetUtil.getEdgeInsets(json['margin'] as String?),

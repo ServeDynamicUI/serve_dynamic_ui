@@ -4,7 +4,6 @@ import 'package:flutter/material.dart';
 import 'package:json_annotation/json_annotation.dart';
 import 'package:serve_dynamic_ui/serve_dynamic_ui.dart';
 
-
 part 'dy_container.g.dart';
 
 ///[DynamicContainer] : A dynamic widget that creates a container to hold child widget.
@@ -91,14 +90,10 @@ class DynamicContainer extends DynamicWidget {
   FutureOr invokeMethod(String methodName, {Map<String, dynamic>? params}) {}
 
   @override
-  void postBuild() {
-
-  }
+  void postBuild() {}
 
   @override
-  void preBuild() {
-
-  }
+  void preBuild() {}
 
   @override
   void onDispose() {

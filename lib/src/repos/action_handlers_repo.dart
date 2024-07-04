@@ -35,7 +35,7 @@ class ActionHandlersRepo {
   ///tries to get an action handler to handle a specific handle.
   static void handle(ActionDTO? actionDTO, DynamicWidget widget,
       BuildContext context, OnHandledAction? onHandledAction) {
-    if(actionDTO == null){
+    if (actionDTO == null) {
       return;
     }
     bool hasMatched = false;
@@ -64,9 +64,9 @@ class ActionHandlersRepo {
         Navigator.of(context).popUntil((route) => route.isFirst);
       } else if (popStrategy == PopAndNavigateStrategy.popCurrent.name) {
         Navigator.pop(context, null);
-      } else if(popStrategy == PopAndNavigateStrategy.popUntilScreen.name) {
+      } else if (popStrategy == PopAndNavigateStrategy.popUntilScreen.name) {
         String? screenName = uri.queryParameters[Strings.screenName];
-        if(StringUtil.isNotEmptyNorNull(screenName)) {
+        if (StringUtil.isNotEmptyNorNull(screenName)) {
           Navigator.of(context).popUntil(ModalRoute.withName(screenName!));
         }
       }

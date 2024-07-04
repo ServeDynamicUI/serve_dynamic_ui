@@ -56,10 +56,12 @@ class _MyHomePageState extends State<MyHomePage> {
       home: (context) {
         return ServeDynamicUI.fromNetwork(
           DynamicRequest(
-            url: 'https://raw.githubusercontent.com/ServeDynamicUI/serve_dynamic_ui/page-caching-support/example/assets/json/sample.json?isPageCacheEnabled=true',
+            url:
+                'https://raw.githubusercontent.com/ServeDynamicUI/serve_dynamic_ui/page-caching-support/example/assets/json/sample.json?isPageCacheEnabled=true',
             requestType: RequestType.get,
           ),
-          templateJsonPath: 'assets/json/shimmer_pages/default_page_shimmer.json',
+          templateJsonPath:
+              'assets/json/shimmer_pages/default_page_shimmer.json',
         );
       },
       title: 'Flutter Demo',

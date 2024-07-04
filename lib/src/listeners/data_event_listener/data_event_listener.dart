@@ -1,4 +1,3 @@
-
 import 'package:serve_dynamic_ui/src/listeners/index.dart';
 
 abstract class DataEventListener {
@@ -6,25 +5,28 @@ abstract class DataEventListener {
 }
 
 class DataEventListeners extends DynamicListeners {
-
   static final Map<String, List<DataEventListener>> _dataEventListeners = {};
 
   ///to add a data event change listener
-  static void addDataEventListener(String dataEventKey, DataEventListener dataEventListener) {
+  static void addDataEventListener(
+      String dataEventKey, DataEventListener dataEventListener) {
     _dataEventListeners.putIfAbsent(dataEventKey, () => []);
-    if(!_dataEventListeners[dataEventKey]!.contains(dataEventListener)){
+    if (!_dataEventListeners[dataEventKey]!.contains(dataEventListener)) {
       _dataEventListeners[dataEventKey]?.add(dataEventListener);
     }
   }
 
   ///to add data event change listeners in a list.
-  static void addAllDataEventListener(Map<String, List<DataEventListener>> dataEventListeners) {
+  static void addAllDataEventListener(
+      Map<String, List<DataEventListener>> dataEventListeners) {
     _dataEventListeners.addAll(dataEventListeners);
   }
 
   ///to remove a data event change listener based on its key
-  static bool removeDataEventListener(String dataEventKey, DataEventListener dataEventListener) {
-    return _dataEventListeners[dataEventKey]?.remove(dataEventListener) ?? false;
+  static bool removeDataEventListener(
+      String dataEventKey, DataEventListener dataEventListener) {
+    return _dataEventListeners[dataEventKey]?.remove(dataEventListener) ??
+        false;
   }
 
   ///to call onDataEvent callback in all listeners.

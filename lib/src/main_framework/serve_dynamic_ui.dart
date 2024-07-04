@@ -11,29 +11,28 @@ class ServeDynamicUI {
   static init(
       {Dio? dio,
       Map<RegExp, ActionHandler>? actionHandlers,
-      Map<String, DynamicWidgetHandler>? widgetHandlers}) async{
-    try{
+      Map<String, DynamicWidgetHandler>? widgetHandlers}) async {
+    try {
       DynamicWidgetHandlers.init(handlers: widgetHandlers);
       ActionHandlersRepo.init(actionHandlers: actionHandlers);
-      await Util.setPageCacheTime(const String.fromEnvironment(Strings.pageCacheKeepTime));
-      DbUtil.deleteCachedPagesOlderThanSetCacheTime().then((delete)=>{
-        debugPrint('deleted cached pages? $delete')
-      });
+      await Util.setPageCacheTime(
+          const String.fromEnvironment(Strings.pageCacheKeepTime));
+      DbUtil.deleteCachedPagesOlderThanSetCacheTime()
+          .then((delete) => {debugPrint('deleted cached pages? $delete')});
       NetworkHandler.init(dio ?? Dio());
-    } catch(e) {
+    } catch (e) {
       debugPrint('Some error occured $e');
     }
   }
 
   ///this is a method helps to create [DynamicWidget] from fetched asset json.
-  static Widget fromAssets(
-      String assetPath,{
-        ShowLoaderWidgetBuilder? showLoaderWidgetBuilder,
-        ShowErrorWidgetBuilder? showErrorWidgetBuilder,
-        Map<String, String>? assetJsonValueReplacer
-      }) {
+  static Widget fromAssets(String assetPath,
+      {ShowLoaderWidgetBuilder? showLoaderWidgetBuilder,
+      ShowErrorWidgetBuilder? showErrorWidgetBuilder,
+      Map<String, String>? assetJsonValueReplacer}) {
     return FutureBuilder<Map<String, dynamic>>(
-      future: WidgetUtil.loadJson(assetPath, assetJsonValueReplacer: assetJsonValueReplacer),
+      future: WidgetUtil.loadJson(assetPath,
+          assetJsonValueReplacer: assetJsonValueReplacer),
       builder: (context, snapshot) {
         switch (snapshot.connectionState) {
           case ConnectionState.waiting:

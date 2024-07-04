@@ -18,18 +18,18 @@ class DynamicShimmerCard extends DynamicCard {
   Color? shimmerHighlightColor;
   bool shimmerEnabled;
 
-  DynamicShimmerCard({
-    String? key,
-    this.shimmerBaseColor,
-    this.shimmerHighlightColor,
-    this.shimmerEnabled = true,
-    super.child,
-    super.borderRadius,
-    super.height,
-    super.width
-  }) : super(
-    key: key ?? "",
-  );
+  DynamicShimmerCard(
+      {String? key,
+      this.shimmerBaseColor,
+      this.shimmerHighlightColor,
+      this.shimmerEnabled = true,
+      super.child,
+      super.borderRadius,
+      super.height,
+      super.width})
+      : super(
+          key: key ?? "",
+        );
 
   factory DynamicShimmerCard.fromJson(Map<String, dynamic> json) =>
       _$DynamicShimmerCardFromJson(json);
@@ -42,7 +42,8 @@ class DynamicShimmerCard extends DynamicCard {
       baseColor: shimmerBaseColor ?? Colors.grey[300]!,
       highlightColor: shimmerHighlightColor ?? Colors.grey[100]!,
       child: cardContent,
-    );;
+    );
+    ;
   }
 
   @override

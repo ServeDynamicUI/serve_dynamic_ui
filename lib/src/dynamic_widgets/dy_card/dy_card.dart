@@ -69,9 +69,8 @@ class DynamicCard extends DynamicWidget {
         height: height,
         width: width,
         decoration: BoxDecoration(
-          gradient: linearGradient,
-          borderRadius: BorderRadius.circular(borderRadius ?? 5)
-        ),
+            gradient: linearGradient,
+            borderRadius: BorderRadius.circular(borderRadius ?? 5)),
         child: child?.build(context),
       ),
     );
@@ -84,14 +83,10 @@ class DynamicCard extends DynamicWidget {
   FutureOr invokeMethod(String methodName, {Map<String, dynamic>? params}) {}
 
   @override
-  void postBuild() {
-
-  }
+  void postBuild() {}
 
   @override
-  void preBuild() {
-
-  }
+  void preBuild() {}
 
   @override
   void onDispose() {

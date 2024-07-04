@@ -6,7 +6,8 @@ part of 'dy_shimmer_widget_card.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-DynamicShimmerWidgetCard _$DynamicWidgetCardFromJson(Map<String, dynamic> json) {
+DynamicShimmerWidgetCard _$DynamicWidgetCardFromJson(
+    Map<String, dynamic> json) {
   $checkKeys(
     json,
     requiredKeys: const ['key'],

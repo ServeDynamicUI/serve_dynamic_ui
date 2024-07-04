@@ -137,10 +137,10 @@ class DynamicScaffold extends DynamicWidget implements FormWidget {
         extendBodyBehindAppBar: extendBodyBehindAppBar,
         endDrawerEnableOpenDragGesture: endDrawerEnableOpenDragGesture,
       ),
-      onDispose: (){
+      onDispose: () {
         onDispose();
       },
-      onInit: (){},
+      onInit: () {},
     );
   }
 
@@ -397,8 +397,9 @@ class DynamicScaffold extends DynamicWidget implements FormWidget {
 
   @override
   void onDispose() {
-    DynamicProvider? dynamicProvider = WidgetResolver.getTopAncestorOfType<DynamicProvider>(this);
-    if(Util.isValid(dynamicProvider)){
+    DynamicProvider? dynamicProvider =
+        WidgetResolver.getTopAncestorOfType<DynamicProvider>(this);
+    if (Util.isValid(dynamicProvider)) {
       _scrollController.removeListener(_scrollListener);
       dynamicProvider?.deleteStateByKey(key);
       dynamicProvider?.deleteControllerByKey(key);

@@ -79,10 +79,7 @@ class SingleTabView extends StatelessWidget {
     return Text(
       title!,
       textAlign: TextAlign.center,
-      style: TextStyle(
-        color: labelColor,
-        fontWeight: FontWeight.w500
-      ),
+      style: TextStyle(color: labelColor, fontWeight: FontWeight.w500),
     );
   }
 

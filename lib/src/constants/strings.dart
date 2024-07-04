@@ -1,5 +1,4 @@
 class Strings {
-  
   ///json keys
   static const type = 'type';
   static const data = 'data';
@@ -7,7 +6,7 @@ class Strings {
   static const pageRefreshEvents = "pageRefreshEvents";
   static const isPageCacheEnabled = "isPageCacheEnabled";
   static const pageCacheKeepTime = "PAGE_CACHE_KEEP_TIME_IN_SEC";
-  
+
   ///extras
   static const widget = 'widget';
   static const invalidInputValues = 'invalid input values';
@@ -30,7 +29,7 @@ class Strings {
   static const scrollController = 'scrollController';
   static const autoScrollController = 'autoScrollController';
   static const textController = 'textController';
-  
+
   ///Action Method Name
   static const updateText = 'UPDATE_TEXT';
 

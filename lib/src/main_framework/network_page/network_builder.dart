@@ -9,14 +9,13 @@ class NetworkBuilder extends StatefulWidget {
   final ShowErrorWidgetBuilder? showErrorWidgetBuilder;
   final bool isPageCacheEnabled;
 
-  const NetworkBuilder({
-    super.key,
-    required this.request,
-    this.templateJsonPath,
-    this.showLoaderWidgetBuilder,
-    this.showErrorWidgetBuilder,
-    this.isPageCacheEnabled = false
-  });
+  const NetworkBuilder(
+      {super.key,
+      required this.request,
+      this.templateJsonPath,
+      this.showLoaderWidgetBuilder,
+      this.showErrorWidgetBuilder,
+      this.isPageCacheEnabled = false});
 
   @override
   State<NetworkBuilder> createState() => _NetworkBuilderState();
@@ -37,9 +36,10 @@ class _NetworkBuilderState extends State<NetworkBuilder> {
     return ValueListenableBuilder(
       valueListenable: _networkBuilderState.networkPageStatusNotifier,
       builder: (ctx, networkStatus, _) {
-        if(networkStatus is NetworkPagePendingStatusEvent){
-          if(Util.isValid(networkStatus.pageResponse)){
-            return WidgetUtil.fromJson(networkStatus.pageResponse, context, networkState: _networkBuilderState) ??
+        if (networkStatus is NetworkPagePendingStatusEvent) {
+          if (Util.isValid(networkStatus.pageResponse)) {
+            return WidgetUtil.fromJson(networkStatus.pageResponse, context,
+                    networkState: _networkBuilderState) ??
                 const SizedBox.shrink();
           }
           if (widget.showLoaderWidgetBuilder != null) {
@@ -49,13 +49,13 @@ class _NetworkBuilderState extends State<NetworkBuilder> {
           if (StringUtil.isNotEmptyNorNull(widget.templateJsonPath)) {
             return ServeDynamicUI.fromAssets(widget.templateJsonPath!);
           }
-        }
-        else if(networkStatus is NetworkPageSuccessStatusEvent){
-          return WidgetUtil.fromJson(networkStatus.pageResponse, context, networkState: _networkBuilderState) ??
+        } else if (networkStatus is NetworkPageSuccessStatusEvent) {
+          return WidgetUtil.fromJson(networkStatus.pageResponse, context,
+                  networkState: _networkBuilderState) ??
               const SizedBox.shrink();
-        }
-        else if(networkStatus is NetworkPageFailureStatusEvent){
-          final dyWidget = widget.showErrorWidgetBuilder!(context, networkStatus.error);
+        } else if (networkStatus is NetworkPageFailureStatusEvent) {
+          final dyWidget =
+              widget.showErrorWidgetBuilder!(context, networkStatus.error);
           return dyWidget?.build(context) ?? const SizedBox.shrink();
         }
         return Container(color: Colors.white);

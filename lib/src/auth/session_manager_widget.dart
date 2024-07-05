@@ -31,7 +31,6 @@ class _SessionManagerWidgetState extends State<SessionManagerWidget> {
     return StreamBuilder(
       stream: SessionManagerState.instance.sessionStream,
       builder: (context, snapshot) {
-        print('SessionManagerWidget ${snapshot.data}');
         if(!snapshot.hasData){
           return widget.onUndetermined.call();
         }

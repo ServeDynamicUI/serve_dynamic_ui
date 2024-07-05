@@ -31,6 +31,7 @@ class ServeDynamicUI {
       ShowErrorWidgetBuilder? showErrorWidgetBuilder,
       Map<String, String>? assetJsonValueReplacer}) {
     return FutureBuilder<Map<String, dynamic>>(
+      key: UniqueKey(),
       future: WidgetUtil.loadJson(assetPath,
           assetJsonValueReplacer: assetJsonValueReplacer),
       builder: (context, snapshot) {
@@ -71,6 +72,7 @@ class ServeDynamicUI {
     ShowErrorWidgetBuilder? showErrorWidgetBuilder,
   }) {
     return NetworkBuilder(
+      key: UniqueKey(),
       request: request,
       templateJsonPath: templateJsonPath,
       showErrorWidgetBuilder: showErrorWidgetBuilder,

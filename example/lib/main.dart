@@ -54,14 +54,56 @@ class _MyHomePageState extends State<MyHomePage> {
   Widget build(BuildContext context) {
     return ServeDynamicUIMaterialApp(
       home: (context) {
-        return ServeDynamicUI.fromNetwork(
-          DynamicRequest(
-            url:
+        return SessionManagerWidget(
+          onUndetermined: () {
+            return const SizedBox();
+          },
+          onAuthenticated: () {
+            return ServeDynamicUI.fromNetwork(
+              DynamicRequest(
+                url:
+                'https://raw.githubusercontent.com/ServeDynamicUI/serve_dynamic_ui/page-caching-support/example/assets/json/list_view.json?isPageCacheEnabled=true',
+                requestType: RequestType.get,
+              ),
+              templateJsonPath:
+              'assets/json/shimmer_pages/stacked_page_shimmer.json',
+            );
+          },
+          deAuthenticated: () {
+            return ServeDynamicUI.fromNetwork(
+              DynamicRequest(
+                url:
                 'https://raw.githubusercontent.com/ServeDynamicUI/serve_dynamic_ui/page-caching-support/example/assets/json/sample.json?isPageCacheEnabled=true',
-            requestType: RequestType.get,
-          ),
-          templateJsonPath:
+                requestType: RequestType.get,
+              ),
+              templateJsonPath:
               'assets/json/shimmer_pages/default_page_shimmer.json',
+            );
+          },
+          onAuthenticationInProgress: () {
+            return ServeDynamicUI.fromAssets(
+              'assets/json/loader.json',
+            );
+          },
+          deAuthenticationInProgress: () {
+            return ServeDynamicUI.fromAssets(
+              'assets/json/loader.json',
+            );
+          },
+          onAuthenticationExpired: () {
+            return const SizedBox();
+          },
+          notAuthenticated: () {
+            return ServeDynamicUI.fromNetwork(
+              DynamicRequest(
+                url:
+                'https://raw.githubusercontent.com/ServeDynamicUI/serve_dynamic_ui/page-caching-support/example/assets/json/sample.json?isPageCacheEnabled=true',
+                requestType: RequestType.get,
+              ),
+              templateJsonPath:
+              'assets/json/shimmer_pages/default_page_shimmer.json',
+            );
+          },
         );
       },
       title: 'Flutter Demo',

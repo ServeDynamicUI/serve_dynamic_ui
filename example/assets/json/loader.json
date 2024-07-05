@@ -3,6 +3,7 @@
   "data": {
     "key": "123456",
     "scrollable": false,
+    "mainAxisAlignment": "center",
     "children": [{
       "type": "dy_container",
       "height": -1,

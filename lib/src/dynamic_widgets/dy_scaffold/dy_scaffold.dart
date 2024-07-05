@@ -33,9 +33,11 @@ class DynamicScaffold extends DynamicWidget implements FormWidget {
   bool endDrawerEnableOpenDragGesture;
   String? nextUrl;
   double? itemsSpacing;
-  @JsonKey(fromJson: WidgetUtil.getCrossAxisAlignment)
+  @JsonKey(fromJson: WidgetUtil.getCrossAxisAlignment, defaultValue: CrossAxisAlignment.center)
   CrossAxisAlignment crossAxisAlignment;
   List<String>? pageRefreshEvents;
+  @JsonKey(fromJson: WidgetUtil.getMainAxisAlignment, defaultValue: MainAxisAlignment.start)
+  MainAxisAlignment mainAxisAlignment;
 
   DynamicScaffold({
     required String key,
@@ -61,6 +63,7 @@ class DynamicScaffold extends DynamicWidget implements FormWidget {
     this.showPaginatedLoaderOnTop = false,
     this.crossAxisAlignment = CrossAxisAlignment.center,
     this.pageRefreshEvents,
+    this.mainAxisAlignment = MainAxisAlignment.start,
     super.margin,
     super.padding,
   }) : super(
@@ -187,6 +190,7 @@ class DynamicScaffold extends DynamicWidget implements FormWidget {
     }
     return Column(
       crossAxisAlignment: crossAxisAlignment,
+      mainAxisAlignment: mainAxisAlignment,
       children: WidgetUtil.childrenFilter(children)
           .map((dyWidget) => dyWidget.build(context))
           .toList(),
@@ -201,6 +205,7 @@ class DynamicScaffold extends DynamicWidget implements FormWidget {
           width: double.infinity,
           child: Column(
             crossAxisAlignment: crossAxisAlignment,
+            mainAxisAlignment: mainAxisAlignment,
             children: WidgetUtil.childrenFilter(children)
                 .map((dyWidget) => dyWidget.build(context))
                 .toList(),

@@ -1,5 +1,6 @@
 
 abstract class AuthInfo {
+  AuthInfo();
 
   Map<String, dynamic> toJson();
 

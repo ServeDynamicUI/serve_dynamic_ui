@@ -71,6 +71,7 @@ class ServeDynamicUI {
     ShowErrorWidgetBuilder? showErrorWidgetBuilder,
   }) {
     return NetworkBuilder(
+      key: UniqueKey(),
       request: request,
       templateJsonPath: templateJsonPath,
       showErrorWidgetBuilder: showErrorWidgetBuilder,

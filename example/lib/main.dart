@@ -66,10 +66,10 @@ class _MyHomePageState extends State<MyHomePage> {
                 requestType: RequestType.get,
               ),
               templateJsonPath:
-              'assets/json/shimmer_pages/default_page_shimmer.json',
+              'assets/json/shimmer_pages/stacked_page_shimmer.json',
             );
           },
-          unAuthenticated: () {
+          deAuthenticated: () {
             return ServeDynamicUI.fromNetwork(
               DynamicRequest(
                 url:
@@ -81,10 +81,17 @@ class _MyHomePageState extends State<MyHomePage> {
             );
           },
           onAuthenticationInProgress: () {
-            return SizedBox();
+            return ServeDynamicUI.fromAssets(
+              'assets/json/loader.json',
+            );
+          },
+          deAuthenticationInProgress: () {
+            return ServeDynamicUI.fromAssets(
+              'assets/json/loader.json',
+            );
           },
           onAuthenticationExpired: () {
-            return SizedBox();
+            return const SizedBox();
           },
           notAuthenticated: () {
             return ServeDynamicUI.fromNetwork(

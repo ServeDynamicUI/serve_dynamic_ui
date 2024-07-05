@@ -63,5 +63,8 @@ DynamicScaffold _$DynamicScaffoldFromJson(Map<String, dynamic> json) {
         CrossAxisAlignment.center,
     padding: WidgetUtil.getEdgeInsets(json['padding'] as String?),
     margin: WidgetUtil.getEdgeInsets(json['margin'] as String?),
+    mainAxisAlignment: WidgetUtil.getMainAxisAlignment(
+        json['mainAxisAlignment'] as String?) ??
+        MainAxisAlignment.start,
   );
 }

@@ -12,3 +12,5 @@ export 'src/resolvers/index.dart';
 export 'src/utils/index.dart';
 export 'src/network/index.dart';
 export 'src/listeners/index.dart';
+export 'src/storage/index.dart';
+export 'src/auth/index.dart';

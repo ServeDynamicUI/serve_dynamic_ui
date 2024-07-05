@@ -1,6 +1,7 @@
 import 'package:flutter/foundation.dart';
 import 'package:serve_dynamic_ui/src/constants/index.dart';
 import 'package:serve_dynamic_ui/src/db/providers/ServeDynamicUIDatabseProvider.dart';
+import 'package:serve_dynamic_ui/src/storage/index.dart';
 import 'package:serve_dynamic_ui/src/utils/index.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -25,9 +26,8 @@ class Util {
   static Future<bool> setPageCacheTime(String pageCacheKeepTime) async {
     try {
       if (StringUtil.isNotEmptyNorNull(pageCacheKeepTime)) {
-        final SharedPreferences prefs = await SharedPreferences.getInstance();
-        return await prefs.setInt(
-            Strings.pageCacheKeepTime, int.parse(pageCacheKeepTime));
+        final SharedPrefStorage prefs = await SharedPrefStorage.instance;
+        return await prefs.put(key: Strings.pageCacheKeepTime, value: int.parse(pageCacheKeepTime));
       }
       return false;
     } catch (e) {
@@ -38,8 +38,8 @@ class Util {
 
   static Future<int?> getPageCacheTime() async {
     try {
-      final SharedPreferences prefs = await SharedPreferences.getInstance();
-      return prefs.getInt(Strings.pageCacheKeepTime);
+      final SharedPrefStorage prefs = await SharedPrefStorage.instance;
+      return await prefs.get(key: Strings.pageCacheKeepTime);
     } catch (e) {
       debugPrint('Some error occurred: $e');
     }

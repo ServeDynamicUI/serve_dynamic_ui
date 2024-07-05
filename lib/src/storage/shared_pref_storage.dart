@@ -14,8 +14,11 @@ class SharedPrefStorage extends Storage<String, dynamic, bool> {
 
   SharedPrefStorage._privateConstructor(this._prefs);
 
+  static SharedPrefStorage? _instance;
+
   static Future<SharedPrefStorage> get instance async {
-    return SharedPrefStorage._privateConstructor(await SharedPreferences.getInstance());
+    _instance ??= SharedPrefStorage._privateConstructor(await SharedPreferences.getInstance());
+    return _instance!;
   }
 
   @override
@@ -36,7 +39,7 @@ class SharedPrefStorage extends Storage<String, dynamic, bool> {
   }
 
   @override
-  dynamic get({required String key}) {
+  Future<dynamic> get({required String key}) async{
     return _prefs.get(key);
   }
 

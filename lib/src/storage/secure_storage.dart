@@ -2,17 +2,20 @@ import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:serve_dynamic_ui/src/storage/storage.dart';
 import 'package:flutter/foundation.dart';
 
-class SecureStorage extends Storage<String, dynamic, dynamic> {
+class SecureStorage extends Storage<String, String?, dynamic> {
   final FlutterSecureStorage _secureStorage;
 
   SecureStorage._privateConstructor(this._secureStorage);
 
+  static SecureStorage? _instance;
+
   static SecureStorage get instance {
-    return SecureStorage._privateConstructor(const FlutterSecureStorage(aOptions: AndroidOptions(encryptedSharedPreferences: true)));
+    _instance ??= SecureStorage._privateConstructor(const FlutterSecureStorage(aOptions: AndroidOptions(encryptedSharedPreferences: true)));
+    return _instance!;
   }
 
   @override
-  Future<dynamic> put({required String key, required String value}) async {
+  Future<dynamic> put({required String key, required String? value}) async {
     try {
       await _secureStorage.write(key: key, value: value);
       return true;
@@ -22,9 +25,8 @@ class SecureStorage extends Storage<String, dynamic, dynamic> {
     }
   }
 
-  // Method to retrieve a value securely by key
   @override
-  Future<dynamic> get({required String key}) async {
+  Future<String?> get({required String key}) async {
     try {
       return await _secureStorage.read(key: key);
     } catch (e) {
@@ -33,7 +35,6 @@ class SecureStorage extends Storage<String, dynamic, dynamic> {
     }
   }
 
-  // Method to delete a value securely by key
   @override
   Future<bool> delete({required String key}) async {
     try {
@@ -45,7 +46,6 @@ class SecureStorage extends Storage<String, dynamic, dynamic> {
     }
   }
 
-  // Method to delete all values securely
   @override
   Future<bool> deleteAll() async {
     try {
@@ -57,9 +57,8 @@ class SecureStorage extends Storage<String, dynamic, dynamic> {
     }
   }
 
-  // Method to retrieve all key-value pairs securely
   @override
-  Future<Map<String, String>> getAll() async {
+  getAll() async {
     try {
       return await _secureStorage.readAll();
     } catch (e) {
@@ -68,9 +67,8 @@ class SecureStorage extends Storage<String, dynamic, dynamic> {
     }
   }
 
-  // Method to store multiple key-value pairs securely
   @override
-  Future<bool> putAll({required Map<String, String> data}) async {
+  Future<bool> putAll({required Map<String, String?> data}) async {
     try {
       for (var entry in data.entries) {
         await _secureStorage.write(key: entry.key, value: entry.value);

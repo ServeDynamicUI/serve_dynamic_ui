@@ -1,7 +1,7 @@
 abstract class Storage<K, V, R> {
   Future<R> put({required K key, required V value});
 
-  V get({required K key});
+  Future<V> get({required K key});
 
   Map<K, V> getAll();
 

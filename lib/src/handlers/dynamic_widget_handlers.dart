@@ -1,6 +1,7 @@
 import 'package:serve_dynamic_ui/serve_dynamic_ui.dart';
 import 'package:serve_dynamic_ui/src/dynamic_widgets/dy_button/shimmer/index.dart';
 import 'package:serve_dynamic_ui/src/dynamic_widgets/dy_card/shimmer/index.dart';
+import 'package:serve_dynamic_ui/src/dynamic_widgets/dy_carousel/index.dart';
 import 'package:serve_dynamic_ui/src/dynamic_widgets/dy_column/shimmer/index.dart';
 import 'package:serve_dynamic_ui/src/dynamic_widgets/dy_image/shimmer/index.dart';
 import 'package:serve_dynamic_ui/src/dynamic_widgets/dy_loader/index.dart';
@@ -47,6 +48,8 @@ class DynamicWidgetHandlers {
         Strings.dySizedBox, (json) => DynamicSizedBox.fromJson(json));
     DynamicWidgetHandlerRepo.addDynamicWidgetHandler(
         Strings.dyLoader, (json) => DynamicLoader.fromJson(json));
+    DynamicWidgetHandlerRepo.addDynamicWidgetHandler(
+        Strings.dyCarousel, (json) => DynamicCarousel.fromJson(json));
 
     //Shimmer Widgets
     DynamicWidgetHandlerRepo.addDynamicWidgetHandler(

@@ -51,6 +51,7 @@ class Strings {
   static const dyGestureDetector = 'dy_gesture_detector';
   static const dySizedBox = 'dy_sized_box';
   static const dyLoader = 'dy_loader';
+  static const dyCarousel = 'dy_carousel';
 
   ///shimmer widget names
   static const dyShimmerButton = 'dy_shimmer_button';

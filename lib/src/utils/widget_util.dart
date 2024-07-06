@@ -1,5 +1,6 @@
 import 'dart:convert';
 
+import 'package:carousel_slider/carousel_options.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
@@ -419,6 +420,159 @@ class WidgetUtil {
       return value < 0 ? double.infinity : value;
     }
     return null;
+  }
+
+  ///Returns the [Duration] from string in format.
+  /// 1:1:1:1:1 => 1d:1h:1m:1s:1ms or :10::10:10 => 0d:10h:0m:10s:10ms
+  static Duration? getDuration(String? value) {
+    if (StringUtil.isNotEmptyNorNull(value)) {
+      return null;
+    }
+    List<String> time = value!.split(":");
+    if(time.length != 5){
+      return null;
+    }
+    return Duration(
+      days: int.tryParse(time[0]) ?? 0,
+      hours: int.tryParse(time[1]) ?? 0,
+      minutes: int.tryParse(time[2]) ?? 0,
+      seconds: int.tryParse(time[3]) ?? 0,
+      milliseconds: int.tryParse(time[4]) ?? 0,
+    );
+  }
+
+  ///Returns the [Curve] from string.
+  static Curve? getCurve(String? value) {
+    if (!StringUtil.isNotEmptyNorNull(value)) {
+      return null;
+    }
+
+    switch (value!) {
+      case 'linear':
+        return Curves.linear;
+      case 'decelerate':
+        return Curves.decelerate;
+      case 'ease':
+        return Curves.ease;
+      case 'easeIn':
+        return Curves.easeIn;
+      case 'easeOut':
+        return Curves.easeOut;
+      case 'easeInOut':
+        return Curves.easeInOut;
+      case 'fastOutSlowIn':
+        return Curves.fastOutSlowIn;
+      case 'bounceIn':
+        return Curves.bounceIn;
+      case 'bounceOut':
+        return Curves.bounceOut;
+      case 'bounceInOut':
+        return Curves.bounceInOut;
+      case 'elasticIn':
+        return Curves.elasticIn;
+      case 'elasticOut':
+        return Curves.elasticOut;
+      case 'elasticInOut':
+        return Curves.elasticInOut;
+      case 'easeInCubic':
+        return Curves.easeInCubic;
+      case 'easeOutCubic':
+        return Curves.easeOutCubic;
+      case 'easeInOutCubic':
+        return Curves.easeInOutCubic;
+      case 'easeInQuart':
+        return Curves.easeInQuart;
+      case 'easeOutQuart':
+        return Curves.easeOutQuart;
+      case 'easeInOutQuart':
+        return Curves.easeInOutQuart;
+      case 'easeInQuint':
+        return Curves.easeInQuint;
+      case 'easeOutQuint':
+        return Curves.easeOutQuint;
+      case 'easeInOutQuint':
+        return Curves.easeInOutQuint;
+      default:
+        return null;
+    }
+  }
+
+  ///Returns the [ScrollPhysics] from string.
+  static ScrollPhysics? getScrollPhysics(String? value) {
+    if (!StringUtil.isNotEmptyNorNull(value)) {
+      return null;
+    }
+
+    switch (value!) {
+      case 'bouncing':
+        return const BouncingScrollPhysics();
+      case 'clamping':
+        return const ClampingScrollPhysics();
+      case 'fixedExtent':
+        return const FixedExtentScrollPhysics();
+      case 'neverScrollable':
+        return const NeverScrollableScrollPhysics();
+      case 'page':
+        return const PageScrollPhysics();
+      case 'alwaysScrollable':
+        return const AlwaysScrollableScrollPhysics();
+      default:
+        return null;
+    }
+  }
+
+  ///Returns the [Axis] from string.
+  static Axis? getAxis(String? value) {
+    if (!StringUtil.isNotEmptyNorNull(value)) {
+      return null;
+    }
+
+    switch (value!) {
+      case 'horizontal':
+        return Axis.horizontal;
+      case 'vertical':
+        return Axis.vertical;
+      default:
+        return null;
+    }
+  }
+
+  ///Returns the clip from string path.
+  static Clip? getClip(String? value) {
+    if (!StringUtil.isNotEmptyNorNull(value)) {
+      return null;
+    }
+
+    switch (value!) {
+      case 'none':
+        return Clip.none;
+      case 'hardEdge':
+        return Clip.hardEdge;
+      case 'antiAlias':
+        return Clip.antiAlias;
+      case 'antiAliasWithSaveLayer':
+        return Clip.antiAliasWithSaveLayer;
+      default:
+        return null;
+    }
+  }
+
+  ///Returns the enlargement strategy from string path.
+  static CenterPageEnlargeStrategy? getCenterPageEnlargeStrategy(String? value) {
+    if (!StringUtil.isNotEmptyNorNull(value)) {
+      return null;
+    }
+
+    switch (value!) {
+      case 'scale':
+        return CenterPageEnlargeStrategy.scale;
+      case 'height':
+        return CenterPageEnlargeStrategy.height;
+      case 'zoom':
+        return CenterPageEnlargeStrategy.zoom;
+      default:
+        return null;
+    }
   }
 
   ///Returns the map from string path.

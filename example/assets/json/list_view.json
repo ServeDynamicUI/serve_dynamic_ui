@@ -5,7 +5,160 @@
     "pageTitle": "Flutter List View Screen",
     "nextUrl": "assets/json/sample1.json",
     "scrollable": true,
-    "children": [{
+    "children": [
+      {
+        "type": "dy_carousel",
+        "data": {
+          "key": "213234324324",
+          "reusable": true,
+          "carouselOptions": {
+            "autoPlay": true,
+            "enlargeCenterPage": false,
+            "scrollDirection": "horizontal",
+            "reverse": false,
+            "enableInfiniteScroll": false,
+            "padEnds": false
+          },
+          "children": [
+            {
+              "type": "dy_card",
+              "data": {
+                "key": "123454545234343",
+                "color": "0xffff0000",
+                "margin": "10",
+                "elevation": 10,
+                "width": -1,
+                "linearGradient": "-1.0,0.0;1.0,0.0;0xff6D59D4,0xff879CFB",
+                "borderRadius": 20,
+                "child": {
+                  "type": "dy_text",
+                  "data": {
+                    "key": "34454534344",
+                    "text": "Card",
+                    "height": 400,
+                    "width": 200,
+                    "textAlign": "center",
+                    "style": {
+                      "color": "0xffffffff",
+                      "fontSize": 25,
+                      "fontWeight": "bold"
+                    }
+                  }
+                }
+              }
+            },
+            {
+              "type": "dy_card",
+              "data": {
+                "key": "4454545",
+                "color": "0xffff0000",
+                "margin": "10",
+                "elevation": 10,
+                "width": -1,
+                "linearGradient": "-1.0,0.0;1.0,0.0;0xff6D59D4,0xff879CFB",
+                "borderRadius": 20,
+                "child": {
+                  "type": "dy_text",
+                  "data": {
+                    "key": "45454545",
+                    "text": "Card",
+                    "height": 400,
+                    "width": 200,
+                    "textAlign": "center",
+                    "style": {
+                      "color": "0xffffffff",
+                      "fontSize": 25,
+                      "fontWeight": "bold"
+                    }
+                  }
+                }
+              }
+            },
+            {
+              "type": "dy_card",
+              "data": {
+                "key": "44543434545",
+                "color": "0xffff0000",
+                "margin": "10",
+                "elevation": 10,
+                "width": -1,
+                "linearGradient": "-1.0,0.0;1.0,0.0;0xff6D59D4,0xff879CFB",
+                "borderRadius": 20,
+                "child": {
+                  "type": "dy_text",
+                  "data": {
+                    "key": "454343454545",
+                    "text": "Card",
+                    "height": 400,
+                    "width": 200,
+                    "textAlign": "center",
+                    "style": {
+                      "color": "0xffffffff",
+                      "fontSize": 25,
+                      "fontWeight": "bold"
+                    }
+                  }
+                }
+              }
+            },
+            {
+              "type": "dy_card",
+              "data": {
+                "key": "44543445545",
+                "color": "0xffff0000",
+                "margin": "10",
+                "elevation": 10,
+                "width": -1,
+                "linearGradient": "-1.0,0.0;1.0,0.0;0xff6D59D4,0xff879CFB",
+                "borderRadius": 20,
+                "child": {
+                  "type": "dy_text",
+                  "data": {
+                    "key": "45454454545",
+                    "text": "Card",
+                    "height": 400,
+                    "width": 200,
+                    "textAlign": "center",
+                    "style": {
+                      "color": "0xffffffff",
+                      "fontSize": 25,
+                      "fontWeight": "bold"
+                    }
+                  }
+                }
+              }
+            },
+            {
+              "type": "dy_card",
+              "data": {
+                "key": "4454545452345",
+                "color": "0xffff0000",
+                "margin": "10",
+                "elevation": 10,
+                "width": -1,
+                "linearGradient": "-1.0,0.0;1.0,0.0;0xff6D59D4,0xff879CFB",
+                "borderRadius": 20,
+                "child": {
+                  "type": "dy_text",
+                  "data": {
+                    "key": "454545454545",
+                    "text": "Card",
+                    "height": 400,
+                    "width": 200,
+                    "textAlign": "center",
+                    "style": {
+                      "color": "0xffffffff",
+                      "fontSize": 25,
+                      "fontWeight": "bold"
+                    }
+                  }
+                }
+              }
+            }
+          ]
+        }
+      },
+      {
       "type": "dy_card",
       "data": {
         "key": "123991234343",

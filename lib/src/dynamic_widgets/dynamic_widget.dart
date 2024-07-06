@@ -15,7 +15,7 @@ abstract class DynamicWidget {
   @JsonKey(required: false)
   final double? height;
 
-  @JsonKey(required: false)
+  @JsonKey(required: false, fromJson: WidgetUtil.getValueOrInf)
   final double? width;
 
   @JsonKey(fromJson: WidgetUtil.getEdgeInsets)

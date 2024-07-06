@@ -12,7 +12,11 @@ class DynamicListeners {
       ScrollListeners.addScrollListener(key, dynamicListener);
     } else if (dynamicListener is TextChangeListener) {
       TextChangeListeners.addTextChangeListener(key, dynamicListener);
-    } else if (dynamicListener is DataEventListeners) {}
+    } else if (dynamicListener is DataEventListener) {
+      DataEventListeners.addDataEventListener(key, dynamicListener);
+    } else if (dynamicListener is CarouselChangeListener) {
+      CarouselChangeListeners.addScrollChangeListener(key, dynamicListener);
+    }
   }
 
   ///listener to add all dynamicListeners in a list.
@@ -30,6 +34,10 @@ class DynamicListeners {
       ScrollListeners.removeScrollListener(key);
     } else if (dynamicListener is TextChangeListener) {
       TextChangeListeners.removeScrollListener(key);
+    }  else if (dynamicListener is DataEventListener) {
+      DataEventListeners.removeDataEventListener(key, dynamicListener);
+    } else if (dynamicListener is CarouselChangeListener) {
+      CarouselChangeListeners.removeScrollListener(key);
     }
   }
 }

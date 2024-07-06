@@ -1,4 +1,5 @@
 import 'package:example/custom_actions/snackbar_action_handler.dart';
+import 'package:example/listeners_impl/carousel_change_listener.dart';
 import 'package:example/listeners_impl/widget_scroll_listener.dart';
 import 'package:flutter/material.dart';
 import 'package:serve_dynamic_ui/serve_dynamic_ui.dart';
@@ -48,6 +49,7 @@ class _MyHomePageState extends State<MyHomePage> {
     super.initState();
     DynamicListeners.addListener("1212133344", WidgetScrollListener());
     DynamicListeners.addListener("334343434", TextUpdateListener());
+    DynamicListeners.addListener("213234324324", CarouselSliderChangeListener());
   }
 
   @override

@@ -4,54 +4,56 @@
     "key": "default_page_shimmer",
     "pageTitle": "Flutter Shimmer",
     "crossAxisAlignment": "start",
-    "leftActionsWidth": 60,
-    "padding": "10,0,10,10",
-    "leftActions": [
-      {
-        "type": "dy_image",
-        "data": {
-          "key": "2226323233",
-          "src": "assets/images/card_ic.png",
-          "height": 30,
-          "width": 30,
-          "imageType": "asset",
-          "fit": "fill",
-          "clipBorderRadius": 20,
-          "placeholderImagePath": "assets/images/icon_placeholder.png"
+    "appBar": {
+      "leftActions": [
+        {
+          "type": "dy_image",
+          "data": {
+            "key": "2226323233",
+            "src": "assets/images/card_ic.png",
+            "height": 30,
+            "width": 30,
+            "imageType": "asset",
+            "fit": "fill",
+            "clipBorderRadius": 20,
+            "placeholderImagePath": "assets/images/icon_placeholder.png"
+          }
         }
-      }
-    ],
-    "rightActions": [
-      {
-        "type": "dy_gesture_detector",
-        "data": {
-          "key": "1234234",
-          "onTapAction": {
-            "actionString": "/moveToScreen",
-            "extras": {
-              "url": "https://raw.githubusercontent.com/Arunshaik2001/demo_server_driven_ui/master/assets/json/dy_scaffold.json",
-              "urlType": "network",
-              "requestType": "get",
-              "navigationType": "screen",
-              "navigationStyle": "push",
-              "loaderWidgetAssetPath": "assets/json/loader.json"
-            }
-          },
-          "child": {
-            "type": "dy_image",
-            "data": {
-              "key": "222632323233",
-              "src": "https://upload.wikimedia.org/wikipedia/commons/5/5a/Perspective-Button-Stop-icon.png",
-              "height": 30,
-              "width": 30,
-              "imageType": "network",
-              "fit": "fill",
-              "placeholderImagePath": "assets/images/icon_placeholder.png"
+      ],
+      "rightActions": [
+        {
+          "type": "dy_gesture_detector",
+          "data": {
+            "key": "1234234",
+            "onTapAction": {
+              "actionString": "/moveToScreen",
+              "extras": {
+                "url": "https://raw.githubusercontent.com/Arunshaik2001/demo_server_driven_ui/master/assets/json/dy_scaffold.json",
+                "urlType": "network",
+                "requestType": "get",
+                "navigationType": "screen",
+                "navigationStyle": "push",
+                "loaderWidgetAssetPath": "assets/json/loader.json"
+              }
+            },
+            "child": {
+              "type": "dy_image",
+              "data": {
+                "key": "222632323233",
+                "src": "https://upload.wikimedia.org/wikipedia/commons/5/5a/Perspective-Button-Stop-icon.png",
+                "height": 30,
+                "width": 30,
+                "imageType": "network",
+                "fit": "fill",
+                "placeholderImagePath": "assets/images/icon_placeholder.png"
+              }
             }
           }
         }
-      }
-    ],
+      ],
+      "leftActionsWidth": 60
+    },
+    "padding": "10,0,10,10",
     "children": [
       {
         "type": "dy_shimmer_stack",

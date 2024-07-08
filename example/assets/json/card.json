@@ -2,7 +2,9 @@
   "type": "dy_scaffold",
   "data": {
     "key": "123456",
-    "pageTitle": "Flutter Card Screen",
+    "appBar": {
+      "pageTitle": "Flutter Card Screen"
+    },
     "children": [{
       "type": "dy_container",
       "data": {

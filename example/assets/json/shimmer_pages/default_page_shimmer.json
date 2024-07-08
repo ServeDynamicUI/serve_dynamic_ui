@@ -2,9 +2,9 @@
   "type": "dy_scaffold",
   "data": {
     "key": "default_page_shimmer",
-    "pageTitle": "Flutter Server UI Home Screen",
     "crossAxisAlignment": "start",
     "appBar": {
+      "pageTitle": "Flutter Server UI Home Screen",
       "leftActions": [
         {
           "type": "dy_image",

@@ -2,7 +2,9 @@
   "type": "dy_scaffold",
   "data": {
     "key": "1236456",
-    "pageTitle": "Flutter Stack Screen",
+    "appBar": {
+      "pageTitle": "Flutter Stack Screen"
+    },
     "children": [{
       "type": "dy_container",
       "data": {

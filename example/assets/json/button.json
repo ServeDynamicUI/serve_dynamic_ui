@@ -2,8 +2,10 @@
   "type": "dy_scaffold",
   "data": {
     "key": "123456",
-    "pageTitle": "Flutter Button Screen",
     "scrollable": false,
+    "appBar": {
+      "pageTitle": "Flutter Button Screen"
+    },
     "children": [
       {
         "type": "dy_container",

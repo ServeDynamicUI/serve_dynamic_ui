@@ -2,7 +2,9 @@
   "type": "dy_scaffold",
   "data": {
     "key": "123456",
-    "pageTitle": "Flutter TabView Screen1",
+    "appBar": {
+      "pageTitle": "Flutter TabView Screen"
+    },
     "scrollable": true,
     "padding": "0",
     "children": [{

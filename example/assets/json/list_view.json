@@ -2,7 +2,9 @@
   "type": "dy_scaffold",
   "data": {
     "key": "144534534535",
-    "pageTitle": "Flutter List View Screen",
+    "appBar": {
+      "pageTitle": "Flutter List View Screen"
+    },
     "nextUrl": "assets/json/sample1.json",
     "scrollable": true,
     "children": [

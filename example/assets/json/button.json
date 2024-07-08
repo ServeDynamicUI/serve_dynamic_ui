@@ -11,13 +11,14 @@
         "type": "dy_container",
         "data": {
           "key": "123123",
-          "margin": "10",
+          "padding": "10",
           "height": -1,
+          "alignment": "center",
           "child": {
             "type": "dy_column",
             "data": {
               "key": "11343",
-              "mainAxisAlignment": "spaceAround",
+              "mainAxisAlignment": "center",
               "children": [
                 {
                   "type": "dy_text",
@@ -60,31 +61,6 @@
                         }
                       }
                     }
-                  },
-                  "actions": {
-                    "depend": true,
-                    "actionList": [
-                      {
-                        "actionString": "/updateWidget",
-                        "extras": {
-                          "widgetKey": "update_text_key",
-                          "methodName": "UPDATE_TEXT",
-                          "params": {
-                            "newText": "Updated Text Value"
-                          }
-                        }
-                      },
-                      {
-                        "actionString": "/updateWidget",
-                        "extras": {
-                          "widgetKey": "update_text_key",
-                          "methodName": "UPDATE_TEXT",
-                          "params": {
-                            "newText": "Updated Text Value"
-                          }
-                        }
-                      }
-                    ]
                   }
                 }
               ]

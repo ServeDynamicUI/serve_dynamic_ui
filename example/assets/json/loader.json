@@ -6,11 +6,11 @@
     "mainAxisAlignment": "center",
     "children": [{
       "type": "dy_container",
-      "height": -1,
       "data": {
         "key": "123123",
         "alignment": "center",
         "margin": "10",
+        "height": -1,
         "child": {
           "type": "dy_loader",
           "data": {

@@ -486,12 +486,10 @@
                 "onTapAction": {
                   "actionString": "/moveToScreen",
                   "extras": {
-                    "url": "https://raw.githubusercontent.com/Arunshaik2001/demo_server_driven_ui/master/assets/json/dy_button.json",
-                    "urlType": "network",
-                    "requestType": "get",
+                    "url": "assets/json/button.json",
+                    "urlType": "local",
                     "navigationType": "screen",
-                    "navigationStyle": "push",
-                    "loaderWidgetAssetPath": "assets/json/loader.json"
+                    "navigationStyle": "push"
                   }
                 },
                 "child": {

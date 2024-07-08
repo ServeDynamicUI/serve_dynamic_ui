@@ -13,8 +13,8 @@ DynamicSizedBox _$DynamicSizedBoxFromJson(Map<String, dynamic> json) {
   );
   return DynamicSizedBox(
     key: json['key'] as String?,
-    height: (json['height'] as num?)?.toDouble(),
-    width: (json['width'] as num?)?.toDouble(),
+    width: WidgetUtil.getWidthValueOrInf((json['width'] as num?)?.toDouble()),
+    height: WidgetUtil.getHeightValueOrInf((json['height'] as num?)?.toDouble()),
     child: json['child'] == null
         ? null
         : DynamicWidget.fromJson(json['child'] as Map<String, dynamic>),

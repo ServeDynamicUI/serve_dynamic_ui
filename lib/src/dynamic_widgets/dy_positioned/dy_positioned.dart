@@ -16,7 +16,9 @@ class DynamicPositioned extends DynamicWidget {
   double? right;
   double? top;
   double? bottom;
+  @JsonKey(fromJson: WidgetUtil.getHeightValueOrInf)
   double? height;
+  @JsonKey(fromJson: WidgetUtil.getWidthValueOrInf)
   double? width;
 
   DynamicPositioned({
@@ -65,4 +67,10 @@ class DynamicPositioned extends DynamicWidget {
   void onDispose() {
     WidgetUtil.callOnDisposeOnWidget(child);
   }
+
+  @override
+  double? get dyHeight => height;
+
+  @override
+  double? get dyWidth => width;
 }

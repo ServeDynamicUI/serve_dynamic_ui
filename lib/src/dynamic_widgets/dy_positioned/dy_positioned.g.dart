@@ -16,8 +16,8 @@ DynamicPositioned _$DynamicPositionedFromJson(Map<String, dynamic> json) {
     child: json['child'] == null
         ? null
         : DynamicWidget.fromJson(json['child'] as Map<String, dynamic>),
-    width: (json['width'] as num?)?.toDouble(),
-    height: (json['height'] as num?)?.toDouble(),
+    width: WidgetUtil.getWidthValueOrInf((json['width'] as num?)?.toDouble()),
+    height: WidgetUtil.getHeightValueOrInf((json['height'] as num?)?.toDouble()),
     left: (json['left'] as num?)?.toDouble(),
     right: (json['right'] as num?)?.toDouble(),
     bottom: (json['bottom'] as num?)?.toDouble(),

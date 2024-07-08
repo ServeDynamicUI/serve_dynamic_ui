@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:serve_dynamic_ui/serve_dynamic_ui.dart';
 
 ///[ServeDynamicUIMaterialApp] : A top-level widget for building apps that follow material design.
-class ServeDynamicUIMaterialApp extends StatelessWidget {
+class ServeDynamicUIMaterialApp extends StatefulWidget {
   const ServeDynamicUIMaterialApp({
     super.key,
     this.navigatorKey,
@@ -51,28 +52,40 @@ class ServeDynamicUIMaterialApp extends StatelessWidget {
   final bool useInheritedMediaQuery;
 
   @override
+  State<ServeDynamicUIMaterialApp> createState() => _ServeDynamicUIMaterialAppState();
+}
+
+class _ServeDynamicUIMaterialAppState extends State<ServeDynamicUIMaterialApp> {
+
+  @override
+  void initState() {
+    ServeDynamicUI.applicationCurrentNavigationKey = widget.navigatorKey;
+    super.initState();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      navigatorKey: navigatorKey,
-      scaffoldMessengerKey: scaffoldMessengerKey,
-      home: home(context),
-      routes: routes ?? {},
-      initialRoute: initialRoute,
-      onGenerateRoute: onGenerateRoute,
-      onGenerateInitialRoutes: onGenerateInitialRoutes,
-      onUnknownRoute: onUnknownRoute,
-      navigatorObservers: navigatorObservers ?? [],
-      builder: builder,
-      title: title,
-      onGenerateTitle: onGenerateTitle,
-      theme: theme,
-      darkTheme: darkTheme,
-      color: color,
-      shortcuts: shortcuts,
-      actions: actions,
-      scrollBehavior: scrollBehavior,
-      debugShowCheckedModeBanner: debugShowCheckedModeBanner,
-      debugShowMaterialGrid: debugShowMaterialGrid,
+      navigatorKey: widget.navigatorKey,
+      scaffoldMessengerKey: widget.scaffoldMessengerKey,
+      home: widget.home(context),
+      routes: widget.routes ?? {},
+      initialRoute: widget.initialRoute,
+      onGenerateRoute: widget.onGenerateRoute,
+      onGenerateInitialRoutes: widget.onGenerateInitialRoutes,
+      onUnknownRoute: widget.onUnknownRoute,
+      navigatorObservers: widget.navigatorObservers ?? [],
+      builder: widget.builder,
+      title: widget.title,
+      onGenerateTitle: widget.onGenerateTitle,
+      theme: widget.theme,
+      darkTheme: widget.darkTheme,
+      color: widget.color,
+      shortcuts: widget.shortcuts,
+      actions: widget.actions,
+      scrollBehavior: widget.scrollBehavior,
+      debugShowCheckedModeBanner: widget.debugShowCheckedModeBanner,
+      debugShowMaterialGrid: widget.debugShowMaterialGrid,
     );
   }
 }

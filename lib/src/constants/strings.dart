@@ -52,6 +52,7 @@ class Strings {
   static const dySizedBox = 'dy_sized_box';
   static const dyLoader = 'dy_loader';
   static const dyCarousel = 'dy_carousel';
+  static const dyPercentageIndicator = 'dy_percentage_indicator';
 
   ///shimmer widget names
   static const dyShimmerButton = 'dy_shimmer_button';
@@ -142,6 +143,11 @@ class Strings {
   static const asset = 'asset';
   static const file = 'file';
   static const loaderWidgetAssetPath = 'loaderWidgetAssetPath';
+  static const circular = 'circular';
+  static const linear = 'linear';
+  static const butt = 'butt';
+  static const round = 'round';
+  static const square = 'square';
 
   //pop and navigate strings
   static const popAndNavigateStrategy = 'popAndNavigateStrategy';

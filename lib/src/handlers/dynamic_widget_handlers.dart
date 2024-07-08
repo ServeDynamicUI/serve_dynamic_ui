@@ -5,6 +5,7 @@ import 'package:serve_dynamic_ui/src/dynamic_widgets/dy_carousel/index.dart';
 import 'package:serve_dynamic_ui/src/dynamic_widgets/dy_column/shimmer/index.dart';
 import 'package:serve_dynamic_ui/src/dynamic_widgets/dy_image/shimmer/index.dart';
 import 'package:serve_dynamic_ui/src/dynamic_widgets/dy_loader/index.dart';
+import 'package:serve_dynamic_ui/src/dynamic_widgets/dy_percentage_indicator/index.dart';
 import 'package:serve_dynamic_ui/src/dynamic_widgets/dy_sized_box/dy_sized_box.dart';
 import 'package:serve_dynamic_ui/src/dynamic_widgets/dy_stack/shimmer/index.dart';
 
@@ -50,6 +51,8 @@ class DynamicWidgetHandlers {
         Strings.dyLoader, (json) => DynamicLoader.fromJson(json));
     DynamicWidgetHandlerRepo.addDynamicWidgetHandler(
         Strings.dyCarousel, (json) => DynamicCarousel.fromJson(json));
+    DynamicWidgetHandlerRepo.addDynamicWidgetHandler(
+        Strings.dyPercentageIndicator, (json) => DynamicPercentageIndicator.fromJson(json));
 
     //Shimmer Widgets
     DynamicWidgetHandlerRepo.addDynamicWidgetHandler(

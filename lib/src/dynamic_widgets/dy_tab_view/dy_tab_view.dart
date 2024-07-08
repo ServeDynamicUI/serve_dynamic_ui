@@ -31,6 +31,10 @@ class DynamicTabView extends DynamicWidget {
   final bool wantKeepAlive;
   @JsonKey(includeFromJson: false, includeToJson: false)
   TabView? tabview;
+  @JsonKey(fromJson: WidgetUtil.getHeightValueOrInf)
+  double? height;
+  @JsonKey(fromJson: WidgetUtil.getWidthValueOrInf)
+  double? width;
 
   DynamicTabView({
     required super.key,
@@ -44,6 +48,8 @@ class DynamicTabView extends DynamicWidget {
     required this.wantKeepAlive,
     super.padding,
     super.margin,
+    this.height,
+    this.width,
   });
 
   factory DynamicTabView.fromJson(Map<String, dynamic> json) =>
@@ -176,4 +182,10 @@ class DynamicTabView extends DynamicWidget {
       WidgetUtil.callOnDisposeOnWidget(tab.child);
     });
   }
+
+  @override
+  double? get dyHeight => height;
+
+  @override
+  double? get dyWidth => width;
 }

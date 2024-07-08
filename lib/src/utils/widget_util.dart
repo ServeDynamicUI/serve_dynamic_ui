@@ -3,6 +3,7 @@ import 'dart:convert';
 import 'package:carousel_slider/carousel_options.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:percent_indicator/circular_percent_indicator.dart';
 
 import '../../serve_dynamic_ui.dart';
 import '../main_framework/network_page/network_builder_state.dart';
@@ -414,10 +415,25 @@ class WidgetUtil {
     return null;
   }
 
-  ///Returns the [Double] from double or inf.
-  static double? getValueOrInf(double? value) {
-    if (value != null) {
-      return value < 0 ? double.infinity : value;
+  ///Returns height [Double] from double or inf.
+  static double? getHeightValueOrInf(double? value) {
+    if (Util.isValid(value)) {
+      MediaQueryData? mediaData = ServeDynamicUI.mediaQueryData;
+      if(Util.isValid(mediaData)){
+        return value! < 0 ? mediaData!.size.height - kToolbarHeight - mediaData.padding.top: value;
+      }
+    }
+    return null;
+  }
+
+  ///Returns width [Double] from double or inf.
+  static double? getWidthValueOrInf(double? value) {
+    if (Util.isValid(value)) {
+      MediaQueryData? mediaData = ServeDynamicUI.mediaQueryData;
+      if(Util.isValid(mediaData)){
+        return value! < 0 ? mediaData!.size.width : value;
+      }
+      return value! < 0 ? double.infinity : value;
     }
     return null;
   }
@@ -537,26 +553,6 @@ class WidgetUtil {
     }
   }
 
-  ///Returns the clip from string path.
-  static Clip? getClip(String? value) {
-    if (!StringUtil.isNotEmptyNorNull(value)) {
-      return null;
-    }
-
-    switch (value!) {
-      case 'none':
-        return Clip.none;
-      case 'hardEdge':
-        return Clip.hardEdge;
-      case 'antiAlias':
-        return Clip.antiAlias;
-      case 'antiAliasWithSaveLayer':
-        return Clip.antiAliasWithSaveLayer;
-      default:
-        return null;
-    }
-  }
-
   ///Returns the enlargement strategy from string path.
   static CenterPageEnlargeStrategy? getCenterPageEnlargeStrategy(String? value) {
     if (!StringUtil.isNotEmptyNorNull(value)) {
@@ -573,6 +569,49 @@ class WidgetUtil {
       default:
         return null;
     }
+  }
+
+  ///Returns the [PercentageIndicatorType] from string.
+  static PercentageIndicatorType? getPercentageIndicatorType(String? indicatorType) {
+    if (StringUtil.isNotEmptyNorNull(indicatorType)) {
+      switch (indicatorType!) {
+        case Strings.circular:
+          return PercentageIndicatorType.circular;
+        case Strings.linear:
+          return PercentageIndicatorType.linear;
+      }
+    }
+    return null;
+  }
+
+  ///Returns the [CircularStrokeCap] from string.
+  static CircularStrokeCap? getCircularStrokeCap(String? stroke){
+    if (StringUtil.isNotEmptyNorNull(stroke)) {
+      switch (stroke!) {
+        case Strings.butt:
+          return CircularStrokeCap.butt;
+        case Strings.round:
+          return CircularStrokeCap.round;
+        case Strings.square:
+          return CircularStrokeCap.square;
+      }
+    }
+    return null;
+  }
+
+  ///Returns the [ArcType] from string.
+  static ArcType? getArcType(String? arc){
+    if (StringUtil.isNotEmptyNorNull(arc)) {
+      switch (arc!) {
+        case Strings.butt:
+          return ArcType.FULL;
+        case Strings.round:
+          return ArcType.FULL_REVERSED;
+        case Strings.square:
+          return ArcType.HALF;
+      }
+    }
+    return null;
   }
 
   ///Returns the map from string path.

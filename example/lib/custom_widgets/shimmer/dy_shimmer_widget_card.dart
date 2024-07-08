@@ -21,6 +21,10 @@ class DynamicShimmerWidgetCard extends DynamicWidget {
   @override
   @JsonKey(fromJson: WidgetUtil.getEdgeInsets)
   EdgeInsets? padding;
+  @JsonKey(fromJson: WidgetUtil.getHeightValueOrInf)
+  double? height;
+  @JsonKey(fromJson: WidgetUtil.getWidthValueOrInf)
+  double? width;
 
   DynamicShimmerWidgetCard({
     required super.key,
@@ -30,8 +34,8 @@ class DynamicShimmerWidgetCard extends DynamicWidget {
     this.borderRadius,
     this.margin,
     this.padding,
-    super.height,
-    super.width,
+    this.height,
+    this.width,
   });
 
   factory DynamicShimmerWidgetCard.fromJson(Map<String, dynamic> json) =>
@@ -81,4 +85,10 @@ class DynamicShimmerWidgetCard extends DynamicWidget {
     prefixImage?.onDispose();
     body?.onDispose();
   }
+
+  @override
+  double? get dyHeight => height;
+
+  @override
+  double? get dyWidth => width;
 }

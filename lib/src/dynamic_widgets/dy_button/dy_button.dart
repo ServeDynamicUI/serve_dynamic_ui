@@ -21,7 +21,9 @@ class DynamicButton extends DynamicWidget {
   Color? buttonBorderColor;
   double? buttonBorderRadius;
   double? borderWidth;
+  @JsonKey(fromJson: WidgetUtil.getHeightValueOrInf)
   double? height;
+  @JsonKey(fromJson: WidgetUtil.getWidthValueOrInf)
   double? width;
   @JsonKey(fromJson: WidgetUtil.getEdgeInsets)
   EdgeInsets? margin;
@@ -101,4 +103,10 @@ class DynamicButton extends DynamicWidget {
   void onDispose() {
     WidgetUtil.callOnDisposeOnWidget(child);
   }
+
+  @override
+  double? get dyHeight => height;
+
+  @override
+  double? get dyWidth => width;
 }

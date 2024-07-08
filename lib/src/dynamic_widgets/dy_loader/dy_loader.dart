@@ -27,9 +27,9 @@ class DynamicLoader extends DynamicWidget {
   @JsonKey(fromJson: WidgetUtil.getColor)
   Color? containerColor;
   double? containerColorOpacity;
-  @JsonKey(fromJson: WidgetUtil.getValueOrInf)
+  @JsonKey(fromJson: WidgetUtil.getWidthValueOrInf)
   double? containerWidth;
-  @JsonKey(fromJson: WidgetUtil.getValueOrInf)
+  @JsonKey(fromJson: WidgetUtil.getHeightValueOrInf)
   double? containerHeight;
 
   DynamicLoader({
@@ -95,4 +95,10 @@ class DynamicLoader extends DynamicWidget {
 
   @override
   void onDispose() {}
+
+  @override
+  double? get dyHeight => containerHeight;
+
+  @override
+  double? get dyWidth => containerWidth;
 }

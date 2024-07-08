@@ -30,8 +30,8 @@ DynamicLoader _$DynamicLoaderFromJson(Map<String, dynamic> json) {
       containerColor: WidgetUtil.getColor(json['containerColor'] as String?),
       containerColorOpacity:
           (json['containerColorOpacity'] as num?)?.toDouble(),
-      containerHeight: WidgetUtil.getValueOrInf(
+      containerHeight: WidgetUtil.getHeightValueOrInf(
           (json['containerHeight'] as num?)?.toDouble()),
-      containerWidth: WidgetUtil.getValueOrInf(
+      containerWidth: WidgetUtil.getWidthValueOrInf(
           (json['containerWidth'] as num?)?.toDouble()));
 }

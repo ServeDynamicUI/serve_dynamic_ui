@@ -13,7 +13,9 @@ part 'dy_sized_box.g.dart';
   createToJson: false,
 )
 class DynamicSizedBox extends DynamicWidget {
+  @JsonKey(fromJson: WidgetUtil.getHeightValueOrInf)
   double? height;
+  @JsonKey(fromJson: WidgetUtil.getWidthValueOrInf)
   double? width;
   DynamicWidget? child;
 
@@ -64,4 +66,10 @@ class DynamicSizedBox extends DynamicWidget {
   void onDispose() {
     WidgetUtil.callOnDisposeOnWidget(child);
   }
+
+  @override
+  double? get dyHeight => height;
+
+  @override
+  double? get dyWidth => width;
 }

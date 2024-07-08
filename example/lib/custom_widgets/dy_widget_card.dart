@@ -20,6 +20,10 @@ class DynamicWidgetCard extends DynamicWidget {
   @JsonKey(fromJson: WidgetUtil.getEdgeInsets)
   EdgeInsets? padding;
   ActionDTO? action;
+  @JsonKey(fromJson: WidgetUtil.getHeightValueOrInf)
+  double? height;
+  @JsonKey(fromJson: WidgetUtil.getWidthValueOrInf)
+  double? width;
 
   DynamicWidgetCard({
     required String key,
@@ -30,8 +34,8 @@ class DynamicWidgetCard extends DynamicWidget {
     this.margin,
     this.padding,
     this.action,
-    super.height,
-    super.width,
+    this.height,
+    this.width,
   }) : super(
           key: key,
         );
@@ -89,4 +93,10 @@ class DynamicWidgetCard extends DynamicWidget {
     prefixImage?.onDispose();
     body?.onDispose();
   }
+
+  @override
+  double? get dyHeight => height;
+
+  @override
+  double? get dyWidth => width;
 }

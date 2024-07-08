@@ -17,6 +17,10 @@ class DynamicAlign extends DynamicWidget {
   Alignment? alignment;
   double? widthFactor;
   double? heightFactor;
+  @JsonKey(fromJson: WidgetUtil.getHeightValueOrInf)
+  double? height;
+  @JsonKey(fromJson: WidgetUtil.getWidthValueOrInf)
+  double? width;
 
   DynamicAlign({
     required super.key,
@@ -24,6 +28,8 @@ class DynamicAlign extends DynamicWidget {
     this.alignment,
     this.heightFactor,
     this.widthFactor,
+    this.height,
+    this.width
   });
 
   factory DynamicAlign.fromJson(Map<String, dynamic> json) =>
@@ -58,4 +64,10 @@ class DynamicAlign extends DynamicWidget {
   void onDispose() {
     WidgetUtil.callOnDisposeOnWidget(child);
   }
+
+  @override
+  double? get dyHeight => height;
+
+  @override
+  double? get dyWidth => width;
 }

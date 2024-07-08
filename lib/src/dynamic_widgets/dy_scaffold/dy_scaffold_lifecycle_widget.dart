@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:serve_dynamic_ui/serve_dynamic_ui.dart';
 
 class DynamicScaffoldLifecycleWidget extends StatefulWidget {
   final Widget child;

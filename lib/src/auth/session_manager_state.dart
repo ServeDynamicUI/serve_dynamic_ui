@@ -5,6 +5,7 @@ import 'package:serve_dynamic_ui/src/auth/auth_info.dart';
 import 'package:serve_dynamic_ui/src/auth/index.dart';
 import 'package:serve_dynamic_ui/src/storage/index.dart';
 import 'package:serve_dynamic_ui/src/utils/index.dart';
+import 'package:flutter/material.dart';
 
 abstract class SessionEvent {}
 
@@ -77,12 +78,18 @@ class SessionManagerState {
   }
 
   _sendAuthenticatedStreamIfAuthenticated() async {
-    bool isValid = StringUtil.isNotEmptyNorNull(await _secureStorage.get(key: _authSessionKey));
-    if(isValid){
+    Future.delayed(Duration(milliseconds: 1000), () async{
+      bool isValid = StringUtil.isNotEmptyNorNull(await _secureStorage.get(key: _authSessionKey));
+      if(isValid){
       _sessionStreamController.sink.add(SessionOnAuthenticatedEvent());
-    }
-    else {
+      }
+      else {
       _sessionStreamController.sink.add(SessionNotAuthenticatedEvent());
-    }
+      }
+    });
+  }
+
+  void dispose() async{
+    await _sessionStreamController.close();
   }
 }

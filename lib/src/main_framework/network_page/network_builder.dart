@@ -54,6 +54,9 @@ class _NetworkBuilderState extends State<NetworkBuilder> {
                   networkState: _networkBuilderState) ??
               const SizedBox.shrink();
         } else if (networkStatus is NetworkPageFailureStatusEvent) {
+          if(widget.showErrorWidgetBuilder == null){
+            return const SizedBox.shrink();
+          }
           final dyWidget =
               widget.showErrorWidgetBuilder!(context, networkStatus.error);
           return dyWidget?.build(context) ?? const SizedBox.shrink();

@@ -42,6 +42,9 @@ class InputDecorationDTO {
   Color? focusBorderColor;
   @JsonKey(fromJson: WidgetUtil.getColor)
   Color? borderColor;
+  double borderWidth;
+  bool? filled;
+  double borderRadius;
 
   InputDecorationDTO({
     this.labelText,
@@ -65,6 +68,9 @@ class InputDecorationDTO {
     this.enableBorderColor,
     this.focusBorderColor,
     this.borderColor,
+    this.borderWidth = 1,
+    this.filled,
+    this.borderRadius = 4,
   });
 
   factory InputDecorationDTO.fromJson(Map<String, dynamic> json) =>
@@ -89,16 +95,19 @@ class InputDecorationDTO {
       helperStyle: helperStyle?.textStyle,
       icon: (icon == null) ? null : icon!.build(context),
       suffixIcon: (suffixIcon == null) ? null : suffixIcon!.build(context),
-      enabledBorder: UnderlineInputBorder(
+      enabledBorder: OutlineInputBorder(
+        borderRadius: BorderRadius.circular(borderRadius),
         borderSide:
-            BorderSide(color: enableBorderColor ?? const Color(0xFF000000)),
+            BorderSide(color: enableBorderColor ?? const Color(0xFF000000), width: borderWidth),
       ),
-      focusedBorder: UnderlineInputBorder(
+      focusedBorder: OutlineInputBorder(
+        borderRadius: BorderRadius.circular(borderRadius),
         borderSide:
-            BorderSide(color: focusBorderColor ?? const Color(0xFF000000)),
+            BorderSide(color: focusBorderColor ?? const Color(0xFF000000), width: borderWidth),
       ),
-      border: UnderlineInputBorder(
-        borderSide: BorderSide(color: borderColor ?? const Color(0xFF000000)),
+      border: OutlineInputBorder(
+        borderRadius: BorderRadius.circular(borderRadius),
+        borderSide: BorderSide(color: borderColor ?? const Color(0xFF000000), width: borderWidth),
       ),
       iconColor: iconColor,
       focusColor: focusColor,
@@ -106,6 +115,7 @@ class InputDecorationDTO {
       fillColor: fillColor,
       hintText: hintText,
       hintStyle: hintStyle?.textStyle,
+      filled: true,
     );
   }
 

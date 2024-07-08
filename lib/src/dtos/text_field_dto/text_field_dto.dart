@@ -32,6 +32,10 @@ class TextFieldDTO {
   int? maxLength;
   bool? obscureText;
   bool? enabled;
+  String? errorText;
+  TextStyleDTO? errorTextStyle;
+  @JsonKey(fromJson: WidgetUtil.getColor)
+  Color? cursorColor;
 
   TextFieldDTO({
     this.decoration,
@@ -50,11 +54,14 @@ class TextFieldDTO {
     this.maxLength,
     this.obscureText,
     this.enabled,
+    this.errorText,
+    this.errorTextStyle,
+    this.cursorColor,
   });
 
   @override
   String toString() {
-    return 'TextFieldDTO{decoration: $decoration, keyboardType: $keyboardType, textInputAction: $textInputAction, textCapitalization: $textCapitalization, style: $style, textAlign: $textAlign, textAlignVertical: $textAlignVertical, textDirection: $textDirection, readOnly: $readOnly, showCursor: $showCursor, obscuringCharacter: $obscuringCharacter, maxLines: $maxLines, minLines: $minLines, maxLength: $maxLength, obscureText: $obscureText, enabled: $enabled}';
+    return 'TextFieldDTO{decoration: $decoration, keyboardType: $keyboardType, textInputAction: $textInputAction, textCapitalization: $textCapitalization, style: $style, textAlign: $textAlign, textAlignVertical: $textAlignVertical, textDirection: $textDirection, readOnly: $readOnly, showCursor: $showCursor, obscuringCharacter: $obscuringCharacter, maxLines: $maxLines, minLines: $minLines, maxLength: $maxLength, obscureText: $obscureText, enabled: $enabled, errorText: $errorText, errorTextStyle: $errorTextStyle, cursorColor: $cursorColor}';
   }
 
   factory TextFieldDTO.fromJson(Map<String, dynamic> json) {

@@ -13,8 +13,8 @@ DynamicCarousel _$DynamicCarouselFromJson(Map<String, dynamic> json) {
   );
   return DynamicCarousel(
     key: json['key'] as String?,
-    width: (json['width'] as num?)?.toDouble(),
-    height: (json['height'] as num?)?.toDouble(),
+      width: WidgetUtil.getWidthValueOrInf((json['width'] as num?)?.toDouble()),
+      height: WidgetUtil.getHeightValueOrInf((json['height'] as num?)?.toDouble()),
     children: WidgetUtil.childrenFilter(
         (json['children'] as List<dynamic>?)
             ?.map((e) => e == null

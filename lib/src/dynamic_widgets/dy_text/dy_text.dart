@@ -27,7 +27,9 @@ class DynamicText extends DynamicWidget implements DataEventListener {
   TextAlign? textAlign;
   @JsonKey(fromJson: WidgetUtil.getTextOverflow)
   TextOverflow? overflow;
+  @JsonKey(fromJson: WidgetUtil.getHeightValueOrInf)
   double? height;
+  @JsonKey(fromJson: WidgetUtil.getWidthValueOrInf)
   double? width;
   @JsonKey(fromJson: WidgetUtil.getPositionalAlignment)
   Alignment? alignment;
@@ -152,4 +154,10 @@ class DynamicText extends DynamicWidget implements DataEventListener {
 
   @override
   void onDispose() {}
+
+  @override
+  double? get dyHeight => height;
+
+  @override
+  double? get dyWidth => width;
 }

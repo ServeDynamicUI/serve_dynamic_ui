@@ -44,17 +44,21 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
+  late GlobalKey<NavigatorState> appNavigator;
+
   @override
   void initState() {
     super.initState();
     DynamicListeners.addListener("1212133344", WidgetScrollListener());
     DynamicListeners.addListener("334343434", TextUpdateListener());
     DynamicListeners.addListener("213234324324", CarouselSliderChangeListener());
+    appNavigator = GlobalKey<NavigatorState>();
   }
 
   @override
   Widget build(BuildContext context) {
     return ServeDynamicUIMaterialApp(
+      navigatorKey: appNavigator,
       home: (context) {
         return SessionManagerWidget(
           onUndetermined: () {
@@ -64,18 +68,18 @@ class _MyHomePageState extends State<MyHomePage> {
             return ServeDynamicUI.fromNetwork(
               DynamicRequest(
                 url:
-                'https://raw.githubusercontent.com/ServeDynamicUI/serve_dynamic_ui/page-caching-support/example/assets/json/list_view.json?isPageCacheEnabled=true',
+                'https://raw.githubusercontent.com/ServeDynamicUI/serve_dynamic_ui/main/example/assets/json/list_view.json?isPageCacheEnabled=true',
                 requestType: RequestType.get,
               ),
               templateJsonPath:
-              'assets/json/shimmer_pages/stacked_page_shimmer.json',
+              'assets/json/shimmer_pages/default_page_shimmer.json',
             );
           },
           deAuthenticated: () {
             return ServeDynamicUI.fromNetwork(
               DynamicRequest(
                 url:
-                'https://raw.githubusercontent.com/ServeDynamicUI/serve_dynamic_ui/page-caching-support/example/assets/json/sample.json?isPageCacheEnabled=true',
+                'https://raw.githubusercontent.com/ServeDynamicUI/serve_dynamic_ui/main/example/assets/json/sample.json?isPageCacheEnabled=true',
                 requestType: RequestType.get,
               ),
               templateJsonPath:
@@ -99,7 +103,7 @@ class _MyHomePageState extends State<MyHomePage> {
             return ServeDynamicUI.fromNetwork(
               DynamicRequest(
                 url:
-                'https://raw.githubusercontent.com/ServeDynamicUI/serve_dynamic_ui/page-caching-support/example/assets/json/sample.json?isPageCacheEnabled=true',
+                'https://raw.githubusercontent.com/ServeDynamicUI/serve_dynamic_ui/main/example/assets/json/sample.json?isPageCacheEnabled=true',
                 requestType: RequestType.get,
               ),
               templateJsonPath:

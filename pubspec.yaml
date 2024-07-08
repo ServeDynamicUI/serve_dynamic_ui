@@ -25,6 +25,7 @@ dependencies:
   shared_preferences: ^2.2.3
   flutter_secure_storage: ^9.2.2
   carousel_slider: ^4.2.1
+  percent_indicator: ^4.2.3
 
 dev_dependencies:
   flutter_test:

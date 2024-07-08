@@ -79,7 +79,7 @@ class CarouselDto {
   @JsonKey(defaultValue: true)
   final bool padEnds;
 
-  @JsonKey(fromJson: WidgetUtil.getClip, defaultValue: Clip.hardEdge)
+  @JsonKey(fromJson: WidgetUtil.getClipBehavior, defaultValue: Clip.hardEdge)
   final Clip clipBehavior;
 
   const CarouselDto({

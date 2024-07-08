@@ -47,4 +47,7 @@ InputDecorationDTO _$InputDecorationDTOFromJson(Map<String, dynamic> json) =>
       focusBorderColor:
           WidgetUtil.getColor(json['focusBorderColor'] as String?),
       borderColor: WidgetUtil.getColor(json['borderColor'] as String?),
+      borderWidth: (json['borderWidth'] as num?)?.toDouble() ?? 1,
+      filled: json['filled'] as bool?,
+      borderRadius: (json['borderRadius'] as num?)?.toDouble() ?? 4,
     );

@@ -21,6 +21,10 @@ class DynamicStack extends DynamicWidget {
   Clip? clipBehavior;
   @JsonKey(fromJson: WidgetUtil.getTextDirection)
   TextDirection? textDirection;
+  @JsonKey(fromJson: WidgetUtil.getHeightValueOrInf)
+  double? height;
+  @JsonKey(fromJson: WidgetUtil.getWidthValueOrInf)
+  double? width;
 
   DynamicStack({
     required super.key,
@@ -29,8 +33,8 @@ class DynamicStack extends DynamicWidget {
     this.fit,
     this.clipBehavior,
     this.textDirection,
-    super.height,
-    super.width,
+    this.height,
+    this.width,
   });
 
   factory DynamicStack.fromJson(Map<String, dynamic> json) =>
@@ -66,4 +70,10 @@ class DynamicStack extends DynamicWidget {
   void onDispose() {
     WidgetUtil.callOnDisposeOnWidgets(children);
   }
+
+  @override
+  double? get dyHeight => height;
+
+  @override
+  double? get dyWidth => width;
 }

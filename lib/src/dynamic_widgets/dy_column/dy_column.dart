@@ -16,12 +16,21 @@ class DynamicColumn extends DynamicWidget {
   MainAxisAlignment? mainAxisAlignment;
   @JsonKey(fromJson: WidgetUtil.getCrossAxisAlignment)
   CrossAxisAlignment? crossAxisAlignment;
+  @JsonKey(fromJson: WidgetUtil.getHeightValueOrInf)
+  double? height;
+  @JsonKey(fromJson: WidgetUtil.getWidthValueOrInf)
+  double? width;
+  @JsonKey(defaultValue: 0.0)
+  double interItemSpacing;
 
   DynamicColumn({
     String? key,
     this.children,
     this.mainAxisAlignment,
     this.crossAxisAlignment,
+    this.height,
+    this.width,
+    this.interItemSpacing = 0,
   }) : super(
           key: key ?? "",
         );
@@ -43,7 +52,7 @@ class DynamicColumn extends DynamicWidget {
       key: ValueKey(key),
       mainAxisAlignment: mainAxisAlignment ?? MainAxisAlignment.center,
       crossAxisAlignment: crossAxisAlignment ?? CrossAxisAlignment.center,
-      children: (children == null) ? [] : childWidgets,
+      children: (children == null) ? [] : WidgetUtil.widgetsSpacing(childWidgets, interItemSpacing, isHorizontal: false),
     );
   }
 
@@ -63,4 +72,10 @@ class DynamicColumn extends DynamicWidget {
   void onDispose() {
     WidgetUtil.callOnDisposeOnWidgets(children);
   }
+
+  @override
+  double? get dyHeight => height;
+
+  @override
+  double? get dyWidth => width;
 }

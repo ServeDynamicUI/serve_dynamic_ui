@@ -21,10 +21,10 @@ class DynamicImage extends DynamicWidget {
   ImageType? imageType;
   @JsonKey(fromJson: WidgetUtil.getColor)
   Color? color;
-  @override
-  double? width;
-  @override
+  @JsonKey(fromJson: WidgetUtil.getHeightValueOrInf)
   double? height;
+  @JsonKey(fromJson: WidgetUtil.getWidthValueOrInf)
+  double? width;
   @JsonKey(fromJson: WidgetUtil.getBoxFit)
   BoxFit? fit;
   double? clipBorderRadius;
@@ -138,4 +138,10 @@ class DynamicImage extends DynamicWidget {
 
   @override
   void onDispose() {}
+
+  @override
+  double? get dyHeight => height;
+
+  @override
+  double? get dyWidth => width;
 }

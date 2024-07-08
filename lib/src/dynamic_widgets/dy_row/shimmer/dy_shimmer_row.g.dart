@@ -25,6 +25,7 @@ DynamicShimmerRow _$DynamicShimmerRowFromJson(Map<String, dynamic> json) {
           json['crossAxisAlignment'] as String?),
       itemCount: (json['itemCount'] as num?)?.toInt() ?? 5,
       interItemSpacing: (json['interItemSpacing'] as num?)?.toDouble() ?? 5,
-      height: (json['height'] as num?)?.toDouble(),
-      width: (json['width'] as num?)?.toDouble());
+      width: WidgetUtil.getWidthValueOrInf((json['width'] as num?)?.toDouble()),
+      height: WidgetUtil.getHeightValueOrInf((json['height'] as num?)?.toDouble()),
+  );
 }

@@ -60,4 +60,10 @@ class DynamicProvider extends DynamicWidget {
 
   @override
   void onDispose() {}
+
+  @override
+  double? get dyHeight => throw UnimplementedError();
+
+  @override
+  double? get dyWidth => throw UnimplementedError();
 }

@@ -26,5 +26,7 @@ DynamicGestureDetector _$DynamicGestureDetectorFromJson(
     onLongPressAction: json['onLongPressAction'] == null
         ? null
         : ActionDTO.fromJson(json['onLongPressAction'] as Map<String, dynamic>),
+    width: WidgetUtil.getWidthValueOrInf((json['width'] as num?)?.toDouble()),
+    height: WidgetUtil.getHeightValueOrInf((json['height'] as num?)?.toDouble()),
   );
 }

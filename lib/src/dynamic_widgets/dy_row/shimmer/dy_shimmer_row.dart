@@ -18,6 +18,10 @@ class DynamicShimmerRow extends DynamicWidget {
   @JsonKey(fromJson: WidgetUtil.getCrossAxisAlignment)
   CrossAxisAlignment? crossAxisAlignment;
   double interItemSpacing;
+  @JsonKey(fromJson: WidgetUtil.getHeightValueOrInf)
+  double? height;
+  @JsonKey(fromJson: WidgetUtil.getWidthValueOrInf)
+  double? width;
 
   DynamicShimmerRow({
     String? key,
@@ -26,8 +30,8 @@ class DynamicShimmerRow extends DynamicWidget {
     this.mainAxisAlignment,
     this.crossAxisAlignment,
     this.interItemSpacing = 10,
-    super.height,
-    super.width,
+    this.height,
+    this.width,
   }) : super(
           key: key ?? "",
         );
@@ -78,4 +82,10 @@ class DynamicShimmerRow extends DynamicWidget {
   void onDispose() {
     WidgetUtil.callOnDisposeOnWidgets(childItems);
   }
+
+  @override
+  double? get dyHeight => height;
+
+  @override
+  double? get dyWidth => width;
 }

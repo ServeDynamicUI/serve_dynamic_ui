@@ -16,12 +16,17 @@ class DynamicRow extends DynamicWidget {
   MainAxisAlignment? mainAxisAlignment;
   @JsonKey(fromJson: WidgetUtil.getCrossAxisAlignment)
   CrossAxisAlignment? crossAxisAlignment;
-
+  @JsonKey(fromJson: WidgetUtil.getHeightValueOrInf)
+  double? height;
+  @JsonKey(fromJson: WidgetUtil.getWidthValueOrInf)
+  double? width;
   DynamicRow({
     String? key,
     this.children,
     this.mainAxisAlignment,
     this.crossAxisAlignment,
+    this.height,
+    this.width,
   }) : super(
           key: key ?? "",
         );
@@ -63,4 +68,10 @@ class DynamicRow extends DynamicWidget {
   void onDispose() {
     WidgetUtil.callOnDisposeOnWidgets(children);
   }
+
+  @override
+  double? get dyHeight => height;
+
+  @override
+  double? get dyWidth => width;
 }

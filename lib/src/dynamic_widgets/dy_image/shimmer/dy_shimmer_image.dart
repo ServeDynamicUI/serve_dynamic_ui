@@ -20,12 +20,16 @@ class DynamicShimmerImage extends DynamicWidget {
   Color? shimmerBaseColor;
   @JsonKey(fromJson: WidgetUtil.getColor)
   Color? shimmerHighlightColor;
+  @JsonKey(fromJson: WidgetUtil.getHeightValueOrInf)
+  double? height;
+  @JsonKey(fromJson: WidgetUtil.getWidthValueOrInf)
+  double? width;
 
   DynamicShimmerImage({
     required super.key,
     required this.placeholderImagePath,
-    super.width,
-    super.height,
+    this.width,
+    this.height,
     this.fit,
     this.clipBorderRadius,
     this.shimmerBaseColor,
@@ -81,4 +85,10 @@ class DynamicShimmerImage extends DynamicWidget {
 
   @override
   void onDispose() {}
+
+  @override
+  double? get dyHeight => height;
+
+  @override
+  double? get dyWidth => width;
 }

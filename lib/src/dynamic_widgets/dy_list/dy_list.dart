@@ -17,6 +17,10 @@ class DynamicList extends DynamicWidget {
   bool shrinkWrap;
   List<DynamicWidget>? listItems;
   DynamicWidget? separator;
+  @JsonKey(fromJson: WidgetUtil.getHeightValueOrInf)
+  double? height;
+  @JsonKey(fromJson: WidgetUtil.getWidthValueOrInf)
+  double? width;
 
   DynamicList(
       {required super.key,
@@ -24,7 +28,10 @@ class DynamicList extends DynamicWidget {
       this.listItems,
       this.separator,
       this.shrinkWrap = false,
-      this.isScrollable = true});
+      this.isScrollable = true,
+        this.height,
+        this.width,
+      });
 
   factory DynamicList.fromJson(Map<String, dynamic> json) =>
       _$DynamicListFromJson(json);
@@ -60,4 +67,10 @@ class DynamicList extends DynamicWidget {
   void onDispose() {
     WidgetUtil.callOnDisposeOnWidgets(listItems);
   }
+
+  @override
+  double? get dyHeight => height;
+
+  @override
+  double? get dyWidth => width;
 }

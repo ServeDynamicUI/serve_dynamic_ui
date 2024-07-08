@@ -12,11 +12,9 @@ abstract class DynamicWidget {
   @JsonKey(required: true)
   final String key;
 
-  @JsonKey(required: false)
-  final double? height;
+  double? get dyHeight;
 
-  @JsonKey(required: false, fromJson: WidgetUtil.getValueOrInf)
-  final double? width;
+  double? get dyWidth;
 
   @JsonKey(fromJson: WidgetUtil.getEdgeInsets)
   EdgeInsets? margin;
@@ -29,8 +27,6 @@ abstract class DynamicWidget {
   DynamicWidget({
     required this.key,
     this.parent,
-    this.height,
-    this.width,
     this.margin,
     this.padding,
   });

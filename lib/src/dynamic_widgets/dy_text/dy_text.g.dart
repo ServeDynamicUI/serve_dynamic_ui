@@ -23,8 +23,8 @@ DynamicText _$DynamicTextFromJson(Map<String, dynamic> json) {
     maxLines: json['maxLines'] as int?,
     overflow: WidgetUtil.getTextOverflow(json['overflow'] as String?),
     isHtmlText: json['isHtmlText'] as bool? ?? false,
-    height: (json['height'] as num?)?.toDouble(),
-    width: (json['width'] as num?)?.toDouble(),
+    width: WidgetUtil.getWidthValueOrInf((json['width'] as num?)?.toDouble()),
+    height: WidgetUtil.getHeightValueOrInf((json['height'] as num?)?.toDouble()),
     alignment: WidgetUtil.getPositionalAlignment(json['alignment'] as String?),
   );
 }

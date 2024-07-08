@@ -13,6 +13,11 @@ enum RequestType {
   delete,
 }
 
+enum PercentageIndicatorType {
+  circular,
+  linear
+}
+
 enum PopAndNavigateStrategy { popToRoot, popCurrent, popUntilScreen }
 
 extension PopAndNavigateStrategyExtension on PopAndNavigateStrategy {

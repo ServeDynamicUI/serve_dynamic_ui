@@ -13,8 +13,8 @@ DynamicShimmerImage _$DynamicShimmerImageFromJson(Map<String, dynamic> json) {
   );
   return DynamicShimmerImage(
     key: json['key'] as String,
-    width: (json['width'] as num?)?.toDouble(),
-    height: (json['height'] as num?)?.toDouble(),
+    width: WidgetUtil.getWidthValueOrInf((json['width'] as num?)?.toDouble()),
+    height: WidgetUtil.getHeightValueOrInf((json['height'] as num?)?.toDouble()),
     placeholderImagePath: json['placeholderImagePath'] as String,
     fit: WidgetUtil.getBoxFit(json['fit'] as String?),
     clipBorderRadius: (json['clipBorderRadius'] as num?)?.toDouble(),

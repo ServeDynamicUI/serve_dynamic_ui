@@ -17,7 +17,9 @@ class DynamicContainer extends DynamicWidget {
   EdgeInsets? padding;
   @JsonKey(fromJson: WidgetUtil.getEdgeInsets)
   EdgeInsets? margin;
+  @JsonKey(fromJson: WidgetUtil.getHeightValueOrInf)
   double? height;
+  @JsonKey(fromJson: WidgetUtil.getWidthValueOrInf)
   double? width;
   DynamicWidget? child;
   @JsonKey(fromJson: WidgetUtil.getPositionalAlignment)
@@ -57,12 +59,8 @@ class DynamicContainer extends DynamicWidget {
           : null,
       padding: padding != null ? padding! : EdgeInsets.zero,
       margin: margin != null ? margin! : EdgeInsets.zero,
-      height: height != null
-          ? ((height! < 0) ? MediaQuery.of(context).size.height : height)
-          : null,
-      width: width != null
-          ? ((width! < 0) ? MediaQuery.of(context).size.width : width)
-          : null,
+      height: height,
+      width: width,
       alignment: alignment ?? Alignment.center,
       decoration: showBorder
           ? BoxDecoration(
@@ -99,4 +97,10 @@ class DynamicContainer extends DynamicWidget {
   void onDispose() {
     WidgetUtil.callOnDisposeOnWidget(child);
   }
+
+  @override
+  double? get dyHeight => height;
+
+  @override
+  double? get dyWidth => width;
 }

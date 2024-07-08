@@ -16,6 +16,10 @@ class DynamicGestureDetector extends DynamicWidget {
   ActionDTO? onTapAction;
   ActionDTO? onDoubleTapAction;
   ActionDTO? onLongPressAction;
+  @JsonKey(fromJson: WidgetUtil.getHeightValueOrInf)
+  double? height;
+  @JsonKey(fromJson: WidgetUtil.getWidthValueOrInf)
+  double? width;
 
   DynamicGestureDetector({
     String? key,
@@ -23,6 +27,8 @@ class DynamicGestureDetector extends DynamicWidget {
     this.onTapAction,
     this.onDoubleTapAction,
     this.onLongPressAction,
+    this.height,
+    this.width
   }) : super(
           key: key ?? "",
         );
@@ -62,4 +68,10 @@ class DynamicGestureDetector extends DynamicWidget {
   void onDispose() {
     WidgetUtil.callOnDisposeOnWidget(child);
   }
+
+  @override
+  double? get dyHeight => height;
+
+  @override
+  double? get dyWidth => width;
 }

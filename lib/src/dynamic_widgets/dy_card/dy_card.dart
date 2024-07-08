@@ -28,6 +28,10 @@ class DynamicCard extends DynamicWidget {
   double? borderRadius;
   @JsonKey(fromJson: WidgetUtil.getLinearGradient)
   LinearGradient? linearGradient;
+  @JsonKey(fromJson: WidgetUtil.getHeightValueOrInf)
+  double? height;
+  @JsonKey(fromJson: WidgetUtil.getWidthValueOrInf)
+  double? width;
 
   DynamicCard({
     String? key,
@@ -42,8 +46,8 @@ class DynamicCard extends DynamicWidget {
     this.surfaceTintColor,
     this.borderRadius,
     this.linearGradient,
-    super.height,
-    super.width,
+    this.height,
+    this.width
   }) : super(
           key: key ?? "",
         );
@@ -92,4 +96,10 @@ class DynamicCard extends DynamicWidget {
   void onDispose() {
     WidgetUtil.callOnDisposeOnWidget(child);
   }
+
+  @override
+  double? get dyHeight => height;
+
+  @override
+  double? get dyWidth => width;
 }

@@ -19,18 +19,6 @@ DynamicScaffold _$DynamicScaffoldFromJson(Map<String, dynamic> json) {
         : (json['children'] as List<dynamic>?)
             ?.map((e) => DynamicWidget.fromJson(e as Map<String, dynamic>))
             .toList(),
-    leftActions: json['leftActions'] == null
-        ? null
-        : (json['leftActions'] as List<dynamic>?)
-            ?.map((e) => DynamicWidget.fromJson(e as Map<String, dynamic>))
-            .toList(),
-    leftActionsWidth: (json['leftActionsWidth'] as num?)?.toDouble(),
-    rightActions: json['rightActions'] == null
-        ? null
-        : (json['rightActions'] as List<dynamic>?)
-            ?.map((e) => DynamicWidget.fromJson(e as Map<String, dynamic>))
-            .toList(),
-    pageTitle: json['pageTitle'] as String?,
     floatingActionWidget: json['floatingActionWidget'] == null
         ? null
         : DynamicWidget.fromJson(
@@ -41,7 +29,6 @@ DynamicScaffold _$DynamicScaffoldFromJson(Map<String, dynamic> json) {
             json['bottomNavigationBar'] as Map<String, dynamic>),
     resizeToAvoidBottomInset: json['resizeToAvoidBottomInset'] as bool?,
     scrollable: json['scrollable'] as bool? ?? true,
-    centerPageTitle: json['centerPageTitle'] as bool? ?? true,
     paginated: json['paginated'] as bool? ?? false,
     showPaginatedLoaderOnTop:
         json['showPaginatedLoaderOnTop'] as bool? ?? false,
@@ -66,5 +53,9 @@ DynamicScaffold _$DynamicScaffoldFromJson(Map<String, dynamic> json) {
     mainAxisAlignment: WidgetUtil.getMainAxisAlignment(
         json['mainAxisAlignment'] as String?) ??
         MainAxisAlignment.start,
+    width: WidgetUtil.getWidthValueOrInf((json['width'] as num?)?.toDouble()),
+    height: WidgetUtil.getHeightValueOrInf((json['height'] as num?)?.toDouble()),
+    backgroundColor: WidgetUtil.getColor(json['backgroundColor'] as String?),
+    appBar: json['appBar'] == null ? AppBarDto() : AppBarDto.fromJson(json['appBar'] as Map<String, dynamic>)
   );
 }

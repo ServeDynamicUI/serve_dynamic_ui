@@ -7,6 +7,12 @@ import '../handlers/dynamic_widget_handlers.dart';
 
 ///[ServeDynamicUI] : class which is entry point to this packages that helps to init this package.
 class ServeDynamicUI {
+  static late GlobalKey<NavigatorState>? applicationCurrentNavigationKey;
+
+  static MediaQueryData? get mediaQueryData => _isAppContextAttached ? MediaQuery.of(ServeDynamicUI.applicationCurrentNavigationKey!.currentContext!) : null;
+
+  static bool get _isAppContextAttached => ServeDynamicUI.applicationCurrentNavigationKey != null && ServeDynamicUI.applicationCurrentNavigationKey!.currentContext != null && ServeDynamicUI.applicationCurrentNavigationKey!.currentContext!.mounted;
+
   ///helps to initialize the [widgetHandlers], [actionHandlers] and [dio].
   static init(
       {Dio? dio,

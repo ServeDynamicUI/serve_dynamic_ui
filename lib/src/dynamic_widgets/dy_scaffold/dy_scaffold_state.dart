@@ -18,7 +18,7 @@ class PageSuccessEvent extends PageDataEvent {
 }
 
 class PageErrorEvent extends PageDataEvent {
-  final Exception? error;
+  final String? error;
   PageErrorEvent(super.children, this.error);
 }
 
@@ -39,17 +39,16 @@ class DyScaffoldState extends ScrollListener {
     DynamicListeners.addListener(_parent.key, this);
     _isFetchingPageInProgress = false;
     pageDataEventNotifier =
-        ValueNotifier(PageSuccessEvent(_parent.childWidgets));
+        ValueNotifier(PageSuccessEvent(_parent.children));
     showPaginatedLoaderOnTopNotifier = ValueNotifier(_isFetchingPageInProgress);
   }
 
   _fetch() async {
     try {
-      if (_isFetchingPageInProgress == false &&
-          StringUtil.isNotEmptyNorNull(nextUrl)) {
+      if (_isFetchingPageInProgress == false && StringUtil.isNotEmptyNorNull(nextUrl)) {
         _isFetchingPageInProgress = true;
         showPaginatedLoaderOnTopNotifier.value = _isFetchingPageInProgress;
-        await Future.delayed(const Duration(seconds: 1));
+        await Future.delayed(const Duration(milliseconds: 500));
         pageDataEventNotifier.value =
             PageProgressEvent(pageDataEventNotifier.value.children);
         Map<String, dynamic> jsonResponse = {};
@@ -82,28 +81,32 @@ class DyScaffoldState extends ScrollListener {
         _isFetchingPageInProgress = false;
         showPaginatedLoaderOnTopNotifier.value = _isFetchingPageInProgress;
       }
-    } on Exception catch (e) {
+    } on Error catch (e) {
+      pageDataEventNotifier.value =
+          PageErrorEvent(pageDataEventNotifier.value.children, e.toString());
+    } on Exception catch(e){
+      pageDataEventNotifier.value =
+          PageErrorEvent(pageDataEventNotifier.value.children, e.toString());
+    } finally {
       _isFetchingPageInProgress = false;
       showPaginatedLoaderOnTopNotifier.value = _isFetchingPageInProgress;
-      pageDataEventNotifier.value =
-          PageErrorEvent(pageDataEventNotifier.value.children, e);
     }
   }
 
   @override
   void onScrolled(String? widgetKey) {
-    debugPrint('dy_scaffold ${_parent.pageTitle} onScrolled $widgetKey');
+    debugPrint('dy_scaffold ${_parent.appBar!.pageTitle} onScrolled $widgetKey');
   }
 
   @override
   void onScrolledToEnd(String? widgetKey) {
-    debugPrint('dy_scaffold ${_parent.pageTitle}  onScrolledToEnd $widgetKey');
+    debugPrint('dy_scaffold ${_parent.appBar!.pageTitle}  onScrolledToEnd $widgetKey');
     _fetch();
   }
 
   @override
   void onScrolledToStart(String? widgetKey) {
     debugPrint(
-        'dy_scaffold ${_parent.pageTitle}  onScrolledToStart $widgetKey');
+        'dy_scaffold ${_parent.appBar!.pageTitle}  onScrolledToStart $widgetKey');
   }
 }

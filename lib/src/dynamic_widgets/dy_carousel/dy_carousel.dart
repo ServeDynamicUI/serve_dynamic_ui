@@ -18,11 +18,15 @@ class DynamicCarousel extends DynamicWidget {
   bool reusable;
   @JsonKey(defaultValue: CarouselDto())
   CarouselDto carouselOptions;
+  @JsonKey(fromJson: WidgetUtil.getHeightValueOrInf)
+  double? height;
+  @JsonKey(fromJson: WidgetUtil.getWidthValueOrInf)
+  double? width;
 
   DynamicCarousel(
       {String? key,
-      super.height,
-      super.width,
+      this.height,
+      this.width,
       this.children,
       this.reusable = false,
       this.carouselOptions = const CarouselDto(),
@@ -139,4 +143,10 @@ class DynamicCarousel extends DynamicWidget {
   void onDispose() {
     WidgetUtil.callOnDisposeOnWidgets(children);
   }
+
+  @override
+  double? get dyHeight => height;
+
+  @override
+  double? get dyWidth => width;
 }

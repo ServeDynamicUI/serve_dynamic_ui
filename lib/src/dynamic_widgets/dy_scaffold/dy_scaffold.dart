@@ -13,12 +13,7 @@ part 'dy_scaffold.g.dart';
   createToJson: false,
 )
 class DynamicScaffold extends DynamicWidget implements FormWidget {
-  String? pageTitle;
-  bool centerPageTitle;
   List<DynamicWidget>? children;
-  List<DynamicWidget>? rightActions;
-  List<DynamicWidget>? leftActions;
-  double? leftActionsWidth;
   DynamicWidget? floatingActionWidget;
   DynamicWidget? bottomNavigationBar;
   DynamicWidget? paginatedLoaderWidget;
@@ -38,19 +33,21 @@ class DynamicScaffold extends DynamicWidget implements FormWidget {
   List<String>? pageRefreshEvents;
   @JsonKey(fromJson: WidgetUtil.getMainAxisAlignment, defaultValue: MainAxisAlignment.start)
   MainAxisAlignment mainAxisAlignment;
+  @JsonKey(fromJson: WidgetUtil.getHeightValueOrInf)
+  double? height;
+  @JsonKey(fromJson: WidgetUtil.getWidthValueOrInf)
+  double? width;
+  @JsonKey(fromJson: WidgetUtil.getColor)
+  Color? backgroundColor;
+  AppBarDto? appBar;
 
   DynamicScaffold({
     required String key,
     this.children,
-    this.rightActions,
-    this.leftActions,
-    this.leftActionsWidth,
-    this.pageTitle,
     this.floatingActionWidget,
     this.bottomNavigationBar,
     this.paginatedLoaderWidget,
     this.resizeToAvoidBottomInset,
-    this.centerPageTitle = true,
     this.scrollable = true,
     this.paginated = false,
     this.primary = true,
@@ -66,6 +63,10 @@ class DynamicScaffold extends DynamicWidget implements FormWidget {
     this.mainAxisAlignment = MainAxisAlignment.start,
     super.margin,
     super.padding,
+    this.height,
+    this.width,
+    this.backgroundColor,
+    this.appBar,
   }) : super(
           key: key ?? "",
         );
@@ -74,7 +75,19 @@ class DynamicScaffold extends DynamicWidget implements FormWidget {
       _$DynamicScaffoldFromJson(json);
 
   @override
-  List<DynamicWidget>? get childWidgets => children != null ? children! : [];
+  List<DynamicWidget>? get childWidgets {
+    List<DynamicWidget> children = [];
+    if(appBar!.leftActions != null){
+      children.addAll(appBar!.leftActions!);
+    }
+    if(appBar!.rightActions != null){
+      children.addAll(appBar!.rightActions!);
+    }
+    if(this.children != null){
+      children.addAll(this.children!);
+    }
+    return children;
+  }
 
   ScrollController get _scrollController {
     DynamicProvider dynamicProvider =
@@ -124,11 +137,13 @@ class DynamicScaffold extends DynamicWidget implements FormWidget {
     return DynamicScaffoldLifecycleWidget(
       child: Scaffold(
         key: ValueKey(key),
-        appBar: _appBar(context, pageTitle, centerPageTitle, leftActions,
-            rightActions, leftActionsWidth),
+        appBar: _appBar(context),
         body: Container(
           padding: padding,
           margin: margin,
+          color: backgroundColor,
+          height: height,
+          width: width,
           child: _getBody(context),
         ),
         floatingActionButton: floatingActionWidget?.build(context),
@@ -335,62 +350,85 @@ class DynamicScaffold extends DynamicWidget implements FormWidget {
   }
 
   bool validateFormWidgets(DynamicWidget? widget) {
+    bool isValid = true;
+
     if (widget != null) {
       if (widget is FormWidget) {
-        return (widget as FormWidget).validate();
+        isValid = (widget as FormWidget).validate();
       } else {
         if (widget.childWidgets?.isNotEmpty ?? false) {
-          bool validate = true;
           for (var child in widget.childWidgets!) {
-            validate = validate && validateFormWidgets(child);
+            bool childValid = validateFormWidgets(child);
+            isValid = isValid && childValid;
           }
-          return validate;
         }
-        return true;
       }
-    } else {
-      return true;
     }
+
+    return isValid;
   }
 
   @override
   FutureOr invokeMethod(String methodName, {Map<String, dynamic>? params}) {}
 
-  PreferredSizeWidget? _appBar(
-      BuildContext context,
-      String? pageTitle,
-      bool centerPageTitle,
-      List<DynamicWidget>? leftActions,
-      List<DynamicWidget>? rightActions,
-      double? leftActionsWidth) {
-    if (pageTitle == null) {
-      return null;
+  PreferredSizeWidget? _appBar(BuildContext context) {
+    if(appBar!.appBarGradient != null){
+      appBar!.backgroundColor = Colors.transparent;
+      return PreferredSize(
+        preferredSize: const Size.fromHeight(kToolbarHeight),
+        child: Container(
+          decoration: BoxDecoration(
+            gradient: appBar!.appBarGradient,
+          ),
+          child: _basicAppBar(context),
+        ),
+      );
     }
+    return _basicAppBar(context);
+  }
 
+  PreferredSizeWidget? _basicAppBar(BuildContext context){
     return AppBar(
-      title: Text(pageTitle),
-      centerTitle: centerPageTitle,
-      leadingWidth: leftActions != null ? leftActionsWidth : null,
-      leading: leftActions == null
+      title: appBar!.title?.build(context) ?? Text(appBar!.pageTitle ?? ''),
+      centerTitle: appBar!.centerTitle,
+      leadingWidth: appBar!.leftActions != null ? appBar!.leftActionsWidth : null,
+      leading: appBar!.leftActions == null
           ? null
           : Row(
-              mainAxisAlignment: leftActions.length == 1
-                  ? MainAxisAlignment.center
-                  : MainAxisAlignment.start,
-              children:
-                  WidgetUtil.dynamicWidgetsSpacing(context, leftActions, 2),
-            ),
-      actions: rightActions == null
+        mainAxisAlignment: appBar!.leftActions!.length == 1
+            ? MainAxisAlignment.center
+            : MainAxisAlignment.start,
+        children:
+        WidgetUtil.dynamicWidgetsSpacing(context, appBar!.leftActions, 2),
+      ),
+      actions: appBar!.rightActions == null
           ? null
           : [
-              Row(
-                mainAxisAlignment: rightActions.length == 1
-                    ? MainAxisAlignment.center
-                    : MainAxisAlignment.end,
-                children:
-                    WidgetUtil.dynamicWidgetsSpacing(context, rightActions, 2),
-              )
-            ],
+        Row(
+          mainAxisAlignment: appBar!.rightActions!.length == 1
+              ? MainAxisAlignment.center
+              : MainAxisAlignment.end,
+          children:
+          WidgetUtil.dynamicWidgetsSpacing(context, appBar!.rightActions, 2),
+        )
+      ],
+      backgroundColor: appBar!.backgroundColor,
+      automaticallyImplyLeading: appBar!.automaticallyImplyLeading,
+      flexibleSpace: appBar!.flexibleSpace?.build(context),
+      elevation: appBar!.elevation,
+      shadowColor: appBar!.shadowColor,
+      surfaceTintColor: appBar!.surfaceTintColor,
+      foregroundColor: appBar!.foregroundColor,
+      primary: appBar!.primary,
+      excludeHeaderSemantics: appBar!.excludeHeaderSemantics,
+      titleSpacing: appBar!.titleSpacing,
+      toolbarHeight: appBar!.toolbarHeight,
+      bottomOpacity: appBar!.bottomOpacity,
+      toolbarOpacity: appBar!.toolbarOpacity,
+      toolbarTextStyle: appBar!.toolbarTextStyle?.textStyle,
+      titleTextStyle: appBar!.titleTextStyle?.textStyle,
+      forceMaterialTransparency: appBar!.forceMaterialTransparency,
+      clipBehavior: appBar!.clipBehavior,
     );
   }
 
@@ -414,12 +452,18 @@ class DynamicScaffold extends DynamicWidget implements FormWidget {
       child.onDispose();
     });
 
-    leftActions?.forEach((child) {
+    appBar!.leftActions?.forEach((child) {
       child.onDispose();
     });
 
-    rightActions?.forEach((child) {
+    appBar!.rightActions?.forEach((child) {
       child.onDispose();
     });
   }
+
+  @override
+  double? get dyHeight => height;
+
+  @override
+  double? get dyWidth => width;
 }

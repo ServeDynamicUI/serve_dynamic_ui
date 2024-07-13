@@ -34,7 +34,7 @@ class DynamicListeners {
       ScrollListeners.removeScrollListener(key);
     } else if (dynamicListener is TextChangeListener) {
       TextChangeListeners.removeScrollListener(key);
-    }  else if (dynamicListener is DataEventListener) {
+    } else if (dynamicListener is DataEventListener) {
       DataEventListeners.removeDataEventListener(key, dynamicListener);
     } else if (dynamicListener is CarouselChangeListener) {
       CarouselChangeListeners.removeScrollListener(key);

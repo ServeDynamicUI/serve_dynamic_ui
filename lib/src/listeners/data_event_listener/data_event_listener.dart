@@ -1,10 +1,10 @@
 import 'package:serve_dynamic_ui/src/listeners/index.dart';
 
-abstract class DataEventListener extends DynamicListener{
+abstract class DataEventListener extends DynamicListener {
   void onDataEvent(String dataEventKey, Map<String, dynamic> data);
 }
 
-class DataEventListeners{
+class DataEventListeners {
   static final Map<String, List<DataEventListener>> _dataEventListeners = {};
 
   ///to add a data event change listener

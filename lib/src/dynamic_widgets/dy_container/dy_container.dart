@@ -4,7 +4,6 @@ import 'package:flutter/material.dart';
 import 'package:json_annotation/json_annotation.dart';
 import 'package:serve_dynamic_ui/serve_dynamic_ui.dart';
 
-
 part 'dy_container.g.dart';
 
 ///[DynamicContainer] : A dynamic widget that creates a container to hold child widget.
@@ -35,20 +34,20 @@ class DynamicContainer extends DynamicWidget {
   @JsonKey(fromJson: WidgetUtil.getLinearGradient)
   LinearGradient? containerGradient;
 
-  DynamicContainer(
-      {required this.key,
-      this.backgroundColor,
-      this.padding,
-      this.margin,
-      this.height,
-      this.width,
-      this.child,
-      this.alignment,
-      required this.showBorder,
-      this.borderColor,
-      this.borderRadius,
-      this.containerGradient,
-  }): super(key: key);
+  DynamicContainer({
+    required this.key,
+    this.backgroundColor,
+    this.padding,
+    this.margin,
+    this.height,
+    this.width,
+    this.child,
+    this.alignment,
+    required this.showBorder,
+    this.borderColor,
+    this.borderRadius,
+    this.containerGradient,
+  }) : super(key: key);
 
   factory DynamicContainer.fromJson(Map<String, dynamic> json) =>
       _$DynamicContainerFromJson(json);
@@ -74,8 +73,7 @@ class DynamicContainer extends DynamicWidget {
               border:
                   Border.all(width: 1, color: borderColor ?? AppColors.black),
               borderRadius: BorderRadius.circular(borderRadius ?? 5),
-              gradient: containerGradient
-      )
+              gradient: containerGradient)
           : null,
       child: child != null
           ? LayoutBuilder(builder: (context, _) {

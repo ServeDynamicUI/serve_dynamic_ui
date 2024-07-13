@@ -22,14 +22,14 @@ class DynamicTextField extends DynamicWidget implements FormWidget {
   double? width;
   final String? regexValidator;
 
-  DynamicTextField(
-      {required this.key,
-      required this.initialText,
-      this.textFieldDecoration,
-      this.height,
-      this.width,
-      this.regexValidator,
-  }): super(key: key);
+  DynamicTextField({
+    required this.key,
+    required this.initialText,
+    this.textFieldDecoration,
+    this.height,
+    this.width,
+    this.regexValidator,
+  }) : super(key: key);
 
   @override
   List<DynamicWidget>? get childWidgets => [];
@@ -66,8 +66,8 @@ class DynamicTextField extends DynamicWidget implements FormWidget {
           keyboardType: textFieldDecoration?.keyboardType,
           textAlign: textFieldDecoration?.textAlign ?? TextAlign.center,
           textAlignVertical: textFieldDecoration?.textAlignVertical,
-          decoration:
-          textFieldDecoration?.decoration?.getInputDecorationFromDTO(context),
+          decoration: textFieldDecoration?.decoration
+              ?.getInputDecorationFromDTO(context),
           obscureText: textFieldDecoration?.obscureText ?? false,
           enabled: textFieldDecoration?.enabled,
           maxLines: textFieldDecoration?.maxLines,
@@ -76,24 +76,26 @@ class DynamicTextField extends DynamicWidget implements FormWidget {
           showCursor: textFieldDecoration?.showCursor,
           obscuringCharacter: textFieldDecoration?.obscuringCharacter ?? '•',
           style: textFieldDecoration?.style?.textStyle,
-          textCapitalization:
-          textFieldDecoration?.textCapitalization ?? TextCapitalization.none,
+          textCapitalization: textFieldDecoration?.textCapitalization ??
+              TextCapitalization.none,
           cursorColor: textFieldDecoration?.cursorColor,
         ),
-        ValueListenableBuilder(valueListenable: isValid, builder: (context, isValid, _){
-          return Column(
-            children: [
-              if (!isValid)
-               const SizedBox(height: 5),
-              if (!isValid)
-                Text(
-                  textFieldDecoration?.errorText ?? 'Invalid input',
-                  style: textFieldDecoration?.errorTextStyle?.textStyle ?? const TextStyle(color: Colors.red, fontSize: 14),
-                  overflow: TextOverflow.visible,
-                ),
-            ],
-          );
-        })
+        ValueListenableBuilder(
+            valueListenable: isValid,
+            builder: (context, isValid, _) {
+              return Column(
+                children: [
+                  if (!isValid) const SizedBox(height: 5),
+                  if (!isValid)
+                    Text(
+                      textFieldDecoration?.errorText ?? 'Invalid input',
+                      style: textFieldDecoration?.errorTextStyle?.textStyle ??
+                          const TextStyle(color: Colors.red, fontSize: 14),
+                      overflow: TextOverflow.visible,
+                    ),
+                ],
+              );
+            })
       ],
     );
   }
@@ -110,7 +112,7 @@ class DynamicTextField extends DynamicWidget implements FormWidget {
     TextEditingController? controller = _controller;
     if (controller?.text != null && (controller?.text.isNotEmpty ?? false)) {
       bool isValid = true;
-      if(StringUtil.isNotEmptyNorNull(regexValidator)){
+      if (StringUtil.isNotEmptyNorNull(regexValidator)) {
         RegExp regExp = RegExp(regexValidator!);
         isValid = regExp.hasMatch(controller!.text);
       }

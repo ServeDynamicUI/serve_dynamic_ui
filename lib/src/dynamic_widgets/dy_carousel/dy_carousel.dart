@@ -25,25 +25,23 @@ class DynamicCarousel extends DynamicWidget {
   @JsonKey(fromJson: WidgetUtil.getWidthValueOrInf)
   double? width;
 
-  DynamicCarousel(
-      {required this.key,
-      this.height,
-      this.width,
-      this.children,
-      this.reusable = false,
-      this.carouselOptions = const CarouselDto(),
-      })
-      : super(
+  DynamicCarousel({
+    required this.key,
+    this.height,
+    this.width,
+    this.children,
+    this.reusable = false,
+    this.carouselOptions = const CarouselDto(),
+  }) : super(
           key: key,
         );
 
   factory DynamicCarousel.fromJson(Map<String, dynamic> json) =>
       _$DynamicCarouselFromJson(json);
 
-
   CarouselController get _carouselController {
     DynamicProvider dynamicProvider =
-    WidgetResolver.getTopAncestorOfType<DynamicProvider>(this)!;
+        WidgetResolver.getTopAncestorOfType<DynamicProvider>(this)!;
     String controllerKey = key;
     if (dynamicProvider.controllerCache[controllerKey] != null) {
       return dynamicProvider.controllerCache[controllerKey];
@@ -59,8 +57,8 @@ class DynamicCarousel extends DynamicWidget {
   Widget build(BuildContext context) {
     return SizedBox(
       width: width,
-      child: Builder(builder: (context){
-        if(reusable){
+      child: Builder(builder: (context) {
+        if (reusable) {
           return _reusableCarousel();
         }
         return _nonReusableCarousel();
@@ -95,37 +93,38 @@ class DynamicCarousel extends DynamicWidget {
 
   CarouselOptions _carouselOptions() {
     return CarouselOptions(
-      height: carouselOptions.height,
-      aspectRatio: carouselOptions.aspectRatio,
-      viewportFraction: carouselOptions.viewportFraction,
-      initialPage: carouselOptions.initialPage,
-      enableInfiniteScroll: carouselOptions.enableInfiniteScroll,
-      animateToClosest: carouselOptions.animateToClosest,
-      reverse: carouselOptions.reverse,
-      autoPlay: carouselOptions.autoPlay,
-      autoPlayInterval: carouselOptions.autoPlayInterval,
-      autoPlayAnimationDuration: carouselOptions.autoPlayAnimationDuration,
-      autoPlayCurve: carouselOptions.autoPlayCurve,
-      enlargeCenterPage: carouselOptions.enlargeCenterPage ?? false,
-      scrollPhysics: carouselOptions.scrollPhysics,
-      pageSnapping: carouselOptions.pageSnapping,
-      scrollDirection: carouselOptions.scrollDirection,
-      pauseAutoPlayOnTouch: carouselOptions.pauseAutoPlayOnTouch,
-      pauseAutoPlayOnManualNavigate: carouselOptions.pauseAutoPlayOnManualNavigate,
-      pauseAutoPlayInFiniteScroll: carouselOptions.pauseAutoPlayInFiniteScroll,
-      pageViewKey: carouselOptions.pageViewKey,
-      enlargeStrategy: carouselOptions.enlargeStrategy,
-      enlargeFactor: carouselOptions.enlargeFactor,
-      disableCenter: carouselOptions.disableCenter,
-      padEnds: carouselOptions.padEnds,
-      clipBehavior: carouselOptions.clipBehavior,
-      onPageChanged: (index, changeReason){
-        CarouselChangeListeners.callOnPageChanged(key, index, changeReason);
-      },
-      onScrolled: (value){
-        CarouselChangeListeners.callOnScrolled(key, value);
-      }
-    );
+        height: carouselOptions.height,
+        aspectRatio: carouselOptions.aspectRatio,
+        viewportFraction: carouselOptions.viewportFraction,
+        initialPage: carouselOptions.initialPage,
+        enableInfiniteScroll: carouselOptions.enableInfiniteScroll,
+        animateToClosest: carouselOptions.animateToClosest,
+        reverse: carouselOptions.reverse,
+        autoPlay: carouselOptions.autoPlay,
+        autoPlayInterval: carouselOptions.autoPlayInterval,
+        autoPlayAnimationDuration: carouselOptions.autoPlayAnimationDuration,
+        autoPlayCurve: carouselOptions.autoPlayCurve,
+        enlargeCenterPage: carouselOptions.enlargeCenterPage ?? false,
+        scrollPhysics: carouselOptions.scrollPhysics,
+        pageSnapping: carouselOptions.pageSnapping,
+        scrollDirection: carouselOptions.scrollDirection,
+        pauseAutoPlayOnTouch: carouselOptions.pauseAutoPlayOnTouch,
+        pauseAutoPlayOnManualNavigate:
+            carouselOptions.pauseAutoPlayOnManualNavigate,
+        pauseAutoPlayInFiniteScroll:
+            carouselOptions.pauseAutoPlayInFiniteScroll,
+        pageViewKey: carouselOptions.pageViewKey,
+        enlargeStrategy: carouselOptions.enlargeStrategy,
+        enlargeFactor: carouselOptions.enlargeFactor,
+        disableCenter: carouselOptions.disableCenter,
+        padEnds: carouselOptions.padEnds,
+        clipBehavior: carouselOptions.clipBehavior,
+        onPageChanged: (index, changeReason) {
+          CarouselChangeListeners.callOnPageChanged(key, index, changeReason);
+        },
+        onScrolled: (value) {
+          CarouselChangeListeners.callOnScrolled(key, value);
+        });
   }
 
   @override
@@ -135,8 +134,7 @@ class DynamicCarousel extends DynamicWidget {
   FutureOr invokeMethod(String methodName, {Map<String, dynamic>? params}) {}
 
   @override
-  void postBuild() {
-  }
+  void postBuild() {}
 
   @override
   void preBuild() {}

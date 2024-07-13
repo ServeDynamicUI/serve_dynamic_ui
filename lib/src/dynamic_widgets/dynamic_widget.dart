@@ -56,12 +56,14 @@ abstract class DynamicWidget {
       } else {
         debugPrint(
             'failed to create dynamic widget ${json[Strings.type]} ${json[Strings.data][Strings.key]}');
-        return DynamicContainer(width: 0.0, showBorder: false, key: 'failed_container_key');
+        return DynamicContainer(
+            width: 0.0, showBorder: false, key: 'failed_container_key');
       }
     } catch (e) {
       debugPrint(
           'failed to create dynamic widget  ${json[Strings.type]} ${json[Strings.data][Strings.key]}');
-      return DynamicContainer(width: 0.0, showBorder: false, key: 'exception_container_key');
+      return DynamicContainer(
+          width: 0.0, showBorder: false, key: 'exception_container_key');
     }
   }
 

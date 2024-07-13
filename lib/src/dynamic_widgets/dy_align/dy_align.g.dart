@@ -16,6 +16,7 @@ DynamicAlign _$DynamicAlignFromJson(Map<String, dynamic> json) {
     heightFactor: (json['heightFactor'] as num?)?.toDouble(),
     widthFactor: (json['widthFactor'] as num?)?.toDouble(),
     width: WidgetUtil.getWidthValueOrInf((json['width'] as num?)?.toDouble()),
-    height: WidgetUtil.getHeightValueOrInf((json['height'] as num?)?.toDouble()),
+    height:
+        WidgetUtil.getHeightValueOrInf((json['height'] as num?)?.toDouble()),
   );
 }

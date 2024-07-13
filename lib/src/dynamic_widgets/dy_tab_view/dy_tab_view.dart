@@ -52,7 +52,7 @@ class DynamicTabView extends DynamicWidget {
     super.margin,
     this.height,
     this.width,
-  }): super(key: key);
+  }) : super(key: key);
 
   factory DynamicTabView.fromJson(Map<String, dynamic> json) =>
       _$DynamicTabViewFromJson(json);

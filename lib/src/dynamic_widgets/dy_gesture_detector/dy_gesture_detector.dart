@@ -23,15 +23,15 @@ class DynamicGestureDetector extends DynamicWidget {
   @JsonKey(fromJson: WidgetUtil.getWidthValueOrInf)
   double? width;
 
-  DynamicGestureDetector({
-    required this.key,
-    this.child,
-    this.onTapAction,
-    this.onDoubleTapAction,
-    this.onLongPressAction,
-    this.height,
-    this.width
-  }) : super(
+  DynamicGestureDetector(
+      {required this.key,
+      this.child,
+      this.onTapAction,
+      this.onDoubleTapAction,
+      this.onLongPressAction,
+      this.height,
+      this.width})
+      : super(
           key: key,
         );
 

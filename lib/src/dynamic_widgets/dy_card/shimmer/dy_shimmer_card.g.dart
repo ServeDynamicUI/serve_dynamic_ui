@@ -13,7 +13,8 @@ DynamicShimmerCard _$DynamicShimmerCardFromJson(Map<String, dynamic> json) {
         ? null
         : DynamicWidget.fromJson(json['child'] as Map<String, dynamic>),
     width: WidgetUtil.getWidthValueOrInf((json['width'] as num?)?.toDouble()),
-    height: WidgetUtil.getHeightValueOrInf((json['height'] as num?)?.toDouble()),
+    height:
+        WidgetUtil.getHeightValueOrInf((json['height'] as num?)?.toDouble()),
     borderRadius: (json['borderRadius'] as num?)?.toDouble(),
     shimmerBaseColor: WidgetUtil.getColor(json['shimmerBaseColor'] as String?),
     shimmerHighlightColor:

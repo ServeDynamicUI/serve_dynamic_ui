@@ -51,7 +51,8 @@ class _MyHomePageState extends State<MyHomePage> {
     super.initState();
     DynamicListeners.addListener("1212133344", WidgetScrollListener());
     DynamicListeners.addListener("334343434", TextUpdateListener());
-    DynamicListeners.addListener("213234324324", CarouselSliderChangeListener());
+    DynamicListeners.addListener(
+        "213234324324", CarouselSliderChangeListener());
     appNavigator = GlobalKey<NavigatorState>();
   }
 
@@ -68,22 +69,22 @@ class _MyHomePageState extends State<MyHomePage> {
             return ServeDynamicUI.fromNetwork(
               DynamicRequest(
                 url:
-                'https://raw.githubusercontent.com/ServeDynamicUI/serve_dynamic_ui/main/example/assets/json/list_view.json?isPageCacheEnabled=true',
+                    'https://raw.githubusercontent.com/ServeDynamicUI/serve_dynamic_ui/main/example/assets/json/list_view.json?isPageCacheEnabled=true',
                 requestType: RequestType.get,
               ),
               templateJsonPath:
-              'assets/json/shimmer_pages/default_page_shimmer.json',
+                  'assets/json/shimmer_pages/default_page_shimmer.json',
             );
           },
           deAuthenticated: () {
             return ServeDynamicUI.fromNetwork(
               DynamicRequest(
                 url:
-                'https://raw.githubusercontent.com/ServeDynamicUI/serve_dynamic_ui/main/example/assets/json/sample.json?isPageCacheEnabled=true',
+                    'https://raw.githubusercontent.com/ServeDynamicUI/serve_dynamic_ui/main/example/assets/json/sample.json?isPageCacheEnabled=true',
                 requestType: RequestType.get,
               ),
               templateJsonPath:
-              'assets/json/shimmer_pages/default_page_shimmer.json',
+                  'assets/json/shimmer_pages/default_page_shimmer.json',
             );
           },
           onAuthenticationInProgress: () {
@@ -102,16 +103,16 @@ class _MyHomePageState extends State<MyHomePage> {
           notAuthenticated: () {
             return ServeDynamicUI.fromNetwork(
               DynamicRequest(
-                url:
-                'https://raw.githubusercontent.com/ServeDynamicUI/serve_dynamic_ui/main/example/assets/json/sample.json?isPageCacheEnabled=true',
-                requestType: RequestType.get,
-                sendTimeout: Duration(seconds: 10),
-                receiveTimeout: Duration(seconds: 10)
-              ),
-              templateJsonPath: 'assets/json/shimmer_pages/default_page_shimmer.json',
+                  url:
+                      'https://raw.githubusercontent.com/ServeDynamicUI/serve_dynamic_ui/main/example/assets/json/sample.json?isPageCacheEnabled=true',
+                  requestType: RequestType.get,
+                  sendTimeout: Duration(seconds: 10),
+                  receiveTimeout: Duration(seconds: 10)),
+              templateJsonPath:
+                  'assets/json/shimmer_pages/default_page_shimmer.json',
             );
           },
-          onAuthenticationFailed: (){
+          onAuthenticationFailed: () {
             return ServeDynamicUI.fromAssets(
               'assets/json/loader.json',
             );

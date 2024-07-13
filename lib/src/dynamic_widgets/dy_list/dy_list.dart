@@ -24,16 +24,16 @@ class DynamicList extends DynamicWidget {
   @JsonKey(fromJson: WidgetUtil.getWidthValueOrInf)
   double? width;
 
-  DynamicList(
-      {required this.key,
-      this.isVertical = true,
-      this.listItems,
-      this.separator,
-      this.shrinkWrap = false,
-      this.isScrollable = true,
-        this.height,
-        this.width,
-      }): super(key: key);
+  DynamicList({
+    required this.key,
+    this.isVertical = true,
+    this.listItems,
+    this.separator,
+    this.shrinkWrap = false,
+    this.isScrollable = true,
+    this.height,
+    this.width,
+  }) : super(key: key);
 
   factory DynamicList.fromJson(Map<String, dynamic> json) =>
       _$DynamicListFromJson(json);

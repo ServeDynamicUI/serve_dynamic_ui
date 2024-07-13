@@ -34,8 +34,9 @@ TextFieldDTO _$TextFieldDTOFromJson(Map<String, dynamic> json) => TextFieldDTO(
       obscureText: json['obscureText'] as bool?,
       enabled: json['enabled'] as bool?,
       errorTextStyle: json['errorTextStyle'] == null
-        ? null
-        : TextStyleDTO.fromJson(json['errorTextStyle'] as Map<String, dynamic>),
+          ? null
+          : TextStyleDTO.fromJson(
+              json['errorTextStyle'] as Map<String, dynamic>),
       errorText: json['errorText'] as String?,
       cursorColor: WidgetUtil.getColor(json['cursorColor'] as String?),
     );

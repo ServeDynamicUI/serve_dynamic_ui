@@ -10,7 +10,8 @@ class SecureStorage extends Storage<String, String?, dynamic> {
   static SecureStorage? _instance;
 
   static SecureStorage get instance {
-    _instance ??= SecureStorage._privateConstructor(const FlutterSecureStorage(aOptions: AndroidOptions(encryptedSharedPreferences: true)));
+    _instance ??= SecureStorage._privateConstructor(const FlutterSecureStorage(
+        aOptions: AndroidOptions(encryptedSharedPreferences: true)));
     return _instance!;
   }
 

@@ -9,9 +9,15 @@ import '../handlers/dynamic_widget_handlers.dart';
 class ServeDynamicUI {
   static late GlobalKey<NavigatorState>? applicationCurrentNavigationKey;
 
-  static MediaQueryData? get mediaQueryData => _isAppContextAttached ? MediaQuery.of(ServeDynamicUI.applicationCurrentNavigationKey!.currentContext!) : null;
+  static MediaQueryData? get mediaQueryData => _isAppContextAttached
+      ? MediaQuery.of(
+          ServeDynamicUI.applicationCurrentNavigationKey!.currentContext!)
+      : null;
 
-  static bool get _isAppContextAttached => ServeDynamicUI.applicationCurrentNavigationKey != null && ServeDynamicUI.applicationCurrentNavigationKey!.currentContext != null && ServeDynamicUI.applicationCurrentNavigationKey!.currentContext!.mounted;
+  static bool get _isAppContextAttached =>
+      ServeDynamicUI.applicationCurrentNavigationKey != null &&
+      ServeDynamicUI.applicationCurrentNavigationKey!.currentContext != null &&
+      ServeDynamicUI.applicationCurrentNavigationKey!.currentContext!.mounted;
 
   ///helps to initialize the [widgetHandlers], [actionHandlers] and [dio].
   static init(

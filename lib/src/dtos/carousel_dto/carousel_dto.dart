@@ -38,7 +38,9 @@ class CarouselDto {
   @JsonKey(fromJson: WidgetUtil.getDuration, defaultValue: Duration(seconds: 4))
   final Duration autoPlayInterval;
 
-  @JsonKey(fromJson: WidgetUtil.getDuration, defaultValue: Duration(milliseconds: 800))
+  @JsonKey(
+      fromJson: WidgetUtil.getDuration,
+      defaultValue: Duration(milliseconds: 800))
   final Duration autoPlayAnimationDuration;
 
   @JsonKey(fromJson: WidgetUtil.getCurve, defaultValue: Curves.fastOutSlowIn)
@@ -67,7 +69,9 @@ class CarouselDto {
 
   final PageStorageKey<String>? pageViewKey;
 
-  @JsonKey(fromJson: WidgetUtil.getCenterPageEnlargeStrategy, defaultValue: CenterPageEnlargeStrategy.scale)
+  @JsonKey(
+      fromJson: WidgetUtil.getCenterPageEnlargeStrategy,
+      defaultValue: CenterPageEnlargeStrategy.scale)
   final CenterPageEnlargeStrategy enlargeStrategy;
 
   @JsonKey(defaultValue: 0.3)
@@ -109,11 +113,11 @@ class CarouselDto {
     this.clipBehavior = Clip.hardEdge,
   });
 
-  factory CarouselDto.fromJson(Map<String, dynamic> json) => _$CarouselDtoFromJson(json);
+  factory CarouselDto.fromJson(Map<String, dynamic> json) =>
+      _$CarouselDtoFromJson(json);
 
   @override
   String toString() {
     return 'CarouselDto{height: $height, aspectRatio: $aspectRatio, viewportFraction: $viewportFraction, initialPage: $initialPage, enableInfiniteScroll: $enableInfiniteScroll, animateToClosest: $animateToClosest, reverse: $reverse, autoPlay: $autoPlay, autoPlayInterval: $autoPlayInterval, autoPlayAnimationDuration: $autoPlayAnimationDuration, autoPlayCurve: $autoPlayCurve, enlargeCenterPage: $enlargeCenterPage, scrollPhysics: $scrollPhysics, pageSnapping: $pageSnapping, scrollDirection: $scrollDirection, pauseAutoPlayOnTouch: $pauseAutoPlayOnTouch, pauseAutoPlayOnManualNavigate: $pauseAutoPlayOnManualNavigate, pauseAutoPlayInFiniteScroll: $pauseAutoPlayInFiniteScroll, pageViewKey: $pageViewKey, enlargeStrategy: $enlargeStrategy, enlargeFactor: $enlargeFactor, disableCenter: $disableCenter, padEnds: $padEnds, clipBehavior: $clipBehavior}';
   }
 }
-

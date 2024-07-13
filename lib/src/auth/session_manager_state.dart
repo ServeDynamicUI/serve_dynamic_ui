@@ -11,13 +11,13 @@ class SessionUndeterminedEvent extends SessionEvent {}
 class SessionOnAuthenticatedEvent extends SessionEvent {
   final Map<String, dynamic>? authInfo;
 
-  SessionOnAuthenticatedEvent({this.authInfo}){
+  SessionOnAuthenticatedEvent({this.authInfo}) {
     SessionManagerState.storeAuthDetails(authDetails: authInfo);
   }
 }
 
 class SessionDeAuthenticatedEvent extends SessionEvent {
-  SessionDeAuthenticatedEvent(){
+  SessionDeAuthenticatedEvent() {
     SessionManagerState.clearAuthDetails();
   }
 }
@@ -25,7 +25,7 @@ class SessionDeAuthenticatedEvent extends SessionEvent {
 class SessionDeAuthenticationInProgressEvent extends SessionEvent {}
 
 class SessionAuthenticationExpiredEvent extends SessionEvent {
-  SessionAuthenticationExpiredEvent(){
+  SessionAuthenticationExpiredEvent() {
     SessionManagerState.clearAuthDetails();
   }
 }
@@ -39,15 +39,15 @@ class SessionAuthenticationFailedEvent extends SessionEvent {
   SessionAuthenticationFailedEvent(this.error);
 }
 
-
 class SessionManagerState {
-  static final SessionManagerState _instance = SessionManagerState._privateConstructor();
+  static final SessionManagerState _instance =
+      SessionManagerState._privateConstructor();
 
   static const String _authKey = 'AUTH_DETAILS';
   static const String _authSessionKey = 'AUTH_SESSION_KEY';
   static final SecureStorage _secureStorage = SecureStorage.instance;
 
-  SessionManagerState._privateConstructor(){
+  SessionManagerState._privateConstructor() {
     _sessionStreamController.sink.add(SessionUndeterminedEvent());
     _sendAuthenticatedStreamIfAuthenticated();
   }
@@ -56,43 +56,49 @@ class SessionManagerState {
     return _instance;
   }
 
-  final StreamController<SessionEvent> _sessionStreamController = StreamController<SessionEvent>.broadcast();
+  final StreamController<SessionEvent> _sessionStreamController =
+      StreamController<SessionEvent>.broadcast();
 
   Stream<SessionEvent> get sessionStream => _sessionStreamController.stream;
 
-  StreamController<SessionEvent> get sessionStreamController => _sessionStreamController;
+  StreamController<SessionEvent> get sessionStreamController =>
+      _sessionStreamController;
 
   static String generateRandomSessionString(int length) {
-    const characters = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
+    const characters =
+        'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
     Random random = Random();
-    return List.generate(length, (index) => characters[random.nextInt(characters.length)]).join();
+    return List.generate(
+            length, (index) => characters[random.nextInt(characters.length)])
+        .join();
   }
 
-  static Future<void> clearAuthDetails() async{
+  static Future<void> clearAuthDetails() async {
     await _secureStorage.delete(key: _authKey);
     await _secureStorage.delete(key: _authSessionKey);
   }
 
-  static Future<void> storeAuthDetails({dynamic authDetails}) async{
-    if(authDetails is Map){
+  static Future<void> storeAuthDetails({dynamic authDetails}) async {
+    if (authDetails is Map) {
       await _secureStorage.put(key: _authKey, value: jsonEncode(authDetails));
     }
-    await _secureStorage.put(key: _authSessionKey, value: generateRandomSessionString(10));
+    await _secureStorage.put(
+        key: _authSessionKey, value: generateRandomSessionString(10));
   }
 
   _sendAuthenticatedStreamIfAuthenticated() async {
-    Future.delayed(const Duration(milliseconds: 1000), () async{
-      bool isValid = StringUtil.isNotEmptyNorNull(await _secureStorage.get(key: _authSessionKey));
-      if(isValid){
-      _sessionStreamController.sink.add(SessionOnAuthenticatedEvent());
-      }
-      else {
-      _sessionStreamController.sink.add(SessionNotAuthenticatedEvent());
+    Future.delayed(const Duration(milliseconds: 1000), () async {
+      bool isValid = StringUtil.isNotEmptyNorNull(
+          await _secureStorage.get(key: _authSessionKey));
+      if (isValid) {
+        _sessionStreamController.sink.add(SessionOnAuthenticatedEvent());
+      } else {
+        _sessionStreamController.sink.add(SessionNotAuthenticatedEvent());
       }
     });
   }
 
-  void dispose() async{
+  void dispose() async {
     await _sessionStreamController.close();
   }
 }

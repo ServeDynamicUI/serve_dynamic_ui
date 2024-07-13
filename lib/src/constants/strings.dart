@@ -61,6 +61,7 @@ class Strings {
   static const dyShimmerImage = 'dy_shimmer_image';
   static const dyShimmerRow = 'dy_shimmer_row';
   static const dyShimmerStack = 'dy_shimmer_stack';
+  static const dyShimmerText = 'dy_shimmer_text';
 
   ///navigation strings
 

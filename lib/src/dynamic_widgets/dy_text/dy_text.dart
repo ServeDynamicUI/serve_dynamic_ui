@@ -46,6 +46,8 @@ class DynamicText extends DynamicWidget implements DataEventListener {
     this.height,
     this.width,
     this.alignment,
+    super.padding,
+    super.margin,
   }) : super(
           key: key ?? "",
         );
@@ -74,9 +76,11 @@ class DynamicText extends DynamicWidget implements DataEventListener {
 
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
+    return Container(
       height: height,
       width: width,
+      padding: padding,
+      margin: margin,
       child: ValueListenableBuilder(
         valueListenable: _dynamicTextState.textNotifier,
         builder: (BuildContext context, String? text, Widget? child) {

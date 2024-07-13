@@ -33,6 +33,8 @@ abstract class NetworkHandler {
         contentType: request.contentType,
         headers: request.headers,
         extra: request.extra,
+        sendTimeout: request.sendTimeout,
+        receiveTimeout: request.receiveTimeout
       ),
       cancelToken: request.cancelToken,
     );
@@ -48,6 +50,8 @@ abstract class NetworkHandler {
         contentType: request.contentType,
         headers: request.headers,
         extra: request.extra,
+        sendTimeout: request.sendTimeout,
+        receiveTimeout: request.receiveTimeout
       ),
       cancelToken: request.cancelToken,
     );
@@ -63,6 +67,8 @@ abstract class NetworkHandler {
         contentType: request.contentType,
         headers: request.headers,
         extra: request.extra,
+        sendTimeout: request.sendTimeout,
+        receiveTimeout: request.receiveTimeout
       ),
       cancelToken: request.cancelToken,
     );

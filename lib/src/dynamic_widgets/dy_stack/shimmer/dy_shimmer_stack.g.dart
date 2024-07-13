@@ -24,7 +24,12 @@ DynamicShimmerStack _$DynamicShimmerStackFromJson(Map<String, dynamic> json) {
     clipBehavior: WidgetUtil.getClipBehavior(json['clipBehavior'] as String?),
     textDirection:
         WidgetUtil.getTextDirection(json['textDirection'] as String?),
-    height: (json['height'] as num?)?.toDouble(),
-    width: (json['width'] as num?)?.toDouble(),
+    height: WidgetUtil.getHeightValueOrInf((json['height'] as num?)?.toDouble()),
+    width: WidgetUtil.getWidthValueOrInf((json['width'] as num?)?.toDouble()),
+    borderRadius: (json['borderRadius'] as num?)?.toDouble() ?? 0,
+    borderWidth: (json['borderWidth'] as num?)?.toDouble() ?? 1,
+    borderColor: WidgetUtil.getColor(json['borderColor'] as String?),
+    padding: WidgetUtil.getEdgeInsets(json['padding'] as String?),
+    margin: WidgetUtil.getEdgeInsets(json['margin'] as String?),
   );
 }

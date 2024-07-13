@@ -7,10 +7,6 @@ part of 'dy_align.dart';
 // **************************************************************************
 
 DynamicAlign _$DynamicAlignFromJson(Map<String, dynamic> json) {
-  $checkKeys(
-    json,
-    requiredKeys: const ['key'],
-  );
   return DynamicAlign(
     key: json['key'] as String,
     child: json['child'] == null

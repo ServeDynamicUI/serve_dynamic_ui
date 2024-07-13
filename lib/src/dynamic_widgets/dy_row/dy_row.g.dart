@@ -7,12 +7,9 @@ part of 'dy_row.dart';
 // **************************************************************************
 
 DynamicRow _$DynamicRowFromJson(Map<String, dynamic> json) {
-  $checkKeys(
-    json,
-    requiredKeys: const ['key'],
-  );
+  String key = Util.generateRandomString(15);
   return DynamicRow(
-    key: json['key'] as String?,
+    key: key,
     children: (json['children'] as List<dynamic>?)
         ?.map((e) => DynamicWidget.fromJson(e as Map<String, dynamic>))
         .toList(),

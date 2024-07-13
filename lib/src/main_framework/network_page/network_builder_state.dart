@@ -56,16 +56,16 @@ class NetworkBuilderState implements DataEventListener {
   void fetchPage() async {
     try {
       debugPrint('isPageCacheEnabled: $isPageCacheEnabled');
+      networkPageStatusNotifier.value = NetworkPagePendingStatusEvent(pageResponse: _cachedPageJson);
+      await Future.delayed(Duration(milliseconds: 500));
       if (isPageCacheEnabled) {
-        bool pageDeletedFromDB =
-            await DbUtil.deleteCachedPageIfOlderThanSetCacheTime(
-                _getPageKeyFromUrl());
+        bool pageDeletedFromDB = await DbUtil.deleteCachedPageIfOlderThanSetCacheTime(_getPageKeyFromUrl());
         if (!pageDeletedFromDB) {
           await _loadPageFromDB();
         } else {
           _cachedPageJson = null;
-          networkPageStatusNotifier.value =
-              NetworkPagePendingStatusEvent(pageResponse: null);
+          // networkPageStatusNotifier.value = NetworkPagePendingStatusEvent(pageResponse: null);
+          // await Future.delayed(Duration(milliseconds: 500));
         }
       }
       await _loadPageFromNetwork();
@@ -98,8 +98,8 @@ class NetworkBuilderState implements DataEventListener {
             debugPrint('Loaded page from db');
           }
         }
-        networkPageStatusNotifier.value =
-            NetworkPagePendingStatusEvent(pageResponse: _cachedPageJson);
+        // networkPageStatusNotifier.value = NetworkPagePendingStatusEvent(pageResponse: _cachedPageJson);
+        // await Future.delayed(Duration(milliseconds: 500));
       }
       return _cachedPageJson != null;
     } catch (e) {
@@ -109,14 +109,23 @@ class NetworkBuilderState implements DataEventListener {
   }
 
   Future<void> _loadPageFromNetwork() async {
-    _cancelToken = CancelToken();
-    request.cancelToken = _cancelToken;
-    Response? pageResponse = await NetworkHandler.getJsonFromRequest(request);
-    String pageDataString = pageResponse!.data.toString();
-    _cachedPageJson = jsonDecode(pageDataString);
-    _insertPageInDBIfEnabled(pageDataString, _cachedPageJson);
-    networkPageStatusNotifier.value =
-        NetworkPageSuccessStatusEvent(_cachedPageJson);
+    try {
+      _cancelToken = CancelToken();
+      request.cancelToken = _cancelToken;
+      Response? pageResponse = await NetworkHandler.getJsonFromRequest(request);
+      String pageDataString = pageResponse!.data.toString();
+      if(pageResponse.data is Map){
+        _cachedPageJson = pageResponse.data;
+      }
+      else{
+        _cachedPageJson = jsonDecode(pageDataString);
+      }
+      _insertPageInDBIfEnabled(pageDataString, _cachedPageJson);
+      networkPageStatusNotifier.value =
+          NetworkPageSuccessStatusEvent(_cachedPageJson);
+    } catch(e){
+      debugPrint('Error ${e.toString()}');
+    }
   }
 
   void _insertPageInDBIfEnabled(

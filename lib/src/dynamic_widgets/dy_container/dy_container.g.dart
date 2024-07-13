@@ -25,5 +25,6 @@ DynamicContainer _$DynamicContainerFromJson(Map<String, dynamic> json) {
     showBorder: json['showBorder'] as bool? ?? false,
     borderColor: WidgetUtil.getColor(json['borderColor'] as String?),
     borderRadius: (json['borderRadius'] as num?)?.toDouble(),
+    containerGradient: WidgetUtil.getLinearGradient(json['containerGradient'] as String?),
   );
 }

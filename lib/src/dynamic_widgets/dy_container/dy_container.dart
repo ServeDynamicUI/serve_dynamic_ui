@@ -29,6 +29,8 @@ class DynamicContainer extends DynamicWidget {
   @JsonKey(defaultValue: false)
   bool showBorder;
   double? borderRadius;
+  @JsonKey(fromJson: WidgetUtil.getLinearGradient)
+  LinearGradient? containerGradient;
 
   DynamicContainer(
       {String? key,
@@ -41,10 +43,9 @@ class DynamicContainer extends DynamicWidget {
       this.alignment,
       required this.showBorder,
       this.borderColor,
-      this.borderRadius})
-      : super(
-          key: key ?? "",
-        );
+      this.borderRadius,
+      this.containerGradient,
+  }): super(key: key ?? "" );
 
   factory DynamicContainer.fromJson(Map<String, dynamic> json) =>
       _$DynamicContainerFromJson(json);
@@ -66,10 +67,12 @@ class DynamicContainer extends DynamicWidget {
           ? BoxDecoration(
               color: backgroundColor != null
                   ? Color(int.parse(backgroundColor!))
-                  : Colors.transparent,
+                  : null,
               border:
                   Border.all(width: 1, color: borderColor ?? AppColors.black),
-              borderRadius: BorderRadius.circular(borderRadius ?? 5))
+              borderRadius: BorderRadius.circular(borderRadius ?? 5),
+              gradient: containerGradient
+      )
           : null,
       child: child != null
           ? LayoutBuilder(builder: (context, _) {

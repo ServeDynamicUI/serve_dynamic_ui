@@ -67,7 +67,7 @@ class DynamicShimmerColumn extends DynamicWidget {
   }
 
   @override
-  List<DynamicWidget>? get childWidgets => [];
+  List<DynamicWidget>? get childWidgets => WidgetUtil.childrenFilter(childItems);
 
   @override
   FutureOr invokeMethod(String methodName, {Map<String, dynamic>? params}) {}

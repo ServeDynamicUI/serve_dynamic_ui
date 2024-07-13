@@ -19,6 +19,7 @@ class PageSuccessEvent extends PageDataEvent {
 
 class PageErrorEvent extends PageDataEvent {
   final String? error;
+
   PageErrorEvent(super.children, this.error);
 }
 
@@ -45,7 +46,8 @@ class DyScaffoldState extends ScrollListener {
 
   _fetch() async {
     try {
-      if (_isFetchingPageInProgress == false && StringUtil.isNotEmptyNorNull(nextUrl)) {
+      if (_isFetchingPageInProgress == false &&
+          StringUtil.isNotEmptyNorNull(nextUrl)) {
         _isFetchingPageInProgress = true;
         showPaginatedLoaderOnTopNotifier.value = _isFetchingPageInProgress;
         await Future.delayed(const Duration(milliseconds: 500));
@@ -57,23 +59,34 @@ class DyScaffoldState extends ScrollListener {
           jsonResponse = await WidgetUtil.loadJson(nextUrl!);
         } else {
           jsonResponse = jsonDecode((await NetworkHandler.getJsonFromRequest(
-                      DynamicRequest(
-                          url: nextUrl!, requestType: RequestType.get)))
-                  ?.data
-                  ?.toString() ??
+            DynamicRequest(
+              url: nextUrl!,
+              requestType: RequestType.get,
+              sendTimeout: Duration(seconds: 20),
+              receiveTimeout: Duration(seconds: 20)
+            ),
+          ))
+              ?.data
+              ?.toString() ??
               '');
         }
 
         List<DynamicWidget> newChildren = [];
 
         List<Map<String, dynamic>>? newChildrenMap =
-            List.from(jsonResponse['children'] as Iterable<dynamic>);
+        List.from(jsonResponse['children'] as Iterable<dynamic>);
 
         for (var child in newChildrenMap) {
-          newChildren.add(DynamicWidget.fromJson(child)..parent = _parent);
+          newChildren.add(DynamicWidget.fromJson(child)
+            ..parent = _parent);
         }
 
-        nextUrl = jsonResponse['nextUrl'] ?? '';
+        if (Util.isValidList<dynamic>(newChildrenMap)) {
+          nextUrl = jsonResponse['nextUrl'] ?? '';
+        }
+        else {
+          nextUrl = '';
+        }
         pageDataEventNotifier.value.children?.addAll(newChildren);
         pageDataEventNotifier.value =
             PageSuccessEvent(pageDataEventNotifier.value.children);
@@ -84,7 +97,7 @@ class DyScaffoldState extends ScrollListener {
     } on Error catch (e) {
       pageDataEventNotifier.value =
           PageErrorEvent(pageDataEventNotifier.value.children, e.toString());
-    } on Exception catch(e){
+    } on Exception catch (e) {
       pageDataEventNotifier.value =
           PageErrorEvent(pageDataEventNotifier.value.children, e.toString());
     } finally {
@@ -95,18 +108,21 @@ class DyScaffoldState extends ScrollListener {
 
   @override
   void onScrolled(String? widgetKey) {
-    debugPrint('dy_scaffold ${_parent.appBar!.pageTitle} onScrolled $widgetKey');
+    debugPrint(
+        'dy_scaffold ${_parent.appBar!.pageTitle} onScrolled $widgetKey');
   }
 
   @override
   void onScrolledToEnd(String? widgetKey) {
-    debugPrint('dy_scaffold ${_parent.appBar!.pageTitle}  onScrolledToEnd $widgetKey');
+    debugPrint(
+        'dy_scaffold ${_parent.appBar!.pageTitle}  onScrolledToEnd $widgetKey');
     _fetch();
   }
 
   @override
   void onScrolledToStart(String? widgetKey) {
     debugPrint(
-        'dy_scaffold ${_parent.appBar!.pageTitle}  onScrolledToStart $widgetKey');
+        'dy_scaffold ${_parent.appBar!
+            .pageTitle}  onScrolledToStart $widgetKey');
   }
 }

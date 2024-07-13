@@ -9,7 +9,6 @@
       "data": {
         "key": "123123",
         "alignment": "center",
-        "margin": "10",
         "height": -1,
         "child": {
           "type": "dy_loader",

@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:flutter/foundation.dart';
 import 'package:serve_dynamic_ui/src/constants/index.dart';
 import 'package:serve_dynamic_ui/src/db/providers/ServeDynamicUIDatabseProvider.dart';
@@ -44,5 +46,14 @@ class Util {
       debugPrint('Some error occurred: $e');
     }
     return null;
+  }
+
+  static String generateRandomString(int length) {
+    const characters = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
+    final random = Random();
+    return String.fromCharCodes(Iterable.generate(
+      length,
+          (_) => characters.codeUnitAt(random.nextInt(characters.length)),
+    ));
   }
 }

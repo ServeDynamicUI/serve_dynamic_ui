@@ -24,5 +24,7 @@ DynamicStack _$DynamicStackFromJson(Map<String, dynamic> json) {
           WidgetUtil.getTextDirection(json['textDirection'] as String?),
       width: WidgetUtil.getWidthValueOrInf((json['width'] as num?)?.toDouble()),
       height: WidgetUtil.getHeightValueOrInf((json['height'] as num?)?.toDouble()),
+      padding: WidgetUtil.getEdgeInsets(json['padding'] as String?),
+      margin: WidgetUtil.getEdgeInsets(json['margin'] as String?),
   );
 }

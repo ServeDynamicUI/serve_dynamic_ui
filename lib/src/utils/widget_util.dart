@@ -441,7 +441,7 @@ class WidgetUtil {
   ///Returns the [Duration] from string in format.
   /// 1:1:1:1:1 => 1d:1h:1m:1s:1ms or :10::10:10 => 0d:10h:0m:10s:10ms
   static Duration? getDuration(String? value) {
-    if (StringUtil.isNotEmptyNorNull(value)) {
+    if (!StringUtil.isNotEmptyNorNull(value)) {
       return null;
     }
     List<String> time = value!.split(":");

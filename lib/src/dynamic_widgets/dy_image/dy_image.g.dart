@@ -22,5 +22,6 @@ DynamicImage _$DynamicImageFromJson(Map<String, dynamic> json) {
     imageType: WidgetUtil.getImageType(json['imageType'] as String?),
     clipBorderRadius: (json['clipBorderRadius'] as num?)?.toDouble(),
     placeholderImagePath: json['placeholderImagePath'] as String?,
+    transitionDuration: WidgetUtil.getDuration(json['transitionDuration'] as String?)
   );
 }

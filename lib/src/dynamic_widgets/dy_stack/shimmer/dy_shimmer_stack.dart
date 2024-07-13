@@ -17,6 +17,11 @@ class DynamicShimmerStack extends DynamicStack {
   Color? shimmerBaseColor;
   @JsonKey(fromJson: WidgetUtil.getColor)
   Color? shimmerHighlightColor;
+  double borderRadius;
+  @JsonKey(fromJson: WidgetUtil.getColor)
+  Color? borderColor;
+  @JsonKey(defaultValue: 1)
+  double borderWidth;
 
   DynamicShimmerStack({
     required super.key,
@@ -29,6 +34,11 @@ class DynamicShimmerStack extends DynamicStack {
     super.textDirection,
     super.height,
     super.width,
+    this.borderRadius = 0,
+    this.borderColor,
+    this.borderWidth = 1.0,
+    super.padding,
+    super.margin,
   });
 
   factory DynamicShimmerStack.fromJson(Map<String, dynamic> json) =>
@@ -39,9 +49,8 @@ class DynamicShimmerStack extends DynamicStack {
     return Stack(
       children: [
         SizedBox(
-          height:
-              height ?? MediaQuery.of(context).size.height - 2 * kToolbarHeight,
-          width: width ?? double.infinity,
+          height: height,
+          width: width,
           child: super.build(context),
         ),
         Positioned.fill(
@@ -51,9 +60,16 @@ class DynamicShimmerStack extends DynamicStack {
             highlightColor: shimmerHighlightColor?.withOpacity(0.4) ??
                 Colors.white.withOpacity(0.4),
             child: Container(
-              width: double.maxFinite,
-              color: shimmerBaseColor?.withOpacity(0.4) ??
-                  Colors.grey.withOpacity(0.4),
+              width: width ?? double.maxFinite,
+              padding: padding,
+              margin: margin,
+              height: height,
+              decoration: BoxDecoration(
+                color: shimmerBaseColor?.withOpacity(0.4) ??
+                    Colors.grey.withOpacity(0.4),
+                borderRadius: BorderRadius.circular(borderRadius),
+                border: borderColor != null ? Border.all(color: borderColor!, width: borderWidth) : null,
+              ),
             ),
           ),
         )

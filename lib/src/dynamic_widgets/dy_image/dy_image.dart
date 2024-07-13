@@ -1,6 +1,7 @@
 import 'dart:async';
 import 'dart:io';
 
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:json_annotation/json_annotation.dart';
 import 'package:serve_dynamic_ui/serve_dynamic_ui.dart';
@@ -28,6 +29,8 @@ class DynamicImage extends DynamicWidget {
   @JsonKey(fromJson: WidgetUtil.getBoxFit)
   BoxFit? fit;
   double? clipBorderRadius;
+  @JsonKey(fromJson: WidgetUtil.getDuration)
+  Duration? transitionDuration;
 
   DynamicImage(
       {String? key,
@@ -39,7 +42,9 @@ class DynamicImage extends DynamicWidget {
       this.fit,
       this.imageType,
       this.clipBorderRadius,
-      this.placeholderImagePath})
+      this.placeholderImagePath,
+      this.transitionDuration,
+      })
       : super(
           key: key ?? "",
         );
@@ -74,14 +79,19 @@ class DynamicImage extends DynamicWidget {
     }
   }
 
-  Widget _networkImage() => Image.network(
-        src,
+  Widget _networkImage() => CachedNetworkImage(
+        imageUrl: src,
         alignment: alignment ?? Alignment.center,
         color: color,
         width: width,
         height: height,
         fit: fit,
-        errorBuilder: (context, error, stackTrace) {
+        placeholder: (context, url){
+          return _placeholderWidget();
+        },
+        fadeInDuration: transitionDuration ?? const Duration(seconds: 1),
+        fadeOutDuration: transitionDuration ?? const Duration(seconds: 1),
+        errorWidget: (context, url, error) {
           return _placeholderWidget();
         },
       );

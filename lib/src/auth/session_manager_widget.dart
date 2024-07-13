@@ -11,6 +11,7 @@ class SessionManagerWidget extends StatefulWidget {
   final WidgetCreator? onAuthenticationExpired;
   final WidgetCreator notAuthenticated;
   final WidgetCreator? deAuthenticationInProgress;
+  final WidgetCreator? onAuthenticationFailed;
   final WidgetContainer? widgetContainer;
 
   const SessionManagerWidget({
@@ -22,6 +23,7 @@ class SessionManagerWidget extends StatefulWidget {
     required this.onAuthenticationExpired,
     required this.notAuthenticated,
     this.deAuthenticationInProgress,
+    this.onAuthenticationFailed,
     this.widgetContainer,
   });
 
@@ -52,7 +54,10 @@ class _SessionManagerWidgetState extends State<SessionManagerWidget> {
             child = widget.onAuthenticationExpired!.call();
           } else if (snapshot.data is SessionDeAuthenticationInProgressEvent && widget.deAuthenticationInProgress != null) {
             child = widget.deAuthenticationInProgress!.call();
-          } else {
+          } else if (snapshot.data is SessionAuthenticationFailedEvent && widget.onAuthenticationFailed != null) {
+            child = widget.onAuthenticationFailed!.call();
+          }
+          else {
             child = widget.onUndetermined.call();
           }
         }

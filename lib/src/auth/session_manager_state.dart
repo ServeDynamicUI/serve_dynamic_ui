@@ -1,18 +1,15 @@
 import 'dart:async';
 import 'dart:convert';
 import 'dart:math';
-import 'package:serve_dynamic_ui/src/auth/auth_info.dart';
-import 'package:serve_dynamic_ui/src/auth/index.dart';
 import 'package:serve_dynamic_ui/src/storage/index.dart';
 import 'package:serve_dynamic_ui/src/utils/index.dart';
-import 'package:flutter/material.dart';
 
 abstract class SessionEvent {}
 
 class SessionUndeterminedEvent extends SessionEvent {}
 
-class SessionOnAuthenticatedEvent<T extends AuthInfo> extends SessionEvent {
-  final T? authInfo;
+class SessionOnAuthenticatedEvent extends SessionEvent {
+  final Map<String, dynamic>? authInfo;
 
   SessionOnAuthenticatedEvent({this.authInfo}){
     SessionManagerState.storeAuthDetails(authDetails: authInfo);
@@ -36,6 +33,12 @@ class SessionAuthenticationExpiredEvent extends SessionEvent {
 class SessionOnAuthenticationInProgressEvent extends SessionEvent {}
 
 class SessionNotAuthenticatedEvent extends SessionEvent {}
+
+class SessionAuthenticationFailedEvent extends SessionEvent {
+  String? error;
+  SessionAuthenticationFailedEvent(this.error);
+}
+
 
 class SessionManagerState {
   static final SessionManagerState _instance = SessionManagerState._privateConstructor();
@@ -71,14 +74,14 @@ class SessionManagerState {
   }
 
   static Future<void> storeAuthDetails({dynamic authDetails}) async{
-    if(authDetails is AuthInfo){
-      await _secureStorage.put(key: _authKey, value: jsonEncode(authDetails.toJson()));
+    if(authDetails is Map){
+      await _secureStorage.put(key: _authKey, value: jsonEncode(authDetails));
     }
     await _secureStorage.put(key: _authSessionKey, value: generateRandomSessionString(10));
   }
 
   _sendAuthenticatedStreamIfAuthenticated() async {
-    Future.delayed(Duration(milliseconds: 1000), () async{
+    Future.delayed(const Duration(milliseconds: 1000), () async{
       bool isValid = StringUtil.isNotEmptyNorNull(await _secureStorage.get(key: _authSessionKey));
       if(isValid){
       _sessionStreamController.sink.add(SessionOnAuthenticatedEvent());

@@ -105,9 +105,15 @@ class _MyHomePageState extends State<MyHomePage> {
                 url:
                 'https://raw.githubusercontent.com/ServeDynamicUI/serve_dynamic_ui/main/example/assets/json/sample.json?isPageCacheEnabled=true',
                 requestType: RequestType.get,
+                sendTimeout: Duration(seconds: 10),
+                receiveTimeout: Duration(seconds: 10)
               ),
-              templateJsonPath:
-              'assets/json/shimmer_pages/default_page_shimmer.json',
+              templateJsonPath: 'assets/json/shimmer_pages/default_page_shimmer.json',
+            );
+          },
+          onAuthenticationFailed: (){
+            return ServeDynamicUI.fromAssets(
+              'assets/json/loader.json',
             );
           },
         );

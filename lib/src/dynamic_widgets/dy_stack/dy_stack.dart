@@ -35,6 +35,8 @@ class DynamicStack extends DynamicWidget {
     this.textDirection,
     this.height,
     this.width,
+    super.padding,
+    super.margin,
   });
 
   factory DynamicStack.fromJson(Map<String, dynamic> json) =>

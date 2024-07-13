@@ -15,6 +15,7 @@ part 'dy_percentage_indicator.g.dart';
   createToJson: false,
 )
 class DynamicPercentageIndicator extends DynamicWidget {
+  String key;
   @JsonKey(fromJson: WidgetUtil.getHeightValueOrInf)
   double? height;
   @JsonKey(fromJson: WidgetUtil.getWidthValueOrInf)
@@ -25,14 +26,14 @@ class DynamicPercentageIndicator extends DynamicWidget {
   CircularPercentIndicatorDTO? circularPercentIndicator;
 
   DynamicPercentageIndicator({
-    String? key,
+    required this.key,
     this.height,
     this.width,
     this.type = PercentageIndicatorType.linear,
     this.linearPercentIndicator,
     this.circularPercentIndicator,
   }) : super(
-          key: key ?? "",
+          key: key,
         );
 
   factory DynamicPercentageIndicator.fromJson(Map<String, dynamic> json) =>

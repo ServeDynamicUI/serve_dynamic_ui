@@ -12,6 +12,7 @@ part 'dy_shimmer_text.g.dart';
   createToJson: false,
 )
 class DynamicShimmerText extends DynamicText {
+  String key;
   @JsonKey(fromJson: WidgetUtil.getColor)
   Color? shimmerBaseColor;
   @JsonKey(fromJson: WidgetUtil.getColor)
@@ -21,7 +22,7 @@ class DynamicShimmerText extends DynamicText {
   TextStyleDTO? textStyle;
 
   DynamicShimmerText(
-      {String? key,
+      {required this.key,
       this.shimmerBaseColor,
       this.shimmerHighlightColor,
       super.height,
@@ -30,7 +31,7 @@ class DynamicShimmerText extends DynamicText {
       super.margin,
       this.text,
       this.textStyle,
-  }): super(key: key ?? "",);
+  }): super(key: key,);
 
   factory DynamicShimmerText.fromJson(Map<String, dynamic> json) =>
       _$DynamicShimmerCardFromJson(json);

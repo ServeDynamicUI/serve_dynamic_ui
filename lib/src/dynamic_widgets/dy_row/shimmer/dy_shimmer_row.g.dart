@@ -7,12 +7,8 @@ part of 'dy_shimmer_row.dart';
 // **************************************************************************
 
 DynamicShimmerRow _$DynamicShimmerRowFromJson(Map<String, dynamic> json) {
-  $checkKeys(
-    json,
-    requiredKeys: const ['key'],
-  );
   return DynamicShimmerRow(
-      key: json['key'] as String?,
+    key: (json['key'] as String?) ?? Util.generateRandomString(15),
       childItems: WidgetUtil.childrenFilter(
           (json['childItems'] as List<dynamic>?)
               ?.map((e) => e == null

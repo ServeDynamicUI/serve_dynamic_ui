@@ -14,6 +14,7 @@ part 'dy_tab_view.g.dart';
   createToJson: false,
 )
 class DynamicTabView extends DynamicWidget {
+  String key;
   @JsonKey(defaultValue: 0)
   final int selectedTabIndex;
   @JsonKey(fromJson: WidgetUtil.getColor)
@@ -37,7 +38,7 @@ class DynamicTabView extends DynamicWidget {
   double? width;
 
   DynamicTabView({
-    required super.key,
+    required this.key,
     required this.selectedTabIndex,
     this.indicatorColor,
     this.labelColor,
@@ -50,7 +51,7 @@ class DynamicTabView extends DynamicWidget {
     super.margin,
     this.height,
     this.width,
-  });
+  }): super(key: key);
 
   factory DynamicTabView.fromJson(Map<String, dynamic> json) =>
       _$DynamicTabViewFromJson(json);

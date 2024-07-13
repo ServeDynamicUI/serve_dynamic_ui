@@ -7,12 +7,8 @@ part of 'dy_shimmer_button.dart';
 // **************************************************************************
 
 DynamicShimmerButton _$DynamicShimmerButtonFromJson(Map<String, dynamic> json) {
-  $checkKeys(
-    json,
-    requiredKeys: const ['key'],
-  );
   return DynamicShimmerButton(
-    key: json['key'] as String,
+    key: (json['key'] as String?) ?? Util.generateRandomString(15),
     width: WidgetUtil.getWidthValueOrInf((json['width'] as num?)?.toDouble()),
     height: WidgetUtil.getHeightValueOrInf((json['height'] as num?)?.toDouble()),
     buttonBorderRadius: (json['buttonBorderRadius'] as num?)?.toDouble(),

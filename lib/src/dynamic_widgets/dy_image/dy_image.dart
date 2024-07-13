@@ -14,6 +14,7 @@ part 'dy_image.g.dart';
   createToJson: false,
 )
 class DynamicImage extends DynamicWidget {
+  String key;
   String src;
   String? placeholderImagePath;
   @JsonKey(fromJson: WidgetUtil.getPositionalAlignment)
@@ -33,7 +34,7 @@ class DynamicImage extends DynamicWidget {
   Duration? transitionDuration;
 
   DynamicImage(
-      {String? key,
+      {required this.key,
       required this.src,
       this.alignment,
       this.color,

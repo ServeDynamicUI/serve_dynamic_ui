@@ -11,6 +11,7 @@ part 'dy_button.g.dart';
   createToJson: false,
 )
 class DynamicButton extends DynamicWidget {
+  String key;
   DynamicWidget? child;
   ActionDTO? action;
   ActionDTO? onDoubleTapAction;
@@ -31,7 +32,7 @@ class DynamicButton extends DynamicWidget {
   EdgeInsets? padding;
 
   DynamicButton({
-    required String key,
+    required this.key,
     this.child,
     this.action,
     this.width,

@@ -7,24 +7,20 @@ part of 'dy_stack.dart';
 // **************************************************************************
 
 DynamicStack _$DynamicStackFromJson(Map<String, dynamic> json) {
-  $checkKeys(
-    json,
-    requiredKeys: const ['key'],
-  );
   return DynamicStack(
-      key: json['key'] as String,
-      children: (json['children'] as List<dynamic>?)
-          ?.map((e) => DynamicWidget.fromJson(e as Map<String, dynamic>))
-          .toList(),
-      alignment:
-          WidgetUtil.getPositionalAlignment(json['alignment'] as String?),
-      fit: WidgetUtil.getStackFit(json['fit'] as String?),
-      clipBehavior: WidgetUtil.getClipBehavior(json['clipBehavior'] as String?),
-      textDirection:
-          WidgetUtil.getTextDirection(json['textDirection'] as String?),
-      width: WidgetUtil.getWidthValueOrInf((json['width'] as num?)?.toDouble()),
-      height: WidgetUtil.getHeightValueOrInf((json['height'] as num?)?.toDouble()),
-      padding: WidgetUtil.getEdgeInsets(json['padding'] as String?),
-      margin: WidgetUtil.getEdgeInsets(json['margin'] as String?),
+    key: (json['key'] as String?) ?? Util.generateRandomString(15),
+    children: (json['children'] as List<dynamic>?)
+        ?.map((e) => DynamicWidget.fromJson(e as Map<String, dynamic>))
+        .toList(),
+    alignment: WidgetUtil.getPositionalAlignment(json['alignment'] as String?),
+    fit: WidgetUtil.getStackFit(json['fit'] as String?),
+    clipBehavior: WidgetUtil.getClipBehavior(json['clipBehavior'] as String?),
+    textDirection:
+        WidgetUtil.getTextDirection(json['textDirection'] as String?),
+    width: WidgetUtil.getWidthValueOrInf((json['width'] as num?)?.toDouble()),
+    height:
+        WidgetUtil.getHeightValueOrInf((json['height'] as num?)?.toDouble()),
+    padding: WidgetUtil.getEdgeInsets(json['padding'] as String?),
+    margin: WidgetUtil.getEdgeInsets(json['margin'] as String?),
   );
 }

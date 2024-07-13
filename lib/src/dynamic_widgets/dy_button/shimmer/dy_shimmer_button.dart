@@ -12,19 +12,20 @@ part 'dy_shimmer_button.g.dart';
   createToJson: false,
 )
 class DynamicShimmerButton extends DynamicButton {
+  String key;
   @JsonKey(fromJson: WidgetUtil.getColor)
   Color? shimmerBaseColor;
   @JsonKey(fromJson: WidgetUtil.getColor)
   Color? shimmerHighlightColor;
 
   DynamicShimmerButton({
-    required super.key,
+    required this.key,
     this.shimmerBaseColor,
     this.shimmerHighlightColor,
     super.width,
     super.height,
     super.buttonBorderRadius,
-  });
+  }) : super(key: key);
 
   factory DynamicShimmerButton.fromJson(Map<String, dynamic> json) =>
       _$DynamicShimmerButtonFromJson(json);

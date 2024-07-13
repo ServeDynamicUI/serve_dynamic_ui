@@ -12,6 +12,7 @@ part 'dy_loader.g.dart';
   createToJson: false,
 )
 class DynamicLoader extends DynamicWidget {
+  String key;
   @JsonKey(fromJson: WidgetUtil.getColor)
   Color? backgroundColor;
   @JsonKey(fromJson: WidgetUtil.getColor)
@@ -33,7 +34,7 @@ class DynamicLoader extends DynamicWidget {
   double? containerHeight;
 
   DynamicLoader({
-    String? key,
+    required this.key,
     this.backgroundColor,
     this.color,
     this.mainAxisAlignment = MainAxisAlignment.start,
@@ -47,7 +48,7 @@ class DynamicLoader extends DynamicWidget {
     this.containerHeight,
     this.containerWidth,
   }) : super(
-          key: key ?? "",
+          key: key,
         );
 
   factory DynamicLoader.fromJson(Map<String, dynamic> json) =>

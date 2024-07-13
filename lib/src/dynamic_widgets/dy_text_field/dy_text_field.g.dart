@@ -7,12 +7,8 @@ part of 'dy_text_field.dart';
 // **************************************************************************
 
 DynamicTextField _$DynamicTextFieldFromJson(Map<String, dynamic> json) {
-  $checkKeys(
-    json,
-    requiredKeys: const ['key'],
-  );
   return DynamicTextField(
-    key: json['key'] as String,
+    key: (json['key'] as String?) ?? Util.generateRandomString(15),
     initialText: json['initialText'] as String,
     textFieldDecoration: json['textFieldDecoration'] == null
         ? null

@@ -11,6 +11,7 @@ part 'dy_row.g.dart';
   createToJson: false,
 )
 class DynamicRow extends DynamicWidget {
+  String key;
   List<DynamicWidget>? children;
   @JsonKey(fromJson: WidgetUtil.getMainAxisAlignment)
   MainAxisAlignment? mainAxisAlignment;
@@ -21,14 +22,14 @@ class DynamicRow extends DynamicWidget {
   @JsonKey(fromJson: WidgetUtil.getWidthValueOrInf)
   double? width;
   DynamicRow({
-    String? key,
+    required this.key,
     this.children,
     this.mainAxisAlignment,
     this.crossAxisAlignment,
     this.height,
     this.width,
   }) : super(
-          key: key ?? "",
+          key: key,
         );
 
   factory DynamicRow.fromJson(Map<String, dynamic> json) =>

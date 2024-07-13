@@ -7,12 +7,8 @@ part of 'dy_list.dart';
 // **************************************************************************
 
 DynamicList _$DynamicListFromJson(Map<String, dynamic> json) {
-  $checkKeys(
-    json,
-    requiredKeys: const ['key'],
-  );
   return DynamicList(
-    key: json['key'] as String,
+    key: (json['key'] as String?) ?? Util.generateRandomString(15),
     isVertical: json['isVertical'] as bool? ?? true,
     listItems: (json['listItems'] as List<dynamic>?)
         ?.map((e) => DynamicWidget.fromJson(e as Map<String, dynamic>))

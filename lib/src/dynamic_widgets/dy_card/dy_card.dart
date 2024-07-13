@@ -11,6 +11,7 @@ part 'dy_card.g.dart';
   createToJson: false,
 )
 class DynamicCard extends DynamicWidget {
+  String key;
   @JsonKey(fromJson: WidgetUtil.getColor)
   Color? color;
   @JsonKey(fromJson: WidgetUtil.getColor)
@@ -34,7 +35,7 @@ class DynamicCard extends DynamicWidget {
   double? width;
 
   DynamicCard({
-    String? key,
+    required this.key,
     this.color,
     this.child,
     this.clipBehavior,
@@ -49,7 +50,7 @@ class DynamicCard extends DynamicWidget {
     this.height,
     this.width
   }) : super(
-          key: key ?? "",
+          key: key,
         );
 
   factory DynamicCard.fromJson(Map<String, dynamic> json) =>

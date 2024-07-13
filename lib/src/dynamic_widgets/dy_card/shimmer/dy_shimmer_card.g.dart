@@ -7,12 +7,8 @@ part of 'dy_shimmer_card.dart';
 // **************************************************************************
 
 DynamicShimmerCard _$DynamicShimmerCardFromJson(Map<String, dynamic> json) {
-  $checkKeys(
-    json,
-    requiredKeys: const ['key'],
-  );
   return DynamicShimmerCard(
-    key: json['key'] as String,
+    key: (json['key'] as String?) ?? Util.generateRandomString(15),
     child: json['child'] == null
         ? null
         : DynamicWidget.fromJson(json['child'] as Map<String, dynamic>),

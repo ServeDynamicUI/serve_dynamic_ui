@@ -13,6 +13,7 @@ part 'dy_shimmer_stack.g.dart';
   createToJson: false,
 )
 class DynamicShimmerStack extends DynamicStack {
+  String key;
   @JsonKey(fromJson: WidgetUtil.getColor)
   Color? shimmerBaseColor;
   @JsonKey(fromJson: WidgetUtil.getColor)
@@ -24,7 +25,7 @@ class DynamicShimmerStack extends DynamicStack {
   double borderWidth;
 
   DynamicShimmerStack({
-    required super.key,
+    required this.key,
     this.shimmerBaseColor,
     this.shimmerHighlightColor,
     super.children,
@@ -39,7 +40,7 @@ class DynamicShimmerStack extends DynamicStack {
     this.borderWidth = 1.0,
     super.padding,
     super.margin,
-  });
+  }) : super(key: key);
 
   factory DynamicShimmerStack.fromJson(Map<String, dynamic> json) =>
       _$DynamicShimmerStackFromJson(json);

@@ -12,6 +12,7 @@ part 'dy_text_field.g.dart';
   createToJson: false,
 )
 class DynamicTextField extends DynamicWidget implements FormWidget {
+  String key;
   final String initialText;
   TextFieldDTO? textFieldDecoration;
   @JsonKey(fromJson: WidgetUtil.getHeightValueOrInf)
@@ -21,13 +22,13 @@ class DynamicTextField extends DynamicWidget implements FormWidget {
   final String? regexValidator;
 
   DynamicTextField(
-      {required super.key,
+      {required this.key,
       required this.initialText,
       this.textFieldDecoration,
       this.height,
       this.width,
       this.regexValidator,
-  });
+  }): super(key: key);
 
   @override
   List<DynamicWidget>? get childWidgets => [];

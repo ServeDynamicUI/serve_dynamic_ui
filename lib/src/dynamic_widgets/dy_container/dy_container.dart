@@ -12,6 +12,7 @@ part 'dy_container.g.dart';
   createToJson: false,
 )
 class DynamicContainer extends DynamicWidget {
+  String key;
   String? backgroundColor;
   @JsonKey(fromJson: WidgetUtil.getEdgeInsets)
   EdgeInsets? padding;
@@ -33,7 +34,7 @@ class DynamicContainer extends DynamicWidget {
   LinearGradient? containerGradient;
 
   DynamicContainer(
-      {String? key,
+      {required this.key,
       this.backgroundColor,
       this.padding,
       this.margin,
@@ -45,7 +46,7 @@ class DynamicContainer extends DynamicWidget {
       this.borderColor,
       this.borderRadius,
       this.containerGradient,
-  }): super(key: key ?? "" );
+  }): super(key: key);
 
   factory DynamicContainer.fromJson(Map<String, dynamic> json) =>
       _$DynamicContainerFromJson(json);

@@ -7,12 +7,8 @@ part of 'dy_text.dart';
 // **************************************************************************
 
 DynamicText _$DynamicTextFromJson(Map<String, dynamic> json) {
-  $checkKeys(
-    json,
-    requiredKeys: const ['key'],
-  );
   return DynamicText(
-    key: json['key'] as String?,
+    key: (json['key'] as String?) ?? Util.generateRandomString(15),
     text: json['text'] as String?,
     style: json['style'] == null
         ? null

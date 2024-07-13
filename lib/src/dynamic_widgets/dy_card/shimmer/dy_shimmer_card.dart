@@ -12,13 +12,14 @@ part 'dy_shimmer_card.g.dart';
   createToJson: false,
 )
 class DynamicShimmerCard extends DynamicCard {
+  String key;
   @JsonKey(fromJson: WidgetUtil.getColor)
   Color? shimmerBaseColor;
   @JsonKey(fromJson: WidgetUtil.getColor)
   Color? shimmerHighlightColor;
 
   DynamicShimmerCard(
-      {String? key,
+      {required this.key,
       this.shimmerBaseColor,
       this.shimmerHighlightColor,
       super.child,
@@ -26,7 +27,7 @@ class DynamicShimmerCard extends DynamicCard {
       super.height,
       super.width})
       : super(
-          key: key ?? "",
+          key: key,
         );
 
   factory DynamicShimmerCard.fromJson(Map<String, dynamic> json) =>

@@ -12,6 +12,7 @@ part 'dy_stack.g.dart';
   createToJson: false,
 )
 class DynamicStack extends DynamicWidget {
+  String key;
   List<DynamicWidget>? children;
   @JsonKey(fromJson: WidgetUtil.getPositionalAlignment)
   Alignment? alignment;
@@ -27,7 +28,7 @@ class DynamicStack extends DynamicWidget {
   double? width;
 
   DynamicStack({
-    required super.key,
+    required this.key,
     this.children,
     this.alignment,
     this.fit,
@@ -37,7 +38,7 @@ class DynamicStack extends DynamicWidget {
     this.width,
     super.padding,
     super.margin,
-  });
+  }) : super(key: key);
 
   factory DynamicStack.fromJson(Map<String, dynamic> json) =>
       _$DynamicStackFromJson(json);

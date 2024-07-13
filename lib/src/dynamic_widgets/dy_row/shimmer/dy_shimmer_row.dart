@@ -11,6 +11,7 @@ part 'dy_shimmer_row.g.dart';
   createToJson: false,
 )
 class DynamicShimmerRow extends DynamicWidget {
+  String key;
   int itemCount;
   List<DynamicWidget>? childItems;
   @JsonKey(fromJson: WidgetUtil.getMainAxisAlignment)
@@ -24,7 +25,7 @@ class DynamicShimmerRow extends DynamicWidget {
   double? width;
 
   DynamicShimmerRow({
-    String? key,
+    required this.key,
     required this.itemCount,
     required this.childItems,
     this.mainAxisAlignment,
@@ -33,7 +34,7 @@ class DynamicShimmerRow extends DynamicWidget {
     this.height,
     this.width,
   }) : super(
-          key: key ?? "",
+          key: key,
         );
 
   factory DynamicShimmerRow.fromJson(Map<String, dynamic> json) =>

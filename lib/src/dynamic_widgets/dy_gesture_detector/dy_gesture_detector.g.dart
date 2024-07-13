@@ -8,12 +8,8 @@ part of 'dy_gesture_detector.dart';
 
 DynamicGestureDetector _$DynamicGestureDetectorFromJson(
     Map<String, dynamic> json) {
-  $checkKeys(
-    json,
-    requiredKeys: const ['key'],
-  );
   return DynamicGestureDetector(
-    key: json['key'] as String?,
+    key: (json['key'] as String?) ?? Util.generateRandomString(15),
     child: json['child'] == null
         ? null
         : DynamicWidget.fromJson(json['child'] as Map<String, dynamic>),

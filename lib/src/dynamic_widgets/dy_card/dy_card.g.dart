@@ -7,12 +7,8 @@ part of 'dy_card.dart';
 // **************************************************************************
 
 DynamicCard _$DynamicCardFromJson(Map<String, dynamic> json) {
-  $checkKeys(
-    json,
-    requiredKeys: const ['key'],
-  );
   return DynamicCard(
-    key: json['key'] as String?,
+    key: (json['key'] as String?) ?? Util.generateRandomString(15),
     color: WidgetUtil.getColor(json['color'] as String?),
     child: json['child'] == null
         ? null

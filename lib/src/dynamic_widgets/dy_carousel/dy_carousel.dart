@@ -13,6 +13,7 @@ part 'dy_carousel.g.dart';
   createToJson: false,
 )
 class DynamicCarousel extends DynamicWidget {
+  String key;
   List<DynamicWidget>? children;
   @JsonKey(defaultValue: false)
   bool reusable;
@@ -24,7 +25,7 @@ class DynamicCarousel extends DynamicWidget {
   double? width;
 
   DynamicCarousel(
-      {String? key,
+      {required this.key,
       this.height,
       this.width,
       this.children,
@@ -32,7 +33,7 @@ class DynamicCarousel extends DynamicWidget {
       this.carouselOptions = const CarouselDto(),
       })
       : super(
-          key: key ?? "",
+          key: key,
         );
 
   factory DynamicCarousel.fromJson(Map<String, dynamic> json) =>

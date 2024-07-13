@@ -7,13 +7,10 @@ part of 'dy_scaffold.dart';
 // **************************************************************************
 
 DynamicScaffold _$DynamicScaffoldFromJson(Map<String, dynamic> json) {
-  $checkKeys(
-    json,
-    requiredKeys: const ['key'],
-  );
+
 
   return DynamicScaffold(
-    key: json['key'] as String,
+    key: (json['key'] as String?) ?? Util.generateRandomString(15),
     children: json['children'] == null
         ? null
         : (json['children'] as List<dynamic>?)

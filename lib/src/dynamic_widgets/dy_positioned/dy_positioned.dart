@@ -11,6 +11,7 @@ part 'dy_positioned.g.dart';
   createToJson: false,
 )
 class DynamicPositioned extends DynamicWidget {
+  String key;
   DynamicWidget? child;
   double? left;
   double? right;
@@ -22,7 +23,7 @@ class DynamicPositioned extends DynamicWidget {
   double? width;
 
   DynamicPositioned({
-    required super.key,
+    required this.key,
     this.child,
     this.width,
     this.height,
@@ -30,7 +31,7 @@ class DynamicPositioned extends DynamicWidget {
     this.right,
     this.bottom,
     this.top,
-  });
+  }) : super(key: key);
 
   factory DynamicPositioned.fromJson(Map<String, dynamic> json) =>
       _$DynamicPositionedFromJson(json);

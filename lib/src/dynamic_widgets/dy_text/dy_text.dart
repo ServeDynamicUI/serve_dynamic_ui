@@ -17,6 +17,7 @@ const String updateText = Strings.updateText;
   createToJson: false,
 )
 class DynamicText extends DynamicWidget implements DataEventListener {
+  String key;
   String? text;
   TextStyleDTO? style;
   bool isHtmlText;
@@ -35,7 +36,7 @@ class DynamicText extends DynamicWidget implements DataEventListener {
   Alignment? alignment;
 
   DynamicText({
-    String? key,
+    required this.key,
     this.text,
     this.style,
     this.textDirection,
@@ -49,7 +50,7 @@ class DynamicText extends DynamicWidget implements DataEventListener {
     super.padding,
     super.margin,
   }) : super(
-          key: key ?? "",
+          key: key,
         );
 
   factory DynamicText.fromJson(Map<String, dynamic> json) =>

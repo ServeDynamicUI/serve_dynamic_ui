@@ -13,6 +13,7 @@ part 'dy_scaffold.g.dart';
   createToJson: false,
 )
 class DynamicScaffold extends DynamicWidget implements FormWidget {
+  String key;
   List<DynamicWidget>? children;
   DynamicWidget? floatingActionWidget;
   DynamicWidget? bottomNavigationBar;
@@ -42,7 +43,7 @@ class DynamicScaffold extends DynamicWidget implements FormWidget {
   AppBarDto? appBar;
 
   DynamicScaffold({
-    required String key,
+    required this.key,
     this.children,
     this.floatingActionWidget,
     this.bottomNavigationBar,
@@ -68,7 +69,7 @@ class DynamicScaffold extends DynamicWidget implements FormWidget {
     this.backgroundColor,
     this.appBar,
   }) : super(
-          key: key ?? "",
+          key: key,
         );
 
   factory DynamicScaffold.fromJson(Map<String, dynamic> json) =>

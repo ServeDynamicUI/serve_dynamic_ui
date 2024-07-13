@@ -12,6 +12,7 @@ part 'dy_align.g.dart';
   createToJson: false,
 )
 class DynamicAlign extends DynamicWidget {
+  final String key;
   DynamicWidget? child;
   @JsonKey(fromJson: WidgetUtil.getPositionalAlignment)
   Alignment? alignment;
@@ -23,14 +24,14 @@ class DynamicAlign extends DynamicWidget {
   double? width;
 
   DynamicAlign({
-    required super.key,
+    required this.key,
     this.child,
     this.alignment,
     this.heightFactor,
     this.widthFactor,
     this.height,
     this.width
-  });
+  }): super(key: key);
 
   factory DynamicAlign.fromJson(Map<String, dynamic> json) =>
       _$DynamicAlignFromJson(json);

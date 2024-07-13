@@ -12,6 +12,7 @@ part 'dy_gesture_detector.g.dart';
   createToJson: false,
 )
 class DynamicGestureDetector extends DynamicWidget {
+  String key;
   DynamicWidget? child;
   ActionDTO? onTapAction;
   ActionDTO? onDoubleTapAction;
@@ -22,7 +23,7 @@ class DynamicGestureDetector extends DynamicWidget {
   double? width;
 
   DynamicGestureDetector({
-    String? key,
+    required this.key,
     this.child,
     this.onTapAction,
     this.onDoubleTapAction,
@@ -30,7 +31,7 @@ class DynamicGestureDetector extends DynamicWidget {
     this.height,
     this.width
   }) : super(
-          key: key ?? "",
+          key: key,
         );
 
   factory DynamicGestureDetector.fromJson(Map<String, dynamic> json) =>

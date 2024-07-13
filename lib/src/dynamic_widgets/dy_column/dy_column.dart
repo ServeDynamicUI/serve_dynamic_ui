@@ -11,6 +11,7 @@ part 'dy_column.g.dart';
   createToJson: false,
 )
 class DynamicColumn extends DynamicWidget {
+  String key;
   List<DynamicWidget>? children;
   @JsonKey(fromJson: WidgetUtil.getMainAxisAlignment)
   MainAxisAlignment? mainAxisAlignment;
@@ -24,7 +25,7 @@ class DynamicColumn extends DynamicWidget {
   double interItemSpacing;
 
   DynamicColumn({
-    String? key,
+    required this.key,
     this.children,
     this.mainAxisAlignment,
     this.crossAxisAlignment,
@@ -32,7 +33,7 @@ class DynamicColumn extends DynamicWidget {
     this.width,
     this.interItemSpacing = 0,
   }) : super(
-          key: key ?? "",
+          key: key,
         );
 
   factory DynamicColumn.fromJson(Map<String, dynamic> json) =>

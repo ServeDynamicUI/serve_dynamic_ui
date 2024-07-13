@@ -7,12 +7,8 @@ part of 'dy_column.dart';
 // **************************************************************************
 
 DynamicColumn _$DynamicColumnFromJson(Map<String, dynamic> json) {
-  $checkKeys(
-    json,
-    requiredKeys: const ['key'],
-  );
   return DynamicColumn(
-    key: json['key'] as String?,
+    key: (json['key'] as String?) ?? Util.generateRandomString(15),
     children: (json['children'] as List<dynamic>?)
         ?.map((e) => DynamicWidget.fromJson(e as Map<String, dynamic>))
         .toList(),

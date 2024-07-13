@@ -13,10 +13,7 @@ enum RequestType {
   delete,
 }
 
-enum PercentageIndicatorType {
-  circular,
-  linear
-}
+enum PercentageIndicatorType { circular, linear }
 
 enum PopAndNavigateStrategy { popToRoot, popCurrent, popUntilScreen }
 

@@ -35,22 +35,22 @@ class DynamicCard extends DynamicWidget {
   @JsonKey(fromJson: WidgetUtil.getWidthValueOrInf)
   double? width;
 
-  DynamicCard({
-    required this.key,
-    this.color,
-    this.child,
-    this.clipBehavior,
-    this.margin,
-    this.borderOnForeground = true,
-    this.elevation,
-    this.semanticContainer = true,
-    this.shadowColor,
-    this.surfaceTintColor,
-    this.borderRadius,
-    this.linearGradient,
-    this.height,
-    this.width
-  }) : super(
+  DynamicCard(
+      {required this.key,
+      this.color,
+      this.child,
+      this.clipBehavior,
+      this.margin,
+      this.borderOnForeground = true,
+      this.elevation,
+      this.semanticContainer = true,
+      this.shadowColor,
+      this.surfaceTintColor,
+      this.borderRadius,
+      this.linearGradient,
+      this.height,
+      this.width})
+      : super(
           key: key,
         );
 

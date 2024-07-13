@@ -21,7 +21,9 @@ class DynamicPercentageIndicator extends DynamicWidget {
   double? height;
   @JsonKey(fromJson: WidgetUtil.getWidthValueOrInf)
   double? width;
-  @JsonKey(fromJson: WidgetUtil.getPercentageIndicatorType, defaultValue: PercentageIndicatorType.linear)
+  @JsonKey(
+      fromJson: WidgetUtil.getPercentageIndicatorType,
+      defaultValue: PercentageIndicatorType.linear)
   PercentageIndicatorType type;
   LinearPercentIndicatorDTO? linearPercentIndicator;
   CircularPercentIndicatorDTO? circularPercentIndicator;
@@ -42,7 +44,7 @@ class DynamicPercentageIndicator extends DynamicWidget {
 
   @override
   Widget build(BuildContext context) {
-    if(type == PercentageIndicatorType.circular){
+    if (type == PercentageIndicatorType.circular) {
       return CircularPercentIndicator(
         radius: circularPercentIndicator!.radius,
         lineWidth: circularPercentIndicator!.lineWidth,
@@ -62,51 +64,53 @@ class DynamicPercentageIndicator extends DynamicWidget {
         circularStrokeCap: circularPercentIndicator!.circularStrokeCap,
         arcBackgroundColor: circularPercentIndicator!.arcBackgroundColor,
         arcType: circularPercentIndicator!.arcType,
-        animateFromLastPercent: circularPercentIndicator!.animateFromLastPercent,
+        animateFromLastPercent:
+            circularPercentIndicator!.animateFromLastPercent,
         reverse: circularPercentIndicator!.reverse,
         curve: circularPercentIndicator!.curve,
         restartAnimation: circularPercentIndicator!.restartAnimation,
-        widgetIndicator: circularPercentIndicator!.widgetIndicator?.build(context),
+        widgetIndicator:
+            circularPercentIndicator!.widgetIndicator?.build(context),
         rotateLinearGradient: circularPercentIndicator!.rotateLinearGradient,
       );
     }
     return LinearPercentIndicator(
-      lineHeight: linearPercentIndicator!.lineHeight,
-      percent: linearPercentIndicator!.percent,
-      animation: linearPercentIndicator!.animation,
-      barRadius: Radius.circular(linearPercentIndicator!.barRadius ?? 0),
-      animationDuration: linearPercentIndicator!.animationDuration,
-      leading: linearPercentIndicator!.leading?.build(context),
-      center: linearPercentIndicator!.center?.build(context),
-      trailing: linearPercentIndicator!.trailing?.build(context),
-      backgroundColor: linearPercentIndicator!.backgroundColor,
-      progressColor: linearPercentIndicator!.progressColor,
-      fillColor: linearPercentIndicator!.fillColor,
-      width: width,
-      linearGradientBackgroundColor: linearPercentIndicator!.linearGradientBackgroundColor,
-      linearGradient: linearPercentIndicator!.linearGradient,
-      animateFromLastPercent: linearPercentIndicator!.animateFromLastPercent,
-      isRTL: linearPercentIndicator!.isRTL,
-      addAutomaticKeepAlive: linearPercentIndicator!.addAutomaticKeepAlive,
-      padding: linearPercentIndicator!.padding,
-      alignment: linearPercentIndicator!.alignment,
-      curve: linearPercentIndicator!.curve,
-      widgetIndicator: linearPercentIndicator!.widgetIndicator?.build(context),
-      clipLinearGradient: linearPercentIndicator!.clipLinearGradient,
-      restartAnimation: linearPercentIndicator!.restartAnimation
-    );
+        lineHeight: linearPercentIndicator!.lineHeight,
+        percent: linearPercentIndicator!.percent,
+        animation: linearPercentIndicator!.animation,
+        barRadius: Radius.circular(linearPercentIndicator!.barRadius ?? 0),
+        animationDuration: linearPercentIndicator!.animationDuration,
+        leading: linearPercentIndicator!.leading?.build(context),
+        center: linearPercentIndicator!.center?.build(context),
+        trailing: linearPercentIndicator!.trailing?.build(context),
+        backgroundColor: linearPercentIndicator!.backgroundColor,
+        progressColor: linearPercentIndicator!.progressColor,
+        fillColor: linearPercentIndicator!.fillColor,
+        width: width,
+        linearGradientBackgroundColor:
+            linearPercentIndicator!.linearGradientBackgroundColor,
+        linearGradient: linearPercentIndicator!.linearGradient,
+        animateFromLastPercent: linearPercentIndicator!.animateFromLastPercent,
+        isRTL: linearPercentIndicator!.isRTL,
+        addAutomaticKeepAlive: linearPercentIndicator!.addAutomaticKeepAlive,
+        padding: linearPercentIndicator!.padding,
+        alignment: linearPercentIndicator!.alignment,
+        curve: linearPercentIndicator!.curve,
+        widgetIndicator:
+            linearPercentIndicator!.widgetIndicator?.build(context),
+        clipLinearGradient: linearPercentIndicator!.clipLinearGradient,
+        restartAnimation: linearPercentIndicator!.restartAnimation);
   }
 
   @override
   List<DynamicWidget>? get childWidgets {
     List<DynamicWidget?> children = [];
 
-    if(type == PercentageIndicatorType.circular){
+    if (type == PercentageIndicatorType.circular) {
       children.add(circularPercentIndicator!.header);
       children.add(circularPercentIndicator!.center);
       children.add(circularPercentIndicator!.footer);
-    }
-    else{
+    } else {
       children.add(linearPercentIndicator!.leading);
       children.add(linearPercentIndicator!.center);
       children.add(linearPercentIndicator!.trailing);

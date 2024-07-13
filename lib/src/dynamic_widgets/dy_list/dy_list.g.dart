@@ -19,6 +19,7 @@ DynamicList _$DynamicListFromJson(Map<String, dynamic> json) {
     shrinkWrap: json['shrinkWrap'] as bool? ?? false,
     isScrollable: json['isScrollable'] as bool? ?? true,
     width: WidgetUtil.getWidthValueOrInf((json['width'] as num?)?.toDouble()),
-    height: WidgetUtil.getHeightValueOrInf((json['height'] as num?)?.toDouble()),
+    height:
+        WidgetUtil.getHeightValueOrInf((json['height'] as num?)?.toDouble()),
   );
 }

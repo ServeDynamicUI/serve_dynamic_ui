@@ -24,6 +24,7 @@ DynamicCard _$DynamicCardFromJson(Map<String, dynamic> json) {
     linearGradient:
         WidgetUtil.getLinearGradient(json['linearGradient'] as String?),
     width: WidgetUtil.getWidthValueOrInf((json['width'] as num?)?.toDouble()),
-    height: WidgetUtil.getHeightValueOrInf((json['height'] as num?)?.toDouble()),
+    height:
+        WidgetUtil.getHeightValueOrInf((json['height'] as num?)?.toDouble()),
   );
 }

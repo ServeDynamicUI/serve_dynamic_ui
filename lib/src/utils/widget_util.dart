@@ -419,8 +419,10 @@ class WidgetUtil {
   static double? getHeightValueOrInf(double? value) {
     if (Util.isValid(value)) {
       MediaQueryData? mediaData = ServeDynamicUI.mediaQueryData;
-      if(Util.isValid(mediaData)){
-        return value! < 0 ? mediaData!.size.height - kToolbarHeight - mediaData.padding.top: value;
+      if (Util.isValid(mediaData)) {
+        return value! < 0
+            ? mediaData!.size.height - kToolbarHeight - mediaData.padding.top
+            : value;
       }
     }
     return null;
@@ -430,7 +432,7 @@ class WidgetUtil {
   static double? getWidthValueOrInf(double? value) {
     if (Util.isValid(value)) {
       MediaQueryData? mediaData = ServeDynamicUI.mediaQueryData;
-      if(Util.isValid(mediaData)){
+      if (Util.isValid(mediaData)) {
         return value! < 0 ? mediaData!.size.width : value;
       }
       return value! < 0 ? double.infinity : value;
@@ -445,7 +447,7 @@ class WidgetUtil {
       return null;
     }
     List<String> time = value!.split(":");
-    if(time.length != 5){
+    if (time.length != 5) {
       return null;
     }
     return Duration(
@@ -554,7 +556,8 @@ class WidgetUtil {
   }
 
   ///Returns the enlargement strategy from string path.
-  static CenterPageEnlargeStrategy? getCenterPageEnlargeStrategy(String? value) {
+  static CenterPageEnlargeStrategy? getCenterPageEnlargeStrategy(
+      String? value) {
     if (!StringUtil.isNotEmptyNorNull(value)) {
       return null;
     }
@@ -572,7 +575,8 @@ class WidgetUtil {
   }
 
   ///Returns the [PercentageIndicatorType] from string.
-  static PercentageIndicatorType? getPercentageIndicatorType(String? indicatorType) {
+  static PercentageIndicatorType? getPercentageIndicatorType(
+      String? indicatorType) {
     if (StringUtil.isNotEmptyNorNull(indicatorType)) {
       switch (indicatorType!) {
         case Strings.circular:
@@ -585,7 +589,7 @@ class WidgetUtil {
   }
 
   ///Returns the [CircularStrokeCap] from string.
-  static CircularStrokeCap? getCircularStrokeCap(String? stroke){
+  static CircularStrokeCap? getCircularStrokeCap(String? stroke) {
     if (StringUtil.isNotEmptyNorNull(stroke)) {
       switch (stroke!) {
         case Strings.butt:
@@ -600,7 +604,7 @@ class WidgetUtil {
   }
 
   ///Returns the [ArcType] from string.
-  static ArcType? getArcType(String? arc){
+  static ArcType? getArcType(String? arc) {
     if (StringUtil.isNotEmptyNorNull(arc)) {
       switch (arc!) {
         case Strings.butt:

@@ -53,7 +53,8 @@ class DynamicWidgetHandlers {
     DynamicWidgetHandlerRepo.addDynamicWidgetHandler(
         Strings.dyCarousel, (json) => DynamicCarousel.fromJson(json));
     DynamicWidgetHandlerRepo.addDynamicWidgetHandler(
-        Strings.dyPercentageIndicator, (json) => DynamicPercentageIndicator.fromJson(json));
+        Strings.dyPercentageIndicator,
+        (json) => DynamicPercentageIndicator.fromJson(json));
 
     //Shimmer Widgets
     DynamicWidgetHandlerRepo.addDynamicWidgetHandler(

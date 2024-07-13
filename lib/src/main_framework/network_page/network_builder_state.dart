@@ -6,11 +6,7 @@ import 'package:serve_dynamic_ui/serve_dynamic_ui.dart';
 import 'package:serve_dynamic_ui/src/db/database/serve_dynamic_ui_database.dart';
 import 'package:serve_dynamic_ui/src/db/entities/PageEntity.dart';
 import 'package:serve_dynamic_ui/src/db/providers/ServeDynamicUIDatabseProvider.dart';
-import 'package:serve_dynamic_ui/src/dynamic_widgets/dynamic_provider.dart';
-import 'package:serve_dynamic_ui/src/listeners/data_event_listener/data_event_listener.dart';
-import 'package:serve_dynamic_ui/src/network/index.dart';
 import 'package:flutter/material.dart';
-import 'package:serve_dynamic_ui/src/utils/db_util.dart';
 
 abstract class NetworkPageStatusEvent {}
 
@@ -56,10 +52,13 @@ class NetworkBuilderState implements DataEventListener {
   void fetchPage() async {
     try {
       debugPrint('isPageCacheEnabled: $isPageCacheEnabled');
-      networkPageStatusNotifier.value = NetworkPagePendingStatusEvent(pageResponse: _cachedPageJson);
-      await Future.delayed(Duration(milliseconds: 500));
+      networkPageStatusNotifier.value =
+          NetworkPagePendingStatusEvent(pageResponse: _cachedPageJson);
+      await Future.delayed(const Duration(milliseconds: 500));
       if (isPageCacheEnabled) {
-        bool pageDeletedFromDB = await DbUtil.deleteCachedPageIfOlderThanSetCacheTime(_getPageKeyFromUrl());
+        bool pageDeletedFromDB =
+            await DbUtil.deleteCachedPageIfOlderThanSetCacheTime(
+                _getPageKeyFromUrl());
         if (!pageDeletedFromDB) {
           await _loadPageFromDB();
         } else {
@@ -98,8 +97,8 @@ class NetworkBuilderState implements DataEventListener {
             debugPrint('Loaded page from db');
           }
         }
-        // networkPageStatusNotifier.value = NetworkPagePendingStatusEvent(pageResponse: _cachedPageJson);
-        // await Future.delayed(Duration(milliseconds: 500));
+        networkPageStatusNotifier.value =
+            NetworkPagePendingStatusEvent(pageResponse: _cachedPageJson);
       }
       return _cachedPageJson != null;
     } catch (e) {
@@ -114,16 +113,15 @@ class NetworkBuilderState implements DataEventListener {
       request.cancelToken = _cancelToken;
       Response? pageResponse = await NetworkHandler.getJsonFromRequest(request);
       String pageDataString = pageResponse!.data.toString();
-      if(pageResponse.data is Map){
+      if (pageResponse.data is Map) {
         _cachedPageJson = pageResponse.data;
-      }
-      else{
+      } else {
         _cachedPageJson = jsonDecode(pageDataString);
       }
       _insertPageInDBIfEnabled(pageDataString, _cachedPageJson);
       networkPageStatusNotifier.value =
           NetworkPageSuccessStatusEvent(_cachedPageJson);
-    } catch(e){
+    } catch (e) {
       debugPrint('Error ${e.toString()}');
     }
   }

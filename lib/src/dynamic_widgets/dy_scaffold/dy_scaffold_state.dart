@@ -39,8 +39,7 @@ class DyScaffoldState extends ScrollListener {
   DyScaffoldState(this.nextUrl, this._parent) {
     DynamicListeners.addListener(_parent.key, this);
     _isFetchingPageInProgress = false;
-    pageDataEventNotifier =
-        ValueNotifier(PageSuccessEvent(_parent.children));
+    pageDataEventNotifier = ValueNotifier(PageSuccessEvent(_parent.children));
     showPaginatedLoaderOnTopNotifier = ValueNotifier(_isFetchingPageInProgress);
   }
 
@@ -59,32 +58,29 @@ class DyScaffoldState extends ScrollListener {
           jsonResponse = await WidgetUtil.loadJson(nextUrl!);
         } else {
           jsonResponse = jsonDecode((await NetworkHandler.getJsonFromRequest(
-            DynamicRequest(
-              url: nextUrl!,
-              requestType: RequestType.get,
-              sendTimeout: Duration(seconds: 20),
-              receiveTimeout: Duration(seconds: 20)
-            ),
-          ))
-              ?.data
-              ?.toString() ??
+                DynamicRequest(
+                    url: nextUrl!,
+                    requestType: RequestType.get,
+                    sendTimeout: Duration(seconds: 20),
+                    receiveTimeout: Duration(seconds: 20)),
+              ))
+                  ?.data
+                  ?.toString() ??
               '');
         }
 
         List<DynamicWidget> newChildren = [];
 
         List<Map<String, dynamic>>? newChildrenMap =
-        List.from(jsonResponse['children'] as Iterable<dynamic>);
+            List.from(jsonResponse['children'] as Iterable<dynamic>);
 
         for (var child in newChildrenMap) {
-          newChildren.add(DynamicWidget.fromJson(child)
-            ..parent = _parent);
+          newChildren.add(DynamicWidget.fromJson(child)..parent = _parent);
         }
 
         if (Util.isValidList<dynamic>(newChildrenMap)) {
           nextUrl = jsonResponse['nextUrl'] ?? '';
-        }
-        else {
+        } else {
           nextUrl = '';
         }
         pageDataEventNotifier.value.children?.addAll(newChildren);
@@ -122,7 +118,6 @@ class DyScaffoldState extends ScrollListener {
   @override
   void onScrolledToStart(String? widgetKey) {
     debugPrint(
-        'dy_scaffold ${_parent.appBar!
-            .pageTitle}  onScrolledToStart $widgetKey');
+        'dy_scaffold ${_parent.appBar!.pageTitle}  onScrolledToStart $widgetKey');
   }
 }

@@ -17,7 +17,8 @@ DynamicColumn _$DynamicColumnFromJson(Map<String, dynamic> json) {
     crossAxisAlignment:
         WidgetUtil.getCrossAxisAlignment(json['crossAxisAlignment'] as String?),
     width: WidgetUtil.getWidthValueOrInf((json['width'] as num?)?.toDouble()),
-    height: WidgetUtil.getHeightValueOrInf((json['height'] as num?)?.toDouble()),
+    height:
+        WidgetUtil.getHeightValueOrInf((json['height'] as num?)?.toDouble()),
     interItemSpacing: (json['interItemSpacing'] as num?)?.toDouble() ?? 0.0,
   );
 }

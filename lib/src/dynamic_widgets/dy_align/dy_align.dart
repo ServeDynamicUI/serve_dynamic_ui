@@ -24,15 +24,15 @@ class DynamicAlign extends DynamicWidget {
   @JsonKey(fromJson: WidgetUtil.getWidthValueOrInf)
   double? width;
 
-  DynamicAlign({
-    required this.key,
-    this.child,
-    this.alignment,
-    this.heightFactor,
-    this.widthFactor,
-    this.height,
-    this.width
-  }): super(key: key);
+  DynamicAlign(
+      {required this.key,
+      this.child,
+      this.alignment,
+      this.heightFactor,
+      this.widthFactor,
+      this.height,
+      this.width})
+      : super(key: key);
 
   factory DynamicAlign.fromJson(Map<String, dynamic> json) =>
       _$DynamicAlignFromJson(json);

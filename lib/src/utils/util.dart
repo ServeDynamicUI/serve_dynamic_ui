@@ -29,7 +29,9 @@ class Util {
     try {
       if (StringUtil.isNotEmptyNorNull(pageCacheKeepTime)) {
         final SharedPrefStorage prefs = await SharedPrefStorage.instance;
-        return await prefs.put(key: Strings.pageCacheKeepTime, value: int.parse(pageCacheKeepTime));
+        return await prefs.put(
+            key: Strings.pageCacheKeepTime,
+            value: int.parse(pageCacheKeepTime));
       }
       return false;
     } catch (e) {
@@ -49,11 +51,12 @@ class Util {
   }
 
   static String generateRandomString({int length = 15}) {
-    const characters = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
+    const characters =
+        'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
     final random = Random();
     return String.fromCharCodes(Iterable.generate(
       length,
-          (_) => characters.codeUnitAt(random.nextInt(characters.length)),
+      (_) => characters.codeUnitAt(random.nextInt(characters.length)),
     ));
   }
 }

@@ -24,6 +24,7 @@ DynamicTabView _$DynamicTabViewFromJson(Map<String, dynamic> json) {
     cornerRadius: (json['cornerRadius'] as num?)?.toDouble() ?? 8,
     wantKeepAlive: json['wantKeepAlive'] as bool? ?? false,
     width: WidgetUtil.getWidthValueOrInf((json['width'] as num?)?.toDouble()),
-    height: WidgetUtil.getHeightValueOrInf((json['height'] as num?)?.toDouble()),
+    height:
+        WidgetUtil.getHeightValueOrInf((json['height'] as num?)?.toDouble()),
   );
 }

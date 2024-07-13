@@ -34,20 +34,19 @@ class DynamicImage extends DynamicWidget {
   @JsonKey(fromJson: WidgetUtil.getDuration)
   Duration? transitionDuration;
 
-  DynamicImage(
-      {required this.key,
-      required this.src,
-      this.alignment,
-      this.color,
-      this.width,
-      this.height,
-      this.fit,
-      this.imageType,
-      this.clipBorderRadius,
-      this.placeholderImagePath,
-      this.transitionDuration,
-      })
-      : super(
+  DynamicImage({
+    required this.key,
+    required this.src,
+    this.alignment,
+    this.color,
+    this.width,
+    this.height,
+    this.fit,
+    this.imageType,
+    this.clipBorderRadius,
+    this.placeholderImagePath,
+    this.transitionDuration,
+  }) : super(
           key: key ?? "",
         );
 
@@ -88,7 +87,7 @@ class DynamicImage extends DynamicWidget {
         width: width,
         height: height,
         fit: fit,
-        placeholder: (context, url){
+        placeholder: (context, url) {
           return _placeholderWidget();
         },
         fadeInDuration: transitionDuration ?? const Duration(seconds: 1),

@@ -18,25 +18,38 @@ CarouselDto _$CarouselDtoFromJson(Map<String, dynamic> json) {
     autoPlay: json['autoPlay'] as bool? ?? false,
     autoPlayInterval: json['autoPlayInterval'] == null
         ? const Duration(seconds: 4)
-        : WidgetUtil.getDuration(json['autoPlayInterval'] as String?) ?? const Duration(seconds: 4),
+        : WidgetUtil.getDuration(json['autoPlayInterval'] as String?) ??
+            const Duration(seconds: 4),
     autoPlayAnimationDuration: json['autoPlayAnimationDuration'] == null
         ? const Duration(milliseconds: 800)
-        : WidgetUtil.getDuration(json['autoPlayAnimationDuration'] as String?) ?? const Duration(milliseconds: 800),
+        : WidgetUtil.getDuration(
+                json['autoPlayAnimationDuration'] as String?) ??
+            const Duration(milliseconds: 800),
     autoPlayCurve: json['autoPlayCurve'] == null
         ? Curves.fastOutSlowIn
-        : WidgetUtil.getCurve(json['autoPlayCurve'] as String?) ?? Curves.fastOutSlowIn,
+        : WidgetUtil.getCurve(json['autoPlayCurve'] as String?) ??
+            Curves.fastOutSlowIn,
     enlargeCenterPage: json['enlargeCenterPage'] as bool? ?? false,
-    scrollPhysics: WidgetUtil.getScrollPhysics(json['scrollPhysics']  as String?),
+    scrollPhysics:
+        WidgetUtil.getScrollPhysics(json['scrollPhysics'] as String?),
     pageSnapping: json['pageSnapping'] as bool? ?? true,
-    scrollDirection: WidgetUtil.getAxis(json['scrollDirection']  as String?) ?? Axis.horizontal,
+    scrollDirection: WidgetUtil.getAxis(json['scrollDirection'] as String?) ??
+        Axis.horizontal,
     pauseAutoPlayOnTouch: json['pauseAutoPlayOnTouch'] as bool? ?? true,
-    pauseAutoPlayOnManualNavigate: json['pauseAutoPlayOnManualNavigate'] as bool? ?? true,
-    pauseAutoPlayInFiniteScroll: json['pauseAutoPlayInFiniteScroll'] as bool? ?? false,
-    pageViewKey: json['pageViewKey'] == null ? null : PageStorageKey(json['pageViewKey']),
-    enlargeStrategy: WidgetUtil.getCenterPageEnlargeStrategy(json['enlargeStrategy'] as String?) ?? CenterPageEnlargeStrategy.scale,
+    pauseAutoPlayOnManualNavigate:
+        json['pauseAutoPlayOnManualNavigate'] as bool? ?? true,
+    pauseAutoPlayInFiniteScroll:
+        json['pauseAutoPlayInFiniteScroll'] as bool? ?? false,
+    pageViewKey: json['pageViewKey'] == null
+        ? null
+        : PageStorageKey(json['pageViewKey']),
+    enlargeStrategy: WidgetUtil.getCenterPageEnlargeStrategy(
+            json['enlargeStrategy'] as String?) ??
+        CenterPageEnlargeStrategy.scale,
     enlargeFactor: (json['enlargeFactor'] as num?)?.toDouble() ?? 0.3,
     disableCenter: json['disableCenter'] as bool? ?? false,
     padEnds: json['padEnds'] as bool? ?? true,
-    clipBehavior: WidgetUtil.getClipBehavior(json['clipBehavior'] as String?) ?? Clip.hardEdge,
+    clipBehavior: WidgetUtil.getClipBehavior(json['clipBehavior'] as String?) ??
+        Clip.hardEdge,
   );
 }

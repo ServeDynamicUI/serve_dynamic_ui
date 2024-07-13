@@ -13,7 +13,8 @@ DynamicContainer _$DynamicContainerFromJson(Map<String, dynamic> json) {
     padding: WidgetUtil.getEdgeInsets(json['padding'] as String?),
     margin: WidgetUtil.getEdgeInsets(json['margin'] as String?),
     width: WidgetUtil.getWidthValueOrInf((json['width'] as num?)?.toDouble()),
-    height: WidgetUtil.getHeightValueOrInf((json['height'] as num?)?.toDouble()),
+    height:
+        WidgetUtil.getHeightValueOrInf((json['height'] as num?)?.toDouble()),
     child: json['child'] == null
         ? null
         : DynamicWidget.fromJson(json['child'] as Map<String, dynamic>),
@@ -21,6 +22,7 @@ DynamicContainer _$DynamicContainerFromJson(Map<String, dynamic> json) {
     showBorder: json['showBorder'] as bool? ?? false,
     borderColor: WidgetUtil.getColor(json['borderColor'] as String?),
     borderRadius: (json['borderRadius'] as num?)?.toDouble(),
-    containerGradient: WidgetUtil.getLinearGradient(json['containerGradient'] as String?),
+    containerGradient:
+        WidgetUtil.getLinearGradient(json['containerGradient'] as String?),
   );
 }

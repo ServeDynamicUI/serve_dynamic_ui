@@ -70,7 +70,9 @@ class DynamicShimmerStack extends DynamicStack {
                 color: shimmerBaseColor?.withOpacity(0.4) ??
                     Colors.grey.withOpacity(0.4),
                 borderRadius: BorderRadius.circular(borderRadius),
-                border: borderColor != null ? Border.all(color: borderColor!, width: borderWidth) : null,
+                border: borderColor != null
+                    ? Border.all(color: borderColor!, width: borderWidth)
+                    : null,
               ),
             ),
           ),

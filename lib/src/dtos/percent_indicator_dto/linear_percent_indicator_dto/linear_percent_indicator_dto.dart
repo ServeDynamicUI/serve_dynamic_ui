@@ -36,30 +36,29 @@ class LinearPercentIndicatorDTO {
   MainAxisAlignment alignment;
   DynamicWidget? widgetIndicator;
 
-  LinearPercentIndicatorDTO({
-    this.percent = 0,
-    this.lineHeight = 8.0,
-    this.fillColor = Colors.transparent,
-    this.backgroundColor,
-    this.progressColor,
-    this.linearGradient,
-    this.linearGradientBackgroundColor,
-    this.animateFromLastPercent = false,
-    this.isRTL = false,
-    this.restartAnimation = false,
-    this.addAutomaticKeepAlive = true,
-    this.animationDuration = 500,
-    this.animation = false,
-    this.barRadius,
-    this.leading,
-    this.trailing,
-    this.center,
-    this.padding = const EdgeInsets.symmetric(horizontal: 10.0),
-    this.curve = Curves.linear,
-    this.clipLinearGradient = false,
-    this.alignment = MainAxisAlignment.start,
-    this.widgetIndicator
-  });
+  LinearPercentIndicatorDTO(
+      {this.percent = 0,
+      this.lineHeight = 8.0,
+      this.fillColor = Colors.transparent,
+      this.backgroundColor,
+      this.progressColor,
+      this.linearGradient,
+      this.linearGradientBackgroundColor,
+      this.animateFromLastPercent = false,
+      this.isRTL = false,
+      this.restartAnimation = false,
+      this.addAutomaticKeepAlive = true,
+      this.animationDuration = 500,
+      this.animation = false,
+      this.barRadius,
+      this.leading,
+      this.trailing,
+      this.center,
+      this.padding = const EdgeInsets.symmetric(horizontal: 10.0),
+      this.curve = Curves.linear,
+      this.clipLinearGradient = false,
+      this.alignment = MainAxisAlignment.start,
+      this.widgetIndicator});
 
   factory LinearPercentIndicatorDTO.fromJson(Map<String, dynamic> json) =>
       _$LinearPercentIndicatorDTOFromJson(json);

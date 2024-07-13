@@ -52,11 +52,11 @@ class ServeDynamicUIMaterialApp extends StatefulWidget {
   final bool useInheritedMediaQuery;
 
   @override
-  State<ServeDynamicUIMaterialApp> createState() => _ServeDynamicUIMaterialAppState();
+  State<ServeDynamicUIMaterialApp> createState() =>
+      _ServeDynamicUIMaterialAppState();
 }
 
 class _ServeDynamicUIMaterialAppState extends State<ServeDynamicUIMaterialApp> {
-
   @override
   void initState() {
     ServeDynamicUI.applicationCurrentNavigationKey = widget.navigatorKey;

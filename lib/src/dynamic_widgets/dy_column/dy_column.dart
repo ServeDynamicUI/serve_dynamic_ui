@@ -54,7 +54,10 @@ class DynamicColumn extends DynamicWidget {
       key: ValueKey(key),
       mainAxisAlignment: mainAxisAlignment ?? MainAxisAlignment.center,
       crossAxisAlignment: crossAxisAlignment ?? CrossAxisAlignment.center,
-      children: (children == null) ? [] : WidgetUtil.widgetsSpacing(childWidgets, interItemSpacing, isHorizontal: false),
+      children: (children == null)
+          ? []
+          : WidgetUtil.widgetsSpacing(childWidgets, interItemSpacing,
+              isHorizontal: false),
     );
   }
 

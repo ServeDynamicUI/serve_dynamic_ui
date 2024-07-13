@@ -74,6 +74,6 @@ class AppBarDto {
     this.appBarGradient,
   });
 
-  factory AppBarDto.fromJson(Map<String, dynamic> json) => _$AppBarDtoFromJson(json);
-
+  factory AppBarDto.fromJson(Map<String, dynamic> json) =>
+      _$AppBarDtoFromJson(json);
 }

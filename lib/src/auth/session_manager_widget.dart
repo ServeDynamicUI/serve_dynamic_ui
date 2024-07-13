@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:serve_dynamic_ui/src/auth/session_manager_state.dart';
+
 typedef WidgetCreator = Widget Function();
 typedef WidgetContainer = Widget Function(Widget widget);
 
@@ -48,27 +49,32 @@ class _SessionManagerWidgetState extends State<SessionManagerWidget> {
             child = widget.onAuthenticated.call();
           } else if (snapshot.data is SessionDeAuthenticatedEvent) {
             child = widget.deAuthenticated.call();
-          } else if (snapshot.data is SessionOnAuthenticationInProgressEvent && widget.onAuthenticationInProgress != null) {
+          } else if (snapshot.data is SessionOnAuthenticationInProgressEvent &&
+              widget.onAuthenticationInProgress != null) {
             child = widget.onAuthenticationInProgress!.call();
-          } else if (snapshot.data is SessionAuthenticationExpiredEvent && widget.onAuthenticationExpired != null) {
+          } else if (snapshot.data is SessionAuthenticationExpiredEvent &&
+              widget.onAuthenticationExpired != null) {
             child = widget.onAuthenticationExpired!.call();
-          } else if (snapshot.data is SessionDeAuthenticationInProgressEvent && widget.deAuthenticationInProgress != null) {
+          } else if (snapshot.data is SessionDeAuthenticationInProgressEvent &&
+              widget.deAuthenticationInProgress != null) {
             child = widget.deAuthenticationInProgress!.call();
-          } else if (snapshot.data is SessionAuthenticationFailedEvent && widget.onAuthenticationFailed != null) {
+          } else if (snapshot.data is SessionAuthenticationFailedEvent &&
+              widget.onAuthenticationFailed != null) {
             child = widget.onAuthenticationFailed!.call();
-          }
-          else {
+          } else {
             child = widget.onUndetermined.call();
           }
         }
 
-        if(widget.widgetContainer != null){
+        if (widget.widgetContainer != null) {
           return widget.widgetContainer!(child);
         }
         return AnimatedSwitcher(
           duration: const Duration(milliseconds: 500),
           transitionBuilder: (Widget child, Animation<double> animation) {
-            return FadeTransition(opacity: Tween<double>(begin: 0.8, end: 1.0).animate(animation), child: child);
+            return FadeTransition(
+                opacity: Tween<double>(begin: 0.8, end: 1.0).animate(animation),
+                child: child);
           },
           child: child,
         );

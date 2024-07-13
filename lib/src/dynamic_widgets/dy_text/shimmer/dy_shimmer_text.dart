@@ -22,24 +22,26 @@ class DynamicShimmerText extends DynamicText {
   String? text;
   TextStyleDTO? textStyle;
 
-  DynamicShimmerText(
-      {required this.key,
-      this.shimmerBaseColor,
-      this.shimmerHighlightColor,
-      super.height,
-      super.width,
-      super.padding,
-      super.margin,
-      this.text,
-      this.textStyle,
-  }): super(key: key,);
+  DynamicShimmerText({
+    required this.key,
+    this.shimmerBaseColor,
+    this.shimmerHighlightColor,
+    super.height,
+    super.width,
+    super.padding,
+    super.margin,
+    this.text,
+    this.textStyle,
+  }) : super(
+          key: key,
+        );
 
   factory DynamicShimmerText.fromJson(Map<String, dynamic> json) =>
       _$DynamicShimmerCardFromJson(json);
 
   @override
   Widget build(BuildContext context) {
-    if(text == null) return const SizedBox.shrink();
+    if (text == null) return const SizedBox.shrink();
 
     return Shimmer.fromColors(
       baseColor: shimmerBaseColor ?? Colors.grey[300]!,
@@ -49,7 +51,10 @@ class DynamicShimmerText extends DynamicText {
         width: width,
         padding: padding,
         margin: margin,
-        child: Text(text!, style: textStyle?.textStyle,),
+        child: Text(
+          text!,
+          style: textStyle?.textStyle,
+        ),
       ),
     );
   }

@@ -20,9 +20,10 @@ DynamicText _$DynamicTextFromJson(Map<String, dynamic> json) {
     overflow: WidgetUtil.getTextOverflow(json['overflow'] as String?),
     isHtmlText: json['isHtmlText'] as bool? ?? false,
     width: WidgetUtil.getWidthValueOrInf((json['width'] as num?)?.toDouble()),
-    height: WidgetUtil.getHeightValueOrInf((json['height'] as num?)?.toDouble()),
+    height:
+        WidgetUtil.getHeightValueOrInf((json['height'] as num?)?.toDouble()),
     alignment: WidgetUtil.getPositionalAlignment(json['alignment'] as String?),
     padding: WidgetUtil.getEdgeInsets(json['padding'] as String?),
-    margin:  WidgetUtil.getEdgeInsets(json['margin'] as String?),
+    margin: WidgetUtil.getEdgeInsets(json['margin'] as String?),
   );
 }

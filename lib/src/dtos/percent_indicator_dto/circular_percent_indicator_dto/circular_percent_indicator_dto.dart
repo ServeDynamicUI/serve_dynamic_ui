@@ -32,7 +32,9 @@ class CircularPercentIndicatorDTO {
   DynamicWidget? footer;
   DynamicWidget? center;
   bool addAutomaticKeepAlive;
-  @JsonKey(fromJson: WidgetUtil.getCircularStrokeCap, defaultValue: CircularStrokeCap.butt)
+  @JsonKey(
+      fromJson: WidgetUtil.getCircularStrokeCap,
+      defaultValue: CircularStrokeCap.butt)
   CircularStrokeCap circularStrokeCap;
   @JsonKey(fromJson: WidgetUtil.getColor)
   Color? arcBackgroundColor;
@@ -76,4 +78,3 @@ class CircularPercentIndicatorDTO {
   factory CircularPercentIndicatorDTO.fromJson(Map<String, dynamic> json) =>
       _$CircularPercentIndicatorDTOFromJson(json);
 }
-

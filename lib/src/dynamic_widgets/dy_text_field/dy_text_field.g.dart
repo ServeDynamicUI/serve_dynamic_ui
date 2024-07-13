@@ -15,7 +15,8 @@ DynamicTextField _$DynamicTextFieldFromJson(Map<String, dynamic> json) {
         : TextFieldDTO.fromJson(
             json['textFieldDecoration'] as Map<String, dynamic>),
     width: WidgetUtil.getWidthValueOrInf((json['width'] as num?)?.toDouble()),
-    height: WidgetUtil.getHeightValueOrInf((json['height'] as num?)?.toDouble()),
+    height:
+        WidgetUtil.getHeightValueOrInf((json['height'] as num?)?.toDouble()),
     regexValidator: json['regexValidator'] as String?,
   );
 }

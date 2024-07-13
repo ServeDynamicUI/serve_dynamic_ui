@@ -30,12 +30,11 @@ abstract class NetworkHandler {
       data: request.data,
       queryParameters: request.queryParameters,
       options: Options(
-        contentType: request.contentType,
-        headers: request.headers,
-        extra: request.extra,
-        sendTimeout: request.sendTimeout,
-        receiveTimeout: request.receiveTimeout
-      ),
+          contentType: request.contentType,
+          headers: request.headers,
+          extra: request.extra,
+          sendTimeout: request.sendTimeout,
+          receiveTimeout: request.receiveTimeout),
       cancelToken: request.cancelToken,
     );
   }
@@ -47,12 +46,11 @@ abstract class NetworkHandler {
       data: request.data,
       queryParameters: request.queryParameters,
       options: Options(
-        contentType: request.contentType,
-        headers: request.headers,
-        extra: request.extra,
-        sendTimeout: request.sendTimeout,
-        receiveTimeout: request.receiveTimeout
-      ),
+          contentType: request.contentType,
+          headers: request.headers,
+          extra: request.extra,
+          sendTimeout: request.sendTimeout,
+          receiveTimeout: request.receiveTimeout),
       cancelToken: request.cancelToken,
     );
   }
@@ -64,12 +62,11 @@ abstract class NetworkHandler {
       data: request.data,
       queryParameters: request.queryParameters,
       options: Options(
-        contentType: request.contentType,
-        headers: request.headers,
-        extra: request.extra,
-        sendTimeout: request.sendTimeout,
-        receiveTimeout: request.receiveTimeout
-      ),
+          contentType: request.contentType,
+          headers: request.headers,
+          extra: request.extra,
+          sendTimeout: request.sendTimeout,
+          receiveTimeout: request.receiveTimeout),
       cancelToken: request.cancelToken,
     );
   }

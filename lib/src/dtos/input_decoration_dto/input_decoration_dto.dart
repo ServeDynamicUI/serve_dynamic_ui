@@ -97,17 +97,20 @@ class InputDecorationDTO {
       suffixIcon: (suffixIcon == null) ? null : suffixIcon!.build(context),
       enabledBorder: OutlineInputBorder(
         borderRadius: BorderRadius.circular(borderRadius),
-        borderSide:
-            BorderSide(color: enableBorderColor ?? const Color(0xFF000000), width: borderWidth),
+        borderSide: BorderSide(
+            color: enableBorderColor ?? const Color(0xFF000000),
+            width: borderWidth),
       ),
       focusedBorder: OutlineInputBorder(
         borderRadius: BorderRadius.circular(borderRadius),
-        borderSide:
-            BorderSide(color: focusBorderColor ?? const Color(0xFF000000), width: borderWidth),
+        borderSide: BorderSide(
+            color: focusBorderColor ?? const Color(0xFF000000),
+            width: borderWidth),
       ),
       border: OutlineInputBorder(
         borderRadius: BorderRadius.circular(borderRadius),
-        borderSide: BorderSide(color: borderColor ?? const Color(0xFF000000), width: borderWidth),
+        borderSide: BorderSide(
+            color: borderColor ?? const Color(0xFF000000), width: borderWidth),
       ),
       iconColor: iconColor,
       focusColor: focusColor,

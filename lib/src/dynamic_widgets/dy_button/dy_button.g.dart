@@ -16,7 +16,8 @@ DynamicButton _$DynamicButtonFromJson(Map<String, dynamic> json) {
         ? null
         : ActionDTO.fromJson(json['action'] as Map<String, dynamic>),
     width: WidgetUtil.getWidthValueOrInf((json['width'] as num?)?.toDouble()),
-    height: WidgetUtil.getHeightValueOrInf((json['height'] as num?)?.toDouble()),
+    height:
+        WidgetUtil.getHeightValueOrInf((json['height'] as num?)?.toDouble()),
     padding: WidgetUtil.getEdgeInsets(json['padding'] as String?),
     margin: WidgetUtil.getEdgeInsets(json['margin'] as String?),
     borderWidth: (json['borderWidth'] as num?)?.toDouble(),

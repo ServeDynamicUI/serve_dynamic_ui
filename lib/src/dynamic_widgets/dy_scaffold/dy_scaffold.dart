@@ -30,10 +30,14 @@ class DynamicScaffold extends DynamicWidget implements FormWidget {
   bool endDrawerEnableOpenDragGesture;
   String? nextUrl;
   double? itemsSpacing;
-  @JsonKey(fromJson: WidgetUtil.getCrossAxisAlignment, defaultValue: CrossAxisAlignment.center)
+  @JsonKey(
+      fromJson: WidgetUtil.getCrossAxisAlignment,
+      defaultValue: CrossAxisAlignment.center)
   CrossAxisAlignment crossAxisAlignment;
   List<String>? pageRefreshEvents;
-  @JsonKey(fromJson: WidgetUtil.getMainAxisAlignment, defaultValue: MainAxisAlignment.start)
+  @JsonKey(
+      fromJson: WidgetUtil.getMainAxisAlignment,
+      defaultValue: MainAxisAlignment.start)
   MainAxisAlignment mainAxisAlignment;
   @JsonKey(fromJson: WidgetUtil.getHeightValueOrInf)
   double? height;
@@ -79,13 +83,13 @@ class DynamicScaffold extends DynamicWidget implements FormWidget {
   @override
   List<DynamicWidget>? get childWidgets {
     List<DynamicWidget> children = [];
-    if(appBar!.leftActions != null){
+    if (appBar!.leftActions != null) {
       children.addAll(appBar!.leftActions!);
     }
-    if(appBar!.rightActions != null){
+    if (appBar!.rightActions != null) {
       children.addAll(appBar!.rightActions!);
     }
-    if(this.children != null){
+    if (this.children != null) {
       children.addAll(this.children!);
     }
     return children;
@@ -374,7 +378,7 @@ class DynamicScaffold extends DynamicWidget implements FormWidget {
   FutureOr invokeMethod(String methodName, {Map<String, dynamic>? params}) {}
 
   PreferredSizeWidget? _appBar(BuildContext context) {
-    if(appBar!.appBarGradient != null){
+    if (appBar!.appBarGradient != null) {
       appBar!.backgroundColor = Colors.transparent;
       return PreferredSize(
         preferredSize: const Size.fromHeight(kToolbarHeight),
@@ -389,31 +393,32 @@ class DynamicScaffold extends DynamicWidget implements FormWidget {
     return _basicAppBar(context);
   }
 
-  PreferredSizeWidget? _basicAppBar(BuildContext context){
+  PreferredSizeWidget? _basicAppBar(BuildContext context) {
     return AppBar(
       title: appBar!.title?.build(context) ?? Text(appBar!.pageTitle ?? ''),
       centerTitle: appBar!.centerTitle,
-      leadingWidth: appBar!.leftActions != null ? appBar!.leftActionsWidth : null,
+      leadingWidth:
+          appBar!.leftActions != null ? appBar!.leftActionsWidth : null,
       leading: appBar!.leftActions == null
           ? null
           : Row(
-        mainAxisAlignment: appBar!.leftActions!.length == 1
-            ? MainAxisAlignment.center
-            : MainAxisAlignment.start,
-        children:
-        WidgetUtil.dynamicWidgetsSpacing(context, appBar!.leftActions, 2),
-      ),
+              mainAxisAlignment: appBar!.leftActions!.length == 1
+                  ? MainAxisAlignment.center
+                  : MainAxisAlignment.start,
+              children: WidgetUtil.dynamicWidgetsSpacing(
+                  context, appBar!.leftActions, 2),
+            ),
       actions: appBar!.rightActions == null
           ? null
           : [
-        Row(
-          mainAxisAlignment: appBar!.rightActions!.length == 1
-              ? MainAxisAlignment.center
-              : MainAxisAlignment.end,
-          children:
-          WidgetUtil.dynamicWidgetsSpacing(context, appBar!.rightActions, 2),
-        )
-      ],
+              Row(
+                mainAxisAlignment: appBar!.rightActions!.length == 1
+                    ? MainAxisAlignment.center
+                    : MainAxisAlignment.end,
+                children: WidgetUtil.dynamicWidgetsSpacing(
+                    context, appBar!.rightActions, 2),
+              )
+            ],
       backgroundColor: appBar!.backgroundColor,
       automaticallyImplyLeading: appBar!.automaticallyImplyLeading,
       flexibleSpace: appBar!.flexibleSpace?.build(context),

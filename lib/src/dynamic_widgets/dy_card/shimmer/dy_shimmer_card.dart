@@ -38,10 +38,12 @@ class DynamicShimmerCard extends DynamicCard {
   Widget build(BuildContext context) {
     Widget cardContent = super.build(context);
 
-    return cardContent = Shimmer.fromColors(
+    return Shimmer.fromColors(
       baseColor: shimmerBaseColor ?? Colors.grey[300]!,
       highlightColor: shimmerHighlightColor ?? Colors.grey[100]!,
       child: Container(
+        height: height,
+        width: width,
         decoration: BoxDecoration(
           borderRadius: borderRadius == null
               ? null

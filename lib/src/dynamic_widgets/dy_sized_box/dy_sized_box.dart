@@ -13,6 +13,7 @@ part 'dy_sized_box.g.dart';
   createToJson: false,
 )
 class DynamicSizedBox extends DynamicWidget {
+  @JsonKey(fromJson: Util.generateRandomString)
   String key;
   @JsonKey(fromJson: WidgetUtil.getHeightValueOrInf)
   double? height;

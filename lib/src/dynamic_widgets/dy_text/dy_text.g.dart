@@ -8,7 +8,7 @@ part of 'dy_text.dart';
 
 DynamicText _$DynamicTextFromJson(Map<String, dynamic> json) {
   return DynamicText(
-    key: (json['key'] as String?) ?? Util.generateRandomString(15),
+    key: (json['key'] as String?) ?? Util.generateRandomString(length: 15),
     text: json['text'] as String?,
     style: json['style'] == null
         ? null

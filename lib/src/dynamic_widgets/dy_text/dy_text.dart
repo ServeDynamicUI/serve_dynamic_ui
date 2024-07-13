@@ -17,6 +17,7 @@ const String updateText = Strings.updateText;
   createToJson: false,
 )
 class DynamicText extends DynamicWidget implements DataEventListener {
+  @JsonKey(fromJson: Util.generateRandomString)
   String key;
   String? text;
   TextStyleDTO? style;

@@ -8,7 +8,7 @@ part of 'dy_shimmer_stack.dart';
 
 DynamicShimmerStack _$DynamicShimmerStackFromJson(Map<String, dynamic> json) {
   return DynamicShimmerStack(
-    key: (json['key'] as String?) ?? Util.generateRandomString(15),
+    key: (json['key'] as String?) ?? Util.generateRandomString(length: 15),
     shimmerBaseColor: WidgetUtil.getColor(json['shimmerBaseColor'] as String?),
     shimmerHighlightColor:
         WidgetUtil.getColor(json['shimmerHighlightColor'] as String?),

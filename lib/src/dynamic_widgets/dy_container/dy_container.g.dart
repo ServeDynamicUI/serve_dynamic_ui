@@ -8,7 +8,7 @@ part of 'dy_container.dart';
 
 DynamicContainer _$DynamicContainerFromJson(Map<String, dynamic> json) {
   return DynamicContainer(
-    key: (json['key'] as String?) ?? Util.generateRandomString(15),
+    key: (json['key'] as String?) ?? Util.generateRandomString(length: 15),
     backgroundColor: json['backgroundColor'] as String?,
     padding: WidgetUtil.getEdgeInsets(json['padding'] as String?),
     margin: WidgetUtil.getEdgeInsets(json['margin'] as String?),

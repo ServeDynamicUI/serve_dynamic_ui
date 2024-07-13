@@ -12,6 +12,7 @@ part 'dy_loader.g.dart';
   createToJson: false,
 )
 class DynamicLoader extends DynamicWidget {
+  @JsonKey(fromJson: Util.generateRandomString)
   String key;
   @JsonKey(fromJson: WidgetUtil.getColor)
   Color? backgroundColor;

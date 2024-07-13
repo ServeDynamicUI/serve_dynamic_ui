@@ -8,7 +8,7 @@ part of 'dy_shimmer_image.dart';
 
 DynamicShimmerImage _$DynamicShimmerImageFromJson(Map<String, dynamic> json) {
   return DynamicShimmerImage(
-    key: (json['key'] as String?) ?? Util.generateRandomString(15),
+    key: (json['key'] as String?) ?? Util.generateRandomString(length: 15),
     width: WidgetUtil.getWidthValueOrInf((json['width'] as num?)?.toDouble()),
     height: WidgetUtil.getHeightValueOrInf((json['height'] as num?)?.toDouble()),
     placeholderImagePath: json['placeholderImagePath'] as String,

@@ -13,6 +13,7 @@ part 'dy_carousel.g.dart';
   createToJson: false,
 )
 class DynamicCarousel extends DynamicWidget {
+  @JsonKey(fromJson: Util.generateRandomString)
   String key;
   List<DynamicWidget>? children;
   @JsonKey(defaultValue: false)

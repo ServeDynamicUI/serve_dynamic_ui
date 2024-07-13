@@ -12,6 +12,7 @@ part 'dy_shimmer_text.g.dart';
   createToJson: false,
 )
 class DynamicShimmerText extends DynamicText {
+  @JsonKey(fromJson: Util.generateRandomString)
   String key;
   @JsonKey(fromJson: WidgetUtil.getColor)
   Color? shimmerBaseColor;

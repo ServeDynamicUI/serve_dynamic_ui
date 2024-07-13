@@ -8,7 +8,7 @@ part of 'dy_column.dart';
 
 DynamicColumn _$DynamicColumnFromJson(Map<String, dynamic> json) {
   return DynamicColumn(
-    key: (json['key'] as String?) ?? Util.generateRandomString(15),
+    key: (json['key'] as String?) ?? Util.generateRandomString(length: 15),
     children: (json['children'] as List<dynamic>?)
         ?.map((e) => DynamicWidget.fromJson(e as Map<String, dynamic>))
         .toList(),

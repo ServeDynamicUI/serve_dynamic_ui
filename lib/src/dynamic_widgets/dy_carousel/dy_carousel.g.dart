@@ -8,7 +8,7 @@ part of 'dy_carousel.dart';
 
 DynamicCarousel _$DynamicCarouselFromJson(Map<String, dynamic> json) {
   return DynamicCarousel(
-      key: (json['key'] as String?) ?? Util.generateRandomString(15),
+      key: (json['key'] as String?) ?? Util.generateRandomString(length: 15),
       width: WidgetUtil.getWidthValueOrInf((json['width'] as num?)?.toDouble()),
       height:
           WidgetUtil.getHeightValueOrInf((json['height'] as num?)?.toDouble()),

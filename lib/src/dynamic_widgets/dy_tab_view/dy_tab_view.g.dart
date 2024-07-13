@@ -8,7 +8,7 @@ part of 'dy_tab_view.dart';
 
 DynamicTabView _$DynamicTabViewFromJson(Map<String, dynamic> json) {
   return DynamicTabView(
-    key: (json['key'] as String?) ?? Util.generateRandomString(15),
+    key: (json['key'] as String?) ?? Util.generateRandomString(length: 15),
     selectedTabIndex: json['selectedTabIndex'] as int? ?? 0,
     padding: WidgetUtil.getEdgeInsets(json['padding'] as String?),
     margin: WidgetUtil.getEdgeInsets(json['margin'] as String?),

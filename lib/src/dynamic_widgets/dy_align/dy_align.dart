@@ -12,6 +12,7 @@ part 'dy_align.g.dart';
   createToJson: false,
 )
 class DynamicAlign extends DynamicWidget {
+  @JsonKey(fromJson: Util.generateRandomString)
   final String key;
   DynamicWidget? child;
   @JsonKey(fromJson: WidgetUtil.getPositionalAlignment)

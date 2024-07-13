@@ -11,6 +11,7 @@ part 'dy_card.g.dart';
   createToJson: false,
 )
 class DynamicCard extends DynamicWidget {
+  @JsonKey(fromJson: Util.generateRandomString)
   String key;
   @JsonKey(fromJson: WidgetUtil.getColor)
   Color? color;

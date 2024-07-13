@@ -48,7 +48,7 @@ class Util {
     return null;
   }
 
-  static String generateRandomString(int length) {
+  static String generateRandomString({int length = 15}) {
     const characters = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
     final random = Random();
     return String.fromCharCodes(Iterable.generate(

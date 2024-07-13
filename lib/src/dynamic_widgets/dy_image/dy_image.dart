@@ -14,6 +14,7 @@ part 'dy_image.g.dart';
   createToJson: false,
 )
 class DynamicImage extends DynamicWidget {
+  @JsonKey(fromJson: Util.generateRandomString)
   String key;
   String src;
   String? placeholderImagePath;

@@ -12,6 +12,7 @@ part 'dy_stack.g.dart';
   createToJson: false,
 )
 class DynamicStack extends DynamicWidget {
+  @JsonKey(fromJson: Util.generateRandomString)
   String key;
   List<DynamicWidget>? children;
   @JsonKey(fromJson: WidgetUtil.getPositionalAlignment)

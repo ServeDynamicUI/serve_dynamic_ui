@@ -12,6 +12,7 @@ part 'dy_shimmer_card.g.dart';
   createToJson: false,
 )
 class DynamicShimmerCard extends DynamicCard {
+  @JsonKey(fromJson: Util.generateRandomString)
   String key;
   @JsonKey(fromJson: WidgetUtil.getColor)
   Color? shimmerBaseColor;

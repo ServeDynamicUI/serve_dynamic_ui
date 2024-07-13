@@ -8,7 +8,7 @@ part of 'dy_text_field.dart';
 
 DynamicTextField _$DynamicTextFieldFromJson(Map<String, dynamic> json) {
   return DynamicTextField(
-    key: (json['key'] as String?) ?? Util.generateRandomString(15),
+    key: (json['key'] as String?) ?? Util.generateRandomString(length: 15),
     initialText: json['initialText'] as String,
     textFieldDecoration: json['textFieldDecoration'] == null
         ? null

@@ -11,6 +11,7 @@ part 'dy_shimmer_row.g.dart';
   createToJson: false,
 )
 class DynamicShimmerRow extends DynamicWidget {
+  @JsonKey(fromJson: Util.generateRandomString)
   String key;
   int itemCount;
   List<DynamicWidget>? childItems;

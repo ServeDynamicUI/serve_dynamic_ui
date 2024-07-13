@@ -12,6 +12,7 @@ part 'dy_list.g.dart';
   createToJson: false,
 )
 class DynamicList extends DynamicWidget {
+  @JsonKey(fromJson: Util.generateRandomString)
   String key;
   bool isVertical;
   bool isScrollable;

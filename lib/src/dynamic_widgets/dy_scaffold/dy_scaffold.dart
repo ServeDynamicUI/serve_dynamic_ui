@@ -13,6 +13,7 @@ part 'dy_scaffold.g.dart';
   createToJson: false,
 )
 class DynamicScaffold extends DynamicWidget implements FormWidget {
+  @JsonKey(fromJson: Util.generateRandomString)
   String key;
   List<DynamicWidget>? children;
   DynamicWidget? floatingActionWidget;

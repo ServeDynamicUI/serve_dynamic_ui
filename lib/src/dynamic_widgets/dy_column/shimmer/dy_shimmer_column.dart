@@ -11,6 +11,7 @@ part 'dy_shimmer_column.g.dart';
   createToJson: false,
 )
 class DynamicShimmerColumn extends DynamicWidget {
+  @JsonKey(fromJson: Util.generateRandomString)
   String key;
   int itemCount;
   List<DynamicWidget>? childItems;

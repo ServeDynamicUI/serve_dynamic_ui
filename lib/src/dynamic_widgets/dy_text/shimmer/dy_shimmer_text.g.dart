@@ -8,7 +8,7 @@ part of 'dy_shimmer_text.dart';
 
 DynamicShimmerText _$DynamicShimmerCardFromJson(Map<String, dynamic> json) {
   return DynamicShimmerText(
-      key: (json['key'] as String?) ?? Util.generateRandomString(15),
+      key: (json['key'] as String?) ?? Util.generateRandomString(length: 15),
       width: WidgetUtil.getWidthValueOrInf((json['width'] as num?)?.toDouble()),
       height:
           WidgetUtil.getHeightValueOrInf((json['height'] as num?)?.toDouble()),

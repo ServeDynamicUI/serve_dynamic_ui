@@ -11,6 +11,7 @@ part 'dy_column.g.dart';
   createToJson: false,
 )
 class DynamicColumn extends DynamicWidget {
+  @JsonKey(fromJson: Util.generateRandomString)
   String key;
   List<DynamicWidget>? children;
   @JsonKey(fromJson: WidgetUtil.getMainAxisAlignment)

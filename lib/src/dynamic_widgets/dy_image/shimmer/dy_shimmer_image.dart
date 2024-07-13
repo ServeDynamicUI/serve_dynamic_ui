@@ -12,6 +12,7 @@ part 'dy_shimmer_image.g.dart';
   createToJson: false,
 )
 class DynamicShimmerImage extends DynamicWidget {
+  @JsonKey(fromJson: Util.generateRandomString)
   String key;
   String placeholderImagePath;
   @JsonKey(fromJson: WidgetUtil.getBoxFit)

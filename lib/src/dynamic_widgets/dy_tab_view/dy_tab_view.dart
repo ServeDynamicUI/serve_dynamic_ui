@@ -14,6 +14,7 @@ part 'dy_tab_view.g.dart';
   createToJson: false,
 )
 class DynamicTabView extends DynamicWidget {
+  @JsonKey(fromJson: Util.generateRandomString)
   String key;
   @JsonKey(defaultValue: 0)
   final int selectedTabIndex;

@@ -12,6 +12,7 @@ part 'dy_gesture_detector.g.dart';
   createToJson: false,
 )
 class DynamicGestureDetector extends DynamicWidget {
+  @JsonKey(fromJson: Util.generateRandomString)
   String key;
   DynamicWidget? child;
   ActionDTO? onTapAction;

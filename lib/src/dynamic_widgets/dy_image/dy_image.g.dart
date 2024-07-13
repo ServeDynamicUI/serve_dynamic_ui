@@ -8,7 +8,7 @@ part of 'dy_image.dart';
 
 DynamicImage _$DynamicImageFromJson(Map<String, dynamic> json) {
   return DynamicImage(
-    key: (json['key'] as String?) ?? Util.generateRandomString(15),
+    key: (json['key'] as String?) ?? Util.generateRandomString(length: 15),
     src: json['src'] as String,
     alignment: WidgetUtil.getPositionalAlignment(json['alignment'] as String?),
     color: WidgetUtil.getColor(json['color'] as String?),

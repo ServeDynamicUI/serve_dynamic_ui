@@ -11,6 +11,7 @@ part 'dy_positioned.g.dart';
   createToJson: false,
 )
 class DynamicPositioned extends DynamicWidget {
+  @JsonKey(fromJson: Util.generateRandomString)
   String key;
   DynamicWidget? child;
   double? left;

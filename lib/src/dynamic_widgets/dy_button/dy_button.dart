@@ -11,6 +11,7 @@ part 'dy_button.g.dart';
   createToJson: false,
 )
 class DynamicButton extends DynamicWidget {
+  @JsonKey(fromJson: Util.generateRandomString)
   String key;
   DynamicWidget? child;
   ActionDTO? action;

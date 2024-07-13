@@ -8,7 +8,7 @@ part of 'dy_card.dart';
 
 DynamicCard _$DynamicCardFromJson(Map<String, dynamic> json) {
   return DynamicCard(
-    key: (json['key'] as String?) ?? Util.generateRandomString(15),
+    key: (json['key'] as String?) ?? Util.generateRandomString(length: 15),
     color: WidgetUtil.getColor(json['color'] as String?),
     child: json['child'] == null
         ? null

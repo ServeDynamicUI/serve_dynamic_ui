@@ -8,7 +8,7 @@ part of 'dy_shimmer_column.dart';
 
 DynamicShimmerColumn _$DynamicShimmerColumnFromJson(Map<String, dynamic> json) {
   return DynamicShimmerColumn(
-    key: (json['key'] as String?) ?? Util.generateRandomString(15),
+    key: (json['key'] as String?) ?? Util.generateRandomString(length: 15),
     childItems: WidgetUtil.childrenFilter((json['childItems'] as List<dynamic>?)
         ?.map((e) => e == null
             ? null

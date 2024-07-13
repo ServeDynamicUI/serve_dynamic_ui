@@ -12,6 +12,7 @@ part 'dy_container.g.dart';
   createToJson: false,
 )
 class DynamicContainer extends DynamicWidget {
+  @JsonKey(fromJson: Util.generateRandomString)
   String key;
   String? backgroundColor;
   @JsonKey(fromJson: WidgetUtil.getEdgeInsets)

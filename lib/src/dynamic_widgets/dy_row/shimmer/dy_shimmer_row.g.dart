@@ -8,7 +8,7 @@ part of 'dy_shimmer_row.dart';
 
 DynamicShimmerRow _$DynamicShimmerRowFromJson(Map<String, dynamic> json) {
   return DynamicShimmerRow(
-    key: (json['key'] as String?) ?? Util.generateRandomString(15),
+    key: (json['key'] as String?) ?? Util.generateRandomString(length: 15),
       childItems: WidgetUtil.childrenFilter(
           (json['childItems'] as List<dynamic>?)
               ?.map((e) => e == null

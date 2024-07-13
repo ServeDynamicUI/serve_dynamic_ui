@@ -12,6 +12,7 @@ part 'dy_text_field.g.dart';
   createToJson: false,
 )
 class DynamicTextField extends DynamicWidget implements FormWidget {
+  @JsonKey(fromJson: Util.generateRandomString)
   String key;
   final String initialText;
   TextFieldDTO? textFieldDecoration;

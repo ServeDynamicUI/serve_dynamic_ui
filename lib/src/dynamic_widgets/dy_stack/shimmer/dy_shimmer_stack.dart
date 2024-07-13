@@ -13,6 +13,7 @@ part 'dy_shimmer_stack.g.dart';
   createToJson: false,
 )
 class DynamicShimmerStack extends DynamicStack {
+  @JsonKey(fromJson: Util.generateRandomString)
   String key;
   @JsonKey(fromJson: WidgetUtil.getColor)
   Color? shimmerBaseColor;

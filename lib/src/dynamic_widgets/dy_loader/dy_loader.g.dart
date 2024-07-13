@@ -8,7 +8,7 @@ part of 'dy_loader.dart';
 
 DynamicLoader _$DynamicLoaderFromJson(Map<String, dynamic> json) {
   return DynamicLoader(
-      key: (json['key'] as String?) ?? Util.generateRandomString(15),
+      key: (json['key'] as String?) ?? Util.generateRandomString(length: 15),
       backgroundColor: WidgetUtil.getColor(json['backgroundColor'] as String?),
       color: WidgetUtil.getColor(json['color'] as String?),
       mainAxisAlignment: WidgetUtil.getMainAxisAlignment(

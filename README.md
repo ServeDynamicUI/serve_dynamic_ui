@@ -474,6 +474,16 @@ Widget build(BuildContext context) {
 
 If you want to enable page caching just pass query param **isPageCacheEnabled=true**
 
+you can set page cache keep time in seconds
+
+use this arg **PAGE_CACHE_KEEP_TIME_IN_SEC**
+
+```
+--dart-define=PAGE_CACHE_KEEP_TIME_IN_SEC=10
+```
+
+under the hood page is stored using hive
+
 **Session Management**
 
 If you want to handle auth session out of box for dynamic pages.
@@ -1360,45 +1370,6 @@ add this as listener
   DynamicListeners.addListener("carousel_widget-_key", CarouselSliderChangeListener());
 ```
 
-## Page caching on flutter web app:
-
-For page caching this package use floor package which internally depends on sqflite and if you are intending to develop flutter web app and want to enable page caching. you need to follow few steps:
-
-1. Add the dependency:
-
-```yaml
-  dependencies:
-    sqflite_common_ffi_web: '>=0.1.0-dev.1'
-```
-
-2. install binaries using the command:
-
-```bash
-$ dart run sqflite_common_ffi_web:setup
-```
-
-3. run the command again using the force option:
-
-```bash
-$ dart run sqflite_common_ffi_web:setup --force
-```
-
-4. add this script in web/index.html inside <head>
-
-```html
-
-<script src="sqflite_sw.js"></script>
-```
-
-5. make sure you add before calling serve_dynamic_ui init();
-
-```dart
-   WidgetsFlutterBinding.ensureInitialized();
-```
-
-To know more check out [example app](https://github.com/Arunshaik2001/serve_dynamic_ui/tree/main/example).
-
-Checkout full working app with server using serverpod [pokedyn-app](https://github.com/ServeDynamicUI/pokedyn-app).
 
 ## Additional information
 

@@ -1,8 +1,8 @@
 import 'package:flutter/foundation.dart';
-import 'package:serve_dynamic_ui/src/db/database/serve_dynamic_ui_database.dart';
+import 'package:serve_dynamic_ui/src/db/daos/cached_page_dao.dart';
 import 'package:serve_dynamic_ui/src/utils/index.dart';
 
-import '../db/providers/ServeDynamicUIDatabseProvider.dart';
+import '../db/providers/serve_dynamic_ui_database_provider.dart';
 
 class DbUtil {
   static Future<bool> deleteCachedPagesOlderThanSetCacheTime() async {
@@ -12,12 +12,12 @@ class DbUtil {
         int lastTime = DateTime.now()
             .subtract(Duration(seconds: cacheTime!))
             .millisecondsSinceEpoch;
-        ServeDynamicUIDatabase serveDynamicUIDatabase =
+        CachedPageDao serveDynamicUIDatabase =
             await ServeDynamicUIDatabaseProvider.instance.database;
-        int? deletedPages = await serveDynamicUIDatabase.cachedPageDao
+        int? deletedPages = await serveDynamicUIDatabase
             .deleteCachedPagesOlderThanTime(lastTime);
         debugPrint('Deleted pages count: $deletedPages');
-        return Util.isValid(deletedPages) && deletedPages! > 0;
+        return Util.isValid(deletedPages) && deletedPages > 0;
       }
     } catch (e) {
       debugPrint('Some error occurred: $e');
@@ -33,12 +33,12 @@ class DbUtil {
         int lastTime = DateTime.now()
             .subtract(Duration(seconds: cacheTime!))
             .millisecondsSinceEpoch;
-        ServeDynamicUIDatabase serveDynamicUIDatabase =
+        CachedPageDao serveDynamicUIDatabase =
             await ServeDynamicUIDatabaseProvider.instance.database;
-        int? deletedPage = await serveDynamicUIDatabase.cachedPageDao
-            .deleteCachedPagesOlderThanTime(lastTime);
+        int deletedPage = await serveDynamicUIDatabase
+            .deleteCachedPageIfOlderThanTime(pageKey, lastTime);
         debugPrint('deleted page $pageKey? : $deletedPage');
-        return Util.isValid(deletedPage) && deletedPage! > 0;
+        return Util.isValid(deletedPage) && deletedPage > 0;
       }
     } catch (e) {
       debugPrint('Some error occurred: $e');

@@ -41,7 +41,6 @@ class NetworkBuilderState implements DataEventListener {
 
   CancelToken? _cancelToken;
 
-
   Map<String, dynamic>? _cachedPageJson;
 
   bool isPageRefreshEventsAdded = false;
@@ -148,7 +147,6 @@ class NetworkBuilderState implements DataEventListener {
         .findCachedPageByPageKey(_getPageKeyFromUrl());
   }
 
-
   String _getPageKeyFromUrl() {
     String url = request.url;
     var bytes = utf8.encode(url);
@@ -190,7 +188,6 @@ class NetworkBuilderState implements DataEventListener {
     }
     isPageRefreshEventsAdded = false;
   }
-
 
   /// this will help to reload the page(dy_scaffold)
   @override

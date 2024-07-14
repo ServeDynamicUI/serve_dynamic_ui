@@ -5,7 +5,6 @@ import 'package:serve_dynamic_ui/src/constants/index.dart';
 import 'package:serve_dynamic_ui/src/storage/index.dart';
 import 'package:serve_dynamic_ui/src/utils/index.dart';
 
-
 class Util {
   static bool isValidList<T>(dynamic list) {
     if (list != null && list is List<T> && list.isNotEmpty) {

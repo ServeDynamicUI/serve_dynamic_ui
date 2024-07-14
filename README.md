@@ -1398,6 +1398,8 @@ $ dart run sqflite_common_ffi_web:setup --force
 
 To know more check out [example app](https://github.com/Arunshaik2001/serve_dynamic_ui/tree/main/example).
 
+Checkout full working app with server using serverpod [pokedyn-app](https://github.com/ServeDynamicUI/pokedyn-app).
+
 ## Additional information
 
 Please create issues [here](https://github.com/Arunshaik2001/serve_dynamic_ui/issues).

@@ -5,11 +5,12 @@ import 'package:json_annotation/json_annotation.dart';
 import 'package:percent_indicator/circular_percent_indicator.dart';
 import 'package:percent_indicator/linear_percent_indicator.dart';
 import 'package:serve_dynamic_ui/serve_dynamic_ui.dart';
-import 'package:serve_dynamic_ui/src/dtos/percent_indicator_dto/index.dart';
 
 part 'dy_percentage_indicator.g.dart';
 
 ///[DynamicPercentageIndicator] : A dynamic widget that shows percentage.
+///
+/// [type] based on type passed will show circular or linear percent indiactor
 @JsonSerializable(
   explicitToJson: true,
   createToJson: false,

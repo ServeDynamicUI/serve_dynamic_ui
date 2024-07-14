@@ -7,6 +7,7 @@ import 'package:sqflite/sqflite.dart' as sqflite;
 
 part 'serve_dynamic_ui_database.g.dart';
 
+///[ServeDynamicUIDatabase] keeps all dao objects.
 @Database(version: 1, entities: [PageEntity])
 abstract class ServeDynamicUIDatabase extends FloorDatabase {
   CachedPageDao get cachedPageDao;

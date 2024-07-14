@@ -6,7 +6,7 @@ import 'package:serve_dynamic_ui/src/dynamic_widgets/view.dart';
 
 import 'dynamic_widget.dart';
 
-///[DynamicProvider] : helps to provide state management in app among dynamic widgets.
+///[DynamicProvider] : helps to provide state management in app among dynamic scaffold widgets.
 class DynamicProvider extends DynamicWidget {
   final Map<String, dynamic> _stateCache;
 

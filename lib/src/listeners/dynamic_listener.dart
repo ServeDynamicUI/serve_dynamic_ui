@@ -19,14 +19,6 @@ class DynamicListeners {
     }
   }
 
-  ///listener to add all dynamicListeners in a list.
-  static void addAllScrollListener(
-      Map<String, DynamicListener> dynamicListeners) {
-    for (var dynamicListener in dynamicListeners.entries) {
-      addListener(dynamicListener.key, dynamicListener.value);
-    }
-  }
-
   ///listener to remove a dynamicListener.
   static void removeScrollListener(
       String key, DynamicListener dynamicListener) {

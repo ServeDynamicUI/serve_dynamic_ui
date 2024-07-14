@@ -16,6 +16,7 @@ class ActionDTO {
 
   ActionDTO(this.actionString, this.extras);
 
+  ///this is used to convert map to [ActionDTO]
   factory ActionDTO.fromJson(Map<String, dynamic> json) =>
       _$ActionDTOFromJson(json);
 }

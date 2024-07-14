@@ -1,6 +1,7 @@
 import 'package:floor/floor.dart';
 import 'package:serve_dynamic_ui/src/db/entities/PageEntity.dart';
 
+///[CachedPageDao] this dao helps to query and store pages in db.
 @dao
 abstract class CachedPageDao {
   @Insert(onConflict: OnConflictStrategy.replace)

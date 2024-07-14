@@ -3,9 +3,9 @@ import 'dart:convert';
 import 'package:crypto/crypto.dart';
 import 'package:dio/dio.dart';
 import 'package:serve_dynamic_ui/serve_dynamic_ui.dart';
-import 'package:serve_dynamic_ui/src/db/database/serve_dynamic_ui_database.dart';
-import 'package:serve_dynamic_ui/src/db/entities/PageEntity.dart';
-import 'package:serve_dynamic_ui/src/db/providers/ServeDynamicUIDatabseProvider.dart';
+import 'package:serve_dynamic_ui/src/db/daos/cached_page_dao.dart';
+import 'package:serve_dynamic_ui/src/db/entities/page_entity.dart';
+import 'package:serve_dynamic_ui/src/db/providers/serve_dynamic_ui_database_provider.dart';
 import 'package:flutter/material.dart';
 
 ///[NetworkPageStatusEvent] parent class of all status events.
@@ -65,7 +65,8 @@ class NetworkBuilderState implements DataEventListener {
           await _loadPageFromDB();
         } else {
           _cachedPageJson = null;
-          // networkPageStatusNotifier.value = NetworkPagePendingStatusEvent(pageResponse: null);
+          networkPageStatusNotifier.value =
+              NetworkPagePendingStatusEvent(pageResponse: null);
           // await Future.delayed(Duration(milliseconds: 500));
         }
       }
@@ -131,19 +132,17 @@ class NetworkBuilderState implements DataEventListener {
   void _insertPageInDBIfEnabled(
       String pageDataString, Map<String, dynamic>? pageResponseJson) async {
     if (isPageCacheEnabled) {
-      ServeDynamicUIDatabase serveDynamicUIDatabase =
+      CachedPageDao serveDynamicUIDatabase =
           await ServeDynamicUIDatabaseProvider.instance.database;
-      serveDynamicUIDatabase.cachedPageDao.insertCachedPage(PageEntity(
-          _getPageKeyFromUrl(),
-          pageDataString,
-          DateTime.now().millisecondsSinceEpoch));
+      serveDynamicUIDatabase.insertCachedPage(PageEntity(_getPageKeyFromUrl(),
+          pageDataString, DateTime.now().millisecondsSinceEpoch));
     }
   }
 
   Future<PageEntity?> _getPageDataFromDB() async {
-    ServeDynamicUIDatabase serveDynamicUIDatabase =
+    CachedPageDao serveDynamicUIDatabase =
         await ServeDynamicUIDatabaseProvider.instance.database;
-    return await serveDynamicUIDatabase.cachedPageDao
+    return await serveDynamicUIDatabase
         .findCachedPageByPageKey(_getPageKeyFromUrl());
   }
 

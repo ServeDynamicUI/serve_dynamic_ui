@@ -1,29 +1,52 @@
-import 'package:floor/floor.dart';
-import 'package:serve_dynamic_ui/src/db/entities/PageEntity.dart';
+import 'package:hive/hive.dart';
+import 'package:serve_dynamic_ui/src/db/entities/page_entity.dart';
 
 ///[CachedPageDao] this dao helps to query and store pages in db.
-@dao
-abstract class CachedPageDao {
-  @Insert(onConflict: OnConflictStrategy.replace)
-  Future<void> insertCachedPage(PageEntity pageEntity);
+class CachedPageDao {
+  final Box<PageEntity> box = Hive.box<PageEntity>('cachedPages');
 
-  @Query('SELECT * FROM ServeDynamicUI_CachedPage')
-  Future<List<PageEntity>> getAllCachedPage();
+  CachedPageDao._privateConstructor();
 
-  @Query('SELECT * FROM ServeDynamicUI_CachedPage WHERE pageKey = :pageKey')
-  Future<PageEntity?> findCachedPageByPageKey(String pageKey);
+  static final CachedPageDao instance = CachedPageDao._privateConstructor();
 
-  @Query(
-      'DELETE FROM ServeDynamicUI_CachedPage WHERE pageKey in (SELECT pageKey FROM ServeDynamicUI_CachedPage WHERE updatedAt < :time)')
-  Future<int?> deleteCachedPagesOlderThanTime(int time);
+  Future<void> insertCachedPage(PageEntity pageEntity) async {
+    await box.put(pageEntity.pageKey, pageEntity);
+  }
 
-  @Query(
-      'DELETE FROM ServeDynamicUI_CachedPage WHERE pageKey = :pageKey AND updatedAt < :time')
-  Future<int?> deleteCachedPageIfOlderThanTime(String pageKey, int time);
+  Future<List<PageEntity>> getAllCachedPage() async {
+    return box.values.toList();
+  }
 
-  @Query('DELETE FROM ServeDynamicUI_CachedPage')
-  Future<int?> deleteAllCachedPages();
+  Future<PageEntity?> findCachedPageByPageKey(String pageKey) async {
+    return box.get(pageKey);
+  }
 
-  @Query('DELETE FROM ServeDynamicUI_CachedPage where pageKey = :pageKey')
-  Future<int?> deleteCachePageByKey(String pageKey);
+  Future<int> deleteCachedPagesOlderThanTime(int time) async {
+    final keysToDelete = box.values
+        .where((page) => page.updatedAt < time)
+        .map((page) => page.pageKey)
+        .toList();
+    await box.deleteAll(keysToDelete);
+    return keysToDelete.length;
+  }
+
+  Future<int> deleteCachedPageIfOlderThanTime(String pageKey, int time) async {
+    final page = box.get(pageKey);
+    if (page != null && page.updatedAt < time) {
+      await box.delete(pageKey);
+      return 1;
+    }
+    return 0;
+  }
+
+  Future<int> deleteAllCachedPages() async {
+    final count = box.length;
+    await box.clear();
+    return count;
+  }
+
+  Future<int> deleteCachePageByKey(String pageKey) async {
+    await box.delete(pageKey);
+    return 1;
+  }
 }

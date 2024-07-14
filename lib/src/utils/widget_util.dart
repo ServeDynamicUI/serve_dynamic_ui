@@ -730,7 +730,6 @@ class WidgetUtil {
         DynamicWidget dynamicWidget = DynamicWidget.fromJson(json);
         DynamicProvider dynamicProvider =
             DynamicProvider(dynamicWidget as DynamicScaffold);
-        networkState?.assignNetworkStateChild(dynamicProvider);
         return dynamicProvider.build(context);
       }
     } catch (e) {

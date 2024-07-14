@@ -1,7 +1,6 @@
 import 'dart:core';
 
 import 'package:serve_dynamic_ui/serve_dynamic_ui.dart';
-import 'package:serve_dynamic_ui/src/constants/index.dart';
 import 'package:dio/dio.dart';
 
 ///[DynamicRequest] : an object that helps in network calls to configure properties.
@@ -22,7 +21,7 @@ class DynamicRequest {
               .queryParameters[Strings.isPageCacheEnabled]
               ?.parseBool() ??
           false;
-    } on Exception catch (e) {
+    } on Exception {
       return false;
     }
   }

@@ -47,7 +47,7 @@ class DynamicImage extends DynamicWidget {
     this.placeholderImagePath,
     this.transitionDuration,
   }) : super(
-          key: key ?? "",
+          key: key,
         );
 
   factory DynamicImage.fromJson(Map<String, dynamic> json) =>

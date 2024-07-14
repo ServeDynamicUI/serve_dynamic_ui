@@ -18,8 +18,6 @@ class DynamicShimmerText extends DynamicText {
   Color? shimmerBaseColor;
   @JsonKey(fromJson: WidgetUtil.getColor)
   Color? shimmerHighlightColor;
-  @override
-  String? text;
   TextStyleDTO? textStyle;
 
   DynamicShimmerText({
@@ -30,7 +28,7 @@ class DynamicShimmerText extends DynamicText {
     super.width,
     super.padding,
     super.margin,
-    this.text,
+    super.text,
     this.textStyle,
   }) : super(
           key: key,

@@ -39,7 +39,7 @@ class WidgetResolver {
       if (root.childWidgets?.isNotEmpty ?? false) {
         for (int i = 0; i < (root.childWidgets?.length ?? 0); i++) {
           DynamicWidget? childWidget =
-              getWidgetByKey(root.childWidgets![i]!, key);
+              getWidgetByKey(root.childWidgets![i], key);
           if (childWidget != null) {
             return childWidget;
           }

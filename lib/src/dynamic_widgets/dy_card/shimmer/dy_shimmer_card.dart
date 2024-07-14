@@ -52,7 +52,6 @@ class DynamicShimmerCard extends DynamicCard {
         child: cardContent,
       ),
     );
-    ;
   }
 
   @override

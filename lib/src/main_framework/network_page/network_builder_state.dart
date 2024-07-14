@@ -41,8 +41,6 @@ class NetworkBuilderState implements DataEventListener {
 
   CancelToken? _cancelToken;
 
-  //this will be set after dynamic provider is created not before
-  DynamicProvider? _child;
 
   Map<String, dynamic>? _cachedPageJson;
 
@@ -193,9 +191,6 @@ class NetworkBuilderState implements DataEventListener {
     isPageRefreshEventsAdded = false;
   }
 
-  void assignNetworkStateChild(DynamicProvider dyProvider) {
-    _child = dyProvider;
-  }
 
   /// this will help to reload the page(dy_scaffold)
   @override

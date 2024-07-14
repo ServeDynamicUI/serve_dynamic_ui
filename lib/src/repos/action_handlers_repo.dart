@@ -57,6 +57,7 @@ class ActionHandlersRepo {
     }
   }
 
+  /// if passed any pop strategy then will pop the current screen and add the current screen.
   static void _popVisibleScreen(BuildContext context, Uri uri) {
     if (uri.queryParameters.containsKey(Strings.popAndNavigateStrategy)) {
       String? popStrategy = uri.queryParameters[Strings.popAndNavigateStrategy];

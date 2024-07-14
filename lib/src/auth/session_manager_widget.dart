@@ -4,6 +4,7 @@ import 'package:serve_dynamic_ui/src/auth/session_manager_state.dart';
 typedef WidgetCreator = Widget Function();
 typedef WidgetContainer = Widget Function(Widget widget);
 
+///[SessionManagerWidget] widget which handles the session related widgets and calls appropriate creator
 class SessionManagerWidget extends StatefulWidget {
   final WidgetCreator onUndetermined;
   final WidgetCreator onAuthenticated;

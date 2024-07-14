@@ -2,22 +2,25 @@ import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:serve_dynamic_ui/serve_dynamic_ui.dart';
 import 'package:serve_dynamic_ui/src/main_framework/network_page/network_builder.dart';
-import 'package:serve_dynamic_ui/src/utils/db_util.dart';
 import '../handlers/dynamic_widget_handlers.dart';
 
 ///[ServeDynamicUI] : class which is entry point to this packages that helps to init this package.
 class ServeDynamicUI {
-  static late GlobalKey<NavigatorState>? applicationCurrentNavigationKey;
+  /// set this key to get application context
+  static GlobalKey<NavigatorState>? applicationCurrentNavigationKey;
 
+  /// mediaquery to get size of the device
   static MediaQueryData? get mediaQueryData => _isAppContextAttached
-      ? MediaQuery.of(
-          ServeDynamicUI.applicationCurrentNavigationKey!.currentContext!)
+      ? MediaQuery.of(appContext ?? ServeDynamicUI.applicationCurrentNavigationKey!.currentContext!)
       : null;
 
-  static bool get _isAppContextAttached =>
-      ServeDynamicUI.applicationCurrentNavigationKey != null &&
+  static bool get _isAppContextAttached => (appContext != null && appContext!.mounted) ||
+      (ServeDynamicUI.applicationCurrentNavigationKey != null &&
       ServeDynamicUI.applicationCurrentNavigationKey!.currentContext != null &&
-      ServeDynamicUI.applicationCurrentNavigationKey!.currentContext!.mounted;
+      ServeDynamicUI.applicationCurrentNavigationKey!.currentContext!.mounted);
+
+  /// set this explicitly if not using navigationKey
+  static BuildContext? appContext;
 
   ///helps to initialize the [widgetHandlers], [actionHandlers] and [dio].
   static init(

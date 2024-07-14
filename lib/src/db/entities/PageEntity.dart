@@ -1,5 +1,6 @@
 import 'package:floor/floor.dart';
 
+///[PageEntity] this is structure of a row in table ServeDynamicUI_CachedPage.
 @Entity(tableName: 'ServeDynamicUI_CachedPage')
 class PageEntity {
   @PrimaryKey(autoGenerate: false)

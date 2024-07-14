@@ -116,7 +116,6 @@ class DynamicTextField extends DynamicWidget implements FormWidget {
         RegExp regExp = RegExp(regexValidator!);
         isValid = regExp.hasMatch(controller!.text);
       }
-      print('controller?.text ${controller?.text} $isValid');
       this.isValid.value = isValid;
       return isValid;
     }

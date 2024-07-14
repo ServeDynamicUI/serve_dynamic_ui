@@ -8,6 +8,8 @@ import 'package:serve_dynamic_ui/src/dtos/carousel_dto/carousel_dto.dart';
 part 'dy_carousel.g.dart';
 
 ///[DynamicCarousel] : A dynamic widgets that that renders items in carousel.
+///
+/// [reusable] : if true will use builder
 @JsonSerializable(
   explicitToJson: true,
   createToJson: false,

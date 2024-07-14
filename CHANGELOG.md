@@ -10,3 +10,14 @@
 ## 0.0.2
 
 * Image changes and documentation.
+
+## 1.0.0
+
+* Dynamic Page caching.
+* Pagination Support in Screen.
+* Appbar can have dynamic left and right widgets.
+* Shimmer loading effects.
+* Screen state update.
+* Screen Pop Strategies (POP, POP_TO_ROOT, POP_UNTIL_SCREEN).
+* Refresh dynamic screens.
+* Session Manager Widget to handle Authentication.

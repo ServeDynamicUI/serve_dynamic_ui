@@ -1,9 +1,11 @@
 import 'package:serve_dynamic_ui/src/listeners/index.dart';
 
+///[DataEventListener] : a listener that listens to dateEvent based on key  .
 abstract class DataEventListener extends DynamicListener {
   void onDataEvent(String dataEventKey, Map<String, dynamic> data);
 }
 
+///[DataEventListeners] class to init all the data event listeners
 class DataEventListeners {
   static final Map<String, List<DataEventListener>> _dataEventListeners = {};
 

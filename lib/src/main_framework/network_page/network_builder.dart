@@ -2,12 +2,18 @@ import 'package:flutter/material.dart';
 import 'package:serve_dynamic_ui/serve_dynamic_ui.dart';
 import 'package:serve_dynamic_ui/src/main_framework/network_page/network_builder_state.dart';
 
+///[NetworkBuilder] this builder helps to maintain state of data coming from network call.
+///
+/// [request] this is request to be forwarded
+/// [templateJsonPath] this is template json path which will be loaded before network json is loaded.
+/// [showLoaderWidgetBuilder] loader widget which will be shows will network json is fetched
+/// it will override [templateJsonPath] if both are passed
+/// [showErrorWidgetBuilder] this the error builder while creating network json.
 class NetworkBuilder extends StatefulWidget {
   final DynamicRequest request;
   final String? templateJsonPath;
   final ShowLoaderWidgetBuilder? showLoaderWidgetBuilder;
   final ShowErrorWidgetBuilder? showErrorWidgetBuilder;
-  final bool isPageCacheEnabled;
 
   const NetworkBuilder(
       {super.key,
@@ -15,7 +21,7 @@ class NetworkBuilder extends StatefulWidget {
       this.templateJsonPath,
       this.showLoaderWidgetBuilder,
       this.showErrorWidgetBuilder,
-      this.isPageCacheEnabled = false});
+      });
 
   @override
   State<NetworkBuilder> createState() => _NetworkBuilderState();

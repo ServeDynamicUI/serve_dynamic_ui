@@ -33,10 +33,12 @@ abstract class DynamicWidget {
   ///helps to build in-built flutter widget.
   Widget build(BuildContext context);
 
+  ///called build build is invoked
   void preBuild();
 
   void postBuild();
 
+  ///called on widgets which are being disposed
   void onDispose();
 
   ///this factory constructor takes the json and creates a dynamic widget and its sub children.

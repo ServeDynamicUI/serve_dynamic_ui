@@ -1,5 +1,6 @@
 import '../database/serve_dynamic_ui_database.dart';
 
+///[ServeDynamicUIDatabaseProvider] this provider helps to get singleton instance of [ServeDynamicUIDatabase]
 class ServeDynamicUIDatabaseProvider {
   static String dbName = 'serve_dynamic_ui_database.db';
 

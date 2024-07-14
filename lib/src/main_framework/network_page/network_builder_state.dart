@@ -8,6 +8,7 @@ import 'package:serve_dynamic_ui/src/db/entities/PageEntity.dart';
 import 'package:serve_dynamic_ui/src/db/providers/ServeDynamicUIDatabseProvider.dart';
 import 'package:flutter/material.dart';
 
+///[NetworkPageStatusEvent] parent class of all status events.
 abstract class NetworkPageStatusEvent {}
 
 class NetworkPagePendingStatusEvent extends NetworkPageStatusEvent {
@@ -25,11 +26,13 @@ class NetworkPageSuccessStatusEvent extends NetworkPageStatusEvent {
   NetworkPageSuccessStatusEvent(this.pageResponse);
 }
 
+///[NetworkBuilderState] state class which handles dynamic network page state change tasks
 class NetworkBuilderState implements DataEventListener {
   final DynamicRequest request;
 
   NetworkBuilderState(this.request);
 
+  ///notifier which notifies about status
   final ValueNotifier<NetworkPageStatusEvent> networkPageStatusNotifier =
       ValueNotifier(NetworkPagePendingStatusEvent());
 
@@ -45,10 +48,12 @@ class NetworkBuilderState implements DataEventListener {
 
   bool isPageRefreshEventsAdded = false;
 
+  ///reload to fetch updated json from network
   void reload() {
     fetchPage();
   }
 
+  /// will be called to fetch the json from network
   void fetchPage() async {
     try {
       debugPrint('isPageCacheEnabled: $isPageCacheEnabled');
@@ -145,11 +150,6 @@ class NetworkBuilderState implements DataEventListener {
         .findCachedPageByPageKey(_getPageKeyFromUrl());
   }
 
-  void _deleteCachedPages() async {
-    ServeDynamicUIDatabase serveDynamicUIDatabase =
-        await ServeDynamicUIDatabaseProvider.instance.database;
-    serveDynamicUIDatabase.cachedPageDao.deleteAllCachedPages();
-  }
 
   String _getPageKeyFromUrl() {
     String url = request.url;
@@ -157,6 +157,7 @@ class NetworkBuilderState implements DataEventListener {
     return sha256.convert(bytes).toString();
   }
 
+  /// initialize the screen events coming from json
   void initScreenEventsIfAny(Map<String, dynamic>? screenJson) {
     if (Util.isValidList<dynamic>(
         screenJson?[Strings.data][Strings.pageRefreshEvents])) {
@@ -171,12 +172,14 @@ class NetworkBuilderState implements DataEventListener {
     }
   }
 
+  /// cancels any ongoing request with cancelToken
   void cancelNetworkPageRequest() {
     if (Util.isValid(_cancelToken) && _cancelToken!.isCancelled) {
       _cancelToken!.cancel();
     }
   }
 
+  ///dispose the resources.
   void onDispose() {
     cancelNetworkPageRequest();
     disposeScreenEventsIfAny();
@@ -194,6 +197,7 @@ class NetworkBuilderState implements DataEventListener {
     _child = dyProvider;
   }
 
+  /// this will help to reload the page(dy_scaffold)
   @override
   void onDataEvent(String dataEventKey, Map<String, dynamic> data) {
     switch (dataEventKey) {

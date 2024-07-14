@@ -4,6 +4,7 @@ import 'package:json_annotation/json_annotation.dart';
 
 part 'linear_percent_indicator_dto.g.dart';
 
+///[LinearPercentIndicatorDTO] dto to fill all the necessary props for linear percent indicator
 class LinearPercentIndicatorDTO {
   double percent;
   double lineHeight;

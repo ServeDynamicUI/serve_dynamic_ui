@@ -1,6 +1,6 @@
 name: serve_dynamic_ui
 description: A Flutter plugin to render dynamic widgets based on server driven ui.
-version: 1.0.0
+version: 1.0.1
 homepage: https://github.com/Arunshaik2001/serve_dynamic_ui
 topics:
   - dynamic-widgets

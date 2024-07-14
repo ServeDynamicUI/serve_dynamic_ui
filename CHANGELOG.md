@@ -21,3 +21,7 @@
 * Screen Pop Strategies (POP, POP_TO_ROOT, POP_UNTIL_SCREEN).
 * Refresh dynamic screens.
 * Session Manager Widget to handle Authentication.
+
+## 1.0.1
+
+* migrated from floor to hive.

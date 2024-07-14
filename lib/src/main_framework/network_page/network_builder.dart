@@ -15,13 +15,13 @@ class NetworkBuilder extends StatefulWidget {
   final ShowLoaderWidgetBuilder? showLoaderWidgetBuilder;
   final ShowErrorWidgetBuilder? showErrorWidgetBuilder;
 
-  const NetworkBuilder(
-      {super.key,
-      required this.request,
-      this.templateJsonPath,
-      this.showLoaderWidgetBuilder,
-      this.showErrorWidgetBuilder,
-      });
+  const NetworkBuilder({
+    super.key,
+    required this.request,
+    this.templateJsonPath,
+    this.showLoaderWidgetBuilder,
+    this.showErrorWidgetBuilder,
+  });
 
   @override
   State<NetworkBuilder> createState() => _NetworkBuilderState();

@@ -11,13 +11,17 @@ class ServeDynamicUI {
 
   /// mediaquery to get size of the device
   static MediaQueryData? get mediaQueryData => _isAppContextAttached
-      ? MediaQuery.of(appContext ?? ServeDynamicUI.applicationCurrentNavigationKey!.currentContext!)
+      ? MediaQuery.of(appContext ??
+          ServeDynamicUI.applicationCurrentNavigationKey!.currentContext!)
       : null;
 
-  static bool get _isAppContextAttached => (appContext != null && appContext!.mounted) ||
+  static bool get _isAppContextAttached =>
+      (appContext != null && appContext!.mounted) ||
       (ServeDynamicUI.applicationCurrentNavigationKey != null &&
-      ServeDynamicUI.applicationCurrentNavigationKey!.currentContext != null &&
-      ServeDynamicUI.applicationCurrentNavigationKey!.currentContext!.mounted);
+          ServeDynamicUI.applicationCurrentNavigationKey!.currentContext !=
+              null &&
+          ServeDynamicUI
+              .applicationCurrentNavigationKey!.currentContext!.mounted);
 
   /// set this explicitly if not using navigationKey
   static BuildContext? appContext;

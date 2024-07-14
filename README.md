@@ -1370,6 +1370,10 @@ add this as listener
   DynamicListeners.addListener("carousel_widget-_key", CarouselSliderChangeListener());
 ```
 
+To know more check out [example app](https://github.com/Arunshaik2001/serve_dynamic_ui/tree/main/example).
+
+Checkout full working app with server using serverpod [pokedyn-app](https://github.com/ServeDynamicUI/pokedyn-app).
+
 
 ## Additional information
 

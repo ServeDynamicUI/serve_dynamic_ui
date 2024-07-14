@@ -7,7 +7,7 @@ class DynamicView extends StatelessWidget {
   final Map<String, dynamic>? json;
   final DynamicWidget? child;
 
-  const DynamicView({Key? key, this.json, this.child}) : super(key: key);
+  const DynamicView({super.key, this.json, this.child});
 
   @override
   Widget build(BuildContext context) {

@@ -1,4 +1,3 @@
-import 'package:serve_dynamic_ui/src/listeners/data_event_listener/data_event_listener.dart';
 import 'package:serve_dynamic_ui/src/listeners/index.dart';
 
 ///an abstract class which helps to add generic listener

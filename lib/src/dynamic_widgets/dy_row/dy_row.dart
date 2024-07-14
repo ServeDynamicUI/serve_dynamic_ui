@@ -42,7 +42,7 @@ class DynamicRow extends DynamicWidget {
 
     children?.forEach((element) {
       childWidgets.add(LayoutBuilder(builder: (context, _) {
-        return element!.build(context);
+        return element.build(context);
       }));
     });
 

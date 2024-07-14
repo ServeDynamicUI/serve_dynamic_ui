@@ -27,6 +27,7 @@ dependencies:
   carousel_slider: ^4.2.1
   percent_indicator: ^4.2.3
   cached_network_image: ^3.3.1
+  sqflite: ^2.3.3+1
 
 dev_dependencies:
   flutter_test:

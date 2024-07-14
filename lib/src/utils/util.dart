@@ -2,12 +2,9 @@ import 'dart:math';
 
 import 'package:flutter/foundation.dart';
 import 'package:serve_dynamic_ui/src/constants/index.dart';
-import 'package:serve_dynamic_ui/src/db/providers/ServeDynamicUIDatabseProvider.dart';
 import 'package:serve_dynamic_ui/src/storage/index.dart';
 import 'package:serve_dynamic_ui/src/utils/index.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 
-import '../db/database/serve_dynamic_ui_database.dart';
 
 class Util {
   static bool isValidList<T>(dynamic list) {

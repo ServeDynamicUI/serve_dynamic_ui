@@ -19,7 +19,7 @@ class StringUtil {
   ) {
     var replacedString = string;
     keyValues?.forEach((key, value) {
-      replacedString = replacedString?.replaceAll(key, value!);
+      replacedString = replacedString?.replaceAll(key, value);
     });
     return replacedString;
   }

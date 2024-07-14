@@ -41,7 +41,7 @@ class DbUtil {
         return Util.isValid(deletedPage) && deletedPage! > 0;
       }
     } catch (e) {
-      debugPrint('Some error occurred: ${e}');
+      debugPrint('Some error occurred: $e');
     }
     return false;
   }

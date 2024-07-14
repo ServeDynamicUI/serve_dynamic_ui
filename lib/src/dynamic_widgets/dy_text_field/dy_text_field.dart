@@ -12,6 +12,7 @@ part 'dy_text_field.g.dart';
   createToJson: false,
 )
 class DynamicTextField extends DynamicWidget implements FormWidget {
+  @override
   @JsonKey(fromJson: Util.generateRandomString)
   String key;
   final String initialText;
@@ -119,7 +120,7 @@ class DynamicTextField extends DynamicWidget implements FormWidget {
       this.isValid.value = isValid;
       return isValid;
     }
-    this.isValid.value = false;
+    isValid.value = false;
     return false;
   }
 

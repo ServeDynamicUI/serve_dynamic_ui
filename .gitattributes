@@ -1,0 +1,13 @@
+# Force GitHub to recognize Dart files
+*.dart linguist-language=Dart
+
+# Force GitHub to recognize Kotlin files
+*.kt linguist-language=Kotlin
+*.kts linguist-language=Kotlin
+
+# Force GitHub to recognize Swift files
+*.swift linguist-language=Swift
+
+# Force GitHub to recognize JSON files
+*.json linguist-language=JSON
+*.md  linguist-language=MD

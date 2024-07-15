@@ -1,13 +1,34 @@
-# Force GitHub to recognize Dart files
-*.dart linguist-language=Dart
+# Auto detect text files and perform LF normalization
+*        text=auto
 
-# Force GitHub to recognize Kotlin files
-*.kt linguist-language=Kotlin
-*.kts linguist-language=Kotlin
+# Always perform LF normalization on these files
+*.dart   text
+*.gradle text
+*.html   text
+*.java   text
+*.json   text
+*.md     text
+*.py     text
+*.sh     text
+*.txt    text
+*.xml    text
+*.yaml   text
 
-# Force GitHub to recognize Swift files
-*.swift linguist-language=Swift
+# Make sure that these Windows files always have CRLF line endings in checkout
+*.bat             text eol=crlf
+*.ps1             text eol=crlf
+*.rc              text eol=crlf
+*.sln             text eol=crlf
+*.props           text eol=crlf
+*.vcxproj         text eol=crlf
+*.vcxproj.filters text eol=crlf
+# Including templatized versions.
+*.sln.tmpl        text eol=crlf
+*.props.tmpl      text eol=crlf
+*.vcxproj.tmpl    text eol=crlf
 
-# Force GitHub to recognize JSON files
-*.json linguist-language=JSON
-*.md  linguist-language=MD
+# Never perform LF normalization on these files
+*.ico    binary
+*.jar    binary
+*.png    binary
+*.zip    binary
